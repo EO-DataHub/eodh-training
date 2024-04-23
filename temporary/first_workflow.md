@@ -2,6 +2,7 @@
 
 ## Acronyms
 * ARD - Analysis Ready Data (a pre-processed dataset)
+* AWS - Amazon Web Services
 * CEDA - Centre for Environmental Data Analysis 
 * CWL - Common Workflow Language (a specification for standardising workflows) 
 * EO - Earth observation
@@ -17,21 +18,27 @@ graph LR;
 
 ```
 
-The next thing to do is access the data to be used in the Workflow. In this case we will download one of the CEDA Sentinel-2 ARD files over Eastbourne on the south coast of England. We will use the [curl](https://curl.se/) tool to do this, saving the accessed image as `sat.tif`:
+The next thing to do is access the data to be used in the Workflow. In this case we will download two bands of a Sentinel 2 image held on AWS. We will use the [curl](https://curl.se/) tool to do this, saving the accessed image as `B0$.tif` (where $ is the band number):
 
-`curl https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/19/S2B_20231119_latn509lone0006_T30UYB_ORB094_20231119115015_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif --output sat.tif`
+``` 
+curl -o B04.tif https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/53/H/PA/2021/7/S2B_53HPA_20210723_0_L2A/B04.tif
+
+curl -o B03.tif https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/53/H/PA/2021/7/S2B_53HPA_20210723_0_L2A/B03.tif 
+```
 
 The commands that we will use in the Workflow are all available through [gdal](https://gdal.org/index.html).  
 
 ### Clip the image
-We will use `gdalwarp` to clip the larger image to a smaller more manageable dataset. The gdal command that we can test and that we will need to replicate in CWL is: 
+We will use `gdal_-_translate` to clip the larger image to a smaller more manageable dataset. The gdal command that we can test and that we will need to replicate in CWL is: 
 
-`gdalwarp -cutline path/to/polygonfile.shp -crop_to_cutline sat.tif output.tif`
+`gdal_translate -projwin ULX ULY LRX LRY  -projwin_srs EPSG:4326 BO4.tif B04_clipped.tif`
 
-### Calculate the index
-Similarly, we will use `gdal_calc.py` to construct the NDVI dataset from the clipped image. this can be tested using the following command:
+where the coordinates UL refer to upper left and LR to lower right X and Y.
 
-`gdal_calc.py -A output.tif --A_band=1 -B output.tif --B_band=2 --type=Float32 --outfile=ndvi.tif --calc="((B-A)/(B+A))"` 
+### Stack the clips
+Similarly, we will use `gdal_merge.py` to construct the stacked images from the clipped image. This can be tested using the following command:
+
+`gdal_merge.py -separate B04_clipped.tif B03_clipped.tif -o stacked.tif` 
 
 ## Building the Workflow
 ### Required files
