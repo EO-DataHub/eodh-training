@@ -1,0 +1,6 @@
+bbox: "136.659,-35.96,136.923,-35.791"
+geotiff: 
+- { "class": "File", "path": "../B04.tif" }
+- { "class": "File", "path": "../B03.tif" }
+#- { "class": "File", "path": "B02.tif" }
+epsg: "EPSG:4326"

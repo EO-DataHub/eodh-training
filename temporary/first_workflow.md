@@ -48,20 +48,26 @@ There are three main files that are required to construct a CWL Workflow. These 
 * YAML file
 It may be that other files e.g. a .sh script or a Python script are also needed, depending on how bespoke and/or complex the desired Workflow is. 
 
-### Containers
-For the purposes of this example, we will be pulling the GDAL container from the OSgeo repository (see [here](https://github.com/OSGeo/gdal/pkgs/container/gdal)).
+### cwltool
+To run CWL workflows you will need a CWL runner. The most commonly used (locally) is `cwltool` which is a Python project maintained by the CWL community. It will support everything in the current CWL specification. `cwltool` can be installed using `pip` or variants of `conda`. More information can be found [here](https://www.commonwl.org/user_guide/introduction/prerequisites.html) and [here](https://cwl-for-eo.github.io/guide/requirements/). 
 
-NOTE https://github.com/OSGeo/gdal/tree/master/docker
+### Containers
+For the purposes of this example, we will be pulling the GDAL container from the OSgeo repository (see [here](https://github.com/OSGeo/gdal/tree/master/docker)).
+
+**NOTE**: There are a number of different images that can be accessed. To use the .py tools available through GDAL then 'GDAL Python' is required.
 
  If we wanted to we could also build our own bespoke image using a DockerFile and then run that. This is often used when data processing scripts need to be copied into the container.
-We will also be using [Podman](https://podman.io/) as our container software. podman is a drop in replacement for Docker but does require the `--podman` arguement in the `cwltool` command. 
+
+We will also be using [Podman](https://podman.io/) as our container software. 'podman' is a drop in replacement for Docker but does require the `--podman` arguement in the `cwltool` command. If using Windws, or if you are more familiar with Docker, then using Docker is the default containerisation method.
+
 ### CWL files
-For this example we require a CWL CommandLine file for both the clipping and NDVI calulation components of the workflow. We will also need a CWL Workflow file to run the entire process. The next block of code outlines the Workflow file. 
+For this example we require a CWL CommandLine file for both the clipping and stacking components of the workflow. We will also need a CWL Workflow file to bring these together and run the entire process. The next block of code outlines the overall Workflow file.
+**Note**: This example is based on the example found [here](https://cwl-for-eo.github.io/guide/101/cwl-101/tutorial-2/workflow/). Some errors were found in the original CWL files and the version presneted here hasbeen tested and is known to work on a local Linux system. 
 
 ```
 class: Workflow
 label: Sentinel-2 clipping and stacking
-doc:  This workflow creates an RGB composite
+doc:  This workflow creates a stacked composite. File name: composite.cwl
 id: main
 
 requirements:
@@ -121,7 +127,7 @@ steps:
 cwlVersion: v1.0
 
 ```
-From this example, we can see that we require two CommandLine CWL files: `clip.cwl`  and `calcs.cwl`. Let's deal with these in order.
+From this example, we can see that we require two CommandLine CWL files: `gdal-translate.cwl`  and `concatenate2.cwl`. Let's deal with these in order.
 
 ```
 class: CommandLineTool
@@ -202,45 +208,30 @@ outputs:
     type: File
 
 ```
-**NOTE**: YAML generally doesn't play well with tabs as whitespace so make sure you use spaces for indentations
+**NOTE**: YAML generally doesn't play well with tabs as whitespace so it's best practice to use spaces for indentations
 
 ## Running the Workflow
-Now that we have our tooling CWL files, and the Workflow CWL file that brings the tools together, we need to specify the input parameters. This is done using a `parameters.yml` file, where the name of the file can be anything that you want. The contents should follow the layout that we will be using:
+Now that we have our commandline CWL component files, and the Workflow CWL file that brings the tools together, we need to specify the input parameters. This is done using a `parameters.yml` file, where the name of the file can be anything that you want. The contents should follow the layout that we will be using:
 
 ```
-infile:
-  class: File
-  path: test/chr22.truncated.nosamples.1kg.vcf.gz
-genome: hg19
+bbox: "136.659,-35.96,136.923,-35.791"
+geotiff: 
+- { "class": "File", "path": "../B04.tif" }
+- { "class": "File", "path": "../B03.tif" }
+epsg: "EPSG:4326"
 ```
-Remember infile matches the reference in the in block in our snpeff-workflow.cwl file.
+You will need to change the `path` parameter to match the location of your input files. 
 
 Now we run it with the command:
 
-`cwltool workflow.cwl parameters.yml`
+`cwltool --podman composite.cwl composite-params.yml`
 
+**Note**: remember that if you are using Docker then you do not need the `--podman` arguement.
 
 ## Outputs
-It will take a minute to run, during which time we’ll see the commands that are executed and finally some JSON showing the output files. After it completes, we’ll find these new files in our directory – output.vcf, snpEff_summary.html, and snpEff_genes.txt. Notice, that we don’t find the intermediate unzipped.vcf file. Intermediate files that are not specified in the out block in the workflow are automatically deleted.
+This workflow takes a couple of minutes to run, during which time the executed commandsand their runtime messages are displayed on the commandline. Once the workflow completes, the output file will be found in the directory from where the workflow was run. Intermediate files that are not specified in the out block in the workflow are automatically deleted.
+
+The output .tif file can now be opened in QGIS or a similar software application to check that the output is as expected (in this case a 2-layer image of a clipped area of the extent of the input files).
 
 ## Tips
-You can pass --leave-tmpdirs to the cwltool command. This is often helpful to figure out if the outputs from a step are what you think they should be.
-
-
-
----
-__TO DEAL WITH__
-
-Stack the NDVIs
-
-`gdal_merge.py -separate 1.tif 2.tif 3.tif -o rgb.tif`
-
-
-> curl https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/19/S2B_20231119_latn509lone0009_T31UCS_ORB094_20231119115015_utm31n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif --output sat2.tif`
-
-
-```mermaid
-graph LR;
-  S2_ARD -- clip --> Temp_clipped -- NDVI --> Temp_NDVI -- stack --> output_NDVI ;
-
-```
+You can pass `--leave-tmpdirs` to the `cwltool` command. This is often helpful to figure out if the outputs from a step are what you think they should be.
