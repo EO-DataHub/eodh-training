@@ -153,28 +153,34 @@ outputs:
 type: File        # Single file
 type: File[]      # List of files
 type: Directory   # Specifies a folder class
+
+# reference output from a specific step
+outputSource:
+    - <step-name>/<data-name>
 ```
 See [here](https://www.commonwl.org/v1.2/Workflow.html#CWLType) for more data types.
 
+### Less basic CWL
+A "packed" CWL file references multiple process objects within it, rather than referencing out to individual CWL files. Therefore, it becomes possible to store and transmit a Workflow together with the processes of each of its steps using only one file.
 
----
----
+An entire process object can be "embedded" into the run field of a workflow step. If the step process is a subworkflow, it can be processed recursively to embed the processes of the subworkflow steps.
 
-## Advanced CWL
-Packed files
-A "packed" CWL document is one that contains multiple process objects. This makes it possible to store and transmit a Workflow together with the processes of each of its steps in a single file.
+Alternatively, a `$graph` field lists process objects, where each must have an `id` field. These are cross-referenced using the id of the process object within the workflow file. Typically packed CWL documents contain a Workflow called “main” and the workflow steps under that. If there is no #main object, the an error will occur.
 
-There are two methods to create packed documents: embedding and $graph. These can be both appear in the same document.
+An example of a `$graph` structure is shown here:
+```
+cwlVersion: v1.1
 
-"Embedding" is where the entire process object is copied into the run field of a workflow step. If the step process is a subworkflow, it can be processed recursively to embed the processes of the subworkflow steps, and so on. Embedded process objects may optionally include id fields.
+$graph:
+- class: CommandLineTool
+  id:
+  requirements: [] 
+  baseCommand: []
+  arguments: []
+  inputs: {}
+  outputs: {}
+```
+# Containers
+Containers solve the need for dependencies between software required to run specific commands. Containers are described by an image file (a template), where the container itself is an instantiation of the image.
 
-A "$graph" document does not have a process object at the root. Instead, there is a $graph field which consists of a list of process objects. Each process object must have an id field. Workflow run fields cross-reference other processes in the document $graph using the id of the process object.
-
-All process objects in a packed document must validate and execute as the cwlVersion appearing the top level. A cwlVersion field appearing anywhere other than the top level must be ignored.
-
-When executing a packed document, the reference to the document may include a fragment identifier. If present, the fragment identifier specifies the id of the process to execute.
-
-If the reference to the packed document does not include a fragment identifier, the runner must choose the top-level process object as the entry point. If there is no top-level process object (as in the case of $graph) then the runner must choose the process object with an id of #main. If there is no #main object, the runner must return an error.
-
-
-Typically packed CWL documents contain a CWL Workflow under the name “main” and the workflow steps (including any sub-workflows).
+ToDo: Add info
