@@ -12,7 +12,32 @@
 * Telespazio initial EODH S2 demo: [using boto](https://github.com/UKEODHP/eodhp-guide/blob/main/examples/app-hub/s3demo.ipynb)
 
 # CWL
+## General
+* CWL official tutorials: [Quick Start](https://www.commonwl.org/user_guide/introduction/quick-start.html)
+* Dynamic workflow behavious: [use of JScript](https://doc.arvados.org/v2.7/user/cwl/rnaseq-cwl-training.html)
+* The official documentation and specification: [specs](https://www.commonwl.org/user_guide/introduction/basic-concepts.html#the-cwl-specification) 
+* Templating workflow files: [ToolJig](https://srp33.github.io/ToolJig/tool.html) - is there a way that users can utilise this to create spatial CWL files?
+* Article about why CWL has been developed: [doc](https://elifesciences.org/articles/71069#abstract)
+* Tool to create CWL workflows: [scriptcwl](https://github.com/NLeSC/scriptcwl) - old, but might be useful?
+* Library of tools for working with CWL: [cwl-utils](https://github.com/common-workflow-language/cwl-utils) - less old, might be useful
+* Old but comprehensive tutorial: [2017 how-to](https://andrewjesaitis.com/posts/2017-02-06-cwl-tutorial/)
+* Official CWl snippets: [tests](https://github.com/common-workflow-language/cwl-v1.3/tree/main/tests)
+
+## Spatial
 * My first CWL workflow: [explainer](https://github.com/EO-DataHub/eodh-training/blob/main/temporary/first_workflow.md)
+* EO Application Package example: [Waterbodies](https://github.com/Terradue/ogc-eo-application-package-hands-on/tree/master/water-bodies)
+* OGC best practices: [EO app pkg](https://docs.ogc.org/bp/20-089r1.html#toc18)
+* CWL for EO tutorials: [adding conditions](https://cwl-for-eo.github.io/guide/how-to/cwl-how-to/08-conditional-workflows/conditional-workflows/)
+* Terradue training: [hands-on](https://github.com/Terradue/ogc-eo-application-package-hands-on) - not sure all the scripts work as they are supposed to...
+* EO App Pkgs: [overview](https://github.com/eoap), [examples](https://github.com/EOEPCA/deployment-guide/tree/main/deploy/samples/requests/processing)
+
+
+## Docker
+* GDAL: [docker images](https://github.com/OSGeo/gdal/tree/master/docker)
+
 
 # Workflow ideas
-* Could Whitebox be of use in the data processing?: [discussion on Docker availability](https://github.com/jblindsay/whitebox-tools/issues/22), [official docs](https://www.whiteboxgeo.com/whitebox-workflows-for-python/)
+* Could Whitebox be of use in the data processing?: [discussion on Docker availability](https://github.com/jblindsay/whitebox-tools/issues/22), [official docs](https://www.whiteboxgeo.com/whitebox-workflows-for-python/), [repo](https://github.com/jblindsay/whitebox-tools)
+
+# Platform
+* EO Exploitation Platform Common Architecture examples and repos: [EOEPCA](https://github.com/EOEPCA)
