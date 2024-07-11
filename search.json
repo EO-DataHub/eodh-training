@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "notebook/test.html",
+    "href": "notebook/test.html",
+    "title": "today",
+    "section": "",
+    "text": "Hello\n\nimport json\n# does just that"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "website",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  }
+]

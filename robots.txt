@@ -1,0 +1,1 @@
+Sitemap: https://EO-DataHub.github.io/eodh-training/sitemap.xml

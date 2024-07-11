@@ -1,6 +1,0 @@
-intif:
-  class: File 
-  path: "../../sat.tif" # path needs name of file
-aoi:  
-  class: File
-  path: "../../clip_area.gpkg" 
