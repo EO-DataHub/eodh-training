@@ -1,23 +1,32 @@
 [
   {
-    "objectID": "website/about.html",
-    "href": "website/about.html",
-    "title": "About",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "website",
     "section": "",
-    "text": "About this site\nSome info to be added to test the action"
+    "text": "Welcome\nThis is a temporary website for the training materials related to EODH.\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.",
+    "crumbs": [
+      "Home"
+    ]
   },
   {
     "objectID": "api-client/test2.html",
     "href": "api-client/test2.html",
     "title": "Raster data",
     "section": "",
-    "text": "Pixels everywhere\n\nimport rasterio\n# look at my raster"
+    "text": "Pixels everywhere\n\nimport rasterio\n# look at my raster",
+    "crumbs": [
+      "API Client (pyeodh)"
+    ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "website",
+    "objectID": "website/about.html",
+    "href": "website/about.html",
+    "title": "About",
     "section": "",
-    "text": "This is a test Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "What is EODH\n\n\nResources on this website",
+    "crumbs": [
+      "About"
+    ]
   }
 ]
