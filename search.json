@@ -1,23 +1,23 @@
 [
   {
-    "objectID": "notebook/test.html",
-    "href": "notebook/test.html",
-    "title": "today",
-    "section": "",
-    "text": "Hello\n\nimport json\n# does just that"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
+    "objectID": "website/about.html",
+    "href": "website/about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "About this site\nSome info to be added to test the action"
+  },
+  {
+    "objectID": "api-client/test2.html",
+    "href": "api-client/test2.html",
+    "title": "Raster data",
+    "section": "",
+    "text": "Pixels everywhere\n\nimport rasterio\n# look at my raster"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "website",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is a test Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
 ]
