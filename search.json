@@ -16,7 +16,8 @@
     "section": "",
     "text": "Pixels everywhere\n\nimport rasterio\n# look at my raster",
     "crumbs": [
-      "API Client (pyeodh)"
+      "API Client (pyeodh)",
+      "Test NB"
     ]
   },
   {
