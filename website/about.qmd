@@ -2,6 +2,6 @@
 title: "About"
 ---
 
-About this site
+# What is EODH
 
-Some info to be added to test the action
+# Resources on this website

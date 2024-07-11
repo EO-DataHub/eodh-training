@@ -1,7 +1,9 @@
 ---
 title: "website"
 ---
+# Welcome
+This is a temporary website for the training materials related to EODH.
 
-This is a test Quarto website.
 
+---
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

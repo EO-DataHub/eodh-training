@@ -9,19 +9,23 @@ execute:
   freeze: auto
 
 website:
-  title: "DEMO SITE"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: website/about.qmd
-        text: About
-      - href: api-client/test2.ipynb
+  title: "EODH Training Materials"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: website/about.qmd
+      - section: "API Client (pyeodh)"
+        - href: api-client/test2.ipynb
         text: "Test NB"
+        #contents
 
 format:
   html:
-    theme: cosmo
+    theme: spacelab
     css: website/styles.css
     toc: true
 
