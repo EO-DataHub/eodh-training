@@ -19,8 +19,9 @@ website:
       - text: "About"
         href: website/about.qmd
       - section: "API Client (pyeodh)"
-        href: api-client/test2.ipynb
-        text: "Test NB"
+        contents: 
+          - text: "Test NB"
+            href: api-client/test2.ipynb
 
 format:
   html:
