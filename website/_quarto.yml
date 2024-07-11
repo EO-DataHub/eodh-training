@@ -1,0 +1,27 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "*.ipynb"
+
+execute:
+  freeze: auto
+
+website:
+  title: "today"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - href: notebook/test.ipynb
+        text: "Test book"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
