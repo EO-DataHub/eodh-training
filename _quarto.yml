@@ -9,19 +9,20 @@ execute:
   freeze: auto
 
 website:
-  title: "today"
+  title: "DEMO SITE"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-      - href: notebook/test.ipynb
-        text: "Test book"
+      - href: website/about.qmd
+        text: About
+      - href: api-client/test2.ipynb
+        text: "Test NB"
 
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: website/styles.css
     toc: true
 
 
