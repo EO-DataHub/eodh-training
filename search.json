@@ -2,22 +2,44 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "website",
+    "title": "EODH Training Materials",
     "section": "",
-    "text": "Welcome\nThis is a temporary website for the training materials related to EODH.\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.",
+    "text": "Welcome\nThis site is in heavy development.\nWelcome to the eodh-training repository! This repository aims to provide a live set of documents to demonstrate how to use the EODH (Earth Observation Data Hub) Python API client and QGIS plugin. Other training materials may be added to this repository in future.\nWhether you’re a user looking to explore the project or a developer wanting to contribute, you’ll find all the information you need here.\n\n\nContent\nAdd - links to notebooks and resources\n\n\nAdditional Support\nWe have set up an accessible Discussion Group as a location that users can interact with other users, as well as the Hub owners and developers. Please use this resource to build a vibrant community around the EODH platform.\nIf you require specific development information on the API client then please check out the ReadTheDocs page for the client.\n\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.",
     "crumbs": [
       "Home"
     ]
   },
   {
-    "objectID": "api-client/test2.html",
-    "href": "api-client/test2.html",
-    "title": "Raster data",
+    "objectID": "api-client/2_ResourceCatalog.html",
+    "href": "api-client/2_ResourceCatalog.html",
+    "title": "Resource Catalog",
     "section": "",
-    "text": "Pixels everywhere\n\nimport rasterio\n# look at my raster",
+    "text": "This notebook demostrates usage of the EODH resource catalog API using pyeodh",
     "crumbs": [
       "API Client (pyeodh)",
-      "Test NB"
+      "Searching the Resource Catalogue"
+    ]
+  },
+  {
+    "objectID": "api-client/2_ResourceCatalog.html#we-need-to-add",
+    "href": "api-client/2_ResourceCatalog.html#we-need-to-add",
+    "title": "Resource Catalog",
+    "section": "we need to add",
+    "text": "we need to add\n\na clear description of purpose,\nuse cases and audience\nlinkages between notebooks and other training resources\n\nFor all notebooks record: - Technical dependencies, - Platform and Service Dependencies, - Python Language versions, - libraries, additional scripts and files.",
+    "crumbs": [
+      "API Client (pyeodh)",
+      "Searching the Resource Catalogue"
+    ]
+  },
+  {
+    "objectID": "api-client/2_ResourceCatalog.html#from-the-paper",
+    "href": "api-client/2_ResourceCatalog.html#from-the-paper",
+    "title": "Resource Catalog",
+    "section": "From the paper",
+    "text": "From the paper\nWhen Jupyter notebooks are used in an educational context, they should not only be conceptualized to teach a specific topic but should also set a good example by following and implementing best practices for scientific computing\n\nNeed in-order execution of notebook cells\nGood-quality code\nNo code duplication\nimports at the beginning of a notebook\ncode style and formatting consistent\nuse meaningful names for variables\nlicence for code and traiing resources\n\nFirst we need to create an instance of the Client, which is our entrypoint to EODH APIs.\n\nimport pyeodh\n\nclient = pyeodh.Client(base_url=\"https://test.eodatahub.org.uk\") # Optionally specify a different server\n\nFetch the resource catalog object.\nSome text\n\n# GET /stac-fastapi/catalogs\nservice = client.get_catalog_service()\n#catalogs = service.get_catalogs()\n#ceda_cat = service.get_catalog(\"supported-datasets/ceda-stac-fastapi\")\n\nAll attributes are mapped to properties, e.g.\n\nprint(\"id: \", rc.id)\nprint(\"title: \", rc.title)\nprint(\"description: \", rc.description)\n\nAPI endpoints are wrapped in methods and are structured into classes following the same logic as the API. E.g. to fetch a collection item, I first need to get the collection from the resource catalog.\n\n# GET /stac-fastapi/collections/{collection_id}/items/{item_id}\ncmip6 = rc.get_collection(\"cmip6\")\nitem = cmip6.get_item(\"CMIP6.ScenarioMIP.THU.CIESM.ssp585.r1i1p1f1.Amon.rsus.gr.v20200806\")\nprint(item.id)\n\nSome API responses are paginated (e.g. collection items), and you can simply iterate over them.\n\n# GET /stac-fastapi/collections/cmip6/items\nitems = cmip6.get_items()\nfor item in items:\n    print(item.id)\n\nAttempting to create a collection with id that already exists will result in 409 error code. To see the example in action delete the test collection first by running the cell below.\nDelete a colletion\n\nrc.get_collection(\"test1\").delete()\n\nCreate new collection example\n\ntest1 = rc.create_collection(id=\"test1\", title=\"Test\", description=\"Test collection\")\nprint(test1.description)\n\nUpdate a collection\n\ntest1.update(description=\"Different description\")\nprint(test1.description)\n\nCreate an item\n\ntestitem1 = test1.create_item(id=\"test1.testitem1\")\nprint(f\"Created {testitem1.id} in collection {testitem1.collection}\")\n\nUpdate an item\n\ntestitem1.update(properties={\"foo\": \"bar\"})\nprint(testitem1.properties)\n\nDelete an item\n\ntestitem1.delete()\n\nFind out more about the Resource Catalog\n\nprint(f\"Livecheck: PING-{rc.ping()}\")\nprint(\"\\nAPI conforms to:\", *rc.get_conformance(), sep=\"\\n\")\n\nSearch the Catalog\n\nfor result in rc.search(collections=['cmip6']):\n    print(result.id)",
+    "crumbs": [
+      "API Client (pyeodh)",
+      "Searching the Resource Catalogue"
     ]
   },
   {
