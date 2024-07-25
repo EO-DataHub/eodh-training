@@ -1,9 +1,20 @@
 ---
-title: "website"
+title: "EODH Training Materials"
 ---
 # Welcome
-This is a temporary website for the training materials related to EODH.
+__This site is in heavy development.__
 
+Welcome to the eodh-training repository! This repository aims to provide a live set of documents to demonstrate how to use the EODH (Earth Observation Data Hub) Python API client and QGIS plugin. Other training materials may be added to this repository in future.
+
+Whether you're a user looking to explore the project or a developer wanting to contribute, you'll find all the information you need here.
+
+# Content
+__Add - links to notebooks and resources__
+
+# Additional Support
+We have set up an accessible [Discussion Group](https://github.com/EO-DataHub/eodh-training/discussions) as a location that users can interact with other users, as well as the Hub owners and developers. Please use this resource to build a vibrant community around the EODH platform.
+
+If you require specific development information on the API client then please check out the [ReadTheDocs](https://pyeodh.readthedocs.io/en/latest/index.html) page for the client.
 
 ---
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

@@ -20,12 +20,12 @@ website:
         href: website/about.qmd
       - section: "API Client (pyeodh)"
         contents: 
-          - text: "Test NB"
-            href: api-client/test2.ipynb
+          - text: "Searching the Resource Catalogue"
+            href: api-client/2_ResourceCatalog.ipynb
 
 format:
   html:
-    theme: spacelab
+    theme: litera
     css: website/styles.css
     toc: true
 
