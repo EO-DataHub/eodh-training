@@ -10,6 +10,9 @@ execute:
 
 website:
   title: "EODH Training Materials"
+#  cookie-consent:
+#    style: headline
+#    palette: dark
   sidebar:
     style: "docked"
     search: true
@@ -22,11 +25,15 @@ website:
         contents: 
           - text: "Searching the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
+      - section: "Presentations"
+        contents: 
+          - text: "DEFRA 2024-09"
+            href: presentations/DEFRA/202409_Defra.ipynb
 
 format:
   html:
-    fontsize: 1.1em
-    theme: 
-      - pulse
-      - html/styles.scss
-    toc: false
+    theme:
+      light: cosmo #flatly
+      dark: darkly
+    #css: styles.css
+    toc: true
