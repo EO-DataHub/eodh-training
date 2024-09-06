@@ -25,8 +25,8 @@ website:
 
 format:
   html:
-    theme: litera
-    css: website/styles.css
-    toc: true
-
-
+    fontsize: 1.1em
+    theme: 
+      - pulse
+      - html/styles.scss
+    toc: false

@@ -1,1 +1,6 @@
 /* css styles */
+// Links
+$link-color: $primary !default;
+$link-decoration: none !default;
+$link-hover-color: $red !default;
+$link-hover-decoration: underline !default;
