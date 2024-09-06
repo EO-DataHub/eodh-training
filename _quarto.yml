@@ -13,9 +13,18 @@ website:
 #  cookie-consent:
 #    style: headline
 #    palette: dark
+  navbar:
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/orgs/EO-DataHub/repositories
+          - text: Community discussion
+            href:  https://github.com/EO-DataHub/eodh-training/discussions
   sidebar:
     style: "docked"
     search: true
+    collapse-level: 1
     contents:
       - text: "Home"
         href: index.qmd
@@ -25,6 +34,10 @@ website:
         contents: 
           - text: "Searching the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
+      - section: "Workflows"
+        contents: 
+          - text: "Workflow Introduction"
+            href: workflows/1_workflows.ipynb
       - section: "Presentations"
         contents: 
           - text: "DEFRA 2024-09"
@@ -33,7 +46,7 @@ website:
 format:
   html:
     theme:
-      light: cosmo #flatly
+      light: flatly
       dark: darkly
     #css: styles.css
     toc: true
