@@ -239,12 +239,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
-  <li><a href="#what-is-eodh" id="toc-what-is-eodh" class="nav-link" data-scroll-target="#what-is-eodh">What is EODH?</a>
+  <li><a href="#what-is-the-eodh" id="toc-what-is-the-eodh" class="nav-link active" data-scroll-target="#what-is-the-eodh">What is the EODH?</a>
   <ul class="collapse">
-  <li><a href="#its-data-discovery" id="toc-its-data-discovery" class="nav-link" data-scroll-target="#its-data-discovery">1) it’s data discovery</a></li>
+  <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
   </ul></li>
-  <li><a href="#try-to-use-eodh" id="toc-try-to-use-eodh" class="nav-link" data-scroll-target="#try-to-use-eodh">TRY TO USE EODH</a></li>
+  <li><a href="#eodh-its-data-discovery" id="toc-eodh-its-data-discovery" class="nav-link" data-scroll-target="#eodh-its-data-discovery">EODH: it’s data discovery</a></li>
+  <li><a href="#eodh-its-mass-compute" id="toc-eodh-its-mass-compute" class="nav-link" data-scroll-target="#eodh-its-mass-compute">EODH: it’s mass compute</a></li>
+  <li><a href="#eodh-its-data-analysis" id="toc-eodh-its-data-analysis" class="nav-link" data-scroll-target="#eodh-its-data-analysis">EODH: it’s data analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -277,11 +278,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Date last modified</strong>: 2024-09-18</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
-<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-<p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
-<section id="set-up" class="level1">
-<h1>Set up</h1>
-<p>The following cell only needs to be run on the AppHub. If you have a local Python environment running install the required packages as you would normally.</p>
+<p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
+<p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
+<section id="what-is-the-eodh" class="level1">
+<h1>What is the EODH?</h1>
+<p>The Earth Observation Data Hub is:</p>
+<p>“A UK Pathfinder project delivering access to Earth Observation (EO) data for effective decisionmaking across government, business and academia. The Earth Observation DataHub (EODH) brings together an expert project delivery team and industrial partners in an ambitious project… Users of the Hub will be able to explore areas of interest in the UK and across the globe… It will also enable selected users to support their own analyses, services and tools using the Hub’s workflow and compute environments.”</p>
+<p>More details can be found online at https://eodatahub.org.uk/</p>
+<p>Components of the Hub include: * A Resource Catalogue - a STAC compliant, (<strong>TO DO</strong>) * A Workflow Runner * A Web Presence * An App Hub</p>
+<section id="presentation-set-up" class="level3">
+<h3 class="anchored" data-anchor-id="presentation-set-up">Presentation set up</h3>
+<p>The following cell only needs to be run on the EODH AppHub. If you have a local Python environment running install the required packages as you would normally.</p>
 <div id="a304de62" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If needed you can install a package in the current AppHub Jupyter environment using pip</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For instance, we will need the following libraries</span></span>
@@ -289,14 +296,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh pandas matplotlib numpy pillow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="what-is-eodh" class="level1">
-<h1>What is EODH?</h1>
-<section id="its-data-discovery" class="level2">
-<h2 class="anchored" data-anchor-id="its-data-discovery">1) it’s data discovery</h2>
+</section>
+<section id="eodh-its-data-discovery" class="level1">
+<h1>EODH: it’s data discovery</h1>
 <p>pyeodh exposes the Hub’s API endpoints to Python users</p>
-<div id="0a9a1f0b" class="cell" data-execution_count="3">
+<div id="0a9a1f0b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflows</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> HTTPError</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="e7b87e49" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
@@ -325,69 +336,86 @@ cop-dem-glo-90: The Copernicus DEM is a Digital Surface Model (DSM) which repres
 <div id="04669d57" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find some open data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="1">
-<li>it’s mass compute what are workflows There’s also a QGIS plugin</li>
-</ol>
+</section>
+<section id="eodh-its-mass-compute" class="level1">
+<h1>EODH: it’s mass compute</h1>
+<p>what are workflows There’s also a QGIS plugin</p>
 <div id="4af41382" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to the Workflow Runner</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to the Workflow Runner</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> os.getenv(<span class="st">"ADES_USER"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> os.getenv(<span class="st">"ADES_TOKEN"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>s3_token <span class="op">=</span> os.getenv(<span class="st">"ADES_S3_TOKEN"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(username<span class="op">=</span>username, token<span class="op">=</span>token, s3_token<span class="op">=</span>s3_token)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ades <span class="op">=</span> client.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bdeaf290" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Workflows</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'secrets.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    username <span class="op">=</span> lines[<span class="dv">0</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    password <span class="op">=</span> lines[<span class="dv">1</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(auth<span class="op">=</span>(username, password))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>wfr <span class="op">=</span> client.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="1d98fdfd" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose and parameterise a workflow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose and parameterise a workflow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a2087c93" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="ef19c0b2" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the outputs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the outputs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="3" type="1">
-<li>it’s data analysis Notebook service can be used with pyeodh and other libraries installed using pip to analyse data and outputs</li>
-</ol>
+</section>
+<section id="eodh-its-data-analysis" class="level1">
+<h1>EODH: it’s data analysis</h1>
+<p>Notebook service can be used with pyeodh and other libraries installed using pip to analyse data and outputs</p>
 <div id="e70d7448" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data cube?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data cube?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Following https://odc-stac.readthedocs.io/en/latest/notebooks/stac-load-e84-aws.html</p>
-</section>
-</section>
-<section id="try-to-use-eodh" class="level1">
-<h1>TRY TO USE EODH</h1>
+<p><strong>REWORK TO USE EODH IF POSSIBLE</strong></p>
 <div id="4f6938e0-7978-4ead-abe2-470f9dc2ed18" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.distributed</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#import folium.plugins # Not sure what this does</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely.geometry</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> odc.stac <span class="im">import</span> configure_rio, stac_load <span class="co"># the data cube bit</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_bounds(bbox, invert_y<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Helper method for changing bounding box representation to leaflet notation</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ``(lon1, lat1, lon2, lat2) -&gt; ((lat1, lon1), (lat2, lon2))``</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    x1, y1, x2, y2 <span class="op">=</span> bbox</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> invert_y:</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        y1, y2 <span class="op">=</span> y2, y1</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((y1, x1), (y2, x2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.distributed</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#import folium.plugins # Not sure what this does</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely.geometry</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> odc.stac <span class="im">import</span> configure_rio, stac_load <span class="co"># the data cube bit</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_bounds(bbox, invert_y<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Helper method for changing bounding box representation to leaflet notation</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ``(lon1, lat1, lon2, lat2) -&gt; ((lat1, lon1), (lat2, lon2))``</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    x1, y1, x2, y2 <span class="op">=</span> bbox</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> invert_y:</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        y1, y2 <span class="op">=</span> y2, y1</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((y1, x1), (y2, x2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6c32de54-6db4-4417-ad3b-b4e21aea34b7" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FIND STAC ITEMS</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#km2deg = 1.0 / 111</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#x, y = (113.887, -25.843)  # Center point of a query</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#r = 100 * km2deg</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#bbox = (x - r, y - r, x + r, y + r)</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.stac.ceda.ac.uk/"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#catalog = Client.open("https://earth-search.aws.element84.com/v1/")</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client.<span class="bu">open</span>(url)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> coll <span class="kw">in</span> client.get_collections():</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>coll<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>coll<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FIND STAC ITEMS</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#km2deg = 1.0 / 111</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#x, y = (113.887, -25.843)  # Center point of a query</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#r = 100 * km2deg</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#bbox = (x - r, y - r, x + r, y + r)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.stac.ceda.ac.uk/"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#catalog = Client.open("https://earth-search.aws.element84.com/v1/")</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client.<span class="bu">open</span>(url)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> coll <span class="kw">in</span> client.get_collections():</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>coll<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>coll<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cmip6: CMIP6
 cordex: CORDEX
@@ -398,61 +426,61 @@ ukcp: UKCP</code></pre>
 </div>
 </div>
 <div id="2f466597-5f83-448b-8377-fe4d847b17a5" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sentinel2_ard <span class="op">=</span> client.get_collection(<span class="st">'sentinel2_ard'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sentinel2_ard.get_items()</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check the spatial and temporal extent of the collection</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spatial extent:"</span>, sentinel2_ard.extent.spatial.bboxes)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data range:"</span>, [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> sentinel2_ard.extent.temporal.intervals[<span class="dv">0</span>]])</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#items = list(query.items())</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Found: {len(items):d} datasets")</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert STAC items into a GeoJSON FeatureCollection</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#stac_json = query.item_collection_as_dict()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sentinel2_ard <span class="op">=</span> client.get_collection(<span class="st">'sentinel2_ard'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sentinel2_ard.get_items()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check the spatial and temporal extent of the collection</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spatial extent:"</span>, sentinel2_ard.extent.spatial.bboxes)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"data range:"</span>, [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> sentinel2_ard.extent.temporal.intervals[<span class="dv">0</span>]])</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#items = list(query.items())</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f"Found: {len(items):d} datasets")</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert STAC items into a GeoJSON FeatureCollection</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#stac_json = query.item_collection_as_dict()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spatial extent: [[-9.00034454651177, 49.48562028352171, 3.1494256015866995, 61.33444247301668]]
 data range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></pre>
 </div>
 </div>
 <div id="ac056347-5fb2-4e95-98ed-57ec504928e4" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SEARCH</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SEARCH</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="6181ff28-d4e8-403e-bd8c-35003661c945" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>100</code></pre>
 </div>
 </div>
 <div id="6126f122-5c38-43f6-98f7-af8f19c39051" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Point</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>point <span class="op">=</span> Point(<span class="op">-</span><span class="fl">1.3144835766058023</span>, <span class="fl">51.57555380377267</span>) <span class="co"># Atlas building at RAL</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>point,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>      ],</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Point</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>point <span class="op">=</span> Point(<span class="op">-</span><span class="fl">1.3144835766058023</span>, <span class="fl">51.57555380377267</span>) <span class="co"># Atlas building at RAL</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>point,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      ],</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>[&lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.25.S2B_20230225_lat52lon075_T30UXC_ORB137_utm30n_osgb&gt;,
  &lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.23.S2A_20230223_lat52lon075_T30UXC_ORB037_utm30n_osgb&gt;,
@@ -467,7 +495,7 @@ data range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></p
 </div>
 </div>
 <div id="758e6914-8f2f-4098-b4ae-d7039675c6ec" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>items[<span class="dv">0</span>].to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>items[<span class="dv">0</span>].to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>{'type': 'Feature',
  'stac_version': '1.0.0',
@@ -596,19 +624,19 @@ data range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></p
 </div>
 </div>
 <div id="5f1725d7-e500-47a5-9bae-9a30344d2770" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>point,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eo:cloud_cover&lt;=50.0'</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      ],</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>point,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-01-01'</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-02-28'</span>, </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eo:cloud_cover&lt;=50.0'</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      ],</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    max_items<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>[&lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.20.S2A_20230220_lat52lon075_T30UXC_ORB137_utm30n_osgb&gt;,
  &lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.15.S2B_20230215_lat52lon075_T30UXC_ORB137_utm30n_osgb&gt;,
@@ -623,7 +651,7 @@ data range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></p
 </div>
 </div>
 <div id="44902e7b-b2bf-44c4-bd37-469c17396949" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>items[<span class="dv">0</span>].to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>items[<span class="dv">0</span>].to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>{'type': 'Feature',
  'stac_version': '1.0.0',
@@ -752,8 +780,8 @@ data range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></p
 </div>
 </div>
 <div id="0288e451-47c0-4b19-b770-e80dcac7b120" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> items[<span class="dv">1</span>].assets.items():</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key, value.href)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> items[<span class="dv">1</span>].assets.items():</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key, value.href)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cloud https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/02/15/S2B_20230215_lat52lon075_T30UXC_ORB137_utm30n_osgb_clouds.tif
 metadata https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/02/15/S2B_20230215_lat52lon075_T30UXC_ORB137_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_meta.xml
@@ -765,7 +793,7 @@ saturated_pixels https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/
 </div>
 </div>
 <div id="b187c25a-6f91-4fba-a7db-2501019c41b2" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>items</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>[&lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.20.S2A_20230220_lat52lon075_T30UXC_ORB137_utm30n_osgb&gt;,
  &lt;Item id=neodc.sentinel_ard.data.sentinel_2.2023.02.15.S2B_20230215_lat52lon075_T30UXC_ORB137_utm30n_osgb&gt;,
@@ -780,11 +808,11 @@ saturated_pixels https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/
 </div>
 </div>
 <div id="407a59ad-1f16-4e16-9051-0abeb3cd1b27" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP DASK CLIENT</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> dask.distributed.Client()</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>configure_rio(cloud_defaults<span class="op">=</span><span class="va">True</span>, aws<span class="op">=</span>{<span class="st">"aws_unsigned"</span>: <span class="va">True</span>}, client<span class="op">=</span>client) <span class="co"># sets up gdal for cloud use</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>display(client)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP DASK CLIENT</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> dask.distributed.Client()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>configure_rio(cloud_defaults<span class="op">=</span><span class="va">True</span>, aws<span class="op">=</span>{<span class="st">"aws_unsigned"</span>: <span class="va">True</span>}, client<span class="op">=</span>client) <span class="co"># sets up gdal for cloud use</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>display(client)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/distributed/node.py:182: UserWarning: Port 8787 is already in use.
 Perhaps you already have a cluster running?
@@ -795,7 +823,7 @@ Hosting the HTTP server on port 36089 instead
 <div>
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
-        <h3 style="margin-bottom: 0px;" class="anchored" data-anchor-id="try-to-use-eodh">Client</h3>
+        <h3 style="margin-bottom: 0px;" class="anchored" data-anchor-id="eodh-its-data-analysis">Client</h3>
         <p style="color: #9D9D9D; margin-bottom: 0px;">Client-18464180-69fc-11ef-adda-f40669402fbd</p>
         
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
@@ -1023,86 +1051,86 @@ Hosting the HTTP server on port 36089 instead
 </div>
 </div>
 <div id="ea05ae8b-41f1-432a-a765-8e862ccbf92d" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found: </span><span class="sc">{</span><span class="bu">len</span>(items)<span class="sc">:d}</span><span class="ss"> datasets"</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert STAC items into a GeoJSON FeatureCollection</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>stac_json <span class="op">=</span> item_search.item_collection_as_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found: </span><span class="sc">{</span><span class="bu">len</span>(items)<span class="sc">:d}</span><span class="ss"> datasets"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert STAC items into a GeoJSON FeatureCollection</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>stac_json <span class="op">=</span> item_search.item_collection_as_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Found: 10 datasets</code></pre>
 </div>
 </div>
 <div id="27f6e12a-93aa-4a70-8cd6-92232cd835a9" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REVIEW SEARCH RESULTS</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame.from_features(stac_json, <span class="st">"epsg:4326"</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute granule id from components</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gdf["granule"] = (</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    gdf["esa_file_name"].apply(lambda x: f"{x:02d}")</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    + gdf["mgrs:latitude_band"]</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    + gdf["mgrs:grid_square"]</span></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> gdf.plot(</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esa_file_name"</span>,</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"black"</span>,</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="st">"equal"</span>,</span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">12</span>),</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    legend_kwds<span class="op">=</span>{<span class="st">"loc"</span>: <span class="st">"upper left"</span>, <span class="st">"frameon"</span>: <span class="va">False</span>, <span class="st">"ncol"</span>: <span class="dv">1</span>},</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> fig.set_title(<span class="st">"STAC Query Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REVIEW SEARCH RESULTS</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame.from_features(stac_json, <span class="st">"epsg:4326"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute granule id from components</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gdf["granule"] = (</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    gdf["esa_file_name"].apply(lambda x: f"{x:02d}")</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    + gdf["mgrs:latitude_band"]</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    + gdf["mgrs:grid_square"]</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> gdf.plot(</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esa_file_name"</span>,</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="st">"equal"</span>,</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">12</span>),</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    legend_kwds<span class="op">=</span>{<span class="st">"loc"</span>: <span class="st">"upper left"</span>, <span class="st">"frameon"</span>: <span class="va">False</span>, <span class="st">"ncol"</span>: <span class="dv">1</span>},</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> fig.set_title(<span class="st">"STAC Query Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="202409_Defra_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="205e0c9a-3e03-48f4-b03a-b7873411827e" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT THE SAME, but using FOLIUM</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/python-visualization/folium/issues/1501</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#from branca.element import Figure</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> folium.Figure(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">52</span>, <span class="dv">2</span>], zoom_start<span class="op">=</span><span class="dv">5</span>).add_to(f)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co">#fig = Figure(width="400px", height="500px")</span></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co">#map1 = folium.Map()</span></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.add_child(map1)</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="co">#folium.GeoJson(</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="co">#    shapely.geometry.box(*bbox),</span></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co">#    style_function=lambda x: dict(fill=False, weight=1, opacity=0.7, color="olive"),</span></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="co">#    name="Query",</span></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="co">#).add_to(m)</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>gdf.explore(</span>
-<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esa_file_name"</span>,</span>
-<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[</span>
-<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"esa_file_name"</span>,</span>
-<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="co">#        "datetime",</span></span>
-<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a><span class="co">#        "eo:cloud_cover",</span></span>
-<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a>    popup<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a><span class="co">#    style_kwds=dict(fillOpacity=0.1, width=2),</span></span>
-<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"STAC"</span>,</span>
-<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>    m<span class="op">=</span>m,</span>
-<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a><span class="co">#map1.fit_bounds(bounds=convert_bounds(gdf.unary_union.bounds))</span></span>
-<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a><span class="co">#display(fig)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PLOT THE SAME, but using FOLIUM</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/python-visualization/folium/issues/1501</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#from branca.element import Figure</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> folium.Figure(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">52</span>, <span class="dv">2</span>], zoom_start<span class="op">=</span><span class="dv">5</span>).add_to(f)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co">#fig = Figure(width="400px", height="500px")</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co">#map1 = folium.Map()</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.add_child(map1)</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co">#folium.GeoJson(</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="co">#    shapely.geometry.box(*bbox),</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="co">#    style_function=lambda x: dict(fill=False, weight=1, opacity=0.7, color="olive"),</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co">#    name="Query",</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="co">#).add_to(m)</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>gdf.explore(</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esa_file_name"</span>,</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"esa_file_name"</span>,</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="co">#        "datetime",</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="co">#        "eo:cloud_cover",</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>    popup<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="co">#    style_kwds=dict(fillOpacity=0.1, width=2),</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"STAC"</span>,</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>    m<span class="op">=</span>m,</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a><span class="co">#map1.fit_bounds(bounds=convert_bounds(gdf.unary_union.bounds))</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a><span class="co">#display(fig)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <iframe srcdoc="<!DOCTYPE html>
 <html>
@@ -1372,44 +1400,44 @@ Hosting the HTTP server on port 36089 instead
 </div>
 </div>
 <div id="62d75baf-45ad-4a24-a7ed-329917e13041" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CONSTRUCT DASK DATASET</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: there are 9 STAC Items on input, and only one timeslice on output. </span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Due to groupby="solar_day" (all items that occured on the same day added to one image plane).</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Since we will plot it on a map we need to use `EPSG:3857` projection</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>crs <span class="op">=</span> <span class="st">"epsg:3857"</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>zoom <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">5</span>  <span class="co"># overview level 5</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co">#xx = stac_load(</span></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co">#    items,</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co">#    bands=("B04", "B03", "B02"),</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    crs=crs,</span></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    resolution=10 * zoom)#,</span></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    chunks={},  # &lt;-- use Dask</span></span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co">#    groupby="solar_day",</span></span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="co">#display(xx)</span></span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="co">#xx = stac_load(</span></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co">#    items,</span></span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="co">#    chunks={"x": 2048, "y": 2048},</span></span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="co">#    patch_url=pc.sign,</span></span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a><span class="co">#    resolution=resolution,</span></span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="co">#    # force dtype and nodata</span></span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="co">#    dtype="uint16",</span></span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="co">#    nodata=0,</span></span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> stac_load(</span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    items,</span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span>crs,</span>
-<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>    resolution<span class="op">=</span><span class="dv">10</span> <span class="op">*</span> zoom,</span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>    chunks<span class="op">=</span>{<span class="st">"x"</span>: <span class="dv">2048</span>, <span class="st">"y"</span>: <span class="dv">2048</span>},  <span class="co"># &lt;-- use Dask</span></span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bands: </span><span class="sc">{</span><span class="st">','</span><span class="sc">.</span>join(<span class="bu">list</span>(xx.data_vars))<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>display(xx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CONSTRUCT DASK DATASET</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: there are 9 STAC Items on input, and only one timeslice on output. </span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Due to groupby="solar_day" (all items that occured on the same day added to one image plane).</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Since we will plot it on a map we need to use `EPSG:3857` projection</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>crs <span class="op">=</span> <span class="st">"epsg:3857"</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>zoom <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">5</span>  <span class="co"># overview level 5</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co">#xx = stac_load(</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co">#    items,</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co">#    bands=("B04", "B03", "B02"),</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    crs=crs,</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    resolution=10 * zoom)#,</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    chunks={},  # &lt;-- use Dask</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co">#    groupby="solar_day",</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co">#display(xx)</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co">#xx = stac_load(</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="co">#    items,</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="co">#    chunks={"x": 2048, "y": 2048},</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="co">#    patch_url=pc.sign,</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="co">#    resolution=resolution,</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="co">#    # force dtype and nodata</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co">#    dtype="uint16",</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="co">#    nodata=0,</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> stac_load(</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>    items,</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span>crs,</span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>    resolution<span class="op">=</span><span class="dv">10</span> <span class="op">*</span> zoom,</span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>    chunks<span class="op">=</span>{<span class="st">"x"</span>: <span class="dv">2048</span>, <span class="st">"y"</span>: <span class="dv">2048</span>},  <span class="co"># &lt;-- use Dask</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bands: </span><span class="sc">{</span><span class="st">','</span><span class="sc">.</span>join(<span class="bu">list</span>(xx.data_vars))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>display(xx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Bands: cloud,thumbnail,topographic_shadow,cog,valid_pixels,saturated_pixels</code></pre>
 </div>
@@ -2072,164 +2100,16 @@ Data variables:
               dtype='datetime64[ns]', name='time', freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-a58424b0-f92e-4dd6-929a-c7fbe3358da4" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-a58424b0-f92e-4dd6-929a-c7fbe3358da4" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="bb663a98-2c2a-4480-b8bb-c180b786064a" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA FOOTPRINT</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#xx.odc.geobox</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TEST</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>xx.data_vars[cog]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[46], line 5</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># DATA FOOTPRINT</span>
-<span class="ansi-green-fg ansi-bold">      2</span> <span style="font-style:italic;color:rgb(95,135,135)">#xx.odc.geobox</span>
-<span class="ansi-green-fg ansi-bold">      3</span> 
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># TEST</span>
-<span class="ansi-green-fg">----&gt; 5</span> xx<span style="color:rgb(98,98,98)">.</span>data_vars[<span class="ansi-yellow-bg">cog</span>]
-
-<span class="ansi-red-fg">NameError</span>: name 'cog' is not defined</pre>
+<div id="bb663a98-2c2a-4480-b8bb-c180b786064a" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA FOOTPRINT</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#xx.odc.geobox</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TEST</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>xx.data_vars[cog]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="39c4270e-0d08-4ac5-9336-7ae4439e4fcb" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> xx.compute() <span class="co"># LOAD INTO LOCAL MEMORY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/rasterio/__init__.py:304: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
-  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
-2024-09-03 17:29:35,400 - distributed.worker - ERROR - Compute Failed
-Key:       ('thumbnail-4cf0090f06da1a44bfc619df23a3de1a', 9, 0, 0)
-State:     executing
-Function:  _dask_loader_tyx
-args:      ([[&lt;odc.loader._rio.RioReader object at 0x7a0209f5bd40&gt;]], Tiles: 1x1|574x573px =&gt; 574x573px, (0, 0), (), (), RasterLoadParams(dtype='float32', fill_value=None, src_nodata_fallback=None, src_nodata_override=None, use_overviews=True, resampling='nearest', fail_on_error=True, dims=()), &lt;odc.loader._rio.RioDriver object at 0x7a02102197c0&gt;, {'GDAL_DISABLE_READDIR_ON_OPEN': 'EMPTY_DIR', 'GDAL_HTTP_MAX_RETRY': '10', 'GDAL_HTTP_RETRY_DELAY': '0.5', '_aws': {'aws_unsigned': True}}, &lt;odc.loader._rio.RioReader.LoaderState object at 0x7a02186c3530&gt;, None)
-kwargs:    {}
-Exception: 'AssertionError()'
-Traceback: '  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_builder.py", line 434, in _dask_loader_tyx\n    _fill_nd_slice(\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_builder.py", line 511, in _fill_nd_slice\n    yx_roi, pix = src.read(cfg, dst_gbox, dst=dst, selection=selection)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py", line 115, in read\n    return rio_read(self._src, cfg, dst_geobox, dst=dst, selection=selection)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py", line 512, in rio_read\n    _rio_read(src, cfg, dst_geobox, prep_dst(dst), selection=selection)\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py", line 565, in _rio_read\n    rr = _reproject_info_from_rio(rdr, dst_geobox, ttol=ttol)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py", line 386, in _reproject_info_from_rio\n    return compute_reproject_roi(rio_geobox(rdr), dst_geobox, ttol=ttol)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py", line 489, in compute_reproject_roi\n    tr = native_pix_transform(src, dst)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py", line 337, in native_pix_transform\n    return GbxPointTransform(src, dst)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py", line 102, in __init__\n    assert src.crs is not None and dst.crs is not None\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n'
-</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-File <span class="ansi-green-fg">&lt;timed exec&gt;:1</span>
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/xarray/core/dataset.py:1038</span>, in <span class="ansi-cyan-fg">Dataset.compute</span><span class="ansi-blue-fg">(self, **kwargs)</span>
-<span class="ansi-green-fg ansi-bold">   1014</span> <span style="font-style:italic;color:rgb(175,0,0)">"""Manually trigger loading and/or computation of this dataset's data</span>
-<span class="ansi-green-fg ansi-bold">   1015</span> <span style="font-style:italic;color:rgb(175,0,0)">from disk or a remote source into memory and return a new dataset.</span>
-<span class="ansi-green-fg ansi-bold">   1016</span> <span style="font-style:italic;color:rgb(175,0,0)">Unlike load, the original dataset is left unaltered.</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">   1035</span> <span style="font-style:italic;color:rgb(175,0,0)">dask.compute</span>
-<span class="ansi-green-fg ansi-bold">   1036</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">   1037</span> new <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>copy(deep<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
-<span class="ansi-green-fg">-&gt; 1038</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">new</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">load</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/xarray/core/dataset.py:865</span>, in <span class="ansi-cyan-fg">Dataset.load</span><span class="ansi-blue-fg">(self, **kwargs)</span>
-<span class="ansi-green-fg ansi-bold">    862</span> chunkmanager <span style="color:rgb(98,98,98)">=</span> get_chunked_array_type(<span style="color:rgb(98,98,98)">*</span>lazy_data<span style="color:rgb(98,98,98)">.</span>values())
-<span class="ansi-green-fg ansi-bold">    864</span> <span style="font-style:italic;color:rgb(95,135,135)"># evaluate all the chunked arrays simultaneously</span>
-<span class="ansi-green-fg">--&gt; 865</span> evaluated_data: <span style="color:rgb(0,135,0)">tuple</span>[np<span style="color:rgb(98,98,98)">.</span>ndarray[Any, Any], <span style="color:rgb(98,98,98)">.</span><span style="color:rgb(98,98,98)">.</span><span style="color:rgb(98,98,98)">.</span>] <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">chunkmanager</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">compute</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-fg ansi-bold">    866</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">lazy_data</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span>
-<span class="ansi-green-fg ansi-bold">    867</span> <span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    869</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> k, data <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">zip</span>(lazy_data, evaluated_data):
-<span class="ansi-green-fg ansi-bold">    870</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>variables[k]<span style="color:rgb(98,98,98)">.</span>data <span style="color:rgb(98,98,98)">=</span> data
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/xarray/namedarray/daskmanager.py:86</span>, in <span class="ansi-cyan-fg">DaskManager.compute</span><span class="ansi-blue-fg">(self, *data, **kwargs)</span>
-<span class="ansi-green-fg ansi-bold">     81</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">compute</span>(
-<span class="ansi-green-fg ansi-bold">     82</span>     <span style="color:rgb(0,135,0)">self</span>, <span style="color:rgb(98,98,98)">*</span>data: Any, <span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span>kwargs: Any
-<span class="ansi-green-fg ansi-bold">     83</span> ) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(0,135,0)">tuple</span>[np<span style="color:rgb(98,98,98)">.</span>ndarray[Any, _DType_co], <span style="color:rgb(98,98,98)">.</span><span style="color:rgb(98,98,98)">.</span><span style="color:rgb(98,98,98)">.</span>]:
-<span class="ansi-green-fg ansi-bold">     84</span>     <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">dask</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">array</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> compute
-<span class="ansi-green-fg">---&gt; 86</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">compute</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/dask/base.py:662</span>, in <span class="ansi-cyan-fg">compute</span><span class="ansi-blue-fg">(traverse, optimize_graph, scheduler, get, *args, **kwargs)</span>
-<span class="ansi-green-fg ansi-bold">    659</span>     postcomputes<span style="color:rgb(98,98,98)">.</span>append(x<span style="color:rgb(98,98,98)">.</span>__dask_postcompute__())
-<span class="ansi-green-fg ansi-bold">    661</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> shorten_traceback():
-<span class="ansi-green-fg">--&gt; 662</span>     results <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">schedule</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dsk</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">keys</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    664</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> repack([f(r, <span style="color:rgb(98,98,98)">*</span>a) <span style="font-weight:bold;color:rgb(0,135,0)">for</span> r, (f, a) <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">zip</span>(results, postcomputes)])
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_builder.py:434</span>, in <span class="ansi-cyan-fg">_dask_loader_tyx</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    432</span> <span style="font-weight:bold;color:rgb(0,135,0)">with</span> rdr<span style="color:rgb(98,98,98)">.</span>restore_env(env, load_state):
-<span class="ansi-green-fg ansi-bold">    433</span>     <span style="font-weight:bold;color:rgb(0,135,0)">for</span> ti, ti_srcs <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">enumerate</span>(srcs):
-<span class="ansi-green-fg">--&gt; 434</span>         _fill_nd_slice(
-<span class="ansi-green-fg ansi-bold">    435</span>             ti_srcs, gbox, cfg, chunk[ti], ydim<span style="color:rgb(98,98,98)">=</span>ydim, selection<span style="color:rgb(98,98,98)">=</span>selection
-<span class="ansi-green-fg ansi-bold">    436</span>         )
-<span class="ansi-green-fg ansi-bold">    437</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> chunk
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_builder.py:511</span>, in <span class="ansi-cyan-fg">_fill_nd_slice</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    508</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> dst
-<span class="ansi-green-fg ansi-bold">    510</span> src, <span style="color:rgb(98,98,98)">*</span>rest <span style="color:rgb(98,98,98)">=</span> srcs
-<span class="ansi-green-fg">--&gt; 511</span> yx_roi, pix <span style="color:rgb(98,98,98)">=</span> src<span style="color:rgb(98,98,98)">.</span>read(cfg, dst_gbox, dst<span style="color:rgb(98,98,98)">=</span>dst, selection<span style="color:rgb(98,98,98)">=</span>selection)
-<span class="ansi-green-fg ansi-bold">    512</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> <span style="color:rgb(0,135,0)">len</span>(yx_roi) <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">2</span>
-<span class="ansi-green-fg ansi-bold">    513</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> pix<span style="color:rgb(98,98,98)">.</span>ndim <span style="color:rgb(98,98,98)">==</span> dst<span style="color:rgb(98,98,98)">.</span>ndim
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py:115</span>, in <span class="ansi-cyan-fg">read</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    107</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">read</span>(
-<span class="ansi-green-fg ansi-bold">    108</span>     <span style="color:rgb(0,135,0)">self</span>,
-<span class="ansi-green-fg ansi-bold">    109</span>     cfg: RasterLoadParams,
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">    113</span>     selection: Optional[ReaderSubsetSelection] <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>,
-<span class="ansi-green-fg ansi-bold">    114</span> ) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(0,135,0)">tuple</span>[<span style="color:rgb(0,135,0)">tuple</span>[<span style="color:rgb(0,135,0)">slice</span>, <span style="color:rgb(0,135,0)">slice</span>], np<span style="color:rgb(98,98,98)">.</span>ndarray]:
-<span class="ansi-green-fg">--&gt; 115</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> rio_read(<span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_src, cfg, dst_geobox, dst<span style="color:rgb(98,98,98)">=</span>dst, selection<span style="color:rgb(98,98,98)">=</span>selection)
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py:512</span>, in <span class="ansi-cyan-fg">rio_read</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    508</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> roi, out<span style="color:rgb(98,98,98)">.</span>transpose([<span style="color:rgb(98,98,98)">1</span>, <span style="color:rgb(98,98,98)">2</span>, <span style="color:rgb(98,98,98)">0</span>])
-<span class="ansi-green-fg ansi-bold">    510</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
-<span class="ansi-green-fg ansi-bold">    511</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> fixup_out(
-<span class="ansi-green-fg">--&gt; 512</span>         _rio_read(src, cfg, dst_geobox, prep_dst(dst), selection<span style="color:rgb(98,98,98)">=</span>selection)
-<span class="ansi-green-fg ansi-bold">    513</span>     )
-<span class="ansi-green-fg ansi-bold">    514</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> (
-<span class="ansi-green-fg ansi-bold">    515</span>     rasterio<span style="color:rgb(98,98,98)">.</span>errors<span style="color:rgb(98,98,98)">.</span>RasterioIOError,
-<span class="ansi-green-fg ansi-bold">    516</span>     rasterio<span style="color:rgb(98,98,98)">.</span>errors<span style="color:rgb(98,98,98)">.</span>RasterBlockError,
-<span class="ansi-green-fg ansi-bold">    517</span>     rasterio<span style="color:rgb(98,98,98)">.</span>errors<span style="color:rgb(98,98,98)">.</span>WarpOperationError,
-<span class="ansi-green-fg ansi-bold">    518</span>     rasterio<span style="color:rgb(98,98,98)">.</span>errors<span style="color:rgb(98,98,98)">.</span>WindowEvaluationError,
-<span class="ansi-green-fg ansi-bold">    519</span> ) <span style="font-weight:bold;color:rgb(0,135,0)">as</span> e:
-<span class="ansi-green-fg ansi-bold">    520</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> cfg<span style="color:rgb(98,98,98)">.</span>fail_on_error:
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py:565</span>, in <span class="ansi-cyan-fg">_rio_read</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    562</span> ovr_idx: Optional[<span style="color:rgb(0,135,0)">int</span>] <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
-<span class="ansi-green-fg ansi-bold">    564</span> bidx <span style="color:rgb(98,98,98)">=</span> resolve_band_query(src, rdr<span style="color:rgb(98,98,98)">.</span>count, selection<span style="color:rgb(98,98,98)">=</span>selection)
-<span class="ansi-green-fg">--&gt; 565</span> rr <span style="color:rgb(98,98,98)">=</span> _reproject_info_from_rio(rdr, dst_geobox, ttol<span style="color:rgb(98,98,98)">=</span>ttol)
-<span class="ansi-green-fg ansi-bold">    567</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> cfg<span style="color:rgb(98,98,98)">.</span>use_overviews <span style="font-weight:bold;color:rgb(175,0,255)">and</span> rr<span style="color:rgb(98,98,98)">.</span>read_shrink <span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(98,98,98)">1</span>:
-<span class="ansi-green-fg ansi-bold">    568</span>     first_band <span style="color:rgb(98,98,98)">=</span> bidx <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">isinstance</span>(bidx, <span style="color:rgb(0,135,0)">int</span>) <span style="font-weight:bold;color:rgb(0,135,0)">else</span> bidx[<span style="color:rgb(98,98,98)">0</span>]
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/loader/_rio.py:386</span>, in <span class="ansi-cyan-fg">_reproject_info_from_rio</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    383</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">_reproject_info_from_rio</span>(
-<span class="ansi-green-fg ansi-bold">    384</span>     rdr: rasterio<span style="color:rgb(98,98,98)">.</span>DatasetReader, dst_geobox: GeoBox, ttol: <span style="color:rgb(0,135,0)">float</span>
-<span class="ansi-green-fg ansi-bold">    385</span> ) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> ReprojectInfo:
-<span class="ansi-green-fg">--&gt; 386</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> compute_reproject_roi(rio_geobox(rdr), dst_geobox, ttol<span style="color:rgb(98,98,98)">=</span>ttol)
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py:489</span>, in <span class="ansi-cyan-fg">compute_reproject_roi</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    485</span> <span style="font-style:italic;color:rgb(95,135,135)"># pylint: disable=too-many-locals</span>
-<span class="ansi-green-fg ansi-bold">    487</span> pts_per_side <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(98,98,98)">5</span>
-<span class="ansi-green-fg">--&gt; 489</span> tr <span style="color:rgb(98,98,98)">=</span> native_pix_transform(src, dst)
-<span class="ansi-green-fg ansi-bold">    491</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> tr<span style="color:rgb(98,98,98)">.</span>linear <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
-<span class="ansi-green-fg ansi-bold">    492</span>     padding <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(98,98,98)">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> padding <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span> padding
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py:337</span>, in <span class="ansi-cyan-fg">native_pix_transform</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">    334</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">isinstance</span>(src, GeoBox) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="color:rgb(0,135,0)">isinstance</span>(dst, GeoBox) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> src<span style="color:rgb(98,98,98)">.</span>crs <span style="color:rgb(98,98,98)">==</span> dst<span style="color:rgb(98,98,98)">.</span>crs:
-<span class="ansi-green-fg ansi-bold">    335</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> _same_crs_pix_transform(src, dst)
-<span class="ansi-green-fg">--&gt; 337</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> GbxPointTransform(src, dst)
-
-File <span class="ansi-green-fg">~/miniforge3/envs/odc/lib/python3.12/site-packages/odc/geo/overlap.py:102</span>, in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">     96</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">__init__</span>(
-<span class="ansi-green-fg ansi-bold">     97</span>     <span style="color:rgb(0,135,0)">self</span>,
-<span class="ansi-green-fg ansi-bold">     98</span>     src: GeoBoxBase,
-<span class="ansi-green-fg ansi-bold">     99</span>     dst: GeoBoxBase,
-<span class="ansi-green-fg ansi-bold">    100</span>     back: Optional[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">GbxPointTransform</span><span style="color:rgb(175,0,0)">"</span>] <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>,
-<span class="ansi-green-fg ansi-bold">    101</span> ):
-<span class="ansi-green-fg">--&gt; 102</span>     <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> src<span style="color:rgb(98,98,98)">.</span>crs <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> dst<span style="color:rgb(98,98,98)">.</span>crs <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
-<span class="ansi-green-fg ansi-bold">    103</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_src <span style="color:rgb(98,98,98)">=</span> src
-<span class="ansi-green-fg ansi-bold">    104</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_dst <span style="color:rgb(98,98,98)">=</span> dst
-
-<span class="ansi-red-fg">AssertionError</span>: </pre>
-</div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/rasterio/__init__.py:304: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
-  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
-/home/al/miniforge3/envs/odc/lib/python3.12/site-packages/rasterio/__init__.py:304: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
-  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)</code></pre>
-</div>
+<div id="39c4270e-0d08-4ac5-9336-7ae4439e4fcb" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> xx.compute() <span class="co"># LOAD INTO LOCAL MEMORY</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
