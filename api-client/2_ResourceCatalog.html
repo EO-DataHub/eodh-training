@@ -317,75 +317,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>service <span class="op">=</span> client.get_catalog_service()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>catalogs <span class="op">=</span> service.get_catalogs()</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ceda_cat <span class="op">=</span> service.get_catalog(<span class="st">"supported-datasets/ceda-stac-fastapi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[2], line 3</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># GET /stac-fastapi/catalogs</span>
-<span class="ansi-green-fg ansi-bold">      2</span> service <span style="color:rgb(98,98,98)">=</span> client<span style="color:rgb(98,98,98)">.</span>get_catalog_service()
-<span class="ansi-green-fg">----&gt; 3</span> catalogs <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">service</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">get_catalogs</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">      4</span> ceda_cat <span style="color:rgb(98,98,98)">=</span> service<span style="color:rgb(98,98,98)">.</span>get_catalog(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">supported-datasets/ceda-stac-fastapi</span><span style="color:rgb(175,0,0)">"</span>)
-
-File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-packages/pyeodh/resource_catalog.py:576</span>, in <span class="ansi-cyan-fg">CatalogService.get_catalogs</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-fg ansi-bold">    568</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">get_catalogs</span>(<span style="color:rgb(0,135,0)">self</span>) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(0,135,0)">list</span>[Catalog]:
-<span class="ansi-green-fg ansi-bold">    569</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic;color:rgb(175,0,0)">"""Fetches all catalogs.</span>
-<span class="ansi-green-fg ansi-bold">    570</span> 
-<span class="ansi-green-fg ansi-bold">    571</span> <span style="font-style:italic;color:rgb(175,0,0)">    Calls: GET /catalogs</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">    574</span> <span style="font-style:italic;color:rgb(175,0,0)">        list[Catalog]: List of all catalogs available.</span>
-<span class="ansi-green-fg ansi-bold">    575</span> <span style="font-style:italic;color:rgb(175,0,0)">    """</span>
-<span class="ansi-green-fg">--&gt; 576</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">get_catalogs</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-packages/pyeodh/resource_catalog.py:331</span>, in <span class="ansi-cyan-fg">Catalog.get_catalogs</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-fg ansi-bold">    323</span> <span style="font-style:italic;color:rgb(175,0,0)">"""Fetches children catalogs of this parent catalog.</span>
-<span class="ansi-green-fg ansi-bold">    324</span> 
-<span class="ansi-green-fg ansi-bold">    325</span> <span style="font-style:italic;color:rgb(175,0,0)">Calls: GET /catalogs/{catalog_path}/catalogs</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">    328</span> <span style="font-style:italic;color:rgb(175,0,0)">    list[Catalog]: List of children catalogs.</span>
-<span class="ansi-green-fg ansi-bold">    329</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">    330</span> url <span style="color:rgb(98,98,98)">=</span> join_url(<span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_pystac_object<span style="color:rgb(98,98,98)">.</span>self_href, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">catalogs</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg">--&gt; 331</span> headers, data <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_client</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_request_json</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">GET</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    332</span> catalogs <span style="color:rgb(98,98,98)">=</span> []
-<span class="ansi-green-fg ansi-bold">    334</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> cat <span style="font-weight:bold;color:rgb(175,0,255)">in</span> data<span style="color:rgb(98,98,98)">.</span>get(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">catalogs</span><span style="color:rgb(175,0,0)">"</span>):
-
-File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-packages/pyeodh/client.py:102</span>, in <span class="ansi-cyan-fg">Client._request_json</span><span class="ansi-blue-fg">(self, method, url, headers, params, data, encode)</span>
-<span class="ansi-green-fg ansi-bold">     93</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">_request_json</span>(
-<span class="ansi-green-fg ansi-bold">     94</span>     <span style="color:rgb(0,135,0)">self</span>,
-<span class="ansi-green-fg ansi-bold">     95</span>     method: RequestMethod,
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">    100</span>     encode: Callable[[Any], <span style="color:rgb(0,135,0)">tuple</span>[<span style="color:rgb(0,135,0)">str</span>, Any]] <span style="color:rgb(98,98,98)">=</span> _encode_json,
-<span class="ansi-green-fg ansi-bold">    101</span> ) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(0,135,0)">tuple</span>[Headers, Any]:
-<span class="ansi-green-fg">--&gt; 102</span>     status, resp_headers, resp_data <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_request_json_raw</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-fg ansi-bold">    103</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">encode</span>
-<span class="ansi-green-fg ansi-bold">    104</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    106</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="color:rgb(0,135,0)">len</span>(resp_data):
-<span class="ansi-green-fg ansi-bold">    107</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> resp_headers, <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
-
-File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-packages/pyeodh/client.py:89</span>, in <span class="ansi-cyan-fg">Client._request_json_raw</span><span class="ansi-blue-fg">(self, method, url, headers, params, data, encode)</span>
-<span class="ansi-green-fg ansi-bold">     82</span> logger<span style="color:rgb(98,98,98)">.</span>debug(
-<span class="ansi-green-fg ansi-bold">     83</span>     <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Received response </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>response<span style="color:rgb(98,98,98)">.</span>status_code<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">headers: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>response<span style="color:rgb(98,98,98)">.</span>headers<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>
-<span class="ansi-green-fg ansi-bold">     84</span>     <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">content: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>response<span style="color:rgb(98,98,98)">.</span>text<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>
-<span class="ansi-green-fg ansi-bold">     85</span> )
-<span class="ansi-green-fg ansi-bold">     86</span> <span style="font-style:italic;color:rgb(95,135,135)"># TODO consider moving this to _requst_json() and raise own exceptions</span>
-<span class="ansi-green-fg ansi-bold">     87</span> <span style="font-style:italic;color:rgb(95,135,135)"># so that we can user _raw in e.g. delete methods where we expect a 409 and</span>
-<span class="ansi-green-fg ansi-bold">     88</span> <span style="font-style:italic;color:rgb(95,135,135)"># want to recover</span>
-<span class="ansi-green-fg">---&gt; 89</span> <span class="ansi-yellow-bg">response</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">raise_for_status</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">     91</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> response<span style="color:rgb(98,98,98)">.</span>status_code, response<span style="color:rgb(98,98,98)">.</span>headers, response<span style="color:rgb(98,98,98)">.</span>text
-
-File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-packages/requests/models.py:1021</span>, in <span class="ansi-cyan-fg">Response.raise_for_status</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-fg ansi-bold">   1016</span>     http_error_msg <span style="color:rgb(98,98,98)">=</span> (
-<span class="ansi-green-fg ansi-bold">   1017</span>         <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>status_code<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)"> Server Error: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>reason<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)"> for url: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>url<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>
-<span class="ansi-green-fg ansi-bold">   1018</span>     )
-<span class="ansi-green-fg ansi-bold">   1020</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> http_error_msg:
-<span class="ansi-green-fg">-&gt; 1021</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> HTTPError(http_error_msg, response<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(0,135,0)">self</span>)
-
-<span class="ansi-red-fg">HTTPError</span>: 500 Server Error: Internal Server Error for url: https://test.eodatahub.org.uk/api/catalogue/stac/catalogs</pre>
-</div>
-</div>
 </div>
 <p>All attributes are mapped to properties, e.g.</p>
-<div id="cell-9" class="cell" data-execution_count="13">
+<div id="cell-9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, catalogs.<span class="bu">id</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print("title: ", rc.title)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print("description: ", rc.description)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -393,7 +327,7 @@ File <span class="ansi-green-fg">~/miniforge3/envs/eodh/lib/python3.12/site-pack
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[13], line 1</span>
+Cell <span class="ansi-green-fg">In[3], line 1</span>
 <span class="ansi-green-fg">----&gt; 1</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">id: </span><span style="color:rgb(175,0,0)">"</span>, <span class="ansi-yellow-bg">catalogs</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">id</span>)
 <span class="ansi-green-fg ansi-bold">      2</span> <span style="font-style:italic;color:rgb(95,135,135)">#print("title: ", rc.title)</span>
 <span class="ansi-green-fg ansi-bold">      3</span> <span style="font-style:italic;color:rgb(95,135,135)">#print("description: ", rc.description)</span>
