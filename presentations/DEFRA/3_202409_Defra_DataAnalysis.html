@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../presentations/DEFRA/202409_Defra.html">Presentations</a></li><li class="breadcrumb-item"><a href="../../presentations/DEFRA/202409_Defra.html">DEFRA 2024-09</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../presentations/DEFRA/1_202409_Defra_DataDiscovery.html">Presentations</a></li><li class="breadcrumb-item"><a href="../../presentations/DEFRA/3_202409_Defra_DataAnalysis.html">DEFRA Data Analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,8 +224,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../presentations/DEFRA/202409_Defra.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">DEFRA 2024-09</span></a>
+  <a href="../../presentations/DEFRA/1_202409_Defra_DataDiscovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DEFRA Data Discovery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA/2_202409_Defra_DataProcessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DEFRA Data Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA/3_202409_Defra_DataAnalysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">DEFRA Data Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../presentations/DEFRA/202409_Defra.html">Presentations</a></li><li class="breadcrumb-item"><a href="../../presentations/DEFRA/202409_Defra.html">DEFRA 2024-09</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../presentations/DEFRA/1_202409_Defra_DataDiscovery.html">Presentations</a></li><li class="breadcrumb-item"><a href="../../presentations/DEFRA/3_202409_Defra_DataAnalysis.html">DEFRA Data Analysis</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Demonstration for DEFRA</h1>
 </div>
@@ -471,7 +483,7 @@ neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn509lone0009_T31UC
 </div>
 </div>
 <div id="f1f20ff1" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># It seems likely that the image data we want to access is stored under the 'assets' key. But what information is held in that? </span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The data we want to access is stored under the 'assets' key. But what information is held in that? </span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> (a[<span class="st">'assets'</span>]):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -517,7 +529,7 @@ valid_pixels https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/1
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -685,14 +697,14 @@ resize-col</code></pre>
 <p>Once the CWL file has been submitted then it is possible for users with suitable permissions to also view the list of available workflows through the QGIS plugin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/59b0a201-1-image.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/59b0a201-1-image.png" class="img-fluid figure-img"></p>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
 <p>The user can choose and parameterise a workflow using the QGIS plugin as shown in this screenshot. A series of defaults are provided with all workflow files so a user can run the workflow straight away using those. To do so in code, the user provides an empty dictionary.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/dd9122a5-1-image.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/dd9122a5-1-image.png" class="img-fluid figure-img"></p>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
@@ -757,18 +769,18 @@ DEBUG: Received response 200
 <p>The outputs above show the status of the running job: <code>"status": "running"</code>. The job status can also be monitored using the QGIS plugin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/90492ffa-4-image.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/90492ffa-4-image.png" class="img-fluid figure-img"></p>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/90492ffa-1-image-2.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/90492ffa-1-image-2.png" class="img-fluid figure-img"></p>
 <figcaption>image-2.png</figcaption>
 </figure>
 </div>
 <p>The outputs are accessible and loadable from the QGIS plugin.</p>
-<p>Original image: <img src="202409_Defra_files/figure-html/90492ffa-2-image-3.png" class="img-fluid" alt="image-3.png"> Resampled image: <img src="202409_Defra_files/figure-html/90492ffa-3-image-4.png" class="img-fluid" alt="image-4.png"></p>
+<p>Original image: <img src="3_202409_Defra_DataAnalysis_files/figure-html/90492ffa-2-image-3.png" class="img-fluid" alt="image-3.png"> Resampled image: <img src="3_202409_Defra_DataAnalysis_files/figure-html/90492ffa-3-image-4.png" class="img-fluid" alt="image-4.png"></p>
 </section>
 <section id="eodh-its-data-analysis" class="level1">
 <h1>EODH: it’s data analysis</h1>
@@ -1399,7 +1411,7 @@ saturated_pixels https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="202409_Defra_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="3_202409_Defra_DataAnalysis_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

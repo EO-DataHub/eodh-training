@@ -2,26 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/index.html</loc>
-    <lastmod>2024-09-18T14:41:27.998Z</lastmod>
+    <lastmod>2024-09-18T16:26:27.924Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/1_workflows.html</loc>
-    <lastmod>2024-09-18T14:41:28.010Z</lastmod>
+    <lastmod>2024-09-18T16:26:27.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/2_202409_Defra_DataProcessing.html</loc>
+    <lastmod>2024-09-18T16:26:27.934Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/planet-stac-proxy.html</loc>
-    <lastmod>2024-09-18T14:41:27.998Z</lastmod>
+    <lastmod>2024-09-18T16:26:27.924Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/2_ResourceCatalog.html</loc>
-    <lastmod>2024-09-18T14:41:27.998Z</lastmod>
+    <lastmod>2024-09-18T16:26:27.921Z</lastmod>
   </url>
   <url>
-    <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/202409_Defra.html</loc>
-    <lastmod>2024-09-18T14:41:28.010Z</lastmod>
+    <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/1_202409_Defra_DataDiscovery.html</loc>
+    <lastmod>2024-09-18T16:26:27.930Z</lastmod>
+  </url>
+  <url>
+    <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/3_202409_Defra_DataAnalysis.html</loc>
+    <lastmod>2024-09-18T16:26:27.944Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/website/about.html</loc>
-    <lastmod>2024-09-18T14:41:28.010Z</lastmod>
+    <lastmod>2024-09-18T16:26:27.945Z</lastmod>
   </url>
 </urlset>
