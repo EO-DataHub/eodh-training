@@ -40,8 +40,12 @@ website:
             href: workflows/1_workflows.ipynb
       - section: "Presentations"
         contents: 
-          - text: "DEFRA 2024-09"
-            href: presentations/DEFRA/202409_Defra.ipynb
+          - text: "DEFRA Data Discovery"
+            href: presentations/DEFRA/1_202409_Defra_DataDiscovery.ipynb
+          - text: "DEFRA Data Processing"
+            href: presentations/DEFRA/2_202409_Defra_DataProcessing.ipynb
+          - text: "DEFRA Data Analysis"
+            href: presentations/DEFRA/3_202409_Defra_DataAnalysis.ipynb        
 
 format:
   html:
