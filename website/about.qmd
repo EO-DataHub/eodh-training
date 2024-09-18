@@ -2,6 +2,19 @@
 title: "About"
 ---
 
-# What is EODH
+# What is the EODH
+The Earth Observation Data Hub is:
+
+“A UK Pathfinder project delivering access to Earth Observation (EO) data for effective decisionmaking across government, business and academia. The Earth Observation DataHub (EODH) brings together an expert project delivery team and industrial partners in an ambitious project… Users of the Hub will be able to explore areas of interest in the UK and across the globe… It will also enable selected users to support their own analyses, services and tools using the Hub’s workflow and compute environments.”
+
+More details can be found online at https://eodatahub.org.uk/
+
+Components of the Hub include: 
+
+* A Resource Catalogue - a STAC compliant catalogue of open and commercial satellite imagery, climate data, model results, workflows and more 
+* A Workflow Runner - a dedicated piece of cloud infrastructure to horizontally scale workflow requirements 
+* A Web Presence - an intuitive user interface to allow account management, data discovery and mapping 
+* An App Hub - a science portal providing access to a Jupyter lab environment
 
 # Resources on this website
+There are a number of resources on this website. The site is a reflection of the training materials repository on GitHub so all Notebooks can be discovered there. Notebooks can then be run locally or on the AppHub. 
