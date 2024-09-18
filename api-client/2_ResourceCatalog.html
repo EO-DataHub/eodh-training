@@ -248,12 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#remove-in-production-release" id="toc-remove-in-production-release" class="nav-link active" data-scroll-target="#remove-in-production-release">Remove in production release</a>
-  <ul class="collapse">
-  <li><a href="#ensure" id="toc-ensure" class="nav-link" data-scroll-target="#ensure">Ensure</a></li>
-  <li><a href="#record" id="toc-record" class="nav-link" data-scroll-target="#record">Record</a></li>
-  <li><a href="#remember" id="toc-remember" class="nav-link" data-scroll-target="#remember">Remember</a></li>
-  </ul></li>
+  <li><a href="#note-requires-reworking-from-here-on" id="toc-note-requires-reworking-from-here-on" class="nav-link active" data-scroll-target="#note-requires-reworking-from-here-on">Note: Requires reworking from here on</a></li>
   </ul>
 </nav>
     </div>
@@ -279,39 +274,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="remove-in-production-release" class="level2">
-<h2 class="anchored" data-anchor-id="remove-in-production-release">Remove in production release</h2>
-<p>This notebook demostrates usage of the EODH resource catalog API using <code>pyeodh</code></p>
-<section id="ensure" class="level3">
-<h3 class="anchored" data-anchor-id="ensure">Ensure</h3>
-<ul>
-<li>a clear description of purpose,</li>
-<li>intended audience and/or use case</li>
-<li>linkages between notebooks and other training resources (if required)</li>
-</ul>
-</section>
-<section id="record" class="level3">
-<h3 class="anchored" data-anchor-id="record">Record</h3>
-<ul>
-<li>Technical dependencies,</li>
-<li>Platform and Service Dependencies,</li>
-<li>Python Language versions,</li>
-<li>libraries, additional scripts and files.</li>
-</ul>
-</section>
-<section id="remember" class="level3">
-<h3 class="anchored" data-anchor-id="remember">Remember</h3>
-<p>“When Jupyter notebooks are used in an educational context, they should not only be conceptualized to teach a specific topic but should also set a good example by following and implementing best practices for scientific computing”</p>
-<ul>
-<li>Need in-order execution of notebook cells</li>
-<li>Good-quality code</li>
-<li>No code duplication</li>
-<li>Imports at the beginning of a notebook</li>
-<li>Consistent code style and formatting</li>
-<li>Meaningful names for variables</li>
-<li>Licence for code and training resources</li>
-</ul>
-<hr>
 <p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of September 2024. The Notebook “user” would like to understand more about the satellite data available for their test areas. This user is also interested in obtaining a series of smaller images and ultimately creating a data cube. The Notebook series (of 3) is designed in such a way that it can be run on the EODH AppHub (Notebook Service) or from a local environment.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, Phil Kershaw</p>
 <p><strong>Date created</strong>: 2024-09-05</p>
@@ -321,93 +283,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * CEDA: https://www.ceda.ac.uk/ * EO Data Hub: https://eodatahub.org.uk/</p>
-<p>First we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs.</p>
-<div id="cell-6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(base_url<span class="op">=</span><span class="st">"https://test.eodatahub.org.uk"</span>) <span class="co"># Optionally specify a different server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Fetch the resource catalog object.</p>
-<div id="cell-8" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/catalogs</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>service <span class="op">=</span> client.get_catalog_service()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>catalogs <span class="op">=</span> service.get_catalogs()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ceda_cat <span class="op">=</span> service.get_catalog(<span class="st">"supported-datasets/ceda-stac-fastapi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs.</p>
+<div id="cell-6" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client().get_catalog_service()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a list of the collections held in the Resource Catalogue (their id and description).</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># As the Resource Catalogue fills and development continues, the number of collections and the richness of their descriptions will increase</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> collect <span class="kw">in</span> client.get_collections():</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>collect<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cmip6: CMIP6
+cordex: CORDEX
+ukcp: UKCP
+defra-airbus: A collection of Airbus data for the DEFRA use case.
+defra-planet: A collection of Planet data for the DEFRA use case.
+airbus_sar_data: The German TerraSAR-X / TanDEM-X satellite formation and the Spanish PAZ satellite (managed by Hisdesat Servicios Estratégicos S.A.) are being operated in the same orbit tube and feature identical ground swaths and imaging modes - allowing Airbus and Hisdesat to establish a unique commercial Radar Constellation. The satellites carry a high frequency X-band Synthetic Aperture Radar (SAR) sensor in order to acquire datasets ranging from very high-resolution imagery to wide area coverage.
+airbus_sar_data: The German TerraSAR-X / TanDEM-X satellite formation and the Spanish PAZ satellite (managed by Hisdesat Servicios Estratégicos S.A.) are being operated in the same orbit tube and feature identical ground swaths and imaging modes - allowing Airbus and Hisdesat to establish a unique commercial Radar Constellation. The satellites carry a high frequency X-band Synthetic Aperture Radar (SAR) sensor in order to acquire datasets ranging from very high-resolution imagery to wide area coverage.
+airbus_data_example: Airbus data
+sentinel2_ard: sentinel 2 ARD
+sentinel1: Sentinel 1</code></pre>
+</div>
 </div>
 <p>All attributes are mapped to properties, e.g.</p>
-<div id="cell-10" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, catalogs.<span class="bu">id</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print("title: ", rc.title)</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print("description: ", rc.description)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[3], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">id: </span><span style="color:rgb(175,0,0)">"</span>, <span class="ansi-yellow-bg">catalogs</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">id</span>)
-<span class="ansi-green-fg ansi-bold">      2</span> <span style="font-style:italic;color:rgb(95,135,135)">#print("title: ", rc.title)</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-style:italic;color:rgb(95,135,135)">#print("description: ", rc.description)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: 'list' object has no attribute 'id'</pre>
-</div>
+<div id="cell-8" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ceda_cat <span class="op">=</span> service.get_catalog(<span class="st">"supported-datasets/ceda-stac-fastapi"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, ceda_cat.<span class="bu">id</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, ceda_cat.title)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"description: "</span>, ceda_cat.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>id:  ceda-stac-fastapi
+title:  Supported Datasets
+description:  Catalogue containing supported datasets</code></pre>
 </div>
 </div>
 <p>API endpoints are wrapped in methods and are structured into classes following the same logic as the API. E.g. to fetch a collection item, I first need to get the collection from the resource catalog.</p>
-<div id="cell-12" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/{collection_id}/items/{item_id}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cmip6 <span class="op">=</span> rc.get_collection(<span class="st">"cmip6"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> cmip6.get_item(<span class="st">"CMIP6.ScenarioMIP.THU.CIESM.ssp585.r1i1p1f1.Amon.rsus.gr.v20200806"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(item.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/{collection_id}/items/{item_id}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cmip6 <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/ceda-stac-fastapi"</span>).get_collection(<span class="st">'cmip6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Some API responses are paginated (e.g.&nbsp;collection items), and you can simply iterate over them.</p>
-<div id="cell-14" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/cmip6/items</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> cmip6.get_items()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/cmip6/items</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> cmip6.get_items()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CMIP6.ScenarioMIP.THU.CIESM.ssp585.r1i1p1f1.Amon.rsus.gr.v20200806
+CMIP6.ScenarioMIP.THU.CIESM.ssp585.r1i1p1f1.Amon.rlus.gr.v20200806
+CMIP6.ScenarioMIP.CSIRO.ACCESS-ESM1-5.ssp126.r1i1p1f1.day.uas.gn.v20210318
+CMIP6.ScenarioMIP.CSIRO-ARCCSS.ACCESS-CM2.ssp585.r1i1p1f1.day.pr.gn.v20210317
+CMIP6.ScenarioMIP.CSIRO-ARCCSS.ACCESS-CM2.ssp126.r1i1p1f1.day.pr.gn.v20210317
+CMIP6.ScenarioMIP.CSIRO.ACCESS-ESM1-5.ssp585.r1i1p1f1.day.rsds.gn.v20210318
+CMIP6.ScenarioMIP.CSIRO.ACCESS-ESM1-5.ssp585.r1i1p1f1.day.hurs.gn.v20210318
+CMIP6.ScenarioMIP.CSIRO-ARCCSS.ACCESS-CM2.ssp585.r1i1p1f1.day.tas.gn.v20210317
+CMIP6.ScenarioMIP.CSIRO-ARCCSS.ACCESS-CM2.ssp585.r1i1p1f1.day.psl.gn.v20210317
+CMIP6.ScenarioMIP.CSIRO-ARCCSS.ACCESS-CM2.ssp126.r1i1p1f1.day.tasmin.gn.v20210317</code></pre>
 </div>
+</div>
+<section id="note-requires-reworking-from-here-on" class="level1">
+<h1>Note: Requires reworking from here on</h1>
 <p>Attempting to create a collection with id that already exists will result in 409 error code. To see the example in action delete the test collection first by running the cell below.</p>
 <p>Delete a colletion</p>
-<div id="cell-16" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rc.get_collection(<span class="st">"test1"</span>).delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rc.get_collection(<span class="st">"test1"</span>).delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create new collection example</p>
-<div id="cell-18" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="op">=</span> rc.create_collection(<span class="bu">id</span><span class="op">=</span><span class="st">"test1"</span>, title<span class="op">=</span><span class="st">"Test"</span>, description<span class="op">=</span><span class="st">"Test collection"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test1.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>test1 <span class="op">=</span> rc.create_collection(<span class="bu">id</span><span class="op">=</span><span class="st">"test1"</span>, title<span class="op">=</span><span class="st">"Test"</span>, description<span class="op">=</span><span class="st">"Test collection"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test1.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Update a collection</p>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>test1.update(description<span class="op">=</span><span class="st">"Different description"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test1.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>test1.update(description<span class="op">=</span><span class="st">"Different description"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test1.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create an item</p>
-<div id="cell-22" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>testitem1 <span class="op">=</span> test1.create_item(<span class="bu">id</span><span class="op">=</span><span class="st">"test1.testitem1"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Created </span><span class="sc">{</span>testitem1<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss"> in collection </span><span class="sc">{</span>testitem1<span class="sc">.</span>collection<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>testitem1 <span class="op">=</span> test1.create_item(<span class="bu">id</span><span class="op">=</span><span class="st">"test1.testitem1"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Created </span><span class="sc">{</span>testitem1<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss"> in collection </span><span class="sc">{</span>testitem1<span class="sc">.</span>collection<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Update an item</p>
-<div id="cell-24" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>testitem1.update(properties<span class="op">=</span>{<span class="st">"foo"</span>: <span class="st">"bar"</span>})</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(testitem1.properties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>testitem1.update(properties<span class="op">=</span>{<span class="st">"foo"</span>: <span class="st">"bar"</span>})</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(testitem1.properties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Delete an item</p>
-<div id="cell-26" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>testitem1.delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>testitem1.delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Find out more about the Resource Catalog</p>
-<div id="cell-28" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Livecheck: PING-</span><span class="sc">{</span>rc<span class="sc">.</span>ping()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">API conforms to:"</span>, <span class="op">*</span>rc.get_conformance(), sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Livecheck: PING-</span><span class="sc">{</span>rc<span class="sc">.</span>ping()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">API conforms to:"</span>, <span class="op">*</span>rc.get_conformance(), sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Search the Catalog</p>
-<div id="cell-30" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> rc.search(collections<span class="op">=</span>[<span class="st">'cmip6'</span>]):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> rc.search(collections<span class="op">=</span>[<span class="st">'cmip6'</span>]):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

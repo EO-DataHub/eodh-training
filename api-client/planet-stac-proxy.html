@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Planet STAC Example – EODH Training Materials</title>
+<title>Remove in production release – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Planet STAC Example</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Remove in production release</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -243,15 +243,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ensure" id="toc-ensure" class="nav-link active" data-scroll-target="#ensure">Ensure</a></li>
+  <li><a href="#record" id="toc-record" class="nav-link" data-scroll-target="#record">Record</a></li>
+  <li><a href="#remember" id="toc-remember" class="nav-link" data-scroll-target="#remember">Remember</a></li>
+  <li><a href="#planet-stac-example" id="toc-planet-stac-example" class="nav-link" data-scroll-target="#planet-stac-example">Planet STAC Example</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Planet STAC Example</h1>
+<h1 class="title">Remove in production release</h1>
 </div>
 
 
@@ -268,6 +277,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>This notebook demostrates usage of the EODH resource catalog API using <code>pyeodh</code></p>
+<section id="ensure" class="level3">
+<h3 class="anchored" data-anchor-id="ensure">Ensure</h3>
+<ul>
+<li>a clear description of purpose,</li>
+<li>intended audience and/or use case</li>
+<li>linkages between notebooks and other training resources (if required)</li>
+</ul>
+</section>
+<section id="record" class="level3">
+<h3 class="anchored" data-anchor-id="record">Record</h3>
+<ul>
+<li>Technical dependencies,</li>
+<li>Platform and Service Dependencies,</li>
+<li>Python Language versions,</li>
+<li>libraries, additional scripts and files.</li>
+</ul>
+</section>
+<section id="remember" class="level3">
+<h3 class="anchored" data-anchor-id="remember">Remember</h3>
+<p>“When Jupyter notebooks are used in an educational context, they should not only be conceptualized to teach a specific topic but should also set a good example by following and implementing best practices for scientific computing”</p>
+<ul>
+<li>Need in-order execution of notebook cells</li>
+<li>Good-quality code</li>
+<li>No code duplication</li>
+<li>Imports at the beginning of a notebook</li>
+<li>Consistent code style and formatting</li>
+<li>Meaningful names for variables</li>
+<li>Licence for code and training resources</li>
+</ul>
+<hr>
+</section>
+<section id="planet-stac-example" class="level1">
+<h1>Planet STAC Example</h1>
 <p>Demo of retrieving data from Planet via their STAC proxy api using the PySTAC Client. Requires an api-key saved in as <code>.planet.json</code> which has the content <code>{"key": "API_KEY"}</code>.</p>
 <div id="f5dd6fdf-0d83-48a0-9c2e-0cd62c6c85b6" class="cell" data-scrolled="true" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> base64</span>
@@ -424,6 +467,7 @@ File <span class="ansi-green-fg">/opt/jaspy/lib/python3.11/site-packages/request
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
