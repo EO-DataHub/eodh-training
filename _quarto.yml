@@ -10,9 +10,9 @@ execute:
 
 website:
   title: "EODH Training Materials"
-#  cookie-consent:
-#    style: headline
-#    palette: dark
+  cookie-consent:
+    style: headline
+    palette: dark
   navbar:
     tools:
       - icon: github
@@ -30,14 +30,28 @@ website:
         href: index.qmd
       - text: "About"
         href: website/about.qmd
-      - section: "API Client (pyeodh)"
+      - section: "Hub Platform"
+        contents: 
+          - text: "Some info"
+            href: platform/1_hello.ipynb
+      - section: "Simplifying access - pyeodh"
         contents: 
           - text: "Searching the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
-      - section: "Workflows"
+      - section: "Creating Workflows - eoap-gen"
         contents: 
           - text: "Workflow Introduction"
             href: workflows/1_workflows.ipynb
+      - section: "GIS interface - QGIS plugin"
+        contents: 
+          - text: "QGIS Plugin Introduction"
+            href: plugin/1_Introduction.md
+          - text: "Running A Workflow"
+            href: plugin/2_RunningWorkflows.md
+      - section: "Science examples"
+        contents: 
+          - text: "QGIS Plugin Introduction"
+            href: science/1_CodeSnippets.ipynb
       - section: "Presentations"
         contents: 
           - text: "DEFRA Data Discovery"
