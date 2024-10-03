@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What is a Workflow – EODH Training Materials</title>
+<title>example – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,24 +102,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-<script type="text/javascript" charset="UTF-8">
-document.addEventListener('DOMContentLoaded', function () {
-cookieconsent.run({
-  "notice_banner_type":"headline",
-  "consent_type":"implied",
-  "palette":"dark",
-  "language":"en",
-  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
-  "notice_banner_reject_button_hide":false,
-  "preferences_center_close_button_hide":false,
-  "website_name":""
-  ,
-"language":"en"
-  });
-});
-</script> 
-  
 
 
 </head>
@@ -129,7 +143,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/1_workflows.html">Workflow Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/4_Example.html">Working Example</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,8 +186,14 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../platform/1_hello.ipynb" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Some info</span></a>
+  <a href="../platform/1_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EODH Platform Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../platform/2_Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EODH Platform Components</span></a>
   </div>
 </li>
       </ul>
@@ -189,8 +209,26 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../api-client/1_ClientIntro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is pyeodh?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../api-client/2_ResourceCatalog.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Searching the Resource Catalogue</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api-client/3_WorkflowRunner.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running Workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api-client/4_Services.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Mapping Services</span></a>
   </div>
 </li>
       </ul>
@@ -206,8 +244,26 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workflows/1_workflows.html" class="sidebar-item-text sidebar-link active">
+  <a href="../workflows/1_Workflows.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Workflow Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workflows/2_EOAP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EO App Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workflows/3_eoapgen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using eoap-gen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workflows/4_Example.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Working Example</span></a>
   </div>
 </li>
       </ul>
@@ -247,7 +303,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../science/1_CodeSnippets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">QGIS Plugin Introduction</span></a>
+ <span class="menu-text">Code Snippets</span></a>
   </div>
 </li>
       </ul>
@@ -286,50 +342,20 @@ cookieconsent.run({
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-the-workflow-runner" id="toc-what-is-the-workflow-runner" class="nav-link active" data-scroll-target="#what-is-the-workflow-runner">What is the Workflow Runner?</a></li>
-  <li><a href="#what-is-cwl" id="toc-what-is-cwl" class="nav-link" data-scroll-target="#what-is-cwl">What is CWL?</a></li>
-  <li><a href="#what-is-the-workflow-generator" id="toc-what-is-the-workflow-generator" class="nav-link" data-scroll-target="#what-is-the-workflow-generator">What is the Workflow generator?</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/1_workflows.html">Workflow Introduction</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">What is a Workflow</h1>
+
+
+
+<div id="cell-0" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example run through</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="what-is-the-workflow-runner" class="level1">
-<h1>What is the Workflow Runner?</h1>
-</section>
-<section id="what-is-cwl" class="level1">
-<h1>What is CWL?</h1>
-</section>
-<section id="what-is-the-workflow-generator" class="level1">
-<h1>What is the Workflow generator?</h1>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -897,19 +923,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-
-<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

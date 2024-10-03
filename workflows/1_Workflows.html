@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>introduction – EODH Training Materials</title>
+<title>What is a Workflow – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_Introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/1_Introduction.html">QGIS Plugin Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Workflow Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,16 +201,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Creating Workflows - eoap-gen</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workflows/1_Workflows.html" class="sidebar-item-text sidebar-link">
+  <a href="../workflows/1_Workflows.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Workflow Introduction</span></a>
   </div>
 </li>
@@ -236,16 +236,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">GIS interface - QGIS plugin</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../plugin/1_Introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../plugin/1_Introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">QGIS Plugin Introduction</span></a>
   </div>
 </li>
@@ -313,30 +313,45 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-overview" id="toc-introduction-overview" class="nav-link active" data-scroll-target="#introduction-overview">Introduction &amp; Overview</a>
-  <ul class="collapse">
-  <li><a href="#what-is-this-plugin" id="toc-what-is-this-plugin" class="nav-link" data-scroll-target="#what-is-this-plugin">What is this plugin</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  </ul></li>
+  <li><a href="#what-is-the-workflow-runner" id="toc-what-is-the-workflow-runner" class="nav-link active" data-scroll-target="#what-is-the-workflow-runner">What is the Workflow Runner?</a></li>
+  <li><a href="#what-is-cwl" id="toc-what-is-cwl" class="nav-link" data-scroll-target="#what-is-cwl">What is CWL?</a></li>
+  <li><a href="#what-is-the-workflow-generator" id="toc-what-is-the-workflow-generator" class="nav-link" data-scroll-target="#what-is-the-workflow-generator">What is the Workflow generator?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Workflow Introduction</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">What is a Workflow</h1>
+</div>
 
 
 
-<section id="introduction-overview" class="level1">
-<h1>Introduction &amp; Overview</h1>
-<section id="what-is-this-plugin" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-this-plugin">What is this plugin</h2>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-the-workflow-runner" class="level1">
+<h1>What is the Workflow Runner?</h1>
 </section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-
-
+<section id="what-is-cwl" class="level1">
+<h1>What is CWL?</h1>
+<p>Examples - link to Lot 1 &amp; 2 Other tools - link to Lot 2 tool</p>
 </section>
+<section id="what-is-the-workflow-generator" class="level1">
+<h1>What is the Workflow generator?</h1>
+
+
 </section>
 
 </main> <!-- /main -->
