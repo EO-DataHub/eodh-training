@@ -32,16 +32,30 @@ website:
         href: website/about.qmd
       - section: "Hub Platform"
         contents: 
-          - text: "Some info"
-            href: platform/1_hello.ipynb
+          - text: "EODH Platform Introduction"
+            href: platform/1_Intro.ipynb
+          - text: "EODH Platform Components"
+            href: platform/2_Components.ipynb
       - section: "Simplifying access - pyeodh"
         contents: 
+          - text: "What is pyeodh?"
+            href: api-client/1_ClientIntro.md
           - text: "Searching the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
+          - text: "Running Workflows"
+            href: api-client/3_WorkflowRunner.ipynb
+          - text: "Using Mapping Services"
+            href: api-client/4_Services.ipynb
       - section: "Creating Workflows - eoap-gen"
         contents: 
           - text: "Workflow Introduction"
-            href: workflows/1_workflows.ipynb
+            href: workflows/1_Workflows.ipynb
+          - text: "EO App Packages"
+            href: workflows/2_EOAP.md
+          - text: "Using eoap-gen"
+            href: workflows/3_eoap-gen.ipynb
+          - text: "Working Example"
+            href: workflows/4_Example.ipynb
       - section: "GIS interface - QGIS plugin"
         contents: 
           - text: "QGIS Plugin Introduction"
@@ -50,7 +64,7 @@ website:
             href: plugin/2_RunningWorkflows.md
       - section: "Science examples"
         contents: 
-          - text: "QGIS Plugin Introduction"
+          - text: "Code Snippets"
             href: science/1_CodeSnippets.ipynb
       - section: "Presentations"
         contents: 
