@@ -42,7 +42,7 @@ website:
         contents: 
           - text: "What is pyeodh?"
             href: api-client/1_ClientIntro.md
-          - text: "Searching the Resource Catalogue"
+          - text: "Using the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
           - text: "Running Workflows"
             href: api-client/3_WorkflowRunner.ipynb
@@ -57,8 +57,10 @@ website:
             href: workflows/2_EOAP.md
           - text: "Using eoap-gen"
             href: workflows/3_eoapgen.ipynb
-          - text: "Working Example"
-            href: workflows/4_Example.ipynb
+          - text: "User Example: coherence"
+            href: workflows/4_UserExample1.ipynb
+          - text: "User Example: temporal mosaics"
+            href: workflows/5_UserExample2.ipynb
         # GIS Section
       - section: "GIS interface - QGIS plugin"
         contents: 
