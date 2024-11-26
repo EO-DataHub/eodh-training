@@ -69,10 +69,12 @@ website:
           - text: "Running A Workflow"
             href: plugin/2_RunningWorkflows.md
         # Examples Section
-      - section: "Science examples"
+      - section: "Science & code examples"
         contents: 
-          - text: "Code Snippets"
-            href: science/1_CodeSnippets.ipynb
+          - text: "Data cubes"
+            href: science/1_DataCubes.ipynb
+          - text: "Commercial data"
+            href: science/2_Commercial.ipynb
         # Presentations and Demos
       - section: "Presentations"
         contents: 
