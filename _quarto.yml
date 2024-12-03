@@ -54,7 +54,7 @@ website:
           - text: "Workflow Introduction"
             href: workflows/1_Workflows.ipynb
           - text: "EO App Packages"
-            href: workflows/2_EOAP.md
+            href: workflows/2_EOAP.ipynb
           - text: "Using eoap-gen"
             href: workflows/3_eoapgen.ipynb
           - text: "User Example: coherence"
