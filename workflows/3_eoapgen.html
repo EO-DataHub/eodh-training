@@ -320,8 +320,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link active" data-scroll-target="#requirements">Requirements</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  <li><a href="#other-tools" id="toc-other-tools" class="nav-link" data-scroll-target="#other-tools">Other tools</a>
+  <ul class="collapse">
+  <li><a href="#cwltool" id="toc-cwltool" class="nav-link" data-scroll-target="#cwltool">cwltool</a></li>
+  <li><a href="#scriptcwl" id="toc-scriptcwl" class="nav-link" data-scroll-target="#scriptcwl">scriptcwl</a></li>
+  <li><a href="#cwl-utils" id="toc-cwl-utils" class="nav-link" data-scroll-target="#cwl-utils">cwl-utils</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -347,11 +360,34 @@ ul.task-list li input[type="checkbox"] {
 
 <p>One of the Pathfinder delivery partners, Oxidian, has created a tool to help dev-ops specialists or specialist technicians to create compliant EOAPs that will run on the EODH. The eoap-gen tool can be found here: https://github.com/EO-DataHub/eoap-gen</p>
 <p>It describes itself as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.</p>
-<p>Other tools exist scriptcwl: https://github.com/NLeSC/scriptcwl and https://scriptcwl.readthedocs.io/en/latest/ cwl-utils: https://github.com/common-workflow-language/cwl-utils and https://cwl-utils.readthedocs.io/en/latest/#</p>
-<p>Installation and set up of eoap-gen</p>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<p>There are three main requirements that are needed for the tool to create a working EOAP. These are: * Python scripts. These must use <a href="https://docs.python.org/3/library/argparse.html">argparse</a> or <a href="https://click.palletsprojects.com/en/stable/">click</a> and the parameters will be mapped to the CWL <code>CommandLineTool</code> inputs * A <code>pip</code> requirements file for each script being wrapped into the EOAP <strong>TO DO: check this can now also take conda</strong> * A compliant <code>eoap-gen</code> configuration file</p>
+</section>
+<section id="steps" class="level2">
+<h2 class="anchored" data-anchor-id="steps">Steps</h2>
+<p>A full tutorial is provided with the repository (see https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md). Here, we will outline the main steps required in using the <code>eoap-gen</code> tool.</p>
+<p>The first thing a user is required to do is understand the workflow that they want to wrap. At it’s most simple the steps of a workflow are threefold: find your input data, process your input data, create a STAC output of the processed data. For the <code>eoap-gen</code> tool these steps will always be required.</p>
+<p>When using the EODH it is recommended that the Python API client <code>pyeodh</code> is used to access the API endpooints on the Hub. To create the</p>
+</section>
+<section id="other-tools" class="level2">
+<h2 class="anchored" data-anchor-id="other-tools">Other tools</h2>
+<p>Other useful tools that you may want to try include:</p>
+<section id="cwltool" class="level3">
+<h3 class="anchored" data-anchor-id="cwltool">cwltool</h3>
+</section>
+<section id="scriptcwl" class="level3">
+<h3 class="anchored" data-anchor-id="scriptcwl">scriptcwl</h3>
+<p>https://github.com/NLeSC/scriptcwl and https://scriptcwl.readthedocs.io/en/latest/</p>
+</section>
+<section id="cwl-utils" class="level3">
+<h3 class="anchored" data-anchor-id="cwl-utils">cwl-utils</h3>
+<p>https://github.com/common-workflow-language/cwl-utils and https://cwl-utils.readthedocs.io/en/latest/#</p>
 <p>https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

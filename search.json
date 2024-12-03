@@ -15,7 +15,40 @@
     "href": "workflows/3_eoapgen.html",
     "title": "EOAP Generator",
     "section": "",
-    "text": "One of the Pathfinder delivery partners, Oxidian, has created a tool to help dev-ops specialists or specialist technicians to create compliant EOAPs that will run on the EODH. The eoap-gen tool can be found here: https://github.com/EO-DataHub/eoap-gen\nIt describes itself as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.\nOther tools exist scriptcwl: https://github.com/NLeSC/scriptcwl and https://scriptcwl.readthedocs.io/en/latest/ cwl-utils: https://github.com/common-workflow-language/cwl-utils and https://cwl-utils.readthedocs.io/en/latest/#\nInstallation and set up of eoap-gen\nhttps://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md",
+    "text": "One of the Pathfinder delivery partners, Oxidian, has created a tool to help dev-ops specialists or specialist technicians to create compliant EOAPs that will run on the EODH. The eoap-gen tool can be found here: https://github.com/EO-DataHub/eoap-gen\nIt describes itself as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Using eoap-gen"
+    ]
+  },
+  {
+    "objectID": "workflows/3_eoapgen.html#requirements",
+    "href": "workflows/3_eoapgen.html#requirements",
+    "title": "EOAP Generator",
+    "section": "Requirements",
+    "text": "Requirements\nThere are three main requirements that are needed for the tool to create a working EOAP. These are: * Python scripts. These must use argparse or click and the parameters will be mapped to the CWL CommandLineTool inputs * A pip requirements file for each script being wrapped into the EOAP TO DO: check this can now also take conda * A compliant eoap-gen configuration file",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Using eoap-gen"
+    ]
+  },
+  {
+    "objectID": "workflows/3_eoapgen.html#steps",
+    "href": "workflows/3_eoapgen.html#steps",
+    "title": "EOAP Generator",
+    "section": "Steps",
+    "text": "Steps\nA full tutorial is provided with the repository (see https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md). Here, we will outline the main steps required in using the eoap-gen tool.\nThe first thing a user is required to do is understand the workflow that they want to wrap. At it’s most simple the steps of a workflow are threefold: find your input data, process your input data, create a STAC output of the processed data. For the eoap-gen tool these steps will always be required.\nWhen using the EODH it is recommended that the Python API client pyeodh is used to access the API endpooints on the Hub. To create the",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Using eoap-gen"
+    ]
+  },
+  {
+    "objectID": "workflows/3_eoapgen.html#other-tools",
+    "href": "workflows/3_eoapgen.html#other-tools",
+    "title": "EOAP Generator",
+    "section": "Other tools",
+    "text": "Other tools\nOther useful tools that you may want to try include:\n\ncwltool\n\n\nscriptcwl\nhttps://github.com/NLeSC/scriptcwl and https://scriptcwl.readthedocs.io/en/latest/\n\n\ncwl-utils\nhttps://github.com/common-workflow-language/cwl-utils and https://cwl-utils.readthedocs.io/en/latest/#\nhttps://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md",
     "crumbs": [
       "Creating Workflows - eoap-gen",
       "Using eoap-gen"
