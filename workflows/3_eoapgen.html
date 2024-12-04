@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -327,11 +361,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#requirements" id="toc-requirements" class="nav-link active" data-scroll-target="#requirements">Requirements</a></li>
   <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  <li><a href="#more" id="toc-more" class="nav-link" data-scroll-target="#more">MORE!</a>
+  <ul class="collapse">
   <li><a href="#other-tools" id="toc-other-tools" class="nav-link" data-scroll-target="#other-tools">Other tools</a>
   <ul class="collapse">
   <li><a href="#cwltool" id="toc-cwltool" class="nav-link" data-scroll-target="#cwltool">cwltool</a></li>
   <li><a href="#scriptcwl" id="toc-scriptcwl" class="nav-link" data-scroll-target="#scriptcwl">scriptcwl</a></li>
   <li><a href="#cwl-utils" id="toc-cwl-utils" class="nav-link" data-scroll-target="#cwl-utils">cwl-utils</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -367,25 +404,42 @@ ul.task-list li input[type="checkbox"] {
 <section id="steps" class="level2">
 <h2 class="anchored" data-anchor-id="steps">Steps</h2>
 <p>A full tutorial is provided with the repository (see https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md). Here, we will outline the main steps required in using the <code>eoap-gen</code> tool.</p>
-<p>The first thing a user is required to do is understand the workflow that they want to wrap. At it’s most simple the steps of a workflow are threefold: find your input data, process your input data, create a STAC output of the processed data. For the <code>eoap-gen</code> tool these steps will always be required.</p>
-<p>When using the EODH it is recommended that the Python API client <code>pyeodh</code> is used to access the API endpooints on the Hub. To create the</p>
+<p>The first thing a user is required to do is understand the workflow that they want to wrap. At it’s most simple the steps of a workflow are threefold: * find your input data, * process your input data, and * create a STAC output of the processed data.</p>
+<p>For the <code>eoap-gen</code> tool these steps will always be required and when using the workflow runner (WR) (aka ADES) on the EODH the output will always need to be a directory output containing a STAC catalog. When using the EODH it is recommended that the Python API client <code>pyeodh</code> is used to access the API endpoints on the Hub.</p>
+<p>The following directory structure is recommended when using the <code>eoap-gen</code> tool:</p>
+<div id="cell-4" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.github</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>└── workflows</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    └── build.yml</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>get_urls</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>├── get_urls.py</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>└── get_urls_reqs.txt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>make_stac</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>├── make_stac.py</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>└── make_stac_reqs.txt</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>config.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="more" class="level1">
+<h1>MORE!</h1>
 <section id="other-tools" class="level2">
 <h2 class="anchored" data-anchor-id="other-tools">Other tools</h2>
 <p>Other useful tools that you may want to try include:</p>
 <section id="cwltool" class="level3">
 <h3 class="anchored" data-anchor-id="cwltool">cwltool</h3>
+<p>The <a href="https://cwltool.readthedocs.io/en/latest/index.html">cwltool</a> is “the reference implementation of the Common Workflow Language open standards. It is intended to be feature complete and provide comprehensive validation of CWL files as well as provide other tools related to working with CWL”. It is a commandline tool designed to run locally and is an excellent piece of software to help check that CWL is compliant. It is designed for use on Linux and will also run on a Mac or Windows (through WSL - windows Subsystem for Linux). It can implement Docker, Podman, Singularity and others for the containerisatoion of commandline components.</p>
 </section>
 <section id="scriptcwl" class="level3">
 <h3 class="anchored" data-anchor-id="scriptcwl">scriptcwl</h3>
-<p>https://github.com/NLeSC/scriptcwl and https://scriptcwl.readthedocs.io/en/latest/</p>
+<p><a href="https://github.com/NLeSC/scriptcwl">Scriptcwl</a> is a Python package for creating CWL workflows and the latest <a href="https://scriptcwl.readthedocs.io/en/latest/">doscumentation</a> gives an indepth explanation of its use. Be aware that this tool has not been developed on or updated for many years.</p>
 </section>
 <section id="cwl-utils" class="level3">
 <h3 class="anchored" data-anchor-id="cwl-utils">cwl-utils</h3>
-<p>https://github.com/common-workflow-language/cwl-utils and https://cwl-utils.readthedocs.io/en/latest/#</p>
+<p>Still actively developed, <a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a> provides Python utilities and autogenerated classes for loading and parsing CWL documents. Although not specific to EOAPs this set of tools may be helpful when developing your workflows. <a href="https://cwl-utils.readthedocs.io/en/latest/#">Documentation</a> is relatively sparse.</p>
 <p>https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md</p>
 
 
+</section>
 </section>
 </section>
 
