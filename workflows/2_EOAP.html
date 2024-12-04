@@ -320,8 +320,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-containers" id="toc-why-containers" class="nav-link active" data-scroll-target="#why-containers">Why containers?</a></li>
+  <li><a href="#other-information" id="toc-other-information" class="nav-link" data-scroll-target="#other-information">Other information</a></li>
+  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -346,13 +354,29 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>EOAPs are self contained amalgamations of tools and code that allows an algorithm, or set of algorithms, to be shared between and run on different data processing platforms. The core concepts behind this are that: * algorithms and processing methods are not tied to a specific platform * the underlying infrastructure is not important as long as a suitable workflow runner exists on that infrastructure * the workflows preferentially create data services</p>
-<p>Additional information is available here: https://eoap.github.io/mastering-app-package/</p>
-<p>and a full set of resources are available from the official EOAP Github repository: https://github.com/eoap</p>
-<p>EOEPCA App Pkg assistant - INCLUDE??? https://eoepca.readthedocs.io/projects/eo-app-packaging-assistant/en/latest/</p>
+<section id="why-containers" class="level1">
+<h1>Why containers?</h1>
+<p>Containers solve the need for dependencies between software required to run specific commands. Containers are described by an image file (a template), where the container itself is an instantiation of the image.</p>
+</section>
+<section id="other-information" class="level1">
+<h1>Other information</h1>
+<p>Additional information on the EOAP specification and construction is available here: https://eoap.github.io/mastering-app-package/. This is a comprehensive tutorial that introduces the user to different tools (some of which are mentioned elsewhere in these training materials). Much of the tutorial uses hand-crafted code which is generally not recommended as a method of generation (see notes on the <a href="../workflows/3_eoapgen.html">EOAP Generator</a> for further details) but in this case it does enable detailed assesment of the different components. A full set of resources are available from the official EOAP Github repository: https://github.com/eoap. Further to this, a related ‘hands on’ tutorial is available <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">here</a>.</p>
 <p>gdal example: https://github.com/EO-DataHub/eodhp-ades-workspace-access/blob/main/gdal-example/gdal-workflow-test.cwl</p>
 <p>More examples: https://github.com/EO-DataHub/eodhp-ades-demonstration/blob/main/eodhp-ades-demonstration.ipynb</p>
+</section>
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li>My first CWL workflow: <a href="https://github.com/EO-DataHub/eodh-training/blob/main/temporary/first_workflow.md">explainer</a></li>
+<li>EO Application Package example: <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on/tree/master/water-bodies">Waterbodies</a></li>
+<li>OGC best practices: <a href="https://docs.ogc.org/bp/20-089r1.html#toc18">EO app pkg</a></li>
+<li>CWL for EO tutorials: <a href="https://cwl-for-eo.github.io/guide/how-to/cwl-how-to/08-conditional-workflows/conditional-workflows/">adding conditions</a></li>
+<li>Terradue training: <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">hands-on</a> - not sure all the scripts work as they are supposed to…</li>
+<li>EO App Pkgs: <a href="https://github.com/eoap">overview</a>, <a href="https://github.com/EOEPCA/deployment-guide/tree/main/deploy/samples/requests/processing">examples</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

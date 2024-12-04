@@ -59,7 +59,62 @@
     "href": "workflows/1_Workflows.html",
     "title": "What is a Workflow",
     "section": "",
-    "text": "One of the provisioned services made available to users of the EODH is the Workflow Runner (WR). More information about the WR is provided later on this page, but the fundamental question that requires answering is…\n_\n\nIn the context of the EODH, what is a workflow?\n\n_\nUsing the terminology of the EODH, a workflow is a file written in CWL (the Common Workflow Language) that creates a data processing chain. However, this CWL file only provides the orchestration of a wider set of tools that are brought together as an entity known as an Earth Observation Application Package (EOAP).\n\nWhat is the Workflow Runner?\nThe WR is a required component of the Hub designed to interprate CWL files and ensure that the algorithms wrapped within them are sensibly scaled across the available infrastructure. In the case of the EODH, the infrastructure is a Kubernetes cluster running on an AWS backend, but this is not a hard-set requirement.\nThe WR itself is a piece of software called ADES. If you want to understand the internal components of the WR then the ADES Design Document is avialable here: https://eoepca.github.io/proc-ades/master/.\nThe use is that EOAPs can be transfered from platform to platform e.g. they could be developed on EODH and run on EOEPCA or the other way round. Platforms run by DLR and NASA also utilise EOAPs and procesisng algorithms can be shared between them.\nGood introduction here: https://carpentries-incubator.github.io/cwl-novice-tutorial/aio/index.html\n\n\nWhat is CWL?\ncwltool is a great way to test workflows locally: https://cwltool.readthedocs.io/en/latest/cli.html\nGood tutorial here: https://andrewjesaitis.com/posts/2017-02-06-cwl-tutorial/\nCheck your workflow: https://view.commonwl.org/\nExamples - link to Lot 1 & 2 Other tools - link to Lot 2 tool\n\n\nHow do I create a workflow?\nThe guidance around EOAPs is that handcrafting a package is possible but not recommended. These workflows can become very complex very quickly and it is recommended that some form of tooling is used to automate or semi-automate the generation of an EOAP. As part of the Pathfinder phase of the project, the EODH (via a 3rd party contractor, Oxidian) has created eoap-gen to help specialist technicians to create service workflows.",
+    "text": "One of the provisioned services made available to users of the EODH is the Workflow Runner (WR). More information about the WR is provided later on this page, but the fundamental question that requires answering is…\nIn the context of the EODH, what is a workflow?\nUsing the terminology of the EODH, a workflow is a file written in CWL (the Common Workflow Language) that creates a data processing chain. However, this CWL file only provides the orchestration of a wider set of tools that are brought together as an entity known as an Earth Observation Application Package (EOAP).",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Workflow Introduction"
+    ]
+  },
+  {
+    "objectID": "workflows/1_Workflows.html#context",
+    "href": "workflows/1_Workflows.html#context",
+    "title": "What is a Workflow",
+    "section": "Context",
+    "text": "Context\nThe first thing to do when designing a workflow is understand the context of what is desired, and how that may need to be referred to in the workflow. For this example workflow, we will take a list of Sentinel-2 ARD images, clip them to an area of interest, and stack them. The flow will look like the following:\ngraph LR;\n  get_data -- S2_ARD --&gt; clip -- clipped --&gt; stack -- stacked--&gt; Output ;\n\nThe next thing to do is access the data to be used in the Workflow. In this case we will download two bands of a Sentinel 2 image held on AWS. We will use the curl tool to do this, saving the accessed image as B0$.tif (where $ is the band number):\ncurl -o B04.tif https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/53/H/PA/2021/7/S2B_53HPA_20210723_0_L2A/B04.tif\n\ncurl -o B03.tif https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/53/H/PA/2021/7/S2B_53HPA_20210723_0_L2A/B03.tif \nThe commands that we will use in the workflow are all available through gdal.\n\nClip the image\nWe will use gdal_-_translate to clip the larger image to a smaller more manageable dataset. The gdal command that we can test and that we will need to replicate in CWL is:\ngdal_translate -projwin ULX ULY LRX LRY  -projwin_srs EPSG:4326 BO4.tif B04_clipped.tif\nwhere the coordinates UL refer to upper left and LR to lower right X and Y.\n\n\nStack the clips\nSimilarly, we will use gdal_merge.py to construct the stacked images from the clipped image. This can be tested using the following command:\ngdal_merge.py -separate B04_clipped.tif B03_clipped.tif -o stacked.tif",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Workflow Introduction"
+    ]
+  },
+  {
+    "objectID": "workflows/1_Workflows.html#building-the-workflow",
+    "href": "workflows/1_Workflows.html#building-the-workflow",
+    "title": "What is a Workflow",
+    "section": "Building the Workflow",
+    "text": "Building the Workflow\n\nRequired files\nThere are three main files that are required to construct a CWL Workflow. These are: * DockerFile or existing online container * CWL file * YAML file It may be that other files e.g. a .sh script or a Python script are also needed, depending on how bespoke and/or complex the desired workflow is.\n\n\ncwltool\nTo run CWL workflows you will need a CWL runner. The most commonly used (locally) is cwltool which is maintained by the CWL community. It will support everything in the current CWL specification. cwltool can be installed using pip or variants of conda. More information can be found here and here.\n\n\nContainers\nFor the purposes of this example, we will be pulling the GDAL container from the OSgeo repository (see here).\nNOTE: There are a number of different images that can be accessed. To use the .py tools available through GDAL then ‘GDAL Python’ is required.\nIf we wanted to we could also build our own bespoke image using a DockerFile and then run that. This is often used when data processing scripts need to be copied into the container.\nWe will also be using Podman as our container software. ‘podman’ is a drop in replacement for Docker but does require the --podman arguement in the cwltool command. If using Windows, or if you are more familiar with Docker, then using Docker is the default containerisation method.\n\n\nCWL files\nFor this example we require a CWL CommandLine file for both the clipping and stacking components of the workflow. We will also need a CWL Workflow file to bring these together and run the entire process. The next block of code outlines the overall Workflow file. Note: This example is based on the example found here. Some errors were found in the original CWL files and the version presented here has been tested and is known to work on a local Linux (Debian based) system.\nclass: Workflow\nlabel: Sentinel-2 clipping and stacking\ndoc:  This workflow creates a stacked composite. File name: composite.cwl\nid: main\n\nrequirements:\n- class: ScatterFeatureRequirement\n\ninputs:\n\n  geotiff:\n    doc: list of geotifs\n    type: File[]\n\n  bbox: \n    doc: area of interest as a bounding box\n    type: string\n\n  epsg:\n    doc: EPSG code \n    type: string\n    default: \"EPSG:4326\"\n\noutputs:\n  rgb:\n    outputSource:\n    - node_concatenate/composite\n    type: File\n\nsteps:\n\n  node_translate:\n\n    run: gdal-translate.cwl\n\n    in:\n\n      geotiff: geotiff  \n      bbox: bbox\n      epsg: epsg\n\n    out:\n    - clipped_tif\n\n    scatter: geotiff\n    scatterMethod: dotproduct\n\n  node_concatenate:\n\n    run: concatenate2.cwl\n\n    in: \n      tifs:\n        source: node_translate/clipped_tif\n\n    out:\n    - composite\n\n\ncwlVersion: v1.0\n\nFrom this example, we can see that we require two CommandLine CWL files: gdal-translate.cwl and concatenate2.cwl. Let’s deal with these in order.\nclass: CommandLineTool\n\ncwlVersion: v1.0\ndoc:  This runs GDAL Translate to clip an image to bbox corner coordinates.\n\nrequirements: \n  InlineJavascriptRequirement: {}\n  DockerRequirement: \n    dockerPull: ghcr.io/osgeo/gdal:ubuntu-small-latest\n\nbaseCommand: gdal_translate\n\narguments:\n- -projwin \n- valueFrom: ${ return inputs.bbox.split(\",\")[0]; }\n- valueFrom: ${ return inputs.bbox.split(\",\")[3]; }\n- valueFrom: ${ return inputs.bbox.split(\",\")[2]; }\n- valueFrom: ${ return inputs.bbox.split(\",\")[1]; }\n- valueFrom: ${ return inputs.geotiff.basename.replace(\".tif\", \"\") + \"_clipped.tif\"; }\n  position: 8\n\ninputs:\n  geotiff: \n    type: File\n    inputBinding:\n      position: 7\n  bbox: \n    type: string\n  epsg:\n    type: string\n    default: \"EPSG:4326\" \n    inputBinding:\n      position: 6\n      prefix: -projwin_srs\n      separate: true\n\noutputs:\n  clipped_tif:\n    outputBinding:\n      glob: '*_clipped.tif'\n    type: File\n\n\nclass: CommandLineTool\n\ncwlVersion: v1.0\ndoc: This runs GDAL Merge to stack images together.\n\nrequirements:\n  InlineJavascriptRequirement: {}\n  DockerRequirement: \n    dockerPull: ghcr.io/osgeo/gdal:ubuntu-small-latest\n\nbaseCommand: gdal_merge.py\n\narguments: \n- -separate \n- valueFrom: ${ return inputs.tifs; }\n- -o\n- composite.tif\n# gdal_merge.py -separate 1.tif 2.tif 3.tif -o rgb.tif\n\ninputs:\n\n  tifs:\n    type: File[]\n\noutputs:\n\n  composite:\n    outputBinding:\n      glob: '*.tif'\n    type: File\n\nNOTE: YAML generally doesn’t play well with tabs as whitespace so it’s best practice to use spaces for indentations",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Workflow Introduction"
+    ]
+  },
+  {
+    "objectID": "workflows/1_Workflows.html#running-the-workflow",
+    "href": "workflows/1_Workflows.html#running-the-workflow",
+    "title": "What is a Workflow",
+    "section": "Running the Workflow",
+    "text": "Running the Workflow\nNow that we have our commandline CWL component files, and the Workflow CWL file that brings the tools together, we need to specify the input parameters. This is done using a parameters.yml file, where the name of the file can be anything that you want. The contents should follow the layout that we will be using:\nbbox: \"136.659,-35.96,136.923,-35.791\"\ngeotiff: \n- { \"class\": \"File\", \"path\": \"../B04.tif\" }\n- { \"class\": \"File\", \"path\": \"../B03.tif\" }\nepsg: \"EPSG:4326\"\nYou will need to change the path parameter to match the location of your input files.\nNow we run it with the command:\ncwltool --podman composite.cwl composite-params.yml\nNote: remember that if you are using Docker then you do not need the --podman arguement.",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Workflow Introduction"
+    ]
+  },
+  {
+    "objectID": "workflows/1_Workflows.html#outputs",
+    "href": "workflows/1_Workflows.html#outputs",
+    "title": "What is a Workflow",
+    "section": "Outputs",
+    "text": "Outputs\nThis workflow takes a couple of minutes to run, during which time the executed commandsand their runtime messages are displayed on the commandline. Once the workflow completes, the output file will be found in the directory from where the workflow was run. Intermediate files that are not specified in the out block in the workflow are automatically deleted.\nThe output .tif file can now be opened in QGIS or a similar software application to check that the output is as expected (in this case a 2-layer image of a clipped area of the extent of the input files).",
+    "crumbs": [
+      "Creating Workflows - eoap-gen",
+      "Workflow Introduction"
+    ]
+  },
+  {
+    "objectID": "workflows/1_Workflows.html#tips",
+    "href": "workflows/1_Workflows.html#tips",
+    "title": "What is a Workflow",
+    "section": "Tips",
+    "text": "Tips\nYou can pass --leave-tmpdirs to the cwltool command. This is often helpful to figure out if the outputs from a step are what you think they should be.",
     "crumbs": [
       "Creating Workflows - eoap-gen",
       "Workflow Introduction"
@@ -180,7 +235,7 @@
     "href": "website/about.html#acronym-list",
     "title": "About",
     "section": "Acronym list",
-    "text": "Acronym list\n\n\n\nAcronym\nMeaning\n\n\n\n\nADES\nhello\n\n\nCWL\nCommon Workflow Language",
+    "text": "Acronym list\n\n\n\n\n\n\n\nAcronym\nMeaning\n\n\n\n\nADES\nADD IN\n\n\nARD\nAnalysis Ready Data (a pre-processed dataset)\n\n\nAWS\nAmazon Web Services\n\n\nCEDA\nCentre for Environmental Data Analysis\n\n\nCWL\nCommon Workflow Language (a specification for standardising workflows)\n\n\nEO\nEarth observation\n\n\nYAML\nYet Another Markup Language (or YAML ain’t markup language)",
     "crumbs": [
       "About"
     ]
@@ -318,7 +373,7 @@
     "href": "workflows/2_EOAP.html",
     "title": "What are Earth Observation Application Packages?",
     "section": "",
-    "text": "EOAPs are self contained amalgamations of tools and code that allows an algorithm, or set of algorithms, to be shared between and run on different data processing platforms. The core concepts behind this are that: * algorithms and processing methods are not tied to a specific platform * the underlying infrastructure is not important as long as a suitable workflow runner exists on that infrastructure * the workflows preferentially create data services\nAdditional information is available here: https://eoap.github.io/mastering-app-package/\nand a full set of resources are available from the official EOAP Github repository: https://github.com/eoap\nEOEPCA App Pkg assistant - INCLUDE??? https://eoepca.readthedocs.io/projects/eo-app-packaging-assistant/en/latest/\ngdal example: https://github.com/EO-DataHub/eodhp-ades-workspace-access/blob/main/gdal-example/gdal-workflow-test.cwl\nMore examples: https://github.com/EO-DataHub/eodhp-ades-demonstration/blob/main/eodhp-ades-demonstration.ipynb",
+    "text": "EOAPs are self contained amalgamations of tools and code that allows an algorithm, or set of algorithms, to be shared between and run on different data processing platforms. The core concepts behind this are that: * algorithms and processing methods are not tied to a specific platform * the underlying infrastructure is not important as long as a suitable workflow runner exists on that infrastructure * the workflows preferentially create data services\n\nWhy containers?\nContainers solve the need for dependencies between software required to run specific commands. Containers are described by an image file (a template), where the container itself is an instantiation of the image.\n\n\nOther information\nAdditional information on the EOAP specification and construction is available here: https://eoap.github.io/mastering-app-package/. This is a comprehensive tutorial that introduces the user to different tools (some of which are mentioned elsewhere in these training materials). Much of the tutorial uses hand-crafted code which is generally not recommended as a method of generation (see notes on the EOAP Generator for further details) but in this case it does enable detailed assesment of the different components. A full set of resources are available from the official EOAP Github repository: https://github.com/eoap. Further to this, a related ‘hands on’ tutorial is available here.\ngdal example: https://github.com/EO-DataHub/eodhp-ades-workspace-access/blob/main/gdal-example/gdal-workflow-test.cwl\nMore examples: https://github.com/EO-DataHub/eodhp-ades-demonstration/blob/main/eodhp-ades-demonstration.ipynb\n\n\nLinks\n\nMy first CWL workflow: explainer\nEO Application Package example: Waterbodies\nOGC best practices: EO app pkg\nCWL for EO tutorials: adding conditions\nTerradue training: hands-on - not sure all the scripts work as they are supposed to…\nEO App Pkgs: overview, examples",
     "crumbs": [
       "Creating Workflows - eoap-gen",
       "EO App Packages"
