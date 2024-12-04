@@ -21,3 +21,10 @@ There are a number of resources on this website. The site is a reflection of the
 
 ## Using this website
 The code in a given Notebook can either be copied and run on the Python command-line or in a script, or the entire Notebook can be downloaded and run wholly or stepwise through each cell. The code has been tested at the time of creation and will work with the required import packages. If there are any issues running the code, please create an issue in the GitHub repository explainingthe problem, post in the discussion forum or if you are able to fix the code then please create a pull request. 
+
+## Acronym list 
+
+|Acronym | Meaning|
+|----    |----    |
+|ADES | hello|
+|CWL | Common Workflow Language| 
