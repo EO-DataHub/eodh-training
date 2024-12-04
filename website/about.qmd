@@ -26,5 +26,10 @@ The code in a given Notebook can either be copied and run on the Python command-
 
 |Acronym | Meaning|
 |----    |----    |
-|ADES | hello|
-|CWL | Common Workflow Language| 
+|ADES | __ADD IN__|
+|ARD  | Analysis Ready Data (a pre-processed dataset) |
+|AWS  | Amazon Web Services|
+|CEDA | Centre for Environmental Data Analysis|
+|CWL  | Common Workflow Language (a specification for standardising workflows)| 
+|EO   | Earth observation |
+|YAML | Yet Another Markup Language (or YAML ain't markup language)|
