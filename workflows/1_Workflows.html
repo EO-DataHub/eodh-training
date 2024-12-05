@@ -251,13 +251,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../plugin/1_Introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../plugin/1_Introduction.ipynb" class="sidebar-item-text sidebar-link">
  <span class="menu-text">QGIS Plugin Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../plugin/2_RunningWorkflows.html" class="sidebar-item-text sidebar-link">
+  <a href="../plugin/2_RunningWorkflows.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running A Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plugin/3_OtherTools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Running A Workflow</span></a>
   </div>
 </li>
@@ -326,7 +332,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#what-is-the-workflow-runner" id="toc-what-is-the-workflow-runner" class="nav-link active" data-scroll-target="#what-is-the-workflow-runner">What is the Workflow Runner?</a></li>
-  <li><a href="#what-is-cwl" id="toc-what-is-cwl" class="nav-link" data-scroll-target="#what-is-cwl">What is CWL?</a></li>
+  <li><a href="#what-is-cwl" id="toc-what-is-cwl" class="nav-link" data-scroll-target="#what-is-cwl">What is CWL?</a>
+  <ul class="collapse">
+  <li><a href="#execution-sequence" id="toc-execution-sequence" class="nav-link" data-scroll-target="#execution-sequence">Execution sequence</a></li>
+  <li><a href="#scripting-workflows" id="toc-scripting-workflows" class="nav-link" data-scroll-target="#scripting-workflows">Scripting workflows</a>
+  <ul class="collapse">
+  <li><a href="#why-cwl" id="toc-why-cwl" class="nav-link" data-scroll-target="#why-cwl">Why CWL?</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#how-do-i-create-a-workflow" id="toc-how-do-i-create-a-workflow" class="nav-link" data-scroll-target="#how-do-i-create-a-workflow">How do I create a workflow?</a></li>
   <li><a href="#a-simple-example-to-introduce-cwl" id="toc-a-simple-example-to-introduce-cwl" class="nav-link" data-scroll-target="#a-simple-example-to-introduce-cwl">A simple example to introduce CWL</a>
   <ul class="collapse">
@@ -382,13 +395,41 @@ In the context of the EODH, what is a workflow?
 <p>The WR itself is a piece of software called ADES. If you want to understand the internal components of the WR then the ADES Design Document is avialable here: https://eoepca.github.io/proc-ades/master/.</p>
 <p>The use is that EOAPs can be transfered from platform to platform e.g.&nbsp;they could be developed on EODH and run on EOEPCA or the other way round. Platforms run by DLR and NASA also utilise EOAPs and procesisng algorithms can be shared between them.</p>
 <p>Good introduction here: https://carpentries-incubator.github.io/cwl-novice-tutorial/aio/index.html</p>
+<p>ADES is responsible for the execution of the processing service through both a OGC WPS 1.0 &amp; 2.0 OWS service and an OGC Processes REST API. The processing request are executed within the target Exploitation Platform (i.e., the one that is close to the data).</p>
+<p>The ADES software uses ZOO-Project as the main framework for exposing the OGC compliant web services. The ZOO-kernel powering the web services is included in the software package.</p>
+<p>The ADES functions are designed to perform the processing and chaining function on a Kubernetes cluster using the Calrissian Tool. Calrissian uses CWL, that is a robust workflow engine, over Kubernetes that enables the implementation of each step in a workflow as a container. It provides simple, flexible mechanisms for specifying constraints between the steps in a workflow and artifact management for linking the output of any step as an input to subsequent steps.</p>
 </section>
 <section id="what-is-cwl" class="level1">
 <h1>What is CWL?</h1>
+<section id="execution-sequence" class="level3">
+<h3 class="anchored" data-anchor-id="execution-sequence">Execution sequence</h3>
+<p>The generic execution sequence of a CWL process (including Workflows and CommandLineTools) is as follows.</p>
+<ul>
+<li>Load input object.</li>
+<li>Load, process and validate a CWL document. The $namespaces present in the CWL document are also used when validating and processing the input object.</li>
+<li>If there are multiple process objects (due to $graph) then choose the process with the id of “#main” or “main”.</li>
+<li>Validate the input object against the inputs schema for the process.</li>
+<li>Perform any further setup required by the specific process type.</li>
+<li>Execute the process.</li>
+<li>Capture results of process execution into the output object.</li>
+<li>Validate the output object against the outputs schema for the process.</li>
+<li>Report the output object to the process caller.</li>
+</ul>
+</section>
+<section id="scripting-workflows" class="level2">
+<h2 class="anchored" data-anchor-id="scripting-workflows">Scripting workflows</h2>
+<section id="why-cwl" class="level3">
+<h3 class="anchored" data-anchor-id="why-cwl">Why CWL?</h3>
+<p>While shell scripts or other code scripts (e.g.&nbsp;Python) can meet the need of data processing workflows, using a formal workflow language (such as CWL) brings additional benefits such as abstraction and improved scalability and portability.</p>
+<p>Computational workflows explicitly create a divide between a user’s dataflow and the computational details which underpin the chain of tools.</p>
+<p>The dataflow is described by the workflow and the tool implementation is specified by descriptors that remove the workflow complexity.</p>
+<p>Workflow managers such as <code>cwltool</code> help with the automation, monitoring and tracking of a dataflow. By producing computational workflows in a standardised format, and publishing them (alongside any data) with open access, the workflows become more FAIR (Findable, Accessible, Interoperable, and Reusable). The Common Workflow Language (CWL) standard has been developed to standardise workflow needs across different thematic areas.</p>
 <p>cwltool is a great way to test workflows locally: https://cwltool.readthedocs.io/en/latest/cli.html</p>
 <p>Good tutorial here: https://andrewjesaitis.com/posts/2017-02-06-cwl-tutorial/</p>
 <p>Check your workflow: https://view.commonwl.org/</p>
 <p>Examples - link to Lot 1 &amp; 2 Other tools - link to Lot 2 tool</p>
+</section>
+</section>
 </section>
 <section id="how-do-i-create-a-workflow" class="level1">
 <h1>How do I create a workflow?</h1>
