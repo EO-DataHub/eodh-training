@@ -17,10 +17,17 @@ Components of the Hub include:
 * An App Hub - a science portal providing access to a Jupyter lab environment
 
 # Resources on this website
-There are a number of resources on this website. The site is a reflection of the training materials repository on GitHub so all Notebooks can be discovered there. Notebooks can then be run locally or on the AppHub. 
+There are a number of resources on this website. The site is a reflection of the training materials repository on GitHub so all Jupyter notebooks can also be discovered there. 
 
 ## Using this website
-The code in a given Notebook can either be copied and run on the Python command-line or in a script, or the entire Notebook can be downloaded and run wholly or stepwise through each cell. The code has been tested at the time of creation and will work with the required import packages. If there are any issues running the code, please create an issue in the GitHub repository explainingthe problem, post in the discussion forum or if you are able to fix the code then please create a pull request. 
+The code in a given Jupyter notebook can either be copied and run on the Python command-line or in a script. The entire notebook can be downloaded and run wholly or stepwise through each cell. The code has been tested at the time of creation and will work with the required import packages. 
+
+If there are any issues running the code, please create an issue in the GitHub repository explaining the problem, post in the discussion forum or if you are able to fix the code then please create a pull request and add to these help pages.
+
+To clone the repository you will `git` installed and to then use the following command in a suitable directory:
+`git clone https://github.com/EO-DataHub/eodh-training.git` 
+
+The notebooks can be run anywhere that a Jupyter server is available. To use on the AppHub, download the required notebooks locally and then upload them using the upload button at the top-left of the AppHub window.
 
 ## Acronym list 
 
