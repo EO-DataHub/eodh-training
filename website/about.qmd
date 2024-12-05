@@ -26,10 +26,12 @@ The code in a given Notebook can either be copied and run on the Python command-
 
 |Acronym | Meaning|
 |----    |----    |
-|ADES | __ADD IN__|
+|ADES | Application Deployment and Execution Service (the EODH workflow runner)|
 |ARD  | Analysis Ready Data (a pre-processed dataset) |
 |AWS  | Amazon Web Services|
 |CEDA | Centre for Environmental Data Analysis|
 |CWL  | Common Workflow Language (a specification for standardising workflows)| 
 |EO   | Earth observation |
+|EODH | Earth observation Data Hub|
+|WR   | Workflow Runner|
 |YAML | Yet Another Markup Language (or YAML ain't markup language)|

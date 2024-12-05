@@ -65,9 +65,11 @@ website:
       - section: "GIS interface - QGIS plugin"
         contents: 
           - text: "QGIS Plugin Introduction"
-            href: plugin/1_Introduction.md
+            href: plugin/1_Introduction.ipynb
           - text: "Running A Workflow"
-            href: plugin/2_RunningWorkflows.md
+            href: plugin/2_RunningWorkflows.ipynb
+          - text: "Running A Workflow"
+            href: plugin/3_OtherTools.ipynb
         # Examples Section
       - section: "Science & code examples"
         contents: 
