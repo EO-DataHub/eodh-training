@@ -41,7 +41,7 @@ website:
       - section: "Simplifying access - pyeodh"
         contents: 
           - text: "What is pyeodh?"
-            href: api-client/1_ClientIntro.md
+            href: api-client/1_ClientIntro.ipynb
           - text: "Using the Resource Catalogue"
             href: api-client/2_ResourceCatalog.ipynb
           - text: "Running Workflows"
