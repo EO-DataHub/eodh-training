@@ -365,7 +365,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#other-ways-to-access-the-rc" id="toc-other-ways-to-access-the-rc" class="nav-link active" data-scroll-target="#other-ways-to-access-the-rc">Other ways to access the RC</a></li>
+  <li><a href="#exploring-the-resource-catalogue" id="toc-exploring-the-resource-catalogue" class="nav-link active" data-scroll-target="#exploring-the-resource-catalogue">Exploring the Resource Catalogue</a></li>
+  <li><a href="#creating-removing-and-updating-collections" id="toc-creating-removing-and-updating-collections" class="nav-link" data-scroll-target="#creating-removing-and-updating-collections">Creating, removing and updating collections</a></li>
+  <li><a href="#interacting-with-items" id="toc-interacting-with-items" class="nav-link" data-scroll-target="#interacting-with-items">Interacting with items</a></li>
   </ul>
 </nav>
     </div>
@@ -391,26 +393,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of November 2024.</p>
-<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, Phil Kershaw</p>
+<p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of December 2024.</p>
+<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, EODH</p>
 <p><strong>Date created</strong>: 2024-09-05</p>
-<p><strong>Date last modified</strong>: 2024-11-20</p>
+<p><strong>Date last modified</strong>: 2024-12-05</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * CEDA: https://www.ceda.ac.uk/ * EO Data Hub: https://eodatahub.org.uk/</p>
-<p>The first thing to do is ensure that the most recent version of pyeodh is installed on your system. It is good practice to run the following cell if you have not installed pyeodh or have not used it in a while.</p>
+<p>The first thing to do is ensure that the most recent version of <code>pyeodh</code> is installed on your system. It is good practice to run the following cell if you have not installed <code>pyeodh</code> or have not used it in a while.</p>
 <div id="cell-5" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell if pyeodh is not installed, or needs updating</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">--</span>upgrade pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="exploring-the-resource-catalogue" class="level1">
+<h1>Exploring the Resource Catalogue</h1>
 <p>Now we are ready to investigate the Resource Catalogue. First off, we need to import the pyeodh package.</p>
 <div id="cell-7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the Python API Client</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs. From there we can start to search the collections held within the platform.</p>
+<p>Next we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs. From there we can start to search the collections held within the platform.</p>
 <div id="cell-9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client().get_catalog_service()</span>
@@ -424,17 +428,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - cordex: CORDEX
 - ukcp: UKCP
 - airbus_sar_data: The German TerraSAR-X / TanDEM-X satellite formation and the Spanish PAZ satellite (managed by Hisdesat Servicios Estratégicos S.A.) are being operated in the same orbit tube and feature identical ground swaths and imaging modes - allowing Airbus and Hisdesat to establish a unique commercial Radar Constellation. The satellites carry a high frequency X-band Synthetic Aperture Radar (SAR) sensor in order to acquire datasets ranging from very high-resolution imagery to wide area coverage.
+- col_f99e920a-a58e-11ef-aab0-7a33b70d8782: description
 - defra-airbus: A collection of Airbus data for the DEFRA use case.
 - defra-planet: A collection of Planet data for the DEFRA use case.
-- eocis-sst-cdrv3: EOCIS Sea-Surface Temperatures V3
-- sentinel2_ard: sentinel 2 ARD
-- sentinel1: Sentinel 1
-- naip: The [National Agriculture Imagery Program](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/) (NAIP) provides U.S.-wide, high-resolution aerial imagery, with four spectral bands (R, G, B, IR).  NAIP is administered by the [Aerial Field Photography Office](https://www.fsa.usda.gov/programs-and-services/aerial-photography/) (AFPO) within the [US Department of Agriculture](https://www.usda.gov/) (USDA).  Data are captured at least once every three years for each state.  This dataset represents NAIP data from 2010-present, in [cloud-optimized GeoTIFF](https://www.cogeo.org/) format.
-</code></pre>
+- eocis-sst-cdrv3: This dataset provides daily estimates of global sea surface temperature (SST) based on observations from multiple satellite sensors. Resolution: 5km.  Available from 1980 onwards.
+- col_c1f6f668-b2f8-11ef-b6b1-ee3aaed8a789: description
+- sentinel2_ard: sentinel 2 ARD</code></pre>
 </div>
 </div>
 <p>The attributes of a catalogue are mapped to a series of properties. For instance, in the following cell we print the <code>id</code>, <code>title</code> and <code>description</code> for the supported-datasets catalogue.</p>
-<div id="cell-11" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ceda_cat <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/ceda-stac-catalogue"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, ceda_cat.<span class="bu">id</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, ceda_cat.title)</span>
@@ -446,12 +449,12 @@ description:  CEDA STAC Catalogue</code></pre>
 </div>
 </div>
 <p>The Hub API endpoints are wrapped in methods inside <code>pyeodh</code> and are structured into classes, following the same logic as the underlying APIs. This means that, for xample, to fetch a collection item we first need to get the collection from the resource catalogue. The following cell provedes a code example to do this.</p>
-<div id="cell-13" class="cell" data-execution_count="7">
+<div id="cell-13" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/{collection_id}/items/{item_id}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cmip6 <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/ceda-stac-catalogue"</span>).get_collection(<span class="st">'cmip6'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cmip6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>&lt;pyeodh.resource_catalog.Collection at 0x7581d41ef9b0&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;pyeodh.resource_catalog.Collection at 0x7e213438e510&gt;</code></pre>
 </div>
 </div>
 <p>Some API responses are paginated (e.g.&nbsp;collection items), and you can simply iterate over them.</p>
@@ -463,10 +466,23 @@ description:  CEDA STAC Catalogue</code></pre>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="creating-removing-and-updating-collections" class="level1">
+<h1>Creating, removing and updating collections</h1>
 <p>Attempting to create a collection with id that already exists will result in 409 error code. To see the example in action delete the test collection first by running the cell below.</p>
 <p>Delete a colletion</p>
-<div id="cell-17" class="cell">
+<div id="cell-17" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rc.get_collection(<span class="st">"test1"</span>).delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[7], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">rc</span><span style="color:rgb(98,98,98)">.</span>get_collection(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">test1</span><span style="color:rgb(175,0,0)">"</span>)<span style="color:rgb(98,98,98)">.</span>delete()
+
+<span class="ansi-red-fg">NameError</span>: name 'rc' is not defined</pre>
+</div>
+</div>
 </div>
 <p>Create new collection example</p>
 <div id="cell-19" class="cell">
@@ -478,6 +494,9 @@ description:  CEDA STAC Catalogue</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>test1.update(description<span class="op">=</span><span class="st">"Different description"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test1.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="interacting-with-items" class="level1">
+<h1>Interacting with items</h1>
 <p>Create an item</p>
 <div id="cell-23" class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>testitem1 <span class="op">=</span> test1.create_item(<span class="bu">id</span><span class="op">=</span><span class="st">"test1.testitem1"</span>)</span>
@@ -493,18 +512,26 @@ description:  CEDA STAC Catalogue</code></pre>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>testitem1.delete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Find out more about the Resource Catalog</p>
-<div id="cell-29" class="cell">
+<div id="cell-29" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Livecheck: PING-</span><span class="sc">{</span>rc<span class="sc">.</span>ping()<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">API conforms to:"</span>, <span class="op">*</span>rc.get_conformance(), sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[4], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Livecheck: PING-</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-yellow-bg">rc</span><span style="color:rgb(98,98,98)">.</span>ping()<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>)
+<span class="ansi-green-fg ansi-bold">      2</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">API conforms to:</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(98,98,98)">*</span>rc<span style="color:rgb(98,98,98)">.</span>get_conformance(), sep<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'rc' is not defined</pre>
+</div>
+</div>
 </div>
 <p>Search the Catalog</p>
 <div id="cell-31" class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> result <span class="kw">in</span> rc.search(collections<span class="op">=</span>[<span class="st">'cmip6'</span>]):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="other-ways-to-access-the-rc" class="level1">
-<h1>Other ways to access the RC</h1>
-<p>Use this URL in the STAC API Browser plugin https://test.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/ceda-stac-catalogue/</p>
 
 
 </section>

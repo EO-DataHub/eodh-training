@@ -333,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introduction-overview" id="toc-introduction-overview" class="nav-link active" data-scroll-target="#introduction-overview">Introduction &amp; Overview</a>
   <ul class="collapse">
-  <li><a href="#what-is-this-plugin" id="toc-what-is-this-plugin" class="nav-link" data-scroll-target="#what-is-this-plugin">What is this plugin</a></li>
+  <li><a href="#why-do-we-need-this-plugin" id="toc-why-do-we-need-this-plugin" class="nav-link" data-scroll-target="#why-do-we-need-this-plugin">Why do we need this plugin?</a></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
   </ul></li>
   </ul>
@@ -356,11 +356,27 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * EO Data Hub: https://eodatahub.org.uk/</p>
 <section id="introduction-overview" class="level1">
 <h1>Introduction &amp; Overview</h1>
-<section id="what-is-this-plugin" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-this-plugin">What is this plugin</h2>
+<section id="why-do-we-need-this-plugin" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-we-need-this-plugin">Why do we need this plugin?</h2>
+<p>A QGIS plugin is an extension or add-on for QGIS, a popular open-source Geographic Information System (GIS) software package. Although fully fnctioned, plugins enhance QGIS by adding specialised tools, workflows, or functionalities that extend its core capabilities. These plugins are written in Python and are highly customisable and diverse in functionality. They allow users to perform complex geospatial tasks more efficiently, integrate with external tools or datasets, and automate repetitive tasks, all within the QGIS environment. This adaptability makes QGIS a powerful and flexible tool for GIS professionals across various industries.</p>
+<p>The EODH development team recognised that a tranche of potential users benefiting from the platform would be GIS specialists. As such, a QGIS plugin that automates connection to a user’s workspace on the Hub has been created. The plugin allows a user to connect to the EODH and access EO Application Packages (EOAP - for further information see pages relating to workflows). Once a required EOAP has been found, the user can parameterise and execute the workflow. Once complete the GIS user can then interact with the returned data assets and can view the processing logs.</p>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>There are two ways in which the plugin can be installed.</p>
+<p><strong>Install from zip</strong></p>
+<ul>
+<li>Go to the plugin GitHub repository</li>
+<li>Find the latest release and download for your operating system</li>
+<li>Open QGIS and click ….</li>
+<li>Use the “Install from Zip” function to install the plugin</li>
+</ul>
+<p><strong>Install from repository</strong></p>
+<ul>
+<li>Open QGIS and click ….</li>
+<li>Search for EODH under the All or Uninstalled tabs</li>
+<li>Select and click “Install”</li>
+</ul>
 
 
 </section>
