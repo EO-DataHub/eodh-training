@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -404,12 +407,409 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <section id="background" class="level1">
 <h1>Background</h1>
-<div id="cell-4" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A requirement to process coherence <span class="im">from</span> Sentinel <span class="dv">1</span> data was articulated.  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>A requirement to process coherence from Sentinel 1 data was articulated.</p>
 </section>
 <section id="the-process" class="level1">
 <h1>The process</h1>
+<div id="cell-6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span>logging.INFO)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eo_tools</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray <span class="im">as</span> riox</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eo_tools.S1.process <span class="im">import</span> process_insar</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eodag <span class="im">import</span> EODataAccessGateway</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> shape</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>dag <span class="op">=</span> EODataAccessGateway()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure cop_dataspace will be used</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>dag.set_preferred_provider(<span class="st">"cop_dataspace"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span>logging.INFO)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:eodag.config:Loading user configuration from: /home/al/.config/eodag/eodag.yml
+INFO:eodag.core:usgs: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:aws_eos: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:meteoblue: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:hydroweb_next: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:wekeo: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:creodias_s3: provider needing auth for search has been pruned because no crendentials could be found
+INFO:eodag.core:Locations configuration loaded from /home/al/.config/eodag/locations.yml</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run search</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lonmin"</span>: <span class="fl">0.08905898091569497</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"latmin"</span>: <span class="fl">52.15527412683906</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lonmax"</span>: <span class="fl">0.9565339502005088</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"latmax"</span>: <span class="fl">52.69722175598818</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>shp <span class="op">=</span> shapely.box(bbox[<span class="st">"lonmin"</span>], bbox[<span class="st">"latmin"</span>], bbox[<span class="st">"lonmax"</span>], bbox[<span class="st">"latmax"</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>search_criteria <span class="op">=</span> {</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"productType"</span>: <span class="st">"S1_SAR_SLC"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"start"</span>: <span class="st">"2023-09-03"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"end"</span>: <span class="st">"2023-09-17"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"geom"</span>: bbox,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>results, _ <span class="op">=</span> dag.search(<span class="op">**</span>search_criteria)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Find overlaps</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> results:</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> item.properties[<span class="st">"id"</span>]</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    geom <span class="op">=</span> shape(item.geometry)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    data.append({<span class="st">"id"</span>: <span class="bu">id</span>, <span class="st">"geometry"</span>: geom})</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(data, crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)  <span class="co"># Assuming WGS84</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 98% overlap</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.98</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>overlaps <span class="op">=</span> []</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (idx1, row1), (idx2, row2) <span class="kw">in</span> combinations(gdf.iterrows(), <span class="dv">2</span>):</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    intersection <span class="op">=</span> row1[<span class="st">"geometry"</span>].intersection(row2[<span class="st">"geometry"</span>])</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> intersection.is_empty:</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate overlap ratio as the area of intersection divided by the area of the smaller polygon</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        overlap_ratio <span class="op">=</span> intersection.area <span class="op">/</span> <span class="bu">min</span>(</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            row1[<span class="st">"geometry"</span>].area, row2[<span class="st">"geometry"</span>].area</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> overlap_ratio <span class="op">&gt;=</span> threshold:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>            overlaps.append((row1[<span class="st">"id"</span>], row2[<span class="st">"id"</span>], overlap_ratio))</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>overlap_ids <span class="op">=</span> [entry[:<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> entry <span class="kw">in</span> overlaps]</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>overlap_ids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO:eodag.core:Searching product type 'S1_SAR_SLC' on provider: cop_dataspace
+INFO:eodag.search.qssearch:Sending search request: http://catalogue.dataspace.copernicus.eu/resto/api/collections/Sentinel1/search.json?startDate=2023-09-03&amp;completionDate=2023-09-17&amp;geometry=POLYGON ((0.0891 52.1553, 0.0891 52.6972, 0.9565 52.6972, 0.9565 52.1553, 0.0891 52.1553))&amp;productType=SLC&amp;maxRecords=20&amp;page=1&amp;exactCount=1
+INFO:eodag.core:Found 7 result(s) on provider 'cop_dataspace'</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>[('S1A_IW_SLC__1SDV_20230904T174209_20230904T174236_050181_060A2D_E88F',
+  'S1A_IW_SLC__1SDV_20230916T174209_20230916T174236_050356_061016_8033'),
+ ('S1A_IW_SLC__1SDV_20230916T174145_20230916T174212_050356_061016_9D13',
+  'S1A_IW_SLC__1SDV_20230904T174144_20230904T174211_050181_060A2D_46E8')]</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set download dirs</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">"/home/al/Downloads/eotools"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ids <span class="op">=</span> [</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#"S1A_IW_SLC__1SDV_20230904T174209_20230904T174236_050181_060A2D_E88F",</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#"S1A_IW_SLC__1SDV_20230916T174209_20230916T174236_050356_061016_8033",</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#]</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>primary_dir <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>ids[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">.zip"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>secondary_dir <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>ids[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">.zip"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>outputs_prefix <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/res/test-full-processor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AOI around Thetford</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>file_aoi <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/thetfordaoi.geojson"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>shp2 <span class="op">=</span> gpd.read_file(file_aoi).geometry[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eo_tools.util.explore_products(results, shp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_2182479ef2ef9d06ccf6cf86a63df983 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_2182479ef2ef9d06ccf6cf86a63df983&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2182479ef2ef9d06ccf6cf86a63df983 = L.map(
+                &quot;map_2182479ef2ef9d06ccf6cf86a63df983&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 1,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bf7fd531246bc4f45c0f356866703de8 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_bf7fd531246bc4f45c0f356866703de8.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+        function geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;color&quot;: &quot;black&quot;, &quot;fillColor&quot;: &quot;none&quot;};
+            }
+        }
+
+        function geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0 = L.geoJson(null, {
+                onEachFeature: geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_onEachFeature,
+            
+                style: geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_styler,
+        });
+
+        function geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_add (data) {
+            geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0
+                .addData(data);
+        }
+            geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[0.108530558052996, 52.548527343311214], [0.685652665706907, 52.55804798614935], [0.677823489827881, 52.45388885682422], [0.105734423810487, 52.44639077957711], [0.108530558052996, 52.548527343311214]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+
+        
+    
+            geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0.bindTooltip(
+                `<div>
+                     Area of Interest
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+
+        function geo_json_966268b0f060c55154b1001f4ba802d5_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_966268b0f060c55154b1001f4ba802d5 = L.geoJson(null, {
+                onEachFeature: geo_json_966268b0f060c55154b1001f4ba802d5_onEachFeature,
+            
+        });
+
+        function geo_json_966268b0f060c55154b1001f4ba802d5_add (data) {
+            geo_json_966268b0f060c55154b1001f4ba802d5
+                .addData(data);
+        }
+            geo_json_966268b0f060c55154b1001f4ba802d5_add({&quot;coordinates&quot;: [[[3.475866, 51.159492], [4.017843, 52.777412], [0.185597, 53.187542], [0.0, 52.44009389844227], [-0.216913, 51.566528], [0.0, 51.54261879777913], [3.475866, 51.159492]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_966268b0f060c55154b1001f4ba802d5.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_966268b0f060c55154b1001f4ba802d5.bindTooltip(
+                `<div>
+                     <b>Configuration:</b><br>DESCENDING, Orbit: 8<br><b>Product list (index / date):</b><br>1 / 2023-09-13 06:06:59
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_966268b0f060c55154b1001f4ba802d5.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+
+        function geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1 = L.geoJson(null, {
+                onEachFeature: geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1_onEachFeature,
+            
+        });
+
+        function geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1_add (data) {
+            geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1
+                .addData(data);
+        }
+            geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1_add({&quot;coordinates&quot;: [[[3.404867, 52.338833], [0.0, 51.96867375512488], [-0.31966, 51.933922], [-0.87165, 53.543831], [-0.8693628407905536, 53.54407244446059], [-0.869386, 53.54414], [-0.0, 53.63589557674331], [1.9816227301074734, 53.84503735782636], [2.996698, 53.952194], [2.99670414135705, 53.95216972518748], [2.998886, 53.9524], [3.406874, 52.339394], [3.4047825796451026, 52.33916668655679], [3.404867, 52.338833]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1.bindTooltip(
+                `<div>
+                     <b>Configuration:</b><br>ASCENDING, Orbit: 59<br><b>Product list (index / date):</b><br>0 / 2023-09-04 17:42:09<br>4 / 2023-09-16 17:42:09
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+
+        function geo_json_d231fb8d28c721131e6b603855cc275c_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_d231fb8d28c721131e6b603855cc275c = L.geoJson(null, {
+                onEachFeature: geo_json_d231fb8d28c721131e6b603855cc275c_onEachFeature,
+            
+        });
+
+        function geo_json_d231fb8d28c721131e6b603855cc275c_add (data) {
+            geo_json_d231fb8d28c721131e6b603855cc275c
+                .addData(data);
+        }
+            geo_json_d231fb8d28c721131e6b603855cc275c_add({&quot;coordinates&quot;: [[[3.768378, 50.853363], [0.16506, 50.450912], [0.0, 50.95493233840877], [-0.362645, 52.06229], [-0.36044207268318657, 52.062528930495695], [-0.36054, 52.062828], [-0.0, 52.10192341512558], [3.374908, 52.467884], [3.770281, 50.854034], [3.7682686396849103, 50.85380929650556], [3.768378, 50.853363]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_d231fb8d28c721131e6b603855cc275c.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_d231fb8d28c721131e6b603855cc275c.bindTooltip(
+                `<div>
+                     <b>Configuration:</b><br>ASCENDING, Orbit: 59<br><b>Product list (index / date):</b><br>3 / 2023-09-16 17:41:45<br>5 / 2023-09-04 17:41:44
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_d231fb8d28c721131e6b603855cc275c.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+
+        function geo_json_d2954e239949d6f4a61fef1d2698fd73_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_d2954e239949d6f4a61fef1d2698fd73 = L.geoJson(null, {
+                onEachFeature: geo_json_d2954e239949d6f4a61fef1d2698fd73_onEachFeature,
+            
+        });
+
+        function geo_json_d2954e239949d6f4a61fef1d2698fd73_add (data) {
+            geo_json_d2954e239949d6f4a61fef1d2698fd73
+                .addData(data);
+        }
+            geo_json_d2954e239949d6f4a61fef1d2698fd73_add({&quot;coordinates&quot;: [[[1.456613, 51.28133], [2.000225, 52.898014], [0.0, 53.11161240558363], [-1.842043, 53.308319], [-2.245346, 51.688484], [0.0, 51.44153323547668], [1.456613, 51.28133]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_d2954e239949d6f4a61fef1d2698fd73.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_d2954e239949d6f4a61fef1d2698fd73.bindTooltip(
+                `<div>
+                     <b>Configuration:</b><br>DESCENDING, Orbit: 81<br><b>Product list (index / date):</b><br>6 / 2023-09-06 06:15:10
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_d2954e239949d6f4a61fef1d2698fd73.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+
+        function geo_json_8f6ebf2ace4277991a544cf993004c1d_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_8f6ebf2ace4277991a544cf993004c1d = L.geoJson(null, {
+                onEachFeature: geo_json_8f6ebf2ace4277991a544cf993004c1d_onEachFeature,
+            
+        });
+
+        function geo_json_8f6ebf2ace4277991a544cf993004c1d_add (data) {
+            geo_json_8f6ebf2ace4277991a544cf993004c1d
+                .addData(data);
+        }
+            geo_json_8f6ebf2ace4277991a544cf993004c1d_add({&quot;coordinates&quot;: [[[-2.161909, 51.320732], [0.0, 51.55829738530797], [1.500185, 51.723148], [1.097608, 53.336254], [-0.0, 53.21913496812211], [-2.702863, 52.930729], [-2.161909, 51.320732]]], &quot;type&quot;: &quot;Polygon&quot;});
+        geo_json_8f6ebf2ace4277991a544cf993004c1d.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_8f6ebf2ace4277991a544cf993004c1d.bindTooltip(
+                `<div>
+                     <b>Configuration:</b><br>ASCENDING, Orbit: 132<br><b>Product list (index / date):</b><br>2 / 2023-09-09 17:50:13
+                 </div>`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            geo_json_8f6ebf2ace4277991a544cf993004c1d.addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+        
+    
+            var layer_control_c441a19bb8dab0b9ed2efb1266f6d35c_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_bf7fd531246bc4f45c0f356866703de8,
+                },
+                overlays :  {
+                    &quot;Area of Interest&quot; : geo_json_6035cc8b5a5e1b86efe5f5c87822ecb0,
+                    &quot;Orbit 8, group 1&quot; : geo_json_966268b0f060c55154b1001f4ba802d5,
+                    &quot;Orbit 59, group 1&quot; : geo_json_b98bb6b46e19a86d4c3142b7f5eabcc1,
+                    &quot;Orbit 59, group 2&quot; : geo_json_d231fb8d28c721131e6b603855cc275c,
+                    &quot;Orbit 81, group 1&quot; : geo_json_d2954e239949d6f4a61fef1d2698fd73,
+                    &quot;Orbit 132, group 1&quot; : geo_json_8f6ebf2ace4277991a544cf993004c1d,
+                },
+            };
+            let layer_control_c441a19bb8dab0b9ed2efb1266f6d35c = L.control.layers(
+                layer_control_c441a19bb8dab0b9ed2efb1266f6d35c_layers.base_layers,
+                layer_control_c441a19bb8dab0b9ed2efb1266f6d35c_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_2182479ef2ef9d06ccf6cf86a63df983);
+
+        
+    
+            map_2182479ef2ef9d06ccf6cf86a63df983.fitBounds(
+                [[50.450912, -2.702863], [53.9524, 4.017843]],
+                {}
+            );
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
 </section>
 <section id="generating-the-workflow" class="level1">
 <h1>Generating the workflow</h1>
