@@ -28,7 +28,7 @@ You can visit our GitHub Pages site for additional information and documentation
 If you require specific development information on the API client then please check out the [ReadTheDocs page](https://pyeodh.readthedocs.io/en/latest/index.html#) for the client.
 
 ### Discussion group
-We have set up an accessible [Discussion Group](https://github.com/EO-DataHub/eodh-training/discussions) as a location that users can interact with other users, as well as the Hub owners and developers. Please use this resource to build a vibrant community around the EODH platform.
+We have set up a [Discussion Group](https://github.com/EO-DataHub/eodh-training/discussions) as a location that users can interact with other users, as well as the Hub owners and developers. If you are interested then please check it out and use this resource to build a vibrant community around the EODH platform. If you need help then please reach out.
 
 ### Filing Issues
 If you encounter any bugs, have feature requests, or other issues, please file an issue on GitHub:
@@ -66,6 +66,10 @@ We welcome contributions from the community! To contribute:
     ```
 7. **Create a Pull Request**: Navigate to the original repository and click on the "New Pull Request" button. Select your branch and provide a descriptive title and description for your pull request.
 
+Alternatively you can edit the Jupyter Notebooks that you want to submit in JupyterHub, then upload them to your forked repository and generate the Pull Request from there. 
+
+Remember to synchronise your fork with the main repository before making the pull request.  
+
 For detailed instructions on creating a pull request, visit the [GitHub documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 ### GitHub Pages
@@ -77,4 +81,4 @@ Details can be found on the [Quarto website](https://quarto.org/docs/guide/).
 
 ---
 
-Thank you for your interest in Project Name! We appreciate your support and contributions.
+Thank you for your interest in the Earth Observation Data Hub! We appreciate your support and contributions.
