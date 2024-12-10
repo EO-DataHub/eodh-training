@@ -449,12 +449,12 @@ description:  CEDA STAC Catalogue</code></pre>
 </div>
 </div>
 <p>The Hub API endpoints are wrapped in methods inside <code>pyeodh</code> and are structured into classes, following the same logic as the underlying APIs. This means that, for xample, to fetch a collection item we first need to get the collection from the resource catalogue. The following cell provedes a code example to do this.</p>
-<div id="cell-13" class="cell" data-execution_count="5">
+<div id="cell-13" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GET /stac-fastapi/collections/{collection_id}/items/{item_id}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cmip6 <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/ceda-stac-catalogue"</span>).get_collection(<span class="st">'cmip6'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cmip6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;pyeodh.resource_catalog.Collection at 0x7e213438e510&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>&lt;pyeodh.resource_catalog.Collection at 0x775d597a9010&gt;</code></pre>
 </div>
 </div>
 <p>Some API responses are paginated (e.g.&nbsp;collection items), and you can simply iterate over them.</p>
