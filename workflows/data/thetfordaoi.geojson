@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "thetfordaoi",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 0.108530558052996, 52.548527343311214 ], [ 0.685652665706907, 52.558047986149347 ], [ 0.677823489827881, 52.453888856824221 ], [ 0.105734423810487, 52.446390779577108 ], [ 0.108530558052996, 52.548527343311214 ] ] ] } }
+]
+}
