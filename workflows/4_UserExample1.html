@@ -327,6 +327,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Commercial data</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../science/3_NetcdfData.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Climate models</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -374,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scientific-method" id="toc-scientific-method" class="nav-link" data-scroll-target="#scientific-method">Scientific method</a></li>
   </ul></li>
   <li><a href="#generating-the-workflow" id="toc-generating-the-workflow" class="nav-link" data-scroll-target="#generating-the-workflow">Generating the workflow</a></li>
-  <li><a href="#additional-information" id="toc-additional-information" class="nav-link" data-scroll-target="#additional-information">Additional information</a></li>
+  <li><a href="#commercial-data-and-processing-services" id="toc-commercial-data-and-processing-services" class="nav-link" data-scroll-target="#commercial-data-and-processing-services">Commercial data and processing services</a></li>
   </ul>
 </nav>
     </div>
@@ -411,6 +417,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="background" class="level1">
 <h1>Background</h1>
 <p>A requirement to process coherence from Sentinel 1 data was articulated.</p>
+<p>Needs SLC data: “The Sentinel 1 Level 1 SLC products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite.”<a href="https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html">ref</a></p>
+<p>Information on Sentinel 1 and the different products that are available at source can be found on the Copernicus Data Space Ecosystem (CDSE) <a href="https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-1">website</a> and <a href="https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html">here</a></p>
+<p>“Coherence is the amplitude of the complex correlation coefficient between two images. In simple way, coherence describes similarity between two images in a range between zero to one. Zero means pixels were totally different where one means pixels were same exactly.” <a href="https://cmr.earthdata.nasa.gov/search/concepts/C2207478496-FEDEO.html">ref</a></p>
+<p>Method to create coherence using the <a href="https://earthdata.nasa.gov/learn/data-recipes/create-interferogram-using-esas-sentinel-1-toolbox#:~:text=For%20interferometric%20processing%2C%20two%20or,image%20to%20sub%2Dpixel%20accuracy.">Sentinel 1 toolbox</a></p>
+<p>More information about <a href="https://senbox.atlassian.net/wiki/spaces/SNAP/pages/24051769/Cookbook">Sentinel Toolbox</a></p>
+<p><a href="https://eo-tools.readthedocs.io/en/latest/">eo-tools</a> calls <a href="https://github.com/AlexeyPechnikov/pygmtsar">pygmtsar</a>??</p>
 </section>
 <section id="the-process" class="level1">
 <h1>The process</h1>
@@ -881,10 +893,13 @@ INFO:eodag.core:Found 7 result(s) on provider 'cop_dataspace'</code></pre>
 <section id="generating-the-workflow" class="level1">
 <h1>Generating the workflow</h1>
 </section>
-<section id="additional-information" class="level1">
-<h1>Additional information</h1>
+<section id="commercial-data-and-processing-services" class="level1">
+<h1>Commercial data and processing services</h1>
 <p>Airbus ONEATLAS DEVELOPER PORTAL https://www.geoapi-airbusds.com/index.html</p>
-<p>High Resolution SAR data: https://intelligence.airbus.com/imagery/our-optical-and-radar-satellite-imagery/radar-constellation/ Interferometry case studies: https://intelligence.airbus.com/search/?q=interferometry</p>
+<ul>
+<li>High Resolution SAR data: https://intelligence.airbus.com/imagery/our-optical-and-radar-satellite-imagery/radar-constellation/</li>
+<li>Interferometry case studies: https://intelligence.airbus.com/search/?q=interferometry</li>
+</ul>
 
 
 </section>
