@@ -77,6 +77,8 @@ website:
             href: science/1_DataCubes.ipynb
           - text: "Commercial data"
             href: science/2_Commercial.ipynb
+          - text: "Climate models"
+            href: science/3_NetcdfData.ipynb
         # Presentations and Demos
       - section: "Presentations"
         contents: 
