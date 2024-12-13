@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/5_UserExample2.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.283Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/3_eoapgen.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.283Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/1_Workflows.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.283Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/science/2_Commercial.html</loc>
-    <lastmod>2024-12-12T10:09:40.177Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.246Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA2/1_202412_Defra_Technology.html</loc>
-    <lastmod>2024-12-12T10:09:40.175Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.245Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/2_202409_Defra_DataProcessing.html</loc>
-    <lastmod>2024-12-12T10:09:40.151Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.220Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/3_OtherTools.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.211Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/1_introduction.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.210Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/platform/1_Intro.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.210Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/4_Services.html</loc>
-    <lastmod>2024-12-12T10:09:40.108Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.177Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/2_ResourceCatalog.html</loc>
-    <lastmod>2024-12-12T10:09:40.108Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.177Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/website/about.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.282Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/index.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.210Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/1_ClientIntro.html</loc>
-    <lastmod>2024-12-12T10:09:40.107Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.177Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/3_WorkflowRunner.html</loc>
-    <lastmod>2024-12-12T10:09:40.108Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.177Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/planet-stac-proxy.html</loc>
-    <lastmod>2024-12-12T10:09:40.110Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.180Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/platform/2_Components.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.210Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/2_Runningworkflows.html</loc>
-    <lastmod>2024-12-12T10:09:40.141Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.211Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/1_202409_Defra_DataDiscovery.html</loc>
-    <lastmod>2024-12-12T10:09:40.147Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.217Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/3_202409_Defra_DataAnalysis.html</loc>
-    <lastmod>2024-12-12T10:09:40.169Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.238Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/science/1_DataCubes.html</loc>
-    <lastmod>2024-12-12T10:09:40.177Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.246Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/science/3_NetcdfData.html</loc>
-    <lastmod>2024-12-12T10:09:40.212Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.282Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/2_EOAP.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.283Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/4_UserExample1.html</loc>
-    <lastmod>2024-12-12T10:09:40.213Z</lastmod>
+    <lastmod>2024-12-13T16:41:45.283Z</lastmod>
   </url>
 </urlset>
