@@ -75,10 +75,8 @@ website:
         contents: 
           - text: "Data cubes"
             href: science/1_DataCubes.ipynb
-          - text: "Commercial data"
-            href: science/2_Commercial.ipynb
           - text: "Climate models"
-            href: science/3_NetcdfData.ipynb
+            href: science/2_NetcdfData.ipynb
         # Presentations and Demos
       - section: "Presentations"
         contents: 
@@ -87,7 +85,12 @@ website:
           - text: "DEFRA Data Processing"
             href: presentations/DEFRA/2_202409_Defra_DataProcessing.ipynb
           - text: "DEFRA Data Analysis"
-            href: presentations/DEFRA/3_202409_Defra_DataAnalysis.ipynb        
+            href: presentations/DEFRA/3_202409_Defra_DataAnalysis.ipynb 
+          - text: "Space Horizon Scanning Network"
+            href: presentations/DEFRA2/1_202412_Defra_Technology.ipynb 
+          - text: "Recorded presentations"
+            href: presentations/videos.ipynb 
+
 
 format:
   html:
