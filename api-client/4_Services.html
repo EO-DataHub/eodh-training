@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>services – EODH Training Materials</title>
+<title>Web Services – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -320,13 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../science/2_Commercial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Commercial data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../science/3_NetcdfData.html" class="sidebar-item-text sidebar-link">
+  <a href="../science/2_NetcdfData.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Climate models</span></a>
   </div>
 </li>
@@ -359,6 +319,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">DEFRA Data Analysis</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../presentations/DEFRA2/1_202412_Defra_Technology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Space Horizon Scanning Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../presentations/videos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recorded presentations</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -366,28 +338,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#records" id="toc-records" class="nav-link" data-scroll-target="#records">Records</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/4_Services.html">Using Mapping Services</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/4_Services.html">Using Mapping Services</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Web Services</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>:</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: This notebook introduces the webservices available through the EODH platform and API endpoints.</p>
 <p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-12-05</p>
-<p><strong>Date last modified</strong>: 2024-12-05</p>
+<p><strong>Date last modified</strong>: 2024-12-17</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<div id="cell-1" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TO DO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><a href="&quot;https://www.flaticon.com/free-icons/work-in-progress&quot;">WIP Icon Attribution</a></p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>OGC API refers to a standardised interface defined by the [Open Geospatial Consortium (OGC)(https://ogcapi.ogc.org/) for accessing and sharing geospatial data over the web. These APIs are built on modern web standards, such as HTTP and RESTful principles, to facilitate seamless, interoperable, and efficient access to spatial data and services. By providing a consistent and easy-to-use framework, OGC APIs allow developers, researchers, and organisations to query, retrieve, and analyze geospatial data without being locked into proprietary systems. This is particularly important as it supports interoperability between different platforms, tools, and organizations, enabling collaboration and innovation. OGC APIs play a critical role in breaking down data silos and ensuring that location-based data can be shared across applications.</p>
+<section id="records" class="level2">
+<h2 class="anchored" data-anchor-id="records">Records</h2>
+<p>OGC API - Records is designed for discovering and accessing metadata about geospatial resources. It enables users to search, retrieve, and manage metadata records, such as datasets, services, and other resources. The standard supports flexible query capabilities, filtering, and sorting to help users discover relevant geospatial content efficiently. By adhering to web and open standards, OGC API - Records ensures interoperability across platforms, making it easier for organizations to share and access geospatial metadata in a consistent, machine-readable format. This API service is used on the backend of EODH.</p>
+<p><img src="../img/wip.png" class="img-fluid" width="50"></p>
+<p><strong>To be added</strong></p>
+<ul>
+<li>List of web services and what they do</li>
+<li>Example code on how to access them and visualise the related data</li>
+<li>How to use the services in QGIS</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
