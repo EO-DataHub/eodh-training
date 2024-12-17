@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of December 2024.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, EODH</p>
 <p><strong>Date created</strong>: 2024-09-05</p>
-<p><strong>Date last modified</strong>: 2024-12-05</p>
+<p><strong>Date last modified</strong>: 2024-12-11</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
@@ -416,12 +416,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exploring-the-resource-catalogue" class="level1">
 <h1>Exploring the Resource Catalogue</h1>
 <p>Now we are ready to investigate the Resource Catalogue. First off, we need to import the pyeodh package.</p>
-<div id="cell-7" class="cell" data-execution_count="1">
+<div id="cell-7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the Python API Client</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs. From there we can start to search the collections held within the platform.</p>
-<div id="cell-9" class="cell" data-execution_count="2">
+<div id="cell-9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client().get_catalog_service()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>

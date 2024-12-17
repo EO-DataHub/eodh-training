@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>othertools – EODH Training Materials</title>
+<title>Other QGIS Plugins – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -337,49 +337,50 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#other-qgis-plugins" id="toc-other-qgis-plugins" class="nav-link active" data-scroll-target="#other-qgis-plugins">Other QGIS Plugins</a></li>
+  <li><a href="#stac-api-browser" id="toc-stac-api-browser" class="nav-link active" data-scroll-target="#stac-api-browser">STAC API Browser</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/3_OtherTools.html">Other Tools</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/3_OtherTools.html">Other Tools</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Other QGIS Plugins</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
-<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: This notebook highlights other ways to interact with the EODH platform through QGIS.</p>
+<p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-12-04</p>
-<p><strong>Date last modified</strong>: 2024-12-05</p>
+<p><strong>Date last modified</strong>: 2024-12-17</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * EO Data Hub: https://eodatahub.org.uk/</p>
-<section id="other-qgis-plugins" class="level1">
-<h1>Other QGIS Plugins</h1>
-<p>A major benefit derived from constructing the EODH platform from open components is that the technologies and tools can integrate with existing software. One useful pre-existing QGIS plugin is the STAC API Browser. Use this URL in the STAC API Browser plugin (https://test.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/ceda-stac-catalogue/) to find assets accessible through the EODH Resource Catalogue (RC).</p>
+<section id="stac-api-browser" class="level1">
+<h1>STAC API Browser</h1>
+<p>A major benefit derived from constructing the EODH platform using open components is that the technologies and tools can integrate with existing third-party software. One useful pre-existing QGIS plugin is the <a href="https://stacspec.org/en/tutorials/2-intro-to-stac-api-browser-qgis-plugin/">STAC API Browser</a>. The STAC API Browser is the defacto way of finding and interacting with STAC catalogues on the internet.</p>
+<p>Use this URL in the STAC API Browser plugin (https://test.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/ceda-stac-catalogue/) to find assets accessible through the EODH Resource Catalogue (RC).</p>
 <p>First you need to set up a connection as shown in the screenshot below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/SAB1.png" class="img-fluid figure-img" width="700"></p>
-<figcaption>img 1</figcaption>
-</figure>
-</div>
+<p><img src="../img/SAB1.png" class="img-fluid" width="700"></p>
 <p>Then a search can be initiated. Depending on the quality of your connection and the number of returned items this could be slow.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/SAB2.png" class="img-fluid figure-img" width="700"></p>
-<figcaption>img 2</figcaption>
-</figure>
-</div>
+<p><img src="../img/SAB2.png" class="img-fluid" width="700"></p>
 <p>One useful aspect of this plugin is to plot the returned item boundaries, as shown below. It is also possible to access specific item assets i.e.&nbsp;the data, but this can be very slow given the size of the assets themselves. It is recommended that a tool such as <code>pyeodh</code> or the EODH web interface is used to directly access the datasets referenced by the catalogues.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/SAB3.png" class="img-fluid figure-img" width="700"></p>
-<figcaption>img 3</figcaption>
-</figure>
-</div>
+<p><img src="../img/SAB3.png" class="img-fluid" width="700"></p>
 
 
 </section>

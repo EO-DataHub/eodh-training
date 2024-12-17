@@ -338,7 +338,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#the-scientific-process" id="toc-the-scientific-process" class="nav-link" data-scroll-target="#the-scientific-process">The Scientific Process</a>
+  <ul class="collapse">
+  <li><a href="#scientific-method" id="toc-scientific-method" class="nav-link" data-scroll-target="#scientific-method">Scientific method</a></li>
+  </ul></li>
+  <li><a href="#pyeodh.set_log_level10" id="toc-pyeodh.set_log_level10" class="nav-link" data-scroll-target="#pyeodh.set_log_level10">pyeodh.set_log_level(10)</a></li>
   <li><a href="#generating-the-workflow" id="toc-generating-the-workflow" class="nav-link" data-scroll-target="#generating-the-workflow">Generating the workflow</a></li>
+  <li><a href="#commercial-data-services" id="toc-commercial-data-services" class="nav-link" data-scroll-target="#commercial-data-services">Commercial data services</a></li>
   </ul>
 </nav>
     </div>
@@ -374,7 +380,31 @@ ul.task-list li input[type="checkbox"] {
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>The problem to be solved in this use case is whether or not a data cube could be constructed for temporal cloud-free mosaics</p>
+<p>In this example we are required to create a dataset that is cloud-free and temporally mosaiced. The input dataset is to be the CEDA Sentinel 2 ARD image data.</p>
+<p>Cloud-free temporal mosaics of optical satellite images are composites created by combining multiple satellite acquisitions over a specific time period to generate a seamless and cloud-free view of a region. Optical satellite imagery, such as data from Sentinel-2, is often obstructed by clouds and atmospheric conditions, limiting the usability of individual acquisitions. Temporal mosaics overcome this challenge by selecting the clearest pixels from a time series of images, typically based on cloud masking algorithms or quality indices. These mosaics preserve spatial and spectral information while minimizing data gaps caused by clouds. Additional methods of data creation include using cloud-masks to remove clouds and/or shadow before the mosaicing step.</p>
+<p>A user would want a cloud-free temporal mosaic of Sentinel-2 data to ensure consistent, high-quality imagery for analyzing surface features and environmental changes without the interference of clouds or shadows. Sentinel-2, part of the European Space Agency’s Copernicus program, provides high-resolution optical imagery across 13 spectral bands, making it ideal for applications in agriculture, forestry, urban planning, and climate monitoring. By creating a cloud-free mosaic, users can integrate multiple acquisitions into a single, seamless dataset that eliminates gaps caused by clouds and ensures better temporal and spatial coverage.</p>
+<p>Analysis Ready Data (ARD) refers to satellite data that has been pre-processed and formatted to a standardized level, enabling users to perform analysis without needing to conduct significant additional preprocessing. ARD is designed to be easily accessible, interoperable, and suitable for a wide range of scientific and operational applications. The pre-processing typically includes geometric correction, radiometric calibration and atmospheric correction (removing the effects of the atmosphere on reflectance). It may also include cloud masking. The aim of creating ARD is to ensure data is consistent across time and space, and minimise the technical barriers for users, allowing them to focus on extracting insights rather than preparing raw data. By eliminating much of the preprocessing workload, ARD democratises the use of satellite data, allowing non-specialists and researchers to use the data more efficiently and reliably.</p>
+<p>Such temporal mosaics are particularly valuable for applications requiring reliable, large-area analysis. For example, in agriculture, a cloud-free mosaic allows precise monitoring of crop health, phenological changes, and yield estimation by preserving uninterrupted vegetation indices. In forestry, it supports accurate assessments of deforestation, canopy density, and biomass. For urban planning and disaster management, cloud-free mosaics provide unobstructed views of land use changes, infrastructure, and affected regions, critical for decision-making.</p>
+</section>
+<section id="the-scientific-process" class="level1">
+<h1>The Scientific Process</h1>
+<p>Before creating a workflow on the EODH platform it was important to step through the scientific process to make sure that the correct tools and data were being considered. To create the cloud-free outputs we use the cloud mask supplied with the ARD dataset. The information held in the cloud mask layer is used to mask out the existing areas of cloud, and is applied to every band.</p>
+<p>The temporal mosaic is created using a command line set of tools called pktools. Although a slightly older set of tools it is incredibly versatile, an being command-line first lends itself to the EOAP/CWl way of working. One of the tools, pkcomposite, is used to generate a median image from all input images over a one month period.</p>
+<p>The following tutorial demonstrates how to process data held in the Sentinel S2 ARD STAC.</p>
+<p>First we need to import the required packages.</p>
+<section id="scientific-method" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-method">Scientific method</h2>
+<p>import pyeodh import xarray as xr import rioxarray import os from pathlib import Path import requests import threading</p>
+</section>
+</section>
+<section id="pyeodh.set_log_level10" class="level1">
+<h1>pyeodh.set_log_level(10)</h1>
+<p>rc = pyeodh.Client().get_catalog_service()</p>
+<p>thetford_pnt = { “coordinates”: [ [ [0.08905898091569497, 52.69722175598818], [0.08905898091569497, 52.15527412683906], [0.9565339502005088, 52.15527412683906], [0.9565339502005088, 52.69722175598818], [0.08905898091569497, 52.69722175598818], ] ], “type”: “Polygon”, }</p>
+<p>items = rc.search( collections=[“sentinel2_ard”], catalog_paths=[“supported-datasets/ceda-stac-catalogue”], intersects=thetford_pnt, query=[ “start_datetime&gt;=2023-04-01”, “end_datetime&lt;=2023-06-30”, ], limit=1, )</p>
+</section>
+<section id="generating-the-workflow" class="level1">
+<h1>Generating the workflow</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/cfm.png" class="img-fluid figure-img" width="900"></p>
@@ -382,8 +412,9 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="generating-the-workflow" class="level1">
-<h1>Generating the workflow</h1>
+<section id="commercial-data-services" class="level1">
+<h1>Commercial data services</h1>
+<p>Planet and Airbus</p>
 
 
 </section>
