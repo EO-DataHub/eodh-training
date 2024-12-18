@@ -17,9 +17,10 @@ Whether you're a user looking to explore the project or a developer wanting to c
 The repository is organized as follows:
 
 - **/api-client**: Information about how to use the Python API client to interact with the EODH.
-- **/eodh-platform**: Information and pointers about how to directly interact with the EODH web presence.
-- **/qgis-plugin**: Tutorials and guidance on installing and using the QGIS EODH plugin.
-- **/...**: ...
+- **/platform**: Information and pointers about how to directly interact with the EODH web presence.
+- **/plugin**: Tutorials and guidance on installing and using the QGIS EODH plugin.
+- **/presentations**: A collection of presentations made by the EODH team.
+- **/science**: Some notebooks that demonstrate other scientific tools and methods. 
 - **/website**: resources to be used to define the functionality of the GitHub Pages version of this repository.
 
 ### Training and Support Sites
@@ -55,7 +56,7 @@ We welcome contributions from the community! To contribute:
     ```bash
     git checkout -b your-feature-branch-name
     ```
-4. **Make Your Changes**: Implement your feature or bug fix.
+4. **Make Your Changes**: Implement your feature or bug fix. Remember to also add to _quarto.yml if you are looking to add a new notebook/page to the website. If you are making changes to an existing notebook/page then do not edit _quarto.yml as this is the file that defines the layout of the training materials website.  
 5. **Commit Your Changes**: Commit your changes with a descriptive commit message.
     ```bash
     git commit -m "Description of your changes"
@@ -64,7 +65,7 @@ We welcome contributions from the community! To contribute:
     ```bash
     git push origin your-feature-branch-name
     ```
-7. **Create a Pull Request**: Navigate to the original repository and click on the "New Pull Request" button. Select your branch and provide a descriptive title and description for your pull request.
+7. **Create a Pull Request**: Navigate to the original repository and click on the "New Pull Request" button. Select your branch and provide a descriptive title and description for your pull request. One of the repository owners will review the pull request and will decide on whether to accept it.
 
 Alternatively you can edit the Jupyter Notebooks that you want to submit in JupyterHub, then upload them to your forked repository and generate the Pull Request from there. 
 
