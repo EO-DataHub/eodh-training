@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TO DO Test content – EODH Training Materials</title>
+<title>Workflows from the Plugin – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -338,15 +338,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#connect-to-the-eodh" id="toc-connect-to-the-eodh" class="nav-link active" data-scroll-target="#connect-to-the-eodh">Connect to the EODH</a></li>
+  <li><a href="#choose-and-parameterise" id="toc-choose-and-parameterise" class="nav-link" data-scroll-target="#choose-and-parameterise">Choose and Parameterise</a></li>
+  <li><a href="#success" id="toc-success" class="nav-link" data-scroll-target="#success">Success!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/2_Runningworkflows.html">Running A Workflow</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TO DO Test content</h1>
+<h1 class="title">Workflows from the Plugin</h1>
 </div>
 
 
@@ -363,8 +371,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Description &amp; purpose</strong>: This notebook steps a user through the main way to use the QGIS plugin.</p>
+<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
+<p><strong>Date created</strong>: 2024-12-18</p>
+<p><strong>Date last modified</strong>: 2024-12-18</p>
+<p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
+<p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
+<p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
+<p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
+<section id="connect-to-the-eodh" class="level1">
+<h1>Connect to the EODH</h1>
+<p>The first thing a user will need to do is supply their username an API token under the <strong>Settings</strong> tab. In this screengrab we can see that user <code>gary</code> is logging in to their EODH workspace. Plugin and pyeodh updates can also be installed from this part of the plugin.</p>
+<p><img src="../img/plug/p1.png" class="img-fluid" width="800"></p>
+</section>
+<section id="choose-and-parameterise" class="level1">
+<h1>Choose and Parameterise</h1>
+<p>In <code>gary</code>’s workspace are two available workflows: * echo * convert-url</p>
+<p>It is up to the creator of the workflow to provide a useful description for the CWL workflow. Also, if users will need to run them, the workflow should be held in an online location with accessible help and about information so that the user understands what the workflow does and how much resource it might use.</p>
+<p><img src="../img/plug/p2.png" class="img-fluid" width="800"></p>
+<p>The convert-url workflow is a small demonstrator that takes the URL to an image and resizes it. This is the workflow used in this demonstrtaion. The image to be resized is the thumbnail for a sentinel2_ard asset available through the EODH. The thumbnail is accessible <a href="https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/02/13/S2A_20230213_lat55lon213_T30UWG_ORB037_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg">here</a> and is shown below.</p>
+<p><img src="https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/02/13/S2A_20230213_lat55lon213_T30UWG_ORB037_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg" class="img-fluid" width="800"></p>
+<p>Once the user clicks on the <strong>Execute</strong> button they are taken to the parameterisation configuration. This rebuilds for different workflows, depending on the required inputs. Here we can see that a function (resize), a resizing value (50%) and the URL to the image are required. Once completed the user will press <strong>Execute</strong> to complete the processing. <img src="../img/plug/p5.png" class="img-fluid" width="900"></p>
+</section>
+<section id="success" class="level1">
+<h1>Success!</h1>
+<p><img src="../img/plug/p3.png" class="img-fluid" width="900"> <img src="../img/plug/p4.png" class="img-fluid" width="900"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>introduction – EODH Training Materials</title>
+<title>QGIS Plugin – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -343,38 +343,53 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-overview" id="toc-introduction-overview" class="nav-link active" data-scroll-target="#introduction-overview">Introduction &amp; Overview</a>
-  <ul class="collapse">
-  <li><a href="#why-do-we-need-this-plugin" id="toc-why-do-we-need-this-plugin" class="nav-link" data-scroll-target="#why-do-we-need-this-plugin">Why do we need this plugin?</a></li>
+  <li><a href="#why-do-we-need-this-plugin" id="toc-why-do-we-need-this-plugin" class="nav-link active" data-scroll-target="#why-do-we-need-this-plugin">Why do we need this plugin?</a></li>
+  <li><a href="#supported-versions" id="toc-supported-versions" class="nav-link" data-scroll-target="#supported-versions">Supported versions</a></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">QGIS Plugin Introduction</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">GIS interface - QGIS plugin</a></li><li class="breadcrumb-item"><a href="../plugin/1_introduction.html">QGIS Plugin Introduction</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">QGIS Plugin</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
-<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: The QGIS Plugin has been designed to allow a user with an EODH account to discover and run workflows that are within their account. For users that do not create workflows themselves this will be an especially useful no-code way to run public and organisational workflows.</p>
+<p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-10-23</p>
-<p><strong>Date last modified</strong>: 2024-10-23</p>
+<p><strong>Date last modified</strong>: 2024-12-18</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * EO Data Hub: https://eodatahub.org.uk/</p>
-<section id="introduction-overview" class="level1">
-<h1>Introduction &amp; Overview</h1>
-<section id="why-do-we-need-this-plugin" class="level2">
-<h2 class="anchored" data-anchor-id="why-do-we-need-this-plugin">Why do we need this plugin?</h2>
+<section id="why-do-we-need-this-plugin" class="level1">
+<h1>Why do we need this plugin?</h1>
 <p>A QGIS plugin is an extension or add-on for QGIS, a popular open-source Geographic Information System (GIS) software package. Although fully fnctioned, plugins enhance QGIS by adding specialised tools, workflows, or functionalities that extend its core capabilities. These plugins are written in Python and are highly customisable and diverse in functionality. They allow users to perform complex geospatial tasks more efficiently, integrate with external tools or datasets, and automate repetitive tasks, all within the QGIS environment. This adaptability makes QGIS a powerful and flexible tool for GIS professionals across various industries.</p>
 <p>The EODH development team recognised that a tranche of potential users benefiting from the platform would be GIS specialists. As such, a QGIS plugin that automates connection to a user’s workspace on the Hub has been created. The plugin allows a user to connect to the EODH and access EO Application Packages (EOAP - for further information see pages relating to workflows). Once a required EOAP has been found, the user can parameterise and execute the workflow. Once complete the GIS user can then interact with the returned data assets and can view the processing logs.</p>
 </section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="supported-versions" class="level1">
+<h1>Supported versions</h1>
+<p>The plugin is known to run with QGIS 3.34 (long term support) and QGIS 3.40 on Windows, MacOS and Ubuntu variants of Linux.</p>
+</section>
+<section id="installation" class="level1">
+<h1>Installation</h1>
 <p>There are two ways in which the plugin can be installed.</p>
 <p><strong>Install from zip</strong></p>
 <ul>
@@ -391,7 +406,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
