@@ -33,12 +33,20 @@ The notebooks can be run anywhere that a Jupyter server is available. To use on 
 
 |Acronym | Meaning|
 |----    |----    |
-|ADES | Application Deployment and Execution Service (the EODH workflow runner)|
-|ARD  | Analysis Ready Data (a pre-processed dataset) |
-|AWS  | Amazon Web Services|
-|CEDA | Centre for Environmental Data Analysis|
-|CWL  | Common Workflow Language (a specification for standardising workflows)| 
+|ADES | Application Deployment and Execution Service (the EODH workflow runner) |
+|API  | Application Programming Interface |
+|ARD  | Analysis Ready Data |
+|AWS  | Amazon Web Services |
+|CEDA | Centre for Environmental Data Analysis |
+|CWL  | Common Workflow Language | 
 |EO   | Earth observation |
-|EODH | Earth observation Data Hub|
-|WR   | Workflow Runner|
-|YAML | Yet Another Markup Language (or YAML ain't markup language)|
+|EOAP | Earth observation Application Package |
+|EODH | Earth observation Data Hub |
+|HTTP | Hypertext Transfer Protocol |
+|RC   | Resource Catalogue |
+|SAR  | Synthetic Aperture Radar |
+|SLC  | Single Look Complex |
+|STAC | Spatio-Temporal Asset Catalog |
+|WP   | Web Presence |
+|WR   | Workflow Runner |
+|YAML | Yet Another Markup Language (or YAML ain't markup language) |
