@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eoap – EODH Training Materials</title>
+<title>EOAPs – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -344,49 +344,67 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#what-are-earth-observation-application-packages" id="toc-what-are-earth-observation-application-packages" class="nav-link active" data-scroll-target="#what-are-earth-observation-application-packages">What are Earth Observation Application Packages?</a></li>
-  <li><a href="#why-containers" id="toc-why-containers" class="nav-link" data-scroll-target="#why-containers">Why containers?</a></li>
+  <li><a href="#how-do-i-create-a-workflow" id="toc-how-do-i-create-a-workflow" class="nav-link" data-scroll-target="#how-do-i-create-a-workflow">How do I create a workflow?</a></li>
   <li><a href="#other-information" id="toc-other-information" class="nav-link" data-scroll-target="#other-information">Other information</a></li>
   <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/2_EOAP.html">EO App Packages</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/2_EOAP.html">EO App Packages</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">EOAPs</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
-<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: This Notebook introduces the concept of Earth Observation Application Packages (EOAPs).</p>
+<p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
-<p><strong>Date last modified</strong>: 2024-11-08</p>
+<p><strong>Date last modified</strong>: 2024-12-19</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <section id="what-are-earth-observation-application-packages" class="level1">
 <h1>What are Earth Observation Application Packages?</h1>
-<p>EOAPs are self contained amalgamations of tools and code that allows an algorithm, or set of algorithms, to be shared between and run on different data processing platforms. The core concepts behind this are that: * algorithms and processing methods are not tied to a specific platform * the underlying infrastructure is not important as long as a suitable workflow runner exists on that infrastructure * the workflows preferentially create data services</p>
+<p>EOAPs are self contained amalgamations of tools and code that allow an algorithm, or set of algorithms, to be shared between and run on different data processing platforms. The core concepts behind this are that: * Algorithms and processing methods are not tied to a specific platform * The underlying infrastructure is not important as long as a suitable workflow runner exists on that infrastructure * The workflows preferentially create data services</p>
+<p>The EOAP is the complete unit of code that is submitted to the workflow runner and comprises: * A CWL workflow file, itself made up of a descriptive component and a series of command line tools * A Dockerfile or Docker image * An optional application file that is usually required for any but the most simple workflows</p>
+<p>A functioning and stable EOAP is challenging to create even for experienced developers and generally the creation of EOAPs is limited to specialist users with some knowledge of dev-ops or with higher programming skills.</p>
 </section>
-<section id="why-containers" class="level1">
-<h1>Why containers?</h1>
-<p>Containers solve the need for dependencies between software required to run specific commands. Containers are described by an image file (a template), where the container itself is an instantiation of the image.</p>
+<section id="how-do-i-create-a-workflow" class="level1">
+<h1>How do I create a workflow?</h1>
+<p>The guidance around EOAPs is that handcrafting a package is possible but not recommended. These workflows can become very complex very quickly and it is recommended that some form of tooling is used to automate or semi-automate the generation of an EOAP. As part of the Pathfinder phase of the project, the EODH (via a 3rd party contractor, Oxidian) has created eoap-gen to help specialist technicians to create service workflows.</p>
 </section>
 <section id="other-information" class="level1">
 <h1>Other information</h1>
-<p>Additional information on the EOAP specification and construction is available here: https://eoap.github.io/mastering-app-package/. This is a comprehensive tutorial that introduces the user to different tools (some of which are mentioned elsewhere in these training materials). Much of the tutorial uses hand-crafted code which is generally not recommended as a method of generation (see notes on the <a href="../workflows/3_eoapgen.html">EOAP Generator</a> for further details) but in this case it does enable detailed assesment of the different components. A full set of resources are available from the official EOAP Github repository: https://github.com/eoap. Further to this, a related ‘hands on’ tutorial is available <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">here</a>.</p>
-<p>gdal example: https://github.com/EO-DataHub/eodhp-ades-workspace-access/blob/main/gdal-example/gdal-workflow-test.cwl</p>
-<p>More examples: https://github.com/EO-DataHub/eodhp-ades-demonstration/blob/main/eodhp-ades-demonstration.ipynb</p>
+<p>Additional information on the EOAP specification and construction is available here: https://eoap.github.io/mastering-app-package/. This is a comprehensive tutorial that introduces the user to different tools (some of which are mentioned elsewhere in these training materials). Much of the tutorial uses hand-crafted code which is generally not recommended as a method of generation (see notes on the <a href="../workflows/3_eoapgen.html">EOAP Generator</a> for further details) but in this case it does enable detailed assesment of the different components.</p>
+<p>A full set of resources are available from the official EOAP Github repository: https://github.com/eoap.</p>
+<p>Further to this, a related ‘hands on’ tutorial for the creation and use of an EOAp is available <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">here</a>.</p>
 </section>
 <section id="links" class="level1">
 <h1>Links</h1>
+<p>The following bullet points direct the reader at a set of further reading around EOAPs and the standards they relate to.</p>
 <ul>
-<li>My first CWL workflow: <a href="https://github.com/EO-DataHub/eodh-training/blob/main/temporary/first_workflow.md">explainer</a></li>
 <li>EO Application Package example: <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on/tree/master/water-bodies">Waterbodies</a></li>
-<li>OGC best practices: <a href="https://docs.ogc.org/bp/20-089r1.html#toc18">EO app pkg</a></li>
-<li>CWL for EO tutorials: <a href="https://cwl-for-eo.github.io/guide/how-to/cwl-how-to/08-conditional-workflows/conditional-workflows/">adding conditions</a></li>
-<li>Terradue training: <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">hands-on</a> - not sure all the scripts work as they are supposed to…</li>
-<li>EO App Pkgs: <a href="https://github.com/eoap">overview</a>, <a href="https://github.com/EOEPCA/deployment-guide/tree/main/deploy/samples/requests/processing">examples</a></li>
+<li>OGC best practices: <a href="https://docs.ogc.org/bp/20-089r1.html#toc18">EO Application packages</a></li>
+<li>CWL for EO tutorials: <a href="https://cwl-for-eo.github.io/guide/how-to/cwl-how-to/08-conditional-workflows/conditional-workflows/">Adding conditions</a></li>
+<li>Terradue training: <a href="https://github.com/Terradue/ogc-eo-application-package-hands-on">hands-on</a> (there do seem to be some typographic errors in the scripts)</li>
+<li>EO Application Packages: <a href="https://github.com/eoap">overview</a>, <a href="https://github.com/EOEPCA/deployment-guide/tree/main/deploy/samples/requests/processing">examples</a></li>
 </ul>
 
 

@@ -536,62 +536,157 @@ In the context of the EODH, what is a workflow?
 <h3 class="anchored" data-anchor-id="cwl-files">CWL files</h3>
 <p>For this example we require a CWL CommandLine file for both the clipping and stacking components of the workflow. We will also need a CWL Workflow file to bring these together and run the entire process. The next block of code outlines the overall Workflow file.</p>
 <p><strong>Note</strong>: This example is based on the example found <a href="https://cwl-for-eo.github.io/guide/101/cwl-101/tutorial-2/workflow/">here</a>. Some errors were found in the original CWL files and the version presented here has been tested and is known to work on a local Linux (Debian based) system.</p>
-<p>class: Workflow label: Sentinel-2 clipping and stacking doc: This workflow creates a stacked composite. File name: composite.cwl id: main</p>
-<p>requirements: - class: ScatterFeatureRequirement</p>
-<p>inputs:</p>
-<p>geotiff: doc: list of geotifs type: File[]</p>
-<p>bbox: doc: area of interest as a bounding box type: string</p>
-<p>epsg: doc: EPSG code type: string default: “EPSG:4326”</p>
-<p>outputs: rgb: outputSource: - node_concatenate/composite type: File</p>
-<p>steps:</p>
-<p>node_translate:</p>
-<pre><code>run: gdal-translate.cwl
-
-in:
-
-  geotiff: geotiff  
-  bbox: bbox
-  epsg: epsg
-
-out:
-- clipped_tif
-
-scatter: geotiff
-scatterMethod: dotproduct</code></pre>
-<p>node_concatenate:</p>
-<pre><code>run: concatenate2.cwl
-
-in: 
-  tifs:
-    source: node_translate/clipped_tif
-
-out:
-- composite</code></pre>
-<p>cwlVersion: v1.0</p>
+<div id="cell-15" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: Workflow</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>label: Sentinel<span class="op">-</span><span class="dv">2</span> clipping <span class="kw">and</span> stacking</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>doc:  This workflow creates a stacked composite. File name: composite.cwl</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: main</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>requirements:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="kw">class</span>: ScatterFeatureRequirement</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  geotiff:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    doc: <span class="bu">list</span> of geotifs</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File[]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  bbox: </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    doc: area of interest <span class="im">as</span> a bounding box</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  epsg:</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    doc: EPSG code </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"EPSG:4326"</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  rgb:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    outputSource:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> node_concatenate<span class="op">/</span>composite</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>steps:</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  node_translate:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    run: gdal<span class="op">-</span>translate.cwl</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span>:</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>      geotiff: geotiff  </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>      bbox: bbox</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>      epsg: epsg</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    out:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> clipped_tif</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    scatter: geotiff</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    scatterMethod: dotproduct</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  node_concatenate:</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    run: concatenate2.cwl</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span>: </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>      tifs:</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        source: node_translate<span class="op">/</span>clipped_tif</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    out:</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> composite</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>From this example, we can see that we require two CommandLine CWL files: <code>gdal-translate.cwl</code> and <code>concatenate2.cwl</code>. Let’s deal with these in order.</p>
-<p>class: CommandLineTool</p>
-<p>cwlVersion: v1.0 doc: This runs GDAL Translate to clip an image to bbox corner coordinates.</p>
-<p>requirements: InlineJavascriptRequirement: {} DockerRequirement: dockerPull: ghcr.io/osgeo/gdal:ubuntu-small-latest</p>
-<p>baseCommand: gdal_translate</p>
-<p>arguments: - -projwin - valueFrom: ${ return inputs.bbox.split(“,”)[0]; } - valueFrom: ${ return inputs.bbox.split(“,”)[3]; } - valueFrom: ${ return inputs.bbox.split(“,”)[2]; } - valueFrom: ${ return inputs.bbox.split(“,”)[1]; } - valueFrom: ${ return inputs.geotiff.basename.replace(“.tif”, ““) +”_clipped.tif”; } position: 8</p>
-<p>inputs: geotiff: type: File inputBinding: position: 7 bbox: type: string epsg: type: string default: “EPSG:4326” inputBinding: position: 6 prefix: -projwin_srs separate: true</p>
-<p>outputs: clipped_tif: outputBinding: glob: ’*_clipped.tif’ type: File</p>
-<p>class: CommandLineTool</p>
-<p>cwlVersion: v1.0 doc: This runs GDAL Merge to stack images together.</p>
-<p>requirements: InlineJavascriptRequirement: {} DockerRequirement: dockerPull: ghcr.io/osgeo/gdal:ubuntu-small-latest</p>
-<p>baseCommand: gdal_merge.py</p>
-<p>arguments: - -separate - valueFrom: ${ return inputs.tifs; } - -o - composite.tif # gdal_merge.py -separate 1.tif 2.tif 3.tif -o rgb.tif</p>
-<p>inputs:</p>
-<p>tifs: type: File[]</p>
-<p>outputs:</p>
-<p>composite: outputBinding: glob: ’*.tif’ type: File</p>
+<div id="cell-17" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>doc:  This runs GDAL Translate to clip an image to bbox corner coordinates.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>requirements: </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  InlineJavascriptRequirement: {}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  DockerRequirement: </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    dockerPull: ghcr.io<span class="op">/</span>osgeo<span class="op">/</span>gdal:ubuntu<span class="op">-</span>small<span class="op">-</span>latest</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>baseCommand: gdal_translate</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>arguments:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">-</span>projwin </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.bbox.split(<span class="st">","</span>)[<span class="dv">0</span>]<span class="op">;</span> }</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.bbox.split(<span class="st">","</span>)[<span class="dv">3</span>]<span class="op">;</span> }</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.bbox.split(<span class="st">","</span>)[<span class="dv">2</span>]<span class="op">;</span> }</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.bbox.split(<span class="st">","</span>)[<span class="dv">1</span>]<span class="op">;</span> }</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.geotiff.basename.replace(<span class="st">".tif"</span>, <span class="st">""</span>) <span class="op">+</span> <span class="st">"_clipped.tif"</span><span class="op">;</span> }</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  position: <span class="dv">8</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  geotiff: </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    inputBinding:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>      position: <span class="dv">7</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  bbox: </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  epsg:</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"EPSG:4326"</span> </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    inputBinding:</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>      position: <span class="dv">6</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>      prefix: <span class="op">-</span>projwin_srs</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>      separate: true</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  clipped_tif:</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    outputBinding:</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      glob: <span class="st">'*_clipped.tif'</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-18" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>doc: This runs GDAL Merge to stack images together.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>requirements:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  InlineJavascriptRequirement: {}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  DockerRequirement: </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    dockerPull: ghcr.io<span class="op">/</span>osgeo<span class="op">/</span>gdal:ubuntu<span class="op">-</span>small<span class="op">-</span>latest</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>baseCommand: gdal_merge.py</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>arguments: </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">-</span>separate </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> valueFrom: ${ <span class="cf">return</span> inputs.tifs<span class="op">;</span> }</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">-</span>o</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> composite.tif</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># gdal_merge.py -separate 1.tif 2.tif 3.tif -o rgb.tif</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  tifs:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File[]</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  composite:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    outputBinding:</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      glob: <span class="st">'*.tif'</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>NOTE</strong>: YAML generally doesn’t play well with tabs as whitespace so it’s best practice to use spaces for indentations</p>
 </section>
 </section>
 <section id="running-the-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-workflow">Running the Workflow</h2>
 <p>Now that we have our commandline CWL component files, and the Workflow CWL file that brings the tools together, we need to specify the input parameters. This is done using a <code>parameters.yml</code> file, where the name of the file can be anything that you want. The contents should follow the layout that we will be using:</p>
-<p>bbox: “136.659,-35.96,136.923,-35.791” geotiff: - { “class”: “File”, “path”: “../B04.tif” } - { “class”: “File”, “path”: “../B03.tif” } epsg: “EPSG:4326”</p>
+<div id="cell-21" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bbox: <span class="st">"136.659,-35.96,136.923,-35.791"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>geotiff: </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> { <span class="st">"class"</span>: <span class="st">"File"</span>, <span class="st">"path"</span>: <span class="st">"../B04.tif"</span> }</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> { <span class="st">"class"</span>: <span class="st">"File"</span>, <span class="st">"path"</span>: <span class="st">"../B03.tif"</span> }</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>epsg: <span class="st">"EPSG:4326"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>You will need to change the <code>path</code> parameter to match the location of your input files.</p>
 <p>Now we run it with the command:</p>
 <p><code>cwltool --podman composite.cwl composite-params.yml</code></p>
