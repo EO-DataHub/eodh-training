@@ -73,9 +73,9 @@ website:
         # Examples Section
       - section: "Science & code examples"
         contents: 
-          - text: "Data cubes"
-            href: science/1_DataCubes.ipynb
-          - text: "Climate models"
+          - text: "Code Snippets"
+            href: science/1_Snippets.ipynb
+          - text: "Climate Models"
             href: science/2_NetcdfData.ipynb
         # Presentations and Demos
       - section: "Presentations"
