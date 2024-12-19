@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>workflowrunner – EODH Training Materials</title>
+<title>Running Workflows – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -314,14 +314,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../science/1_DataCubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes</span></a>
+  <a href="../science/1_Snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../science/2_NetcdfData.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Climate models</span></a>
+ <span class="menu-text">Climate Models</span></a>
   </div>
 </li>
       </ul>
@@ -383,12 +383,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/3_WorkflowRunner.html">Running Workflows</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/3_WorkflowRunner.html">Running Workflows</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Running Workflows</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>:</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: A set of code snippets and guidance to help users submit and execute workflows using the pyeodh API client.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2024-09-10</p>
 <p><strong>Date last modified</strong>: 2024-12-10</p>
@@ -408,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ADES_USER=username ADES_TOKEN=api_token</p>
 <p>where username and api_token are the values you use on the system.</p>
 <p>First we need to instantiate the <code>pyeodh</code> client and create an ADES entrypoint.</p>
-<div id="cell-4" class="cell">
+<div id="cell-6" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package imports</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> HTTPError</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -425,13 +441,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> os.getenv(<span class="st">"ADES_USER"</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> os.getenv(<span class="st">"ADES_TOKEN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell">
+<div id="cell-7" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the link to ADES</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(username<span class="op">=</span>username, token<span class="op">=</span>token)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ades <span class="op">=</span> client.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Workflows (represented as executable processes) are predefined applications which can be parameterised and run by users. To get a list of currently available processes in our user workspace we need to implement the <code>ades.get_processes()</code> method:</p>
-<div id="cell-7" class="cell" data-execution_count="6">
+<div id="cell-9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> ades.get_processes():</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -442,7 +458,7 @@ convert-url</code></pre>
 </div>
 <p>Once we can see how many workflows are in the workspace, it is possible to fetch information about a specific workflow (assuming the user knows its name). The process object also contains metadata giving us more information about the process and how to execute it.</p>
 <p>For example, it is possible to interrogate the schema of inputs. From this it is possible to parameterise the process, or set the output schema.</p>
-<div id="cell-9" class="cell" data-execution_count="18">
+<div id="cell-11" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>convert_url_proc <span class="op">=</span> ades.get_process(<span class="st">"convert-url"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Input Schema'</span>)</span>
@@ -477,7 +493,7 @@ Output Schema
 </div>
 </div>
 <p>Further information can be found out about the process object, including its id, process_id (name) and its status.</p>
-<div id="cell-11" class="cell" data-execution_count="8">
+<div id="cell-13" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> ades.get_jobs():</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(j.<span class="bu">id</span>, j.process_id, j.status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -485,7 +501,7 @@ Output Schema
 </div>
 </div>
 <p>Only one process with the same ID can exist. To demonstrate deploying a process further down in this notebook, we first need to undeploy <code>convert-url</code>. Note that attempting to delete a non-existent process will result in an error.</p>
-<div id="cell-13" class="cell" data-execution_count="9">
+<div id="cell-15" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    ades.get_process(<span class="st">"convert-url"</span>).delete()</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> HTTPError:</span>
@@ -495,7 +511,7 @@ Output Schema
 <p>There are two ways we can provide the CWL file - either referencing the file by URL or by passing the CWL file content directly. Note that the <code>ades.deploy_process()</code> command will fail if we try to create a process with an ID that already exists. If we want to update an existing process, we should use the <code>process.update()</code> method instead.</p>
 <p>Both methods can handle URL or CWL YAML inputs. In the example below a process referenced by URL is deployed and then updated by passing the new CWL YAML content directly.</p>
 <p><strong>Note</strong>: When updating a worklow you need to provide the entire workflow, the API does not support partial updates (i.e.&nbsp;to change the description we need to provide the entire workflow again).</p>
-<div id="cell-15" class="cell" data-execution_count="10">
+<div id="cell-17" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>convert_url_proc <span class="op">=</span> ades.deploy_process(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    cwl_url<span class="op">=</span><span class="st">"https://raw.githubusercontent.com/EOEPCA/deployment-guide/main/deploy/samples/requests/processing/convert-url-app.cwl"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -504,7 +520,7 @@ Output Schema
 <pre><code>convert-url Convert URL</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="11">
+<div id="cell-18" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cwl_yaml <span class="op">=</span> <span class="st">"""cwlVersion: v1.0</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">$namespaces:</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">  s: https://schema.org/</span></span>
@@ -588,7 +604,7 @@ Output Schema
 </div>
 <p>The process needs to be parameterised before it is run, but how does a user know what inputs this particular workflow is expecting? That is where the <code>process.inputs_schema</code> response is useful (see above).</p>
 <p>Let’s execute the deployed process. The inputs are best supplied as a dictionary.</p>
-<div id="cell-19" class="cell" data-execution_count="12">
+<div id="cell-21" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>convert_url_job <span class="op">=</span> convert_url_proc.execute(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    {</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"fn"</span>: <span class="st">"resize"</span>,</span>
@@ -605,14 +621,14 @@ Output Schema
 <p>The job should now be running.</p>
 <p>To get the most up-to-date status of the job the user can call the <code>job.refresh()</code> method and then interrogate the <code>job.status</code> and <code>job.message</code> properties.</p>
 <p><strong>Note</strong>: these properties only hold the latest response from the API, and don’t keep any historical records.</p>
-<div id="cell-21" class="cell" data-execution_count="13">
+<div id="cell-23" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>convert_url_job.refresh()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(convert_url_job.<span class="bu">id</span>, convert_url_job.status, convert_url_job.message)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>007b69d0-b70b-11ef-aba4-6a040e2afd6f running upload required files</code></pre>
 </div>
 </div>
-<div id="cell-22" class="cell">
+<div id="cell-24" class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can continually poll the job using a simple loop and print status and message updates like so:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyeodh.ades <span class="im">import</span> AdesJobStatus</span>
@@ -646,7 +662,7 @@ Message: ZOO-Kernel successfully run your service!</code></pre>
 </div>
 <p>After the job has finished successfully, we can view the results as a link to where the data files are stored.</p>
 <p><strong>Note</strong>: the outputs of a workflow is a directory conataining a STAC catalogue, where individual assets are represented in the metadata.</p>
-<div id="cell-24" class="cell">
+<div id="cell-26" class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> convert_url_job.get_result_items()</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> res <span class="kw">in</span> results:</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(res.<span class="bu">id</span>, res.assets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

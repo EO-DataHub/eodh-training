@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>clientintro – EODH Training Materials</title>
+<title>What is pyeodh? – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -280,14 +280,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../science/1_DataCubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes</span></a>
+  <a href="../science/1_Snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../science/2_NetcdfData.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Climate models</span></a>
+ <span class="menu-text">Climate Models</span></a>
   </div>
 </li>
       </ul>
@@ -343,28 +343,44 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-pyeodh" id="toc-what-is-pyeodh" class="nav-link active" data-scroll-target="#what-is-pyeodh">What is pyeodh?</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#why-is-pyeodh-needed" id="toc-why-is-pyeodh-needed" class="nav-link" data-scroll-target="#why-is-pyeodh-needed">Why is pyeodh needed?</a></li>
   <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link" data-scroll-target="#before-you-start">Before you start</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">What is pyeodh?</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">Simplifying access - pyeodh</a></li><li class="breadcrumb-item"><a href="../api-client/1_ClientIntro.html">What is pyeodh?</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">What is pyeodh?</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
-<p><strong>Author(s)</strong>: Alastair Graham, EODH</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: A Python API client has been produced by Oxidian to allow simplified, yet powerful, access to the EODH API endpoints. This Notebook introduces the API client.</p>
+<p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
-<p><strong>Date last modified</strong>: 2024-12-10</p>
+<p><strong>Date last modified</strong>: 2024-12-19</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<section id="what-is-pyeodh" class="level1">
-<h1>What is pyeodh?</h1>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>As part of the EODH project, <code>pyeodh</code> has been created. This is a lightweight Python client for easy access to EODH APIs.</p>
 <p>An API client is a software tool or library designed to simplify interactions between a user’s application and an external API (Application Programming Interface). In the case of <code>pyeodh</code>, it is a Python-based tool tailored to facilitate communication with the specific API endpoints exposed by the EODH platform. Using <code>pyeodh</code>, developers and scientists can programmatically access the API’s features—such as sending requests, retrieving data, or executing commands—without needing to handle the underlying details such as crafting HTTP requests or managing authentication manually.</p>
 <p>By abstracting these complexities, ‘pyeodh’ makes it easier to integrate the API into Python applications, enabling developers to focus on building features rather than managing low-level networking tasks.</p>
