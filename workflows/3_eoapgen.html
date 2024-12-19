@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eoapgen – EODH Training Materials</title>
+<title>The EOAP Generator – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -377,13 +377,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#eoap-generator" id="toc-eoap-generator" class="nav-link active" data-scroll-target="#eoap-generator">EOAP Generator</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a></li>
   <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
-  </ul></li>
-  <li><a href="#more" id="toc-more" class="nav-link" data-scroll-target="#more">MORE!</a>
-  <ul class="collapse">
   <li><a href="#other-tools" id="toc-other-tools" class="nav-link" data-scroll-target="#other-tools">Other tools</a>
   <ul class="collapse">
   <li><a href="#cwltool" id="toc-cwltool" class="nav-link" data-scroll-target="#cwltool">cwltool</a></li>
@@ -395,23 +392,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/3_eoapgen.html">Using eoap-gen</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/3_eoapgen.html">Using eoap-gen</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">The EOAP Generator</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: This Notebook introduces the EOAP generation tool created to help users make compliant EO application packages ready to be run using the EODH workflow runner.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
-<p><strong>Date last modified</strong>: 2024-11-08</p>
+<p><strong>Date last modified</strong>: 2024-12-19</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<section id="eoap-generator" class="level1">
-<h1>EOAP Generator</h1>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>One of the Pathfinder delivery partners, Oxidian, has created a tool to help dev-ops specialists or specialist technicians to create compliant EOAPs that will run on the EODH. The eoap-gen tool can be found here: https://github.com/EO-DataHub/eoap-gen</p>
-<p>It describes itself as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.</p>
+<p>It is described as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.</p>
 <section id="requirements" class="level2">
 <h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
 <p>There are three main requirements that are needed for the tool to create a working EOAP. These are: * Python scripts. These must use <a href="https://docs.python.org/3/library/argparse.html">argparse</a> or <a href="https://click.palletsprojects.com/en/stable/">click</a> and the parameters will be mapped to the CWL <code>CommandLineTool</code> inputs * A <code>pip</code> requirements file for each script being wrapped into the EOAP <strong>TO DO: check this can now also take conda</strong> * A compliant <code>eoap-gen</code> configuration file</p>
@@ -422,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first thing a user is required to do is understand the workflow that they want to wrap. At it’s most simple the steps of a workflow are threefold: * find your input data, * process your input data, and * create a STAC output of the processed data.</p>
 <p>For the <code>eoap-gen</code> tool these steps will always be required and when using the workflow runner (WR) (aka ADES) on the EODH the output will always need to be a directory output containing a STAC catalog. When using the EODH it is recommended that the Python API client <code>pyeodh</code> is used to access the API endpoints on the Hub.</p>
 <p>The following directory structure is recommended when using the <code>eoap-gen</code> tool:</p>
-<div id="cell-4" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div id="cell-6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.github</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>└── workflows</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    └── build.yml</span>
@@ -434,10 +447,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>└── make_stac_reqs.txt</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>config.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Despite simplifying the process, it is still complex to create these packages. A configuration file is needed and this is then used to create the EOAP. More information about this can be found in the repositry for the tool, but the example of a configuration file for a single step workflow (below) demonstrates the need to understand the full data procesisng chain.</p>
+<div id="cell-8" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: resize<span class="op">-</span>collection</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>doc: Resize collection cogs</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>label: Resize collection cogs</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    label: catalog</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    doc: full catalog path</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    default: supported<span class="op">-</span>datasets<span class="op">/</span>ceda<span class="op">-</span>stac<span class="op">-</span>fastapi</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    label: collection <span class="bu">id</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    doc: collection <span class="bu">id</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    default: sentinel2_ard</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: stac_output</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: Directory</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    source: step3<span class="op">/</span>stac_catalog</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>steps:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: get_urls</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    script: playground<span class="op">/</span>get_urls.py</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    requirements: playground<span class="op">/</span>get_urls_reqs.txt</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        source: resize<span class="op">-</span>collection<span class="op">/</span>catalog</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        source: resize<span class="op">-</span>collection<span class="op">/</span>collection</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: urls</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: string[]</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>          loadContents: true</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>          glob: urls.txt</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>          outputEval: $(<span class="va">self</span>[<span class="dv">0</span>].contents.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: ids</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: string[]</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>          loadContents: true</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>          glob: ids.txt</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>          outputEval: $(<span class="va">self</span>[<span class="dv">0</span>].contents.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once the required files are in place the user needs to execute the eoap-gen tool. The specific command will change with the file names, but the following code snippet shows the form it would take</p>
+<div id="cell-10" class="cell" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eoap<span class="op">-</span>gen generate <span class="op">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>config<span class="op">=</span>eoap<span class="op">-</span>gen<span class="op">-</span>config.yml <span class="op">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>output<span class="op">=</span>eoap<span class="op">-</span>gen<span class="op">-</span>out <span class="op">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>docker<span class="op">-</span>url<span class="op">-</span>base<span class="op">=</span>ghcr.io<span class="op">/</span>user<span class="op">/</span>repo <span class="op">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>docker<span class="op">-</span>tag<span class="op">=</span>main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-</section>
-<section id="more" class="level1">
-<h1>MORE!</h1>
 <section id="other-tools" class="level2">
 <h2 class="anchored" data-anchor-id="other-tools">Other tools</h2>
 <p>Other useful tools that you may want to try include:</p>
@@ -452,7 +513,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cwl-utils" class="level3">
 <h3 class="anchored" data-anchor-id="cwl-utils">cwl-utils</h3>
 <p>Still actively developed, <a href="https://github.com/common-workflow-language/cwl-utils">cwl-utils</a> provides Python utilities and autogenerated classes for loading and parsing CWL documents. Although not specific to EOAPs this set of tools may be helpful when developing your workflows. <a href="https://cwl-utils.readthedocs.io/en/latest/#">Documentation</a> is relatively sparse.</p>
-<p>https://github.com/EO-DataHub/eoap-gen/blob/main/ades_guide.md</p>
 
 
 </section>
