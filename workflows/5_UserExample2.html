@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>User Example 2: temporal “best-pixel” mosaics – EODH Training Materials</title>
+<title>User Example: Temporal Mosaics – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -380,10 +380,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
   <li><a href="#the-scientific-process" id="toc-the-scientific-process" class="nav-link" data-scroll-target="#the-scientific-process">The Scientific Process</a>
   <ul class="collapse">
+  <li><a href="#processing-steps" id="toc-processing-steps" class="nav-link" data-scroll-target="#processing-steps">Processing steps</a></li>
   <li><a href="#scientific-method" id="toc-scientific-method" class="nav-link" data-scroll-target="#scientific-method">Scientific method</a></li>
+  <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   </ul></li>
   <li><a href="#generating-the-workflow" id="toc-generating-the-workflow" class="nav-link" data-scroll-target="#generating-the-workflow">Generating the workflow</a></li>
-  <li><a href="#commercial-data-services" id="toc-commercial-data-services" class="nav-link" data-scroll-target="#commercial-data-services">Commercial data services</a></li>
   </ul>
 </nav>
     </div>
@@ -392,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workflows/1_Workflows.html">Creating Workflows - eoap-gen</a></li><li class="breadcrumb-item"><a href="../workflows/5_UserExample2.html">User Example: temporal mosaics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">User Example 2: temporal “best-pixel” mosaics</h1>
+<h1 class="title">User Example: Temporal Mosaics</h1>
 </div>
 
 
@@ -409,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Description &amp; purpose</strong>: TODO</p>
+<p><strong>Description &amp; purpose</strong>: This Notebook introduces the science behind a user example looking to create temporal best pixel temporal mosaics using the Sentinel 2 ARD dataset. It also introduces the EOAP that has been created to run a scaled workflow on EODH.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
 <p><strong>Date last modified</strong>: 2024-11-08</p>
@@ -427,63 +428,278 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-scientific-process" class="level1">
 <h1>The Scientific Process</h1>
-<p>Before creating a workflow on the EODH platform it was important to step through the scientific process to make sure that the correct tools and data were being considered. To create the cloud-free outputs we use the cloud mask supplied with the ARD dataset. The information held in the cloud mask layer is used to mask out the existing areas of cloud, and is applied to every band.</p>
-<p>The temporal mosaic is created using a command line set of tools called pktools. Although a slightly older set of tools it is incredibly versatile, an being command-line first lends itself to the EOAP/CWl way of working. One of the tools, pkcomposite, is used to generate a median image from all input images over a one month period.</p>
+<p>Before creating a workflow on the EODH platform it was important to step through the scientific process to make sure that the correct tools and data were being considered.</p>
+<p>To create the cloud-free outputs we use the cloud mask supplied with the ARD dataset. The information held in the cloud mask layer is used to block out the existing areas of cloud, and is applied to every band.</p>
+<p>The temporal mosaic is created using a command line set of tools called <code>pktools</code>. Although a slightly older set of tools it is incredibly versatile, and being command-line first lends itself to the EOAP/CWl way of working. One of the tools, <a href="https://pktools.nongnu.org/html/pkcomposite.html">pkcomposite</a>, is used to generate a median image from all input images over a one month period.</p>
+<section id="processing-steps" class="level3">
+<h3 class="anchored" data-anchor-id="processing-steps">Processing steps</h3>
+<ul>
+<li>pyeodh search of sentinel2_ard STAC (inputs are an AOI polygon (we need this later) and a date range)</li>
+<li>STEP 1: for each band in each returned image apply the cloud mask to remove cloud pixels from the data
+<ul>
+<li>this results in a multibanded image that is cloud-masked</li>
+<li>need to retain information on original image capture date</li>
+<li>output should be a temporary STAC catalog</li>
+</ul></li>
+<li>STEP 2: for each cloud-masked image in a given month create band composites cropped to the AOI
+<ul>
+<li>e.g.&nbsp;<code>pkcomposite -i in_A.tif -i in_B.tif -i in_C.tif -o out_b1.tif -cr median -b 0 -e aoi.geojson</code></li>
+<li>need to be able to supply all images, the aoi polygon, and the composite method (e.g.&nbsp;median)</li>
+<li>output should be a STAC catalog of spatially cropped single-band composites for each month (e.g.&nbsp;for a three month period and 4 band input data there should be 3x Band1 outputs, 3x Band2 outputs, 3x Band3 outputs, 3x Band4 outputs)</li>
+</ul></li>
+</ul>
 <p>The following tutorial demonstrates how to process data held in the Sentinel S2 ARD STAC.</p>
-<p>First we need to import the required packages.</p>
+</section>
 <section id="scientific-method" class="level2">
 <h2 class="anchored" data-anchor-id="scientific-method">Scientific method</h2>
-<div id="cell-9" class="cell">
+<p>First we need to import the required packages.</p>
+<div id="cell-8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># pyeodh.set_log_level(10)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>rc <span class="op">=</span> pyeodh.Client().get_catalog_service()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>thetford_pnt <span class="op">=</span> {</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"coordinates"</span>: [</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.15527412683906</span>],</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.15527412683906</span>],</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.69722175598818</span>],</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> rc.search(</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">"sentinel2_ard"</span>],</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/ceda-stac-catalogue"</span>],</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thetford_pnt,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start_datetime&gt;=2023-04-01"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end_datetime&lt;=2023-06-30"</span>,</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="cell-9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the area of interest</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>thetford_aoi <span class="op">=</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"coordinates"</span>: [</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we need to connect to the resource catalogue and undertake a search of the sentinel2_ard catalogue for the AOI location within a specific date range</p>
+<div id="cell-11" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rc <span class="op">=</span> pyeodh.Client().get_catalog_service()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> rc.search(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">"sentinel2_ard"</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/ceda-stac-catalogue"</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thetford_aoi,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"start_datetime&gt;=2023-04-01"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"end_datetime&lt;=2023-06-30"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, for each item open the <code>cog</code>, <code>cloud</code> and <code>valid</code> .tif assets and download them if needed.</p>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items.get_limited()[<span class="dv">0</span>:<span class="dv">1</span>]:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    cloud_href <span class="op">=</span> item.assets[<span class="st">"cloud"</span>].href</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    valid_href <span class="op">=</span> item.assets[<span class="st">"valid_pixels"</span>].href</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    cog_href <span class="op">=</span> item.assets[<span class="st">"cog"</span>].href</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    item</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>, cloud_href, valid_href, cog_href, sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    valid <span class="op">=</span> rioxarray.open_rasterio(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        valid_href,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        chunks<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    cloud <span class="op">=</span> rioxarray.open_rasterio(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        cloud_href,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        chunks<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if cog file exists locally, if not download it</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    cog_filename <span class="op">=</span> <span class="ss">f"data/</span><span class="sc">{</span>Path(cog_href)<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isfile(cog_filename):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> requests.get(cog_href, stream<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> r:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            r.raise_for_status()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="bu">open</span>(cog_filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> chunk <span class="kw">in</span> r.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>):</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                    f.write(chunk)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    cog <span class="op">=</span> rioxarray.open_rasterio(cog_filename, chunks<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=="</span> <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"success"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next steps are to create a definitive mask using the amalgamation of the valid pixels layer and the cloud mask layer.</p>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> valid <span class="op">+</span> cloud</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set values greater than 1 to 0, others remain as 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> xr.where(result <span class="op">&gt;</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we now multiply the cloud optimised geotif file by the <code>result</code> maskfile, expanded to match the shape of <code>cog</code> then each of the bands will have the clouds removed. This is a brute force approach for the purposes of generating a demonstrable workflow and in an operational context a user would likely want to undertand the impact of cloud in individual bands and use specific methods to remove that.</p>
+<p>Finally the output is saved to a file</p>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply cog.tif by the result</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to expand the result to match the shape of cog</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fin <span class="op">=</span> cog <span class="op">*</span> result.squeeze(<span class="st">"band"</span>).expand_dims(band<span class="op">=</span>cog.band)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save to a file</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>fin.rio.to_raster(raster_path<span class="op">=</span><span class="ss">f"data/rm_cloud.tif"</span>, tiled<span class="op">=</span><span class="va">True</span>, lock<span class="op">=</span>threading.Lock())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As mentioned, one method of generating the composite is to use <code>pktools</code>. It’s an older code, but it checks out. An alternative using Python might be to use xarray and the functions within that package. <code>pktools</code> works well for this use case as the command can be inserted directly</p>
+<p>https://pktools.nongnu.org/html/pkcomposite.html</p>
+</section>
+<section id="outputs" class="level2">
+<h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
+<p>The following images provide an indication of how the pkcomposite tool works. The first image shows three input images (single band in this instance, coloured red, green and blue for clarity) that overlap a specific area of interest. The AOI is marked by the red boundary.</p>
+<p><img src="../img/tc1.png" class="img-fluid" width="700"></p>
+<p>The second image plots the result of the pkcomposite command over the top. It shows how a median layer is created within the bounding box of the AOI.</p>
+<p><img src="../img/tc2.png" class="img-fluid" width="700"></p>
+<p>In an EOAP cointext this could be scaled up across multiple multi-band images for a larger AOI.</p>
 </section>
 </section>
 <section id="generating-the-workflow" class="level1">
 <h1>Generating the workflow</h1>
+<p>We can use <code>eoap-gen</code> to create a suitable workflow for this methodology. The first thing to do is understand the steps and the flow of data through the EODH workflow runner. The following diagram demonstrates how images are searched for and then scattered across numerous processing nodes to remove the cloud. The cloud-free images are then returned to fewer nodes to be mosaiced by month. Finally the mosaics are written out to a searchable STAC directory.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/cfm.png" class="img-fluid figure-img" width="900"></p>
 <figcaption>Cloudfree Workflow</figcaption>
 </figure>
 </div>
-</section>
-<section id="commercial-data-services" class="level1">
-<h1>Commercial data services</h1>
-<p>Planet and Airbus</p>
+<p>Using the configuration file <a href="https://github.com/EO-DataHub/user-workflows/blob/main/S2-cloud-free-best-pixel/eoap-gen-config.yml">here</a> and reproduced below, it is possible to run <code>eoap-gen</code> to create the full package requirements.</p>
+<div id="cell-23" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>doc: Generate cloud free best pixel mosaic on a per month basis</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>label: Cloud free best pixel</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>resources: <span class="co"># current ADES max is 4 cores and 16GB RAM, we need all we can get</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  cores_min: <span class="dv">4</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ram_min: <span class="dv">16000</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    label: Catalog path</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    doc: Full catalog path</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    default: supported<span class="op">-</span>datasets<span class="op">/</span>ceda<span class="op">-</span>stac<span class="op">-</span>catalogue</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    label: collection <span class="bu">id</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    doc: collection <span class="bu">id</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    default: sentinel2_ard</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    label: Intersects</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    doc: <span class="op">&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      a GeoJSON<span class="op">-</span>like json string, which provides a <span class="st">"type"</span> member describing the <span class="bu">type</span> of the geometry <span class="kw">and</span> <span class="st">"coordinates"</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      member providing a <span class="bu">list</span> of coordinates. Will search <span class="cf">for</span> images intersecting this geometry.</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    default: <span class="op">&gt;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>          [</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>]</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>          ]</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    label: Start datetime</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    doc: Start datetime</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-04-01"</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    label: End datetime</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    doc: End datetime</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-06-30"</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: stac_output</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: Directory</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    source: s2_make_stac<span class="op">/</span>stac_catalog</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>steps:</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_search</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>search.py</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>requirements.txt</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>catalog</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>collection</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>start_datetime</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>end_datetime</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: urls</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: string[]</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>          loadContents: true</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>          glob: urls.txt</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>          outputEval: $(<span class="va">self</span>[<span class="dv">0</span>].contents.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>))</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: months</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>          glob: month_<span class="op">*</span>.json</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_rm_cloud</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>rm_cloud<span class="op">/</span>rm_cloud.py</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>rm_cloud<span class="op">/</span>requirements.txt</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    conda:</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> dask</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> gdal</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    scatter_method: dotproduct</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: item_url</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>        source: s2_search<span class="op">/</span>urls</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>        scatter: true</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: cloud_masked</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>          glob: <span class="st">"*.tif"</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_mosaic</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>mosaic<span class="op">/</span>mosaic.py</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>mosaic<span class="op">/</span>requirements.txt</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    apt_install:</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> pktools</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    scatter_method: dotproduct</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: month_json</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>        source: s2_search<span class="op">/</span>months</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>        scatter: true</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: all_images</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>        source: s2_rm_cloud<span class="op">/</span>cloud_masked</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: best_pixel</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>          glob: <span class="st">"*.tif"</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_make_stac</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>make_stac.py</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>requirements.txt</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: geometry</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: files</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>        source: s2_mosaic<span class="op">/</span>best_pixel</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: stac_catalog</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>          glob: .</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: Directory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Running the configuration file results in the directory available <a href="https://github.com/EO-DataHub/user-workflows/tree/main/S2-cloud-free-best-pixel/eoap-gen-out/cli">here</a> which can then be submitted to EODH using <code>pyeodh</code> and run using either the API client or QGIS plugin.</p>
 
 
 </section>
