@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,8 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a76c36e1dc2ed0a150045a185e032ea0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -416,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Description &amp; purpose</strong>: This Notebook introduces the EOAP generation tool created to help users make compliant EO application packages ready to be run using the EODH workflow runner.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
-<p><strong>Date last modified</strong>: 2024-12-19</p>
+<p><strong>Date last modified</strong>: 2025-01-07</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is described as “a CLI tool for generating Earth Observation Application Packages including CWL workflows and Dockerfiles from user supplied python scripts”.</p>
 <section id="requirements" class="level2">
 <h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
-<p>There are three main requirements that are needed for the tool to create a working EOAP. These are: * Python scripts. These must use <a href="https://docs.python.org/3/library/argparse.html">argparse</a> or <a href="https://click.palletsprojects.com/en/stable/">click</a> and the parameters will be mapped to the CWL <code>CommandLineTool</code> inputs * A <code>pip</code> requirements file for each script being wrapped into the EOAP <strong>TO DO: check this can now also take conda</strong> * A compliant <code>eoap-gen</code> configuration file</p>
+<p>There are three main requirements that are needed for the tool to create a working EOAP. These are: * Python scripts. These must use <a href="https://docs.python.org/3/library/argparse.html">argparse</a> or <a href="https://click.palletsprojects.com/en/stable/">click</a> and the parameters will be mapped to the CWL <code>CommandLineTool</code> inputs * A <code>pip</code> requirements file for each script being wrapped into the EOAP * A compliant <code>eoap-gen</code> configuration file</p>
 </section>
 <section id="steps" class="level2">
 <h2 class="anchored" data-anchor-id="steps">Steps</h2>
