@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Demonstration for DEFRA – EODH Training Materials</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a76c36e1dc2ed0a150045a185e032ea0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-f7c25a048328d18798f78b19e428bc08.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">EODH Training Materials</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/orgs/EO-DataHub/repositories">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/EO-DataHub/eodh-training/discussions">
+            Community discussion
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Demonstration for DEFRA</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../website/about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Hub Platform</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../platform/1_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EODH Platform Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../platform/2_Components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EODH Platform Components</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Simplifying access - pyeodh</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../api-client/1_ClientIntro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is pyeodh?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../api-client/2_ResourceCatalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using the Resource Catalogue</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../api-client/3_WorkflowRunner.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running Workflows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../api-client/4_Services.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Mapping Services</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Creating Workflows - eoap-gen</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workflows/1_Workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workflows/2_EOAP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EO App Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workflows/3_eoapgen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using eoap-gen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workflows/4_UserExample1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User Example: coherence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../workflows/5_UserExample2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User Example: temporal mosaics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">GIS interface - QGIS plugin</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../plugin/1_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QGIS Plugin Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../plugin/2_Runningworkflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Running A Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../plugin/3_OtherTools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Science &amp; code examples</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../science/1_Snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../science/2_NetcdfData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Climate Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Presentations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA/1_202409_Defra_DataDiscovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DEFRA Data Discovery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA/2_202409_Defra_DataProcessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DEFRA Data Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA/3_202409_Defra_DataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DEFRA Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/DEFRA2/1_202412_Defra_Technology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Space Horizon Scanning Network</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../presentations/videos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recorded presentations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-the-eodh" id="toc-what-is-the-eodh" class="nav-link active" data-scroll-target="#what-is-the-eodh">What is the EODH?</a>
+  <ul class="collapse">
+  <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
+  </ul></li>
+  <li><a href="#eodh-its-data-analysis" id="toc-eodh-its-data-analysis" class="nav-link" data-scroll-target="#eodh-its-data-analysis">EODH: it’s data analysis</a>
+  <ul class="collapse">
+  <li><a href="#a-viewing-images-with-specific-band-configurations" id="toc-a-viewing-images-with-specific-band-configurations" class="nav-link" data-scroll-target="#a-viewing-images-with-specific-band-configurations">a) Viewing images with specific band configurations</a></li>
+  <li><a href="#b-towards-a-data-cube" id="toc-b-towards-a-data-cube" class="nav-link" data-scroll-target="#b-towards-a-data-cube">b) Towards a data cube</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Demonstration for DEFRA</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of September 2024. The Notebook “user” would like to understand more about the satellite data available for their test areas. This user is also interested in obtaining a series of smaller images and ultimately creating a data cube. The Notebook series (of 3) is designed in such a way that it can be run on the EODH AppHub (Notebook Service) or from a local environment.</p>
+<p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, Phil Kershaw</p>
+<p><strong>Date created</strong>: 2024-09-05</p>
+<p><strong>Date last modified</strong>: 2024-09-18</p>
+<p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
+<p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
+<p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
+<p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
+<p><strong>Links</strong>: * Oxidian: https://www.oxidian.com/ * CEDA: https://www.ceda.ac.uk/ * EO Data Hub: https://eodatahub.org.uk/</p>
+<section id="what-is-the-eodh" class="level1">
+<h1>What is the EODH?</h1>
+<p>The Earth Observation Data Hub is:</p>
+<p>“A UK Pathfinder project delivering access to Earth Observation (EO) data for effective decisionmaking across government, business and academia. The Earth Observation DataHub (EODH) brings together an expert project delivery team and industrial partners in an ambitious project… Users of the Hub will be able to explore areas of interest in the UK and across the globe… It will also enable selected users to support their own analyses, services and tools using the Hub’s workflow and compute environments.”</p>
+<p>More details can be found online at https://eodatahub.org.uk/</p>
+<p>Components of the Hub include:</p>
+<ul>
+<li>A Resource Catalogue - a STAC compliant catalogue of open and commercial satellite imagery, climate data, model results, workflows and more</li>
+<li>A Workflow Runner - a dedicated piece of cloud infrastructure to horizontally scale workflow requirements</li>
+<li>A Web Presence - an intuitive user interface to allow account management, data discovery and mapping</li>
+<li>An App Hub - a science portal providing access to a Jupyter lab environment</li>
+</ul>
+<section id="presentation-set-up" class="level3">
+<h3 class="anchored" data-anchor-id="presentation-set-up">Presentation set up</h3>
+<p>The following cell only needs to be run on the EODH AppHub. If you have a local Python environment running, please install the required packages as you would normally.</p>
+<div id="a304de62" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If needed you can install a package in the current AppHub Jupyter environment using pip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For instance, we will need at least the following libraries</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh pandas matplotlib numpy pillow folium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="eodh-its-data-analysis" class="level1">
+<h1>EODH: it’s data analysis</h1>
+<p>The EODH AppHub (Notebook Service) can be used with <code>pyeodh</code> and other libraries (installed using pip) to analyse data and outputs. The following workbook provides a couple of examples of how this could be undertaken.</p>
+<div id="064dee3c" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> localtileserver <span class="im">import</span> TileClient, validate_cog, get_leaflet_tile_layer</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipyleaflet <span class="im">import</span> Map, ScaleControl, FullScreenControl</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.distributed</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> HTTPError</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> odc.stac <span class="im">import</span> configure_rio, stac_load <span class="co"># the data cube bit</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#import shapely.geometry</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="a-viewing-images-with-specific-band-configurations" class="level2">
+<h2 class="anchored" data-anchor-id="a-viewing-images-with-specific-band-configurations">a) Viewing images with specific band configurations</h2>
+<p>Once you have the URL to the Cloud Optimised Geotiff from the STAC records held in the resource catalogue it is possible to view different band combinations. The following code uses the URL to the Sentinel 2 ARD image discovered in the Data Discovery notebook and displays an interactive false colour composite.</p>
+<div id="ca9c8aed" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to raster (URL or local path)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> <span class="st">'https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lonw0007_T30UXD_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the dataset is a valid COG. If invalid, returns False</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>validate_cog(data_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="1d02107e" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, create TileClient using example file</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dclient <span class="op">=</span> TileClient(data_url)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 2 tile layers from same raster viewing different bands</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> get_leaflet_tile_layer(dclient, indexes<span class="op">=</span>[<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the ipyleaflet map</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Map(center<span class="op">=</span>dclient.center(), zoom<span class="op">=</span>dclient.default_zoom)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>m.add(l)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>m.add_control(ScaleControl(position<span class="op">=</span><span class="st">'bottomleft'</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>m.add_control(FullScreenControl())</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/30a46b77-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+<div id="25d0b682" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can use the same tool to view rendered data stored locally e.g. in a user's workspace.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span> <span class="op">=</span> TileClient(<span class="st">'data/S2A_clip_rend.tif'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/45075fbf-1-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="b-towards-a-data-cube" class="level2">
+<h2 class="anchored" data-anchor-id="b-towards-a-data-cube">b) Towards a data cube</h2>
+<p>This is very much work in progress, and follows the outline of the tutorial supplied <a href="https://odc-stac.readthedocs.io/en/latest/notebooks/stac-load-e84-aws.html">here</a>. The tutorial at that link is designed to create a data cube in the USA using data held in an Element 84 STAC catalogue. Here we alter the processing to make use of the CEDA STAC catalogue. Ultimately both of these datasets will be held within the EODH resource catalogue and this code will be rewritten to utilise <code>pyeodh</code> and the EODH data holdings.</p>
+<div id="4f6938e0-7978-4ead-abe2-470f9dc2ed18" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A helper method for changing bounding box representation to leaflet notation</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (lon1, lat1, lon2, lat2) -&gt; ((lat1, lon1), (lat2, lon2))</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_bounds(bbox, invert_y<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    x1, y1, x2, y2 <span class="op">=</span> bbox</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> invert_y:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        y1, y2 <span class="op">=</span> y2, y1</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((y1, x1), (y2, x2))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Areas of Interest</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>rut_pnt <span class="op">=</span> shapely.Point(<span class="op">-</span><span class="fl">0.683261054299237</span>, <span class="fl">52.672193937442586</span>) <span class="co"># a site near Rutland</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>thet_pnt <span class="op">=</span> shapely.Point(<span class="fl">0.6715892933273722</span>, <span class="fl">52.414471075812315</span>) <span class="co"># a site near Thetford</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The next thing the user needs to do is find some data in a STAC catalogue that intersects with the site of interest for a given time period. Therefore, we need to know what datasets are available, over what period and for what locations.</p>
+<div id="6c32de54-6db4-4417-ad3b-b4e21aea34b7" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find some data using STAC</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note: here we are using `pystac`. This will be replaced by `pyeodh` in future. </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.stac.ceda.ac.uk/"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client.<span class="bu">open</span>(url)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> coll <span class="kw">in</span> client.get_collections():</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>coll<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>coll<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>sentinel2_ard <span class="op">=</span> client.get_collection(<span class="st">'sentinel2_ard'</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>sentinel2_ard.get_items()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># check the spatial and temporal extent of the collection</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">''</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spatial extent:"</span>, sentinel2_ard.extent.spatial.bboxes)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temporal range:"</span>, [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> sentinel2_ard.extent.temporal.intervals[<span class="dv">0</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cmip6: CMIP6
+cordex: CORDEX
+land_cover: land_cover
+sentinel1: Sentinel 1
+sentinel2_ard: sentinel 2 ARD
+sst-cdrv3-collection: collection of EOCIS SST CDR V3
+ukcp: UKCP
+
+spatial extent: [[-9.00034454651177, 49.48562028352171, 3.1494256015866995, 61.33444247301668]]
+Temporal range: ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></pre>
+</div>
+</div>
+<div id="6126f122-5c38-43f6-98f7-af8f19c39051" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find imagery that intersects with the site in Rutland </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment max_items to limit the seatch to a set number of items</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>rut_pnt,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-04-01'</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-10-01'</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eo:cloud_cover&lt;=75.0'</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      ],</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># max_items=10,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(item_search.items())</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>30</code></pre>
+</div>
+</div>
+<p>Now that we know we have available data we can start to build out a data cube.</p>
+<div id="407a59ad-1f16-4e16-9051-0abeb3cd1b27" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we create a dask client</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>clientd <span class="op">=</span> dask.distributed.Client()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>configure_rio(cloud_defaults<span class="op">=</span><span class="va">True</span>, aws<span class="op">=</span>{<span class="st">"aws_unsigned"</span>: <span class="va">True</span>}, client<span class="op">=</span>client) <span class="co"># sets up gdal for cloud use</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>display(clientd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ea05ae8b-41f1-432a-a765-8e862ccbf92d" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found: </span><span class="sc">{</span><span class="bu">len</span>(items)<span class="sc">:d}</span><span class="ss"> datasets"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert STAC items into a GeoJSON FeatureCollection</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>stac_json <span class="op">=</span> item_search.item_collection_as_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found: 30 datasets</code></pre>
+</div>
+</div>
+<div id="db924018" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame.from_features(stac_json, <span class="st">"epsg:4326"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gdf.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>Index(['geometry', 'file_count', 'start_datetime', 'end_datetime',
+       'NSSDC Identifier', 'created', 'Instrument Family Name',
+       'Platform Number', 'Datatake Type', 'esa_file_name',
+       'Ground Tracking Direction', 'datetime', 'instance_id', 'size',
+       'Product Type', 'Instrument Family Name Abbreviation',
+       'Start Orbit Number', 'eo:cloud_cover', 'Start Relative Orbit Number',
+       'updated', 'Instrument Mode', 'EPSG'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="205e0c9a-3e03-48f4-b03a-b7873411827e" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot an outline of the data items as a sense check</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> folium.Figure(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">52</span>, <span class="dv">2</span>], zoom_start<span class="op">=</span><span class="dv">5</span>).add_to(f)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>gdf.explore(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esa_file_name"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    categorical<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"esa_file_name"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"datetime"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"eo:cloud_cover"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    popup<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    style_kwds<span class="op">=</span><span class="bu">dict</span>(fillOpacity<span class="op">=</span><span class="fl">0.1</span>, width<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"STAC"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    m<span class="op">=</span>m,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_50fba21923df796ce47433e32f07e3c3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_50fba21923df796ce47433e32f07e3c3&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_50fba21923df796ce47433e32f07e3c3 = L.map(
+                &quot;map_50fba21923df796ce47433e32f07e3c3&quot;,
+                {
+                    center: [52.0, 2.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_6832545659ea72128a5ddc22440337e2 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_6832545659ea72128a5ddc22440337e2.addTo(map_50fba21923df796ce47433e32f07e3c3);
+        
+    
+        function geo_json_d649c6029949073a1075ae67b7f6a99e_styler(feature) {
+            switch(feature.id) {
+                case &quot;0&quot;: case &quot;2&quot;: 
+                    return {&quot;color&quot;: &quot;#9edae5&quot;, &quot;fillColor&quot;: &quot;#9edae5&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;1&quot;: case &quot;7&quot;: 
+                    return {&quot;color&quot;: &quot;#9467bd&quot;, &quot;fillColor&quot;: &quot;#9467bd&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;3&quot;: 
+                    return {&quot;color&quot;: &quot;#17becf&quot;, &quot;fillColor&quot;: &quot;#17becf&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;4&quot;: case &quot;5&quot;: 
+                    return {&quot;color&quot;: &quot;#dbdb8d&quot;, &quot;fillColor&quot;: &quot;#dbdb8d&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;6&quot;: 
+                    return {&quot;color&quot;: &quot;#bcbd22&quot;, &quot;fillColor&quot;: &quot;#bcbd22&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;8&quot;: case &quot;10&quot;: 
+                    return {&quot;color&quot;: &quot;#c7c7c7&quot;, &quot;fillColor&quot;: &quot;#c7c7c7&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;11&quot;: case &quot;13&quot;: 
+                    return {&quot;color&quot;: &quot;#d62728&quot;, &quot;fillColor&quot;: &quot;#d62728&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;12&quot;: 
+                    return {&quot;color&quot;: &quot;#7f7f7f&quot;, &quot;fillColor&quot;: &quot;#7f7f7f&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;14&quot;: case &quot;15&quot;: 
+                    return {&quot;color&quot;: &quot;#f7b6d2&quot;, &quot;fillColor&quot;: &quot;#f7b6d2&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;16&quot;: 
+                    return {&quot;color&quot;: &quot;#98df8a&quot;, &quot;fillColor&quot;: &quot;#98df8a&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;17&quot;: case &quot;19&quot;: 
+                    return {&quot;color&quot;: &quot;#2ca02c&quot;, &quot;fillColor&quot;: &quot;#2ca02c&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;18&quot;: 
+                    return {&quot;color&quot;: &quot;#e377c2&quot;, &quot;fillColor&quot;: &quot;#e377c2&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;20&quot;: case &quot;23&quot;: 
+                    return {&quot;color&quot;: &quot;#c49c94&quot;, &quot;fillColor&quot;: &quot;#c49c94&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;21&quot;: 
+                    return {&quot;color&quot;: &quot;#ffbb78&quot;, &quot;fillColor&quot;: &quot;#ffbb78&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;22&quot;: case &quot;24&quot;: 
+                    return {&quot;color&quot;: &quot;#ff7f0e&quot;, &quot;fillColor&quot;: &quot;#ff7f0e&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;25&quot;: 
+                    return {&quot;color&quot;: &quot;#aec7e8&quot;, &quot;fillColor&quot;: &quot;#aec7e8&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;26&quot;: 
+                    return {&quot;color&quot;: &quot;#8c564b&quot;, &quot;fillColor&quot;: &quot;#8c564b&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;27&quot;: 
+                    return {&quot;color&quot;: &quot;#c5b0d5&quot;, &quot;fillColor&quot;: &quot;#c5b0d5&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                case &quot;28&quot;: case &quot;29&quot;: 
+                    return {&quot;color&quot;: &quot;#1f77b4&quot;, &quot;fillColor&quot;: &quot;#1f77b4&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+                default:
+                    return {&quot;color&quot;: &quot;#ff9896&quot;, &quot;fillColor&quot;: &quot;#ff9896&quot;, &quot;fillOpacity&quot;: 0.1, &quot;weight&quot;: 2, &quot;width&quot;: 2};
+            }
+        }
+        function geo_json_d649c6029949073a1075ae67b7f6a99e_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;fillOpacity&quot;: 0.75};
+            }
+        }
+        function geo_json_d649c6029949073a1075ae67b7f6a99e_pointToLayer(feature, latlng) {
+            var opts = {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#3388ff&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#3388ff&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 2, &quot;stroke&quot;: true, &quot;weight&quot;: 3};
+            
+            let style = geo_json_d649c6029949073a1075ae67b7f6a99e_styler(feature)
+            Object.assign(opts, style)
+            
+            return new L.CircleMarker(latlng, opts)
+        }
+
+        function geo_json_d649c6029949073a1075ae67b7f6a99e_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                            geo_json_d649c6029949073a1075ae67b7f6a99e.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                        const highlightStyle = geo_json_d649c6029949073a1075ae67b7f6a99e_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_d649c6029949073a1075ae67b7f6a99e = L.geoJson(null, {
+                onEachFeature: geo_json_d649c6029949073a1075ae67b7f6a99e_onEachFeature,
+            
+                style: geo_json_d649c6029949073a1075ae67b7f6a99e_styler,
+                pointToLayer: geo_json_d649c6029949073a1075ae67b7f6a99e_pointToLayer,
+        });
+
+        function geo_json_d649c6029949073a1075ae67b7f6a99e_add (data) {
+            geo_json_d649c6029949073a1075ae67b7f6a99e
+                .addData(data);
+        }
+            geo_json_d649c6029949073a1075ae67b7f6a99e_add({&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;features&quot;: [{&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;034197&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#9edae5&quot;, &quot;created&quot;: &quot;2024-02-07T12:51:58.138273Z&quot;, &quot;datetime&quot;: &quot;2023-09-23T11:06:59Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-23T11:06:59Z&quot;, &quot;eo:cloud_cover&quot;: &quot;35.8810057033653&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230923T110659_N0509_R137_T30UXD_20230923T120139&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.23.S2B_20230923_latn527lonw0007_T30UXD_ORB137_20230923120139_utm30n_osgb&quot;, &quot;size&quot;: 2207043372, &quot;start_datetime&quot;: &quot;2023-09-23T11:06:59Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:51:58.138273Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.2386583768039, -0.23171997, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.23171997, 53.215475801782375], [-0.2697754, 53.14671681631274], [-0.34921265, 53.0032404834548], [-0.42837524, 52.8597112984923], [-0.5071106, 52.71606557821317], [-0.5855408, 52.57238645569407], [-0.6633301, 52.42864414683362], [-0.7406006, 52.28486150172202], [-0.7653198, 52.2386583768039], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.23171997, 53.215475801782375]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;043077&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#9467bd&quot;, &quot;created&quot;: &quot;2024-02-07T12:51:06.467758Z&quot;, &quot;datetime&quot;: &quot;2023-09-21T11:21:11Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-21T11:21:11Z&quot;, &quot;eo:cloud_cover&quot;: &quot;24.3432040204684&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230921T112111_N0509_R037_T30UXD_20230921T164156&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.21.S2A_20230921_latn527lonw0007_T30UXD_ORB037_20230921164156_utm30n_osgb&quot;, &quot;size&quot;: 1384726027, &quot;start_datetime&quot;: &quot;2023-09-21T11:21:11Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:51:06.467758Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23842728729065, -0.22055054, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22055054, 53.21525837076981], [-0.24417114, 53.17260696448729], [-0.2736206, 53.119578253244896], [-0.3529358, 52.976107752663694], [-0.43185425, 52.8325995128791], [-0.51016235, 52.68902501521601], [-0.5880127, 52.54542117354501], [-0.66555786, 52.40169122698013], [-0.72024536, 52.29984944239305], [-0.74334717, 52.25696277895389], [-0.7532959, 52.23842728729065], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22055054, 53.21525837076981]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;034097&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#9edae5&quot;, &quot;created&quot;: &quot;2024-02-07T12:49:59.185515Z&quot;, &quot;datetime&quot;: &quot;2023-09-16T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-16T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;43.5504837917694&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230916T112119_N0509_R037_T30UXD_20230916T132729&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.16.S2B_20230916_latn527lonw0007_T30UXD_ORB037_20230916132729_utm30n_osgb&quot;, &quot;size&quot;: 1394893954, &quot;start_datetime&quot;: &quot;2023-09-16T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:49:59.185515Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;ascending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;034054&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#17becf&quot;, &quot;created&quot;: &quot;2024-02-07T12:49:21.525242Z&quot;, &quot;datetime&quot;: &quot;2023-09-13T11:06:39Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-13T11:06:39Z&quot;, &quot;eo:cloud_cover&quot;: &quot;67.9070739645854&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230913T110639_N0509_R137_T30UXD_20230913T140552&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.13.S2B_20230913_latn527lonw0007_T30UXD_ORB137_20230913140552_utm30n_osgb&quot;, &quot;size&quot;: 2202496498, &quot;start_datetime&quot;: &quot;2023-09-13T11:06:39Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:49:21.525242Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23870138089839, -0.23364258, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.23364258, 53.21551331359288], [-0.29003906, 53.11392651687122], [-0.36932373, 52.97042618704292], [-0.4484558, 52.826834909331794], [-0.52716064, 52.68313997599167], [-0.6055908, 52.539431005465], [-0.6833801, 52.395672916316165], [-0.76052856, 52.25184998878624], [-0.7675476, 52.23870138089839], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.23364258, 53.21551331359288]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033954&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#dbdb8d&quot;, &quot;created&quot;: &quot;2024-02-07T12:46:38.022151Z&quot;, &quot;datetime&quot;: &quot;2023-09-06T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-06T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;10.1921161153368&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230906T112119_N0509_R037_T30UXD_20230906T132157&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.06.S2B_20230906_latn527lonw0007_T30UXD_ORB037_20230906132157_utm30n_osgb&quot;, &quot;size&quot;: 1246393415, &quot;start_datetime&quot;: &quot;2023-09-06T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:46:38.022151Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033911&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#dbdb8d&quot;, &quot;created&quot;: &quot;2024-02-07T12:45:13.390575Z&quot;, &quot;datetime&quot;: &quot;2023-09-03T11:06:29Z&quot;, &quot;end_datetime&quot;: &quot;2023-09-03T11:06:29Z&quot;, &quot;eo:cloud_cover&quot;: &quot;62.458001134701&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230903T110629_N0509_R137_T30UXD_20230903T120345&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.09.03.S2B_20230903_latn527lonw0007_T30UXD_ORB137_20230903120345_utm30n_osgb&quot;, &quot;size&quot;: 2082527890, &quot;start_datetime&quot;: &quot;2023-09-03T11:06:29Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:45:13.390575Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;ascending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033768&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#bcbd22&quot;, &quot;created&quot;: &quot;2024-02-07T12:42:16.371409Z&quot;, &quot;datetime&quot;: &quot;2023-08-24T11:06:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-08-24T11:06:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;67.4160470602287&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230824T110619_N0509_R137_T30UXD_20230824T145311&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.08.24.S2B_20230824_latn527lonw0007_T30UXD_ORB137_20230824145311_utm30n_osgb&quot;, &quot;size&quot;: 2233574094, &quot;start_datetime&quot;: &quot;2023-08-24T11:06:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:42:16.371409Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.238649790214886, -0.23257446, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.23257446, 53.21549248198109], [-0.2846985, 53.12172151413184], [-0.36380005, 52.97826979350855], [-0.44262695, 52.83481832592955], [-0.5208435, 52.69132719944826], [-0.59884644, 52.547738105834206], [-0.6764221, 52.404068175205474], [-0.7532959, 52.26028852491067], [-0.76486206, 52.238649790214886], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.23257446, 53.21549248198109]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;042648&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#9467bd&quot;, &quot;created&quot;: &quot;2024-02-07T12:41:35.898382Z&quot;, &quot;datetime&quot;: &quot;2023-08-22T11:21:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-08-22T11:21:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;27.9761263370291&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230822T112121_N0509_R037_T30UXD_20230822T132156&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.08.22.S2A_20230822_latn527lonw0007_T30UXD_ORB037_20230822132156_utm30n_osgb&quot;, &quot;size&quot;: 1417501474, &quot;start_datetime&quot;: &quot;2023-08-22T11:21:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:41:35.898382Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23860288295491, -0.22494507, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22494507, 53.2153437906569], [-0.26934814, 53.13536620005207], [-0.34890747, 52.991779639531295], [-0.42855835, 52.84815388453589], [-0.50823975, 52.70438901965681], [-0.5876465, 52.56064451534028], [-0.66625977, 52.41696945132957], [-0.74386597, 52.27333618811343], [-0.76242065, 52.23860288295491], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22494507, 53.2153437906569]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033668&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#c7c7c7&quot;, &quot;created&quot;: &quot;2024-02-07T12:40:20.619759Z&quot;, &quot;datetime&quot;: &quot;2023-08-17T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-08-17T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;17.6565789655318&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230817T112119_N0509_R037_T30UXD_20230817T120345&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.08.17.S2B_20230817_latn527lonw0007_T30UXD_ORB037_20230817120345_utm30n_osgb&quot;, &quot;size&quot;: 1426196493, &quot;start_datetime&quot;: &quot;2023-08-17T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:40:20.619759Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;042462&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#ff9896&quot;, &quot;created&quot;: &quot;2024-02-07T12:37:31.223399Z&quot;, &quot;datetime&quot;: &quot;2023-08-09T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-08-09T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;22.043596404789596&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230809T110621_N0509_R137_T30UXD_20230809T144907&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.08.09.S2A_20230809_latn527lonw0007_T30UXD_ORB137_20230809144907_utm30n_osgb&quot;, &quot;size&quot;: 2183585188, &quot;start_datetime&quot;: &quot;2023-08-09T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:37:31.223399Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23854398710976, -0.22271729, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22271729, 53.215300715278396], [-0.27374268, 53.12329921782037], [-0.35299683, 52.97984503839261], [-0.43240356, 52.83631576044829], [-0.5119629, 52.692648084240375], [-0.591156, 52.54896208778987], [-0.6695862, 52.40524849727372], [-0.7470703, 52.26151667120016], [-0.7593689, 52.23854398710976], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22271729, 53.215300715278396]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033525&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#c7c7c7&quot;, &quot;created&quot;: &quot;2024-02-07T12:36:29.102710Z&quot;, &quot;datetime&quot;: &quot;2023-08-07T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-08-07T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;72.284760477848&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230807T112119_N0509_R037_T30UXD_20230807T120250&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.08.07.S2B_20230807_latn527lonw0007_T30UXD_ORB037_20230807120250_utm30n_osgb&quot;, &quot;size&quot;: 1397939870, &quot;start_datetime&quot;: &quot;2023-08-07T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:36:29.102710Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;11&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;042319&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#d62728&quot;, &quot;created&quot;: &quot;2024-02-07T12:34:40.330493Z&quot;, &quot;datetime&quot;: &quot;2023-07-30T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-07-30T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;68.0334139568216&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230730T110621_N0509_R137_T30UXD_20230730T145251&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.07.30.S2A_20230730_latn527lonw0007_T30UXD_ORB137_20230730145251_utm30n_osgb&quot;, &quot;size&quot;: 2199410708, &quot;start_datetime&quot;: &quot;2023-07-30T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:34:40.330493Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;12&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;033196&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#7f7f7f&quot;, &quot;created&quot;: &quot;2024-02-07T12:30:03.481951Z&quot;, &quot;datetime&quot;: &quot;2023-07-15T11:06:29Z&quot;, &quot;end_datetime&quot;: &quot;2023-07-15T11:06:29Z&quot;, &quot;eo:cloud_cover&quot;: &quot;57.88336468691211&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230715T110629_N0509_R137_T30UXD_20230715T115036&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.07.15.S2B_20230715_latn527lonw0007_T30UXD_ORB137_20230715115036_utm30n_osgb&quot;, &quot;size&quot;: 2065298705, &quot;start_datetime&quot;: &quot;2023-07-15T11:06:29Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:30:03.481951Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.238488433294506, -0.22341919, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22341919, 53.2153140667322], [-0.236969, 53.191029251503615], [-0.31689453, 53.047420237719294], [-0.39639282, 52.90381692807054], [-0.47512817, 52.76020846818403], [-0.55319214, 52.616562681623], [-0.6308899, 52.47298361333939], [-0.7079468, 52.329387676751416], [-0.7564697, 52.238488433294506], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22341919, 53.2153140667322]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;13&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;042076&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#d62728&quot;, &quot;created&quot;: &quot;2024-02-07T12:29:17.855613Z&quot;, &quot;datetime&quot;: &quot;2023-07-13T11:21:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-07-13T11:21:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;66.543069644975&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230713T112121_N0509_R037_T30UXD_20230713T164009&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.07.13.S2A_20230713_latn527lonw0007_T30UXD_ORB037_20230713164009_utm30n_osgb&quot;, &quot;size&quot;: 1382203712, &quot;start_datetime&quot;: &quot;2023-07-13T11:21:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:29:17.855613Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;14&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032910&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#f7b6d2&quot;, &quot;created&quot;: &quot;2024-02-07T12:24:41.963612Z&quot;, &quot;datetime&quot;: &quot;2023-06-25T11:06:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-25T11:06:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;41.0123622682075&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230625T110619_N0509_R137_T30UXD_20230625T114918&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.25.S2B_20230625_latn527lonw0007_T30UXD_ORB137_20230625114918_utm30n_osgb&quot;, &quot;size&quot;: 2157977533, &quot;start_datetime&quot;: &quot;2023-06-25T11:06:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:24:41.963612Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;15&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;ascending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032767&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#f7b6d2&quot;, &quot;created&quot;: &quot;2024-02-07T12:20:38.211759Z&quot;, &quot;datetime&quot;: &quot;2023-06-15T11:06:29Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-15T11:06:29Z&quot;, &quot;eo:cloud_cover&quot;: &quot;15.4445340260981&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230615T110629_N0509_R137_T30UXD_20230615T131239&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.15.S2B_20230615_latn527lonw0007_T30UXD_ORB137_20230615131239_utm30n_osgb&quot;, &quot;size&quot;: 2112033200, &quot;start_datetime&quot;: &quot;2023-06-15T11:06:29Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:20:38.211759Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.238565471084605, -0.22640991, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22640991, 53.215372579198636], [-0.27841187, 53.12158777852292], [-0.3578186, 52.978106219157695], [-0.43704224, 52.83456097478511], [-0.5157776, 52.690875565382335], [-0.5941162, 52.54708723414219], [-0.67211914, 52.40322381113862], [-0.74938965, 52.25933146748456], [-0.76049805, 52.238565471084605], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22640991, 53.215372579198636]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;16&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041647&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#98df8a&quot;, &quot;created&quot;: &quot;2024-02-07T12:18:43.507862Z&quot;, &quot;datetime&quot;: &quot;2023-06-13T11:21:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-13T11:21:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;0.073321015149848&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230613T112121_N0509_R037_T30UXD_20230613T145930&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.13.S2A_20230613_latn527lonw0007_T30UXD_ORB037_20230613145930_utm30n_osgb&quot;, &quot;size&quot;: 1305876433, &quot;start_datetime&quot;: &quot;2023-06-13T11:21:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:18:43.507862Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;17&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;ascending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041604&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#2ca02c&quot;, &quot;created&quot;: &quot;2024-02-07T12:17:26.020013Z&quot;, &quot;datetime&quot;: &quot;2023-06-10T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-10T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;0.0&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230610T110621_N0509_R137_T30UXD_20230610T144925&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.10.S2A_20230610_latn527lonw0007_T30UXD_ORB137_20230610144925_utm30n_osgb&quot;, &quot;size&quot;: 2065973601, &quot;start_datetime&quot;: &quot;2023-06-10T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:17:26.020013Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.2386137797544, -0.22607422, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22607422, 53.215365690766944], [-0.28735352, 53.1054177707752], [-0.36688232, 52.96184564250704], [-0.44647217, 52.818183389808986], [-0.5260925, 52.67443482002286], [-0.6051941, 52.53074152112788], [-0.6833496, 52.38710705276553], [-0.7604065, 52.24346264595168], [-0.7630005, 52.2386137797544], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22607422, 53.215365690766944]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;18&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032667&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#e377c2&quot;, &quot;created&quot;: &quot;2024-02-07T12:16:22.865309Z&quot;, &quot;datetime&quot;: &quot;2023-06-08T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-08T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;1.64126913630606&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230608T112119_N0509_R037_T30UXD_20230608T120350&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.08.S2B_20230608_latn527lonw0007_T30UXD_ORB037_20230608120350_utm30n_osgb&quot;, &quot;size&quot;: 1367551527, &quot;start_datetime&quot;: &quot;2023-06-08T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:16:22.865309Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23859228099039, -0.22860718, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22860718, 53.215415186314125], [-0.29083252, 53.10389923505545], [-0.37057495, 52.96028590958318], [-0.44985962, 52.81667909049848], [-0.52819824, 52.67303945417628], [-0.6060791, 52.529408364320304], [-0.6833801, 52.3857984040203], [-0.75997925, 52.24216448528336], [-0.76187134, 52.23859228099039], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22860718, 53.215415186314125]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;19&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041504&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#2ca02c&quot;, &quot;created&quot;: &quot;2024-02-07T12:14:03.283979Z&quot;, &quot;datetime&quot;: &quot;2023-06-03T11:21:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-06-03T11:21:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;0.395267440213066&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230603T112121_N0509_R037_T30UXD_20230603T150055&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.06.03.S2A_20230603_latn527lonw0007_T30UXD_ORB037_20230603150055_utm30n_osgb&quot;, &quot;size&quot;: 1333529635, &quot;start_datetime&quot;: &quot;2023-06-03T11:21:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:14:03.283979Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;20&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032481&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#c49c94&quot;, &quot;created&quot;: &quot;2024-02-07T12:10:27.162382Z&quot;, &quot;datetime&quot;: &quot;2023-05-26T11:06:29Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-26T11:06:29Z&quot;, &quot;eo:cloud_cover&quot;: &quot;20.8793633730479&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230526T110629_N0509_R137_T30UXD_20230526T114909&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.26.S2B_20230526_latn527lonw0007_T30UXD_ORB137_20230526114909_utm30n_osgb&quot;, &quot;size&quot;: 2267212506, &quot;start_datetime&quot;: &quot;2023-05-26T11:06:29Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:10:27.162382Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.238615088900616, -0.23031616, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.23031616, 53.21544840280084], [-0.27825928, 53.12959050311156], [-0.35794067, 52.98601228529744], [-0.4371338, 52.842442799689415], [-0.5153198, 52.69882376905988], [-0.5932312, 52.555330756273065], [-0.6704712, 52.4118547522061], [-0.74728394, 52.26824127903424], [-0.7630615, 52.238615088900616], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.23031616, 53.21544840280084]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;21&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041361&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#ffbb78&quot;, &quot;created&quot;: &quot;2024-02-07T12:09:16.147223Z&quot;, &quot;datetime&quot;: &quot;2023-05-24T11:21:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-24T11:21:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;1.20585738883391&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230524T112121_N0509_R037_T30UXD_20230524T150122&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.24.S2A_20230524_latn527lonw0007_T30UXD_ORB037_20230524150122_utm30n_osgb&quot;, &quot;size&quot;: 1288481756, &quot;start_datetime&quot;: &quot;2023-05-24T11:21:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:09:16.147223Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;22&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041318&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#ff7f0e&quot;, &quot;created&quot;: &quot;2024-02-07T12:08:17.355470Z&quot;, &quot;datetime&quot;: &quot;2023-05-21T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-21T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;10.6352533667772&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230521T110621_N0509_R137_T30UXD_20230521T144904&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.21.S2A_20230521_latn527lonw0007_T30UXD_ORB137_20230521144904_utm30n_osgb&quot;, &quot;size&quot;: 2172641385, &quot;start_datetime&quot;: &quot;2023-05-21T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:08:17.355470Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;23&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032338&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#c49c94&quot;, &quot;created&quot;: &quot;2024-02-07T12:07:09.649370Z&quot;, &quot;datetime&quot;: &quot;2023-05-16T11:06:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-16T11:06:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;46.3390068380662&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230516T110619_N0509_R137_T30UXD_20230516T114937&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.16.S2B_20230516_latn527lonw0007_T30UXD_ORB137_20230516114937_utm30n_osgb&quot;, &quot;size&quot;: 2240777390, &quot;start_datetime&quot;: &quot;2023-05-16T11:06:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:07:09.649370Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;24&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041175&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#ff7f0e&quot;, &quot;created&quot;: &quot;2024-02-07T12:05:19.214582Z&quot;, &quot;datetime&quot;: &quot;2023-05-11T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-11T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;67.0048075487474&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230511T110621_N0509_R137_T30UXD_20230511T144909&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.11.S2A_20230511_latn527lonw0007_T30UXD_ORB137_20230511144909_utm30n_osgb&quot;, &quot;size&quot;: 2174170449, &quot;start_datetime&quot;: &quot;2023-05-11T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:05:19.214582Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.535019632835204, 52.2384851428937, -0.222700804800827, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.222700804800827, 53.21530022155779], [-0.270479153687546, 53.1288677717338], [-0.34964923964744, 52.98550423101193], [-0.42902877746628, 52.84206663121733], [-0.50772686292011, 52.69846530083885], [-0.586067923192131, 52.554799399721816], [-0.663757324083039, 52.41104251530884], [-0.7409236979146, 52.26721486947218], [-0.756309952265207, 52.2384851428937], [-1.535019632835204, 52.25345680664421], [-1.501539571659072, 53.24020834947074], [-0.222700804800827, 53.21530022155779]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;25&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;041075&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#aec7e8&quot;, &quot;created&quot;: &quot;2024-02-07T12:03:24.637966Z&quot;, &quot;datetime&quot;: &quot;2023-05-04T11:21:11Z&quot;, &quot;end_datetime&quot;: &quot;2023-05-04T11:21:11Z&quot;, &quot;eo:cloud_cover&quot;: &quot;66.0770904349182&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230504T112111_N0509_R037_T30UXD_20230504T132057&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.05.04.S2A_20230504_latn527lonw0007_T30UXD_ORB037_20230504132057_utm30n_osgb&quot;, &quot;size&quot;: 1221580680, &quot;start_datetime&quot;: &quot;2023-05-04T11:21:11Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:03:24.637966Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23846442056655, -0.22286987, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22286987, 53.21530367984559], [-0.28393555, 53.105579640676574], [-0.3632202, 52.96209467245163], [-0.44213867, 52.81858103224132], [-0.5202942, 52.67500087199056], [-0.59799194, 52.53140883280248], [-0.67523193, 52.387779670529], [-0.711853, 52.31942442736398], [-0.7527771, 52.243039565937686], [-0.7552185, 52.23846442056655], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22286987, 53.21530367984559]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;26&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;032095&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#8c564b&quot;, &quot;created&quot;: &quot;2024-02-07T12:02:03.548674Z&quot;, &quot;datetime&quot;: &quot;2023-04-29T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-04-29T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;61.0407272003073&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230429T112119_N0509_R037_T30UXD_20230429T121151&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.04.29.S2B_20230429_latn527lonw0007_T30UXD_ORB037_20230429121151_utm30n_osgb&quot;, &quot;size&quot;: 1405121243, &quot;start_datetime&quot;: &quot;2023-04-29T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T12:02:03.548674Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.23864575795528, -0.22869873, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.22869873, 53.215417180259074], [-0.2904358, 53.10419289975448], [-0.36523438, 52.968667098736375], [-0.37020874, 52.95967714323306], [-0.39413452, 52.91628729349942], [-0.44885254, 52.817131604182485], [-0.5280762, 52.673515382109485], [-0.6069336, 52.52989482406046], [-0.68515015, 52.38620624978339], [-0.76260376, 52.2424623213898], [-0.76467896, 52.23864575795528], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074], [-0.22869873, 53.215417180259074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;27&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2B&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;031952&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#c5b0d5&quot;, &quot;created&quot;: &quot;2024-02-07T11:58:04.354975Z&quot;, &quot;datetime&quot;: &quot;2023-04-19T11:21:19Z&quot;, &quot;end_datetime&quot;: &quot;2023-04-19T11:21:19Z&quot;, &quot;eo:cloud_cover&quot;: &quot;69.4281300218371&quot;, &quot;esa_file_name&quot;: &quot;S2B_MSIL1C_20230419T112119_N0509_R037_T30UXD_20230419T122528&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.04.19.S2B_20230419_latn527lonw0007_T30UXD_ORB037_20230419122528_utm30n_osgb&quot;, &quot;size&quot;: 1296114489, &quot;start_datetime&quot;: &quot;2023-04-19T11:21:19Z&quot;, &quot;updated&quot;: &quot;2024-02-07T11:58:04.354975Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.5350342, 52.22256603361336, 0.141769904481162, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-1.5015259, 53.24020834947074], [0.141769904481162, 53.20820137275637], [0.071678487044592, 52.22256603361336], [-1.5350342, 52.25345680664421], [-1.5015259, 53.24020834947074]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;28&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;040746&quot;, &quot;Start Relative Orbit Number&quot;: &quot;137&quot;, &quot;__folium_color&quot;: &quot;#1f77b4&quot;, &quot;created&quot;: &quot;2024-02-07T11:54:41.797066Z&quot;, &quot;datetime&quot;: &quot;2023-04-11T11:06:21Z&quot;, &quot;end_datetime&quot;: &quot;2023-04-11T11:06:21Z&quot;, &quot;eo:cloud_cover&quot;: &quot;57.3496670548538&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230411T110621_N0509_R137_T30UXD_20230411T145107&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.04.11.S2A_20230411_latn527lonw0007_T30UXD_ORB137_20230411145107_utm30n_osgb&quot;, &quot;size&quot;: 2147075138, &quot;start_datetime&quot;: &quot;2023-04-11T11:06:21Z&quot;, &quot;updated&quot;: &quot;2024-02-07T11:54:41.797066Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-1.535019632835204, 52.238601283301136, -0.228254972430547, 53.24020834947074], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-0.228254972430547, 53.21540840088528], [-0.300813674040662, 53.08520259342039], [-0.380466772462946, 52.94159668960368], [-0.460001974059083, 52.79797315704906], [-0.538682828666216, 52.65424033396206], [-0.616540329458227, 52.51049736007551], [-0.693915352154901, 52.36673537261424], [-0.762350674330537, 52.238601283301136], [-1.535019632835204, 52.25345680664421], [-1.501539571659072, 53.24020834947074], [-0.228254972430547, 53.21540840088528]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;29&quot;, &quot;properties&quot;: {&quot;Datatake Type&quot;: &quot;INS-NOBS&quot;, &quot;EPSG&quot;: &quot;27700&quot;, &quot;Ground Tracking Direction&quot;: &quot;descending&quot;, &quot;Instrument Family Name&quot;: &quot;Multi-Spectral Instrument&quot;, &quot;Instrument Family Name Abbreviation&quot;: &quot;MSI&quot;, &quot;Instrument Mode&quot;: null, &quot;NSSDC Identifier&quot;: &quot;2015-000A&quot;, &quot;Platform Number&quot;: &quot;2A&quot;, &quot;Product Type&quot;: &quot;S2MSI1C&quot;, &quot;Start Orbit Number&quot;: &quot;040646&quot;, &quot;Start Relative Orbit Number&quot;: &quot;037&quot;, &quot;__folium_color&quot;: &quot;#1f77b4&quot;, &quot;created&quot;: &quot;2024-02-07T11:52:26.266258Z&quot;, &quot;datetime&quot;: &quot;2023-04-04T11:21:11Z&quot;, &quot;end_datetime&quot;: &quot;2023-04-04T11:21:11Z&quot;, &quot;eo:cloud_cover&quot;: &quot;0.0511054464619343&quot;, &quot;esa_file_name&quot;: &quot;S2A_MSIL1C_20230404T112111_N0509_R037_T30UXD_20230404T150112&quot;, &quot;file_count&quot;: 8, &quot;instance_id&quot;: &quot;neodc.sentinel_ard.data.sentinel_2.2023.04.04.S2A_20230404_latn527lonw0007_T30UXD_ORB037_20230404150112_utm30n_osgb&quot;, &quot;size&quot;: 1268102737, &quot;start_datetime&quot;: &quot;2023-04-04T11:21:11Z&quot;, &quot;updated&quot;: &quot;2024-02-07T11:52:26.266258Z&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+
+        
+    
+    geo_json_d649c6029949073a1075ae67b7f6a99e.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
+    let fields = [&quot;esa_file_name&quot;, &quot;datetime&quot;, &quot;eo:cloud_cover&quot;];
+    let aliases = [&quot;esa_file_name&quot;, &quot;datetime&quot;, &quot;eo:cloud_cover&quot;];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{&quot;className&quot;: &quot;foliumtooltip&quot;, &quot;sticky&quot;: true});
+                     
+    
+            geo_json_d649c6029949073a1075ae67b7f6a99e.addTo(map_50fba21923df796ce47433e32f07e3c3);
+        
+</script>
+</html>" width="600" height="300" style="border:none !important;" "allowfullscreen"="" "webkitallowfullscreen"="" "mozallowfullscreen"=""></iframe>
+</div>
+</div>
+<div id="62d75baf-45ad-4a24-a7ed-329917e13041" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the dask dataset</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Since we will plot it on a map we need to use `EPSG:3857` projection</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>crs <span class="op">=</span> <span class="st">"epsg:3857"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>zoom <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">5</span>  <span class="co"># overview level 5</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> stac_load(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    items,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span>crs,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    resolution<span class="op">=</span><span class="dv">10</span> <span class="op">*</span> zoom,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    chunks<span class="op">=</span>{<span class="st">"x"</span>: <span class="dv">2048</span>, <span class="st">"y"</span>: <span class="dv">2048</span>},  <span class="co"># &lt;-- use Dask</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span><span class="st">"solar_day"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bands: </span><span class="sc">{</span><span class="st">','</span><span class="sc">.</span>join(<span class="bu">list</span>(xx.data_vars))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#display(xx)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bands: cloud,cloud_probability,thumbnail,topographic_shadow,cog,valid_pixels,saturated_pixels</code></pre>
+</div>
+</div>
+<p>We are currently looking into workarounds for a known conflict of using the <code>eo</code> STAC extension. Once a suitable way forward is identiified a full description of how to create and manipulate the CEDA Sentinel 2 ARD in a data cube (generated from STAC records) will be posted in the training materials repository.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/EO-DataHub\.github\.io\/eodh-training\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
