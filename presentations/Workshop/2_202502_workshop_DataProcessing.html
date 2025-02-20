@@ -379,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link active" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
   <li><a href="#eodh-and-eoap" id="toc-eodh-and-eoap" class="nav-link" data-scroll-target="#eodh-and-eoap">EODH and EOAP</a></li>
-  <li><a href="#todo---add-information-about-the-workflow" id="toc-todo---add-information-about-the-workflow" class="nav-link" data-scroll-target="#todo---add-information-about-the-workflow">TODO - add information about the workflow</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do">TO DO</a></li>
   <li><a href="#other-interactions-with-workflows" id="toc-other-interactions-with-workflows" class="nav-link" data-scroll-target="#other-interactions-with-workflows">Other interactions with workflows</a></li>
   </ul>
 </nav>
@@ -427,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="eodh-and-eoap" class="level1">
 <h1>EODH and EOAP</h1>
 <p>The EODH compute architecture is built around a collection of OGC standards which when brought together are known as EO Application Packages (EOAP). These are complex constructions of code and data, and at their core is the concept of a Common Workflow Language (CWL) workflow. To run CWL workflows you need a CWL runner, and the EODH Workflow Runner provides that. The EOAPs require a workflow description in CWL, a Docker container, bespoke scripts and links to the data. In the case of EODH, the data inputs and outputs are to be provided as STAC catalogues. Oxidian, as part of our work developing integrations for the Hub, have created a generator tool <code>eoap-gen</code> that abstracts away much of the complexity (check out the <a href="https://eo-datahub.github.io/eodh-training/">training materials repository and website</a> for more details).</p>
-<p>Oxidian have also developed a QGIS plugin to allow desktop users to discover, parameterise and execute workflows on the Hub.</p>
-<div id="2bce7afc" class="cell" data-execution_count="13">
+<p>Oxidian have also developed a QGIS plugin to allow desktop users to discover, parameterise and execute workflows on the Hub. We will look at that more at the bottom of this document.</p>
+<div id="2bce7afc" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -438,16 +438,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First the user needs to connect to the Workflow Runner. You will need your user account name (likely your GitHub user name at the time of the workshop) and API key (as obtained earlier in the exercises).</p>
 <p>Here, those details have been saved in secrets.txt which contains the two lines below where USERNAME and API_KEY are specific to the user: * USER=“USERNAME” * PSWD=“API_KEY”</p>
 <p>You can <strong>either</strong> create a secrets.txt file in the same folder as this Notebook and run the next code cell, <strong>OR</strong> you can manually copy and paste your details details into the next-but-one code cell and run that. Make sure you save your Notebook after making any edits. Do not share your credentials.</p>
-<div id="4af41382" class="cell" data-execution_count="18">
+<div id="4af41382" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure secrets.txt exists in the same folder as this Notebook, and is correctly formatted</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'secrets.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    username <span class="op">=</span> lines[<span class="dv">0</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> lines[<span class="dv">1</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>clientwfr <span class="op">=</span> pyeodh.Client(base_url<span class="op">=</span><span class="st">"https://staging.eodatahub.org.uk"</span>, username<span class="op">=</span>username, token<span class="op">=</span>token)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>wfr <span class="op">=</span> clientwfr.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have the correct permissions you can join different platforms by changing base_url </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'secrets.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">file</span>.readlines()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    username <span class="op">=</span> lines[<span class="dv">0</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> lines[<span class="dv">1</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>clientwfr <span class="op">=</span> pyeodh.Client(base_url<span class="op">=</span><span class="st">"https://staging.eodatahub.org.uk"</span>, username<span class="op">=</span>username, token<span class="op">=</span>token)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>wfr <span class="op">=</span> clientwfr.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f0ba2849" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IGNORE if you ran the previous cell successfully</span></span>
@@ -457,11 +458,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>clientwfr <span class="op">=</span> pyeodh.Client(username<span class="op">=</span>username, token<span class="op">=</span>token, s3_token<span class="op">=</span>token)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>wfr <span class="op">=</span> clientwfr.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The next cell shows a simple CWL workkflow. Do not change the code in this cell or your workflow will return errors.</p>
-</section>
-<section id="todo---add-information-about-the-workflow" class="level1">
-<h1>TODO - add information about the workflow</h1>
-<div id="b52afe44" class="cell" data-execution_count="15">
+<p>The next cell demonstrates a simple CWL workflow. Do not change the code in this cell or your workflow will return errors.</p>
+<p>The workflow takes in an array of file names. These would be URLs to online resources, so you could imagine obtaining them via a search of a STAC catalogue. It then starts gdal in a Docker container and passes the URLs into the container. gdal_translate is then used to resize the resolution of the image pixels to 5% of their original. The outputs are passed to another Docker container that creates a STAC compatible output and stores it in an AWS S3 bucket attached to your workspace.</p>
+<p>As you can see, in the case of simple workflows, it is likely easier to use the base commands. However, if you want to generate STAC outputs, or run any workflow where it acts as a service, or need connections between platforms, then there are situations where EOAPs can be beneficial.</p>
+<div id="b52afe44" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cwl_yaml <span class="op">=</span> <span class="vs">r"""$graph:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="vs">- class: CommandLineTool</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="vs">  id: 'resize_make_stac'</span></span>
@@ -582,67 +582,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    wfr.get_process(<span class="st">"resize-urls"</span>).delete()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Process not found, no need to undeploy."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Process not found, no need to undeploy.</code></pre>
-</div>
 </div>
 <div id="d4a45bad" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy the CWL workflow code to the workflow runner</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> wfr.deploy_process(cwl_yaml<span class="op">=</span>cwl_yaml)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy the CWL workflow code to the workflow runner</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> wfr.deploy_process(cwl_yaml<span class="op">=</span>cwl_yaml)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you want to know what workflows you have access to in your workspace on the Hub, the following code will create a print out.</p>
-<div id="bdeaf290" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List the workflows available in the user workspace</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> wfr.get_processes():</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>echo
-resize-urls</code></pre>
-</div>
+<div id="bdeaf290" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List the workflows available in the user workspace</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> wfr.get_processes():</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="59ba5a0c" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>myjob <span class="op">=</span> wfr.get_process(<span class="st">"resize-urls"</span>).execute(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"urls"</span>: [</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/20/S2A_20231120_latn501lonw0036_T30UVA_ORB037_20231120132420_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/20/S2A_20231120_latn519lonw0037_T30UVC_ORB037_20231120132420_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>myjob <span class="op">=</span> wfr.get_process(<span class="st">"resize-urls"</span>).execute(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"urls"</span>: [</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/20/S2A_20231120_latn501lonw0036_T30UVA_ORB037_20231120132420_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/20/S2A_20231120_latn519lonw0037_T30UVC_ORB037_20231120132420_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="03344a65" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>myjob.self_href</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>'https://staging.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/fb83aad8-ef8f-11ef-a595-ca3e8cd28499'</code></pre>
+<div id="03344a65" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>myjob.self_href</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+<p>If you follow the URL output from the previous cell you will</p>
+</section>
+<section id="to-do" class="level1">
+<h1>TO DO</h1>
 <p>As development continues the number of demonstration workflows available to users should increase. With uptake of the generator tool, users will also be able to create their own bespoke workflows. In time, the Hub will contain organisational accounts and the ability to share workflow files.</p>
 <p>If a user wants to deploy a workflow that they have found online, they can do so for compliant CWL files by submitting the URL (as shown below).</p>
 <p>n.b.&nbsp;you need the raw content link of the workflow resource. The resource can be found <a href="https://github.com/EO-DataHub/eodhp-ades-demonstration/blob/e4ed00b16add58f9b516921ca9ca9e1068dd27c1/convert-url-app.cwl">here</a> and a repository of examples <a href="https://github.com/EO-DataHub/eodhp-ades-demonstration">here</a></p>
-<div id="fb0536eb" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy a workflow using a URL to a .cwl file hosted online</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>convert_url_proc <span class="op">=</span> wfr.deploy_process(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    cwl_url<span class="op">=</span><span class="st">"https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/e4ed00b16add58f9b516921ca9ca9e1068dd27c1/convert-url-app.cwl"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(convert_url_proc.<span class="bu">id</span>, convert_url_proc.description, <span class="st">": Deployed"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">''</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List the available workflows</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> wfr.get_processes():</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>convert-url Convert URL : Deployed
-
-echo
-resize-urls
-convert-url</code></pre>
+<div id="fb0536eb" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy a workflow using a URL to a .cwl file hosted online</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>convert_url_proc <span class="op">=</span> wfr.deploy_process(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    cwl_url<span class="op">=</span><span class="st">"https://raw.githubusercontent.com/EO-DataHub/eodhp-ades-demonstration/e4ed00b16add58f9b516921ca9ca9e1068dd27c1/convert-url-app.cwl"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(convert_url_proc.<span class="bu">id</span>, convert_url_proc.description, <span class="st">": Deployed"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">''</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List the available workflows</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> wfr.get_processes():</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="270dcee2" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy up youe Workflow Runner userspace</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    wfr.get_process(<span class="st">"resize-urls"</span>).delete()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    wfr.get_process(<span class="st">"convert-url"</span>).delete()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Process not found, no need to undeploy."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If needed for tracking the progress of a workflow, you can enable verbose logging using th efollowing code. Set this in the same cell as the import statements, at the end of the cell.</p>
+<p><code>pyeodh.set_log_level(10)</code></p>
 </section>
 <section id="other-interactions-with-workflows" class="level1">
 <h1>Other interactions with workflows</h1>
-<p>#TO DO</p>
-<p>As part of the presentation we looked at the plugin offline. Screenshots are provided here for those who do not have the plugin installed.</p>
-<p>Once the CWL file has been submitted then it is possible for users with suitable permissions to also view the list of available workflows through the QGIS plugin.</p>
+<p>Screenshots are provided here for the QGIS Plugin. If you are a user of QGIS the plugin is now available in the Plugin Repository and can be installed in the usual way.</p>
+<p>Once a CWL file has been deployed to a user’s workspace (or in future, to organisational or shared workspaces) then it is possible for users with suitable permissions to view their list of available workflows through the QGIS plugin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2_202502_workshop_DataProcessing_files/figure-html/59b0a201-1-image.png" class="img-fluid figure-img"></p>
@@ -656,65 +653,7 @@ convert-url</code></pre>
 <figcaption>image.png</figcaption>
 </figure>
 </div>
-<div id="a2087c93" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow using the defaults</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pyeodh.set_log_level(<span class="dv">10</span>) <span class="co"># set the logging to be verbose</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>resize_job <span class="op">=</span> img_proc.execute(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resize_job.<span class="bu">id</span>, resize_job.status, resize_job.message)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>DEBUG: _request_json_raw received {'self': &lt;pyeodh.client.Client object at 0x7d35e47e45c0&gt;, 'method': 'POST', 'url': 'https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/processes/resize-col/execution', 'headers': {'Prefer': 'respond-async'}, 'params': None, 'data': {'inputs': {'workspace': 'ajgwords'}}, 'encode': &lt;function _encode_json at 0x7d3635f30540&gt;}
-DEBUG: Making request: POST https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/processes/resize-col/execution
-       headers: {'Prefer': 'respond-async', 'Content-Type': 'application/json'}
-       params: None
-       body: {"inputs": {"workspace": "ajgwords"}}
-DEBUG: Received response 201
-       headers: {'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'nginx/1.27.0', 'Date': 'Wed, 18 Sep 2024 14:05:46 GMT', 'x-powered-by': 'ZOO-Project-DRU', 'x-also-powered-by': 'jwt.securityIn', 'x-also-also-powered-by': 'dru.securityIn', 'preference-applied': 'respond-async', 'x-also-also-also-powered-by': 'dru.securityOut', 'location': 'https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/19efd624-75c7-11ef-9849-4e9264aaf6f3', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS', 'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Prefer', 'Access-Control-Max-Age': '1728000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 a6a1a17bbe377bf7c4423397c71959da.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'LHR50-P1', 'X-Amz-Cf-Id': 'RtavU9ppINxjxyCvlYOnhxdNqGnDtX-HNJmyLlCbtYPf3Dcd5MgLsg=='}
-       content: {
-         "jobID": "19efd624-75c7-11ef-9849-4e9264aaf6f3",
-         "type": "process",
-         "processID": "resize-col",
-         "created": "2024-09-18T14:05:46.805Z",
-         "started": "2024-09-18T14:05:46.805Z",
-         "updated": "2024-09-18T14:05:46.805Z",
-         "status": "running",
-         "message": "ZOO-Kernel accepted to run your service!",
-         "links": [
-           {
-             "title": "Status location",
-             "rel": "monitor",
-             "type": "application/json",
-             "href": "https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/19efd624-75c7-11ef-9849-4e9264aaf6f3"
-           }
-         ]
-       }</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>19efd624-75c7-11ef-9849-4e9264aaf6f3 running ZOO-Kernel accepted to run your service!</code></pre>
-</div>
-</div>
-<div id="c7458b6c" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>resize_job.refresh()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resize_job.<span class="bu">id</span>, resize_job.status, resize_job.message)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>DEBUG: _request_json_raw received {'self': &lt;pyeodh.client.Client object at 0x7d35e47e45c0&gt;, 'method': 'GET', 'url': 'https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/19efd624-75c7-11ef-9849-4e9264aaf6f3', 'headers': None, 'params': None, 'data': None, 'encode': &lt;function _encode_json at 0x7d3635f30540&gt;}
-DEBUG: Making request: GET https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/19efd624-75c7-11ef-9849-4e9264aaf6f3
-       headers: {}
-       params: None
-       body: None
-DEBUG: Received response 200
-       headers: {'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '507', 'Connection': 'keep-alive', 'Server': 'nginx/1.27.0', 'Date': 'Wed, 18 Sep 2024 14:05:54 GMT', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS', 'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Prefer', 'Access-Control-Max-Age': '1728000', 'X-Cache': 'Miss from cloudfront', 'Via': '1.1 a6a1a17bbe377bf7c4423397c71959da.cloudfront.net (CloudFront)', 'X-Amz-Cf-Pop': 'LHR50-P1', 'X-Amz-Cf-Id': 'IakHOzKo8AnbmuIW_lFytmYjofpvygKjKotlpOjxhGiQ-a5G6RH22A=='}
-       content: {"progress": 15, "jobID": "19efd624-75c7-11ef-9849-4e9264aaf6f3", "type": "process", "processID": "resize-col", "created": "2024-09-18T14:05:46.805Z", "started": "2024-09-18T14:05:46.805Z", "updated": "2024-09-18T14:05:48.804Z", "status": "running", "message": "processing environment created, preparing execution", "links": [{"title": "Status location", "rel": "monitor", "type": "application/json", "href": "https://test.eodatahub.org.uk/ades/ajgwords/ogc-api/jobs/19efd624-75c7-11ef-9849-4e9264aaf6f3"}]}</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>19efd624-75c7-11ef-9849-4e9264aaf6f3 running processing environment created, preparing execution</code></pre>
-</div>
-</div>
-<p>The outputs above show the status of the running job: <code>"status": "running"</code>. The job status can also be monitored using the QGIS plugin.</p>
+<p>The status of a running job: <code>"status": "running"</code> can be monitored using the QGIS plugin.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2_202502_workshop_DataProcessing_files/figure-html/90492ffa-4-image.png" class="img-fluid figure-img"></p>
@@ -730,7 +669,7 @@ DEBUG: Received response 200
 <p>The outputs are accessible and loadable from the QGIS plugin.</p>
 <p>Original image: <img src="2_202502_workshop_DataProcessing_files/figure-html/90492ffa-2-image-3.png" class="img-fluid" alt="image-3.png"></p>
 <p>Resampled image: <img src="2_202502_workshop_DataProcessing_files/figure-html/90492ffa-3-image-4.png" class="img-fluid" alt="image-4.png"></p>
-<p>The workflow outputs are available in a users’s workspace and are attached to the job id presented through the QGIS plugin. A user can open any output from within the plugin to be displayed in the QGIS map window.</p>
+<p>The workflow outputs are available in a users’s workspace and are attached to the <code>job id</code> presented through the QGIS plugin. A user can open the workflow output from within the plugin to be displayed in the QGIS map window.</p>
 
 
 </section>
