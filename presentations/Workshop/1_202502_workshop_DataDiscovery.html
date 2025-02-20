@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NOTE – EODH Training Materials</title>
+<title>Pathfinder Phase Workshop: Finding Data – EODH Training Materials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">NOTE</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Pathfinder Phase Workshop: Finding Data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -380,8 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pathfinder-phase-workshop-finding-data" id="toc-pathfinder-phase-workshop-finding-data" class="nav-link active" data-scroll-target="#pathfinder-phase-workshop-finding-data">Pathfinder Phase Workshop: Finding Data</a></li>
-  <li><a href="#visual-data-discovery" id="toc-visual-data-discovery" class="nav-link" data-scroll-target="#visual-data-discovery">Visual data discovery</a></li>
+  <li><a href="#visual-data-discovery" id="toc-visual-data-discovery" class="nav-link active" data-scroll-target="#visual-data-discovery">Visual data discovery</a></li>
   <li><a href="#coded-data-discovery" id="toc-coded-data-discovery" class="nav-link" data-scroll-target="#coded-data-discovery">Coded data discovery</a>
   <ul class="collapse">
   <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
@@ -394,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NOTE</h1>
+<h1 class="title">Pathfinder Phase Workshop: Finding Data</h1>
 </div>
 
 
@@ -411,14 +410,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<ul>
-<li>Check you can login and see a workspace</li>
-<li>Find data using the web interface</li>
-<li>Use notebook to find data using pyeodh - everyone needs access to the AppHub</li>
-<li>Data visualisation - titiler and other (Daniel W helping)</li>
-</ul>
-<section id="pathfinder-phase-workshop-finding-data" class="level1">
-<h1>Pathfinder Phase Workshop: Finding Data</h1>
 <p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the functionality of the Earth Observation Data Hub (EODH) as the project approaches the end of the Pathfinder Phase. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of February 2025.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2025-02-18</p>
@@ -427,7 +418,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-</section>
 <section id="visual-data-discovery" class="level1">
 <h1>Visual data discovery</h1>
 <p>The first thing to do is find some data. Initially we will be using the current Catalogue User Interface (Note: a replacement user interface is in development, as demonstrated in the Workshop). There are two initial tasks that you will need to complete to find some data. First, using the tool shown in the image below on the right-hand side of the map pane, draw an area of interest (AOI) roughly in the region of Thetford. The Image shows an example of such an AOI as an orange outline. The other task is to navigate through the floating pane shown to the left in the image below to find <code>Supported Datasets &gt; CEDA STAC API &gt; Sentinel 2 ARD</code></p>
@@ -465,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh geopandas shapely matplotlib numpy pillow folium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0a9a1f0b" class="cell">
+<div id="0a9a1f0b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -474,16 +464,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests.exceptions <span class="im">import</span> HTTPError</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Having imported the necessary libraries the next task is to set up the locations of the areas of interest. Having created the AOI points the user needs to connect to the Resource Catalogue so that they can start to find some data.</p>
-<div id="dc5ce9fc" class="cell" data-execution_count="10">
+<div id="dc5ce9fc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Areas of Interest</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>thet_pnt <span class="op">=</span> sh.Point(<span class="fl">0.6715892933273722</span>, <span class="fl">52.414471075812315</span>) <span class="co"># a site near Thetford</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="58d3bc99" class="cell" data-execution_count="13">
+<div id="58d3bc99" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional cell</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to see these points on a map run this cell</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You may need to run the notebook through a service such as nbviewer: https://nbviewer.org/</span></span>
@@ -499,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Display the map</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
 <head>
@@ -527,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_36829d443aed7816d977f6e06034e7ab {
+                #map_859b11228d918bddbc77a7d2313ca964 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -541,14 +532,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_36829d443aed7816d977f6e06034e7ab&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_859b11228d918bddbc77a7d2313ca964&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_36829d443aed7816d977f6e06034e7ab = L.map(
-                &quot;map_36829d443aed7816d977f6e06034e7ab&quot;,
+            var map_859b11228d918bddbc77a7d2313ca964 = L.map(
+                &quot;map_859b11228d918bddbc77a7d2313ca964&quot;,
                 {
                     center: [52.414471075812315, 0.6715892933273722],
                     crs: L.CRS.EPSG3857,
@@ -562,37 +553,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         
     
-            var tile_layer_c149903c6be71ab58c9a1b55056abde4 = L.tileLayer(
+            var tile_layer_80c8056bedcd9564b02f687504595fa3 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_c149903c6be71ab58c9a1b55056abde4.addTo(map_36829d443aed7816d977f6e06034e7ab);
+            tile_layer_80c8056bedcd9564b02f687504595fa3.addTo(map_859b11228d918bddbc77a7d2313ca964);
         
     
-            var marker_9ea3e27fea64f0ad731db212b5a02ccd = L.marker(
+            var marker_28d5cc47af9ac7306b01a5a7ee447ff3 = L.marker(
                 [52.414471075812315, 0.6715892933273722],
                 {}
-            ).addTo(map_36829d443aed7816d977f6e06034e7ab);
+            ).addTo(map_859b11228d918bddbc77a7d2313ca964);
         
     
-            var icon_d7e70e7820e806a9656a69f832ac51f5 = L.AwesomeMarkers.icon(
+            var icon_a685880c8dafc0c98a52f5d6c2c45410 = L.AwesomeMarkers.icon(
                 {&quot;extraClasses&quot;: &quot;fa-rotate-0&quot;, &quot;icon&quot;: &quot;info-sign&quot;, &quot;iconColor&quot;: &quot;white&quot;, &quot;markerColor&quot;: &quot;green&quot;, &quot;prefix&quot;: &quot;glyphicon&quot;}
             );
-            marker_9ea3e27fea64f0ad731db212b5a02ccd.setIcon(icon_d7e70e7820e806a9656a69f832ac51f5);
+            marker_28d5cc47af9ac7306b01a5a7ee447ff3.setIcon(icon_a685880c8dafc0c98a52f5d6c2c45410);
         
     
-        var popup_a9224f3a9005495daeaa35e2bf88287f = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+        var popup_b66be1ad6a37d6ad1991b3bfc53c0221 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
 
         
             
-                var html_9101d10db102c3970ab0380e0b05a3d0 = $(`<div id=&quot;html_9101d10db102c3970ab0380e0b05a3d0&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Thetford Site</div>`)[0];
-                popup_a9224f3a9005495daeaa35e2bf88287f.setContent(html_9101d10db102c3970ab0380e0b05a3d0);
+                var html_915a9f97df278c3b909a58a803c3883c = $(`<div id=&quot;html_915a9f97df278c3b909a58a803c3883c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Thetford Site</div>`)[0];
+                popup_b66be1ad6a37d6ad1991b3bfc53c0221.setContent(html_915a9f97df278c3b909a58a803c3883c);
             
         
 
-        marker_9ea3e27fea64f0ad731db212b5a02ccd.bindPopup(popup_a9224f3a9005495daeaa35e2bf88287f)
+        marker_28d5cc47af9ac7306b01a5a7ee447ff3.bindPopup(popup_b66be1ad6a37d6ad1991b3bfc53c0221)
         ;
 
         
@@ -601,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
 </div>
-<div id="f2c25257" class="cell" data-execution_count="14">
+<div id="f2c25257" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># base_url can be changed to optionally specify a different server, such as test.eodatahub</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -609,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://staging.eodatahub.org.uk"</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>).get_catalog_service()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e7b87e49" class="cell" data-execution_count="16">
+<div id="e7b87e49" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a list of the collections held in the Resource Catalogue (their id and description).</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># As the Resource Catalogue fills and development continues, the number of collections and the richness of their descriptions will increase</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -630,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The dataset that we are interested in for the purposes of this workshop is <code>sentinel2_ard</code>. As seen from the output from the previous cell, we can see that the description of the dataset is as follows:</p>
 <p><em>These data have been created by the Department for Environment, Food and Rural Affairs (Defra) and Joint Nature Conservation Committee (JNCC) in order to cost-effectively provide high quality, Analysis Ready Data (ARD) for a wide range of applications. The dataset contains modified Copernicus Sentinel-2 (Level 1C data processed into a surface reflectance product using ARCSI software (Level 2)).</em></p>
-<div id="ec9dc811" class="cell">
+<div id="ec9dc811" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The next thing to do is find some open data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For this workshop we want to find Sentinel-2 analysis ready (ARD) imagery near Thetford</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -643,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>DATASET TEMPORAL EXTENT:  ['2023-01-01 11:14:51+00:00', '2023-11-01 11:43:49+00:00']</code></pre>
 </div>
 </div>
-<div id="27b9c6aa" class="cell" data-execution_count="54">
+<div id="27b9c6aa" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we want to access the first few items and see what they are called, when the image was collected and how much cloud there is  </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> <span class="dv">10</span></span>
@@ -670,391 +661,51 @@ neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn510lonw0036_T30UV
 <li>collection endpoint: https://staging.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/catalogs/ceda-stac-catalogue/collections/sentinel2_ard</li>
 <li>items endpoint: https://staging.eodatahub.org.uk/api/catalogue/stac/catalogs/supported-datasets/catalogs/ceda-stac-catalogue/collections/sentinel2_ard/items</li>
 </ul>
-<div id="6cfe921d" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To find out information about all the imagery in the collection then use this cell</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># It undertakes a search for specific date ranges (November 2023) and limits the pagination return to 10</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>item_search <span class="op">=</span> client.search(</span>
+<div id="ba67740f" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To find specific imagery for the Thetford site we need to add the intersects parameter. We set this to be our AOI point.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/catalogs/ceda-stac-catalogue"</span>],</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-11-01'</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-11-30'</span>, </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thet_pnt,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-11-01'</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-11-30'</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The item id and start time of image capture can be printed</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># If end time is also required, add the following code to the print statement: item.properties["end_datetime"]  </span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> item_search:</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)<span class="co">#, item.properties["start_datetime"])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>neodc.sentinel_ard.data.sentinel_2.2023.11.21.S2B_20231121_latn536lonw0052_T30UUE_ORB123_20231121122846_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn563lonw0037_T30VVH_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn546lonw0037_T30UVF_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn536lonw0007_T30UXE_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn528lonw0022_T30UWD_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn527lonw0007_T30UXD_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn519lonw0037_T30UVC_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn519lonw0022_T30UWC_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn518lonw0008_T30UXC_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn510lonw0036_T30UVB_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn510lonw0022_T30UWB_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn501lonw0036_T30UVA_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.20.S2A_20231120_latn500lonw0050_T30UUA_ORB037_20231120132420_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn590lonw0063_T29VPF_ORB023_20231119135216_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn590lonw0055_T30VUL_ORB023_20231119135216_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn581lonw0081_T29VNE_ORB023_20231119135216_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn581lonw0064_T29VPE_ORB023_20231119135216_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn581lonw0055_T30VUK_ORB023_20231119135216_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn572lonw0081_T29VND_ORB023_20231119135216_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn572lonw0064_T29VPD_ORB023_20231119135216_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn572lonw0054_T30VUJ_ORB023_20231119135216_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2A_20231119_latn554lonw0081_T29UNB_ORB023_20231119135216_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn536lone0009_T30UYE_ORB094_20231119115015_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn536lone0008_T31UCV_ORB094_20231119115015_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn528lone0023_T31UDU_ORB094_20231119115015_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn519lone0023_T31UDT_ORB094_20231119115015_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn518lone0009_T31UCT_ORB094_20231119115015_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn518lone0007_T30UYC_ORB094_20231119115015_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn509lonw0008_T30UXB_ORB094_20231119115015_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn509lone0009_T31UCS_ORB094_20231119115015_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.19.S2B_20231119_latn509lone0006_T30UYB_ORB094_20231119115015_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn563lonw0065_T29VPC_ORB080_20231118122250_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn563lonw0053_T30VUH_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn563lonw0037_T30VVH_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn554lonw0066_T29UPB_ORB080_20231118122250_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn554lonw0053_T30UUG_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn554lonw0053_T30UUG_ORB080_20231118122250_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn554lonw0021_T30UWG_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn546lonw0022_T30UWF_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn545lonw0066_T29UPA_ORB080_20231118122250_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn545lonw0052_T30UUF_ORB080_20231118122250_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.18.S2B_20231118_latn545lonw0052_T30UUF_ORB080_20231118122250_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2B_20231117_latn581lonw0081_T29VNE_ORB066_20231117140404_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2B_20231117_latn581lonw0064_T29VPE_ORB066_20231117140404_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn554lonw0021_T30UWG_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn554lonw0006_T30UXG_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn546lonw0022_T30UWF_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn545lonw0006_T30UXF_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn537lonw0022_T30UWE_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn536lonw0007_T30UXE_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn536lone0009_T30UYE_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn536lone0008_T31UCV_ORB137_20231117131218_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn528lonw0022_T30UWD_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lonw0007_T30UXD_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0009_T31UCU_ORB137_20231117131218_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn519lonw0037_T30UVC_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn519lonw0022_T30UWC_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn519lone0023_T31UDT_ORB137_20231117131218_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn518lonw0008_T30UXC_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn518lone0009_T31UCT_ORB137_20231117131218_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn518lone0007_T30UYC_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn510lonw0036_T30UVB_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn510lonw0022_T30UWB_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn509lonw0008_T30UXB_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn509lone0009_T31UCS_ORB137_20231117131218_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn509lone0006_T30UYB_ORB137_20231117131218_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn599lonw0020_T30VWM_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn599lonw0002_T30VXM_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn590lonw0063_T29VPF_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn590lonw0055_T30VUL_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn590lonw0038_T30VVL_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn590lonw0020_T30VWL_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn581lonw0064_T29VPE_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn581lonw0055_T30VUK_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn581lonw0038_T30VVK_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn572lonw0081_T29VND_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn572lonw0064_T29VPD_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn572lonw0054_T30VUJ_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn572lonw0037_T30VVJ_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn572lonw0021_T30VWJ_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn563lonw0065_T29VPC_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn563lonw0053_T30VUH_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn563lonw0037_T30VVH_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn555lonw0037_T30UVG_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn554lonw0081_T29UNB_ORB123_20231116134049_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn554lonw0066_T29UPB_ORB123_20231116134049_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn554lonw0066_T29UPB_ORB123_20231116134049_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn554lonw0053_T30UUG_ORB123_20231116134049_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.16.S2A_20231116_latn554lonw0053_T30UUG_ORB123_20231116134049_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn608lonw0002_T30VXN_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn599lonw0020_T30VWM_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn599lonw0002_T30VXM_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn590lonw0020_T30VWL_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn572lonw0037_T30VVJ_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn572lonw0021_T30VWJ_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn554lonw0021_T30UWG_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn554lonw0006_T30UXG_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn546lonw0037_T30UVF_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn546lonw0022_T30UWF_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn545lonw0006_T30UXF_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn537lonw0037_T30UVE_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn536lonw0007_T30UXE_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn536lone0009_T30UYE_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn536lone0008_T31UCV_ORB037_20231115121328_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn528lonw0037_T30UVD_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn528lonw0022_T30UWD_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn527lonw0007_T30UXD_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn519lonw0037_T30UVC_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn519lonw0022_T30UWC_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn518lonw0008_T30UXC_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn510lonw0036_T30UVB_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn510lonw0022_T30UWB_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn509lonw0054_T29UQS_ORB037_20231115121328_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn509lonw0051_T30UUB_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn509lonw0008_T30UXB_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.15.S2B_20231115_latn501lonw0036_T30UVA_ORB037_20231115121328_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn590lonw0063_T29VPF_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn590lonw0055_T30VUL_ORB023_20231114135202_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn590lonw0038_T30VVL_ORB023_20231114135202_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn581lonw0081_T29VNE_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn581lonw0064_T29VPE_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn572lonw0081_T29VND_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn563lonw0065_T29VPC_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn554lonw0081_T29UNB_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn554lonw0066_T29UPB_ORB023_20231114135202_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn554lonw0066_T29UPB_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn546lonw0082_T29UNA_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn545lonw0066_T29UPA_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn537lonw0082_T29UNV_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2B_20231114_latn536lonw0067_T29UPV_ORB023_20231114135202_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2A_20231114_latn536lone0009_T30UYE_ORB094_20231114130215_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2A_20231114_latn536lone0008_T31UCV_ORB094_20231114130215_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.14.S2A_20231114_latn528lone0023_T31UDU_ORB094_20231114130215_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn608lonw0020_T30VWN_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn608lonw0002_T30VXN_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn599lonw0020_T30VWM_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn599lonw0002_T30VXM_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn555lonw0037_T30UVG_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn554lonw0066_T29UPB_ORB080_20231113133243_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn554lonw0066_T29UPB_ORB080_20231113133243_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn554lonw0053_T30UUG_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn554lonw0053_T30UUG_ORB080_20231113133243_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn554lonw0021_T30UWG_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn545lonw0052_T30UUF_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn545lonw0052_T30UUF_ORB080_20231113133243_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn536lonw0067_T29UPV_ORB080_20231113133243_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn536lonw0052_T30UUE_ORB080_20231113133243_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn528lonw0037_T30UVD_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn528lonw0022_T30UWD_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn510lonw0036_T30UVB_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn509lonw0054_T29UQS_ORB080_20231113133243_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn509lonw0051_T30UUB_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn501lonw0036_T30UVA_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn500lonw0068_T29UPR_ORB080_20231113133243_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn500lonw0054_T29UQR_ORB080_20231113133243_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.13.S2A_20231113_latn500lonw0050_T30UUA_ORB080_20231113133243_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2A_20231112_latn581lonw0081_T29VNE_ORB066_20231112140324_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2A_20231112_latn581lonw0064_T29VPE_ORB066_20231112140324_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2A_20231112_latn572lonw0081_T29VND_ORB066_20231112140324_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn554lonw0021_T30UWG_ORB137_20231112120221_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn554lonw0006_T30UXG_ORB137_20231112120221_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn546lonw0022_T30UWF_ORB137_20231112120221_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn545lonw0006_T30UXF_ORB137_20231112120221_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn536lone0009_T30UYE_ORB137_20231112120221_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn536lone0008_T31UCV_ORB137_20231112120221_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.12.S2B_20231112_latn528lone0023_T31UDU_ORB137_20231112120221_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn608lonw0020_T30VWN_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn608lonw0002_T30VXN_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn599lonw0020_T30VWM_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn599lonw0002_T30VXM_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn590lonw0063_T29VPF_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn590lonw0055_T30VUL_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn590lonw0038_T30VVL_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn590lonw0020_T30VWL_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn581lonw0081_T29VNE_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn581lonw0064_T29VPE_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn581lonw0055_T30VUK_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn581lonw0038_T30VVK_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn572lonw0081_T29VND_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn572lonw0064_T29VPD_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn572lonw0054_T30VUJ_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn572lonw0037_T30VVJ_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn572lonw0021_T30VWJ_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn563lonw0065_T29VPC_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn563lonw0053_T30VUH_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn563lonw0037_T30VVH_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn555lonw0037_T30UVG_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn554lonw0081_T29UNB_ORB123_20231111122915_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn554lonw0066_T29UPB_ORB123_20231111122915_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn554lonw0066_T29UPB_ORB123_20231111122915_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn554lonw0053_T30UUG_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn554lonw0053_T30UUG_ORB123_20231111122915_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn546lonw0037_T30UVF_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn545lonw0066_T29UPA_ORB123_20231111122915_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn545lonw0052_T30UUF_ORB123_20231111122915_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn545lonw0052_T30UUF_ORB123_20231111122915_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.11.S2B_20231111_latn536lonw0052_T30UUE_ORB123_20231111122915_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn590lonw0020_T30VWL_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn572lonw0037_T30VVJ_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn572lonw0021_T30VWJ_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn563lonw0037_T30VVH_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn563lonw0021_T30VWH_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn555lonw0037_T30UVG_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn554lonw0021_T30UWG_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn554lonw0006_T30UXG_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn546lonw0037_T30UVF_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn546lonw0022_T30UWF_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn545lonw0006_T30UXF_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn537lonw0037_T30UVE_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn537lonw0022_T30UWE_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn536lonw0007_T30UXE_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn536lone0009_T30UYE_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn536lone0008_T31UCV_ORB037_20231110132331_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn528lonw0037_T30UVD_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn528lonw0022_T30UWD_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn527lonw0007_T30UXD_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn519lonw0037_T30UVC_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn519lonw0022_T30UWC_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn518lonw0008_T30UXC_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn510lonw0036_T30UVB_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn510lonw0022_T30UWB_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn509lonw0054_T29UQS_ORB037_20231110132331_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn509lonw0051_T30UUB_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn501lonw0036_T30UVA_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn500lonw0054_T29UQR_ORB037_20231110132331_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.10.S2A_20231110_latn500lonw0050_T30UUA_ORB037_20231110132331_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn590lonw0063_T29VPF_ORB023_20231109135232_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn590lonw0055_T30VUL_ORB023_20231109135232_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn590lonw0038_T30VVL_ORB023_20231109135232_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn581lonw0064_T29VPE_ORB023_20231109135232_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn581lonw0038_T30VVK_ORB023_20231109135232_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn572lonw0081_T29VND_ORB023_20231109135232_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn563lonw0065_T29VPC_ORB023_20231109135232_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2A_20231109_latn554lonw0081_T29UNB_ORB023_20231109135232_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.09.S2B_20231109_latn518lonw0008_T30UXC_ORB094_20231109130311_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn581lonw0038_T30VVK_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn572lonw0054_T30VUJ_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn572lonw0037_T30VVJ_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn563lonw0065_T29VPC_ORB080_20231108122205_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn563lonw0037_T30VVH_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn555lonw0037_T30UVG_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn546lonw0037_T30UVF_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn545lonw0066_T29UPA_ORB080_20231108122205_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn545lonw0052_T30UUF_ORB080_20231108122205_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn545lonw0052_T30UUF_ORB080_20231108122205_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn536lonw0067_T29UPV_ORB080_20231108122205_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.08.S2B_20231108_latn536lonw0052_T30UUE_ORB080_20231108122205_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2B_20231107_latn581lonw0081_T29VNE_ORB066_20231107140207_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn554lonw0006_T30UXG_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn546lonw0022_T30UWF_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn537lonw0022_T30UWE_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn536lonw0007_T30UXE_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn536lone0009_T30UYE_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn536lone0008_T31UCV_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn528lonw0022_T30UWD_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn528lone0023_T31UDU_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn527lonw0007_T30UXD_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn527lone0009_T31UCU_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn519lonw0037_T30UVC_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn519lone0023_T31UDT_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn518lone0009_T31UCT_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn518lone0007_T30UYC_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn509lone0009_T31UCS_ORB137_20231107131225_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn509lone0006_T30UYB_ORB137_20231107131225_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn581lonw0081_T29VNE_ORB023_20231104135355_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn572lonw0064_T29VPD_ORB023_20231104135355_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn572lonw0054_T30VUJ_ORB023_20231104135355_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn563lonw0065_T29VPC_ORB023_20231104135355_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn554lonw0081_T29UNB_ORB023_20231104135355_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn554lonw0066_T29UPB_ORB023_20231104135355_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2B_20231104_latn554lonw0066_T29UPB_ORB023_20231104135355_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2A_20231104_latn518lonw0008_T30UXC_ORB094_20231104130152_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2A_20231104_latn518lone0007_T30UYC_ORB094_20231104130152_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2A_20231104_latn509lonw0008_T30UXB_ORB094_20231104130152_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2A_20231104_latn509lone0009_T31UCS_ORB094_20231104130152_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.04.S2A_20231104_latn509lone0006_T30UYB_ORB094_20231104130152_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn590lonw0020_T30VWL_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn563lonw0065_T29VPC_ORB080_20231103133028_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn563lonw0053_T30VUH_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn563lonw0037_T30VVH_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn554lonw0066_T29UPB_ORB080_20231103133028_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn554lonw0066_T29UPB_ORB080_20231103133028_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn554lonw0053_T30UUG_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn554lonw0053_T30UUG_ORB080_20231103133028_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn546lonw0037_T30UVF_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn545lonw0066_T29UPA_ORB080_20231103133028_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn545lonw0052_T30UUF_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn545lonw0052_T30UUF_ORB080_20231103133028_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn537lonw0037_T30UVE_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn537lonw0022_T30UWE_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn536lonw0067_T29UPV_ORB080_20231103133028_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn528lonw0037_T30UVD_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn528lonw0022_T30UWD_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn509lonw0054_T29UQS_ORB080_20231103133028_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn509lonw0051_T30UUB_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn501lonw0036_T30UVA_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn500lonw0054_T29UQR_ORB080_20231103133028_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.03.S2A_20231103_latn500lonw0050_T30UUA_ORB080_20231103133028_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.02.S2A_20231102_latn581lonw0081_T29VNE_ORB066_20231102154122_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.02.S2A_20231102_latn572lonw0081_T29VND_ORB066_20231102154122_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.02.S2B_20231102_latn545lonw0006_T30UXF_ORB137_20231102120605_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.02.S2B_20231102_latn537lonw0022_T30UWE_ORB137_20231102120605_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.02.S2B_20231102_latn528lone0023_T31UDU_ORB137_20231102120605_utm31n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn608lonw0020_T30VWN_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn608lonw0002_T30VXN_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn599lonw0020_T30VWM_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn599lonw0002_T30VXM_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn554lonw0081_T29UNB_ORB123_20231101123121_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn554lonw0066_T29UPB_ORB123_20231101123121_utm29n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn554lonw0066_T29UPB_ORB123_20231101123121_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn554lonw0053_T30UUG_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn554lonw0053_T30UUG_ORB123_20231101123121_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn546lonw0082_T29UNA_ORB123_20231101123121_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn545lonw0066_T29UPA_ORB123_20231101123121_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn545lonw0052_T30UUF_ORB123_20231101123121_utm30n_osgb
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn545lonw0052_T30UUF_ORB123_20231101123121_utm30n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn536lonw0067_T29UPV_ORB123_20231101123121_utm29n_TM65
-neodc.sentinel_ard.data.sentinel_2.2023.11.01.S2B_20231101_latn536lonw0052_T30UUE_ORB123_20231101123121_utm30n_TM65</code></pre>
-</div>
-</div>
-<div id="ba67740f" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To find specific imagery for the Rutland site we need to add the intersects parameter. We set this to be our AOI point.</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can also filter the search by cloud cover, in this case limiting our search to images with less than 50% cloud in them</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/catalogs/ceda-stac-catalogue"</span>],</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thet_pnt,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2023-11-01'</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2023-11-30'</span>, </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#print('Number of items found: ', items.total_count)</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#print('Number of items found: ', items.total_count)</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total items: 3</code></pre>
 </div>
 </div>
-<div id="a830d3de" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the purposes of this presentation we will look at the second record ([1]) in more detail</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First we need to understand what information we can access</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a830d3de" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can print out the item names so that we understand which images we are looking at</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Item ID: neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0009_T31UCU_ORB137_20231117131218_utm31n_osgb
 Item ID: neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb
 Item ID: neodc.sentinel_ard.data.sentinel_2.2023.11.07.S2A_20231107_latn527lone0009_T31UCU_ORB137_20231107131225_utm31n_osgb</code></pre>
 </div>
 </div>
-<div id="c74efdfb" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once we have found the intersecting images and know their names we can choose the image item that we are interested. For the purposes of this exercise this is T31UCU. Now we need to know what assets are held for that item. The following code prints out all the STAC information linked to that item.</p>
+<div id="c74efdfb" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Item ID: neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0009_T31UCU_ORB137_20231117131218_utm31n_osgb
 Assets:
@@ -1076,124 +727,106 @@ Assets:
 ----------------------------------------</code></pre>
 </div>
 </div>
-<div id="c6e83599" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tn_url <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"Item ID: {item.id}")</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print("Assets:")</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>            <span class="co">#print(f"  - {asset_key}: {asset.to_dict()}")  # Convert asset to dict for readable output</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> asset_key <span class="op">==</span> <span class="st">"thumbnail"</span>:</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>                tn_url <span class="op">=</span> asset.href  <span class="co"># Directly access the href attribute</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print("-" * 40)  # Separator for better readability</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tn_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From this we can see that there is a thumbnail. Before we do anything with the full image data or associated assets it would be good to understand the image. We can extract the URL to the thumbnail and view the attached image file.</p>
+<div id="c6e83599" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tn_url <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"Item ID: {item.id}")</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print("Assets:")</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>            <span class="co">#print(f"  - {asset_key}: {asset.to_dict()}")  # Convert asset to dict for readable output</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> asset_key <span class="op">==</span> <span class="st">"thumbnail"</span>:</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>                tn_url <span class="op">=</span> asset.href  <span class="co"># Directly access the href attribute</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print("-" * 40)  # Separator for better readability</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tn_url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lone0009_T31UCU_ORB137_20231117131218_utm31n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg</code></pre>
 </div>
 </div>
-<div id="a386c2e7" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use this information to view the image thumbnail</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#asset_dict = items[1].assets</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the url as a string</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#thumbnail_assets = [v for k, v in asset_dict.items() if 'thumbnail' in k]</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#thumbnail_url = thumbnail_assets[0].href</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we open the remote URL, read the data and dislay the thumbnail </span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> urllib.request.urlopen(tn_url) <span class="im">as</span> url:</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(url.read()))</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>display(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a386c2e7" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use this information to view the image thumbnail</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we open the remote URL, read the data and dislay the thumbnail </span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> urllib.request.urlopen(tn_url) <span class="im">as</span> url:</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(url.read()))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>display(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="1_202502_workshop_DataDiscovery_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="1_202502_workshop_DataDiscovery_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This shows that we can relatively easily interrogate the Resource Catalogue and filter the results so that we can find the data we require in the EODH. With a bit of tweaking of the code the user could also generate a list of assets and accompanying URLs to the datasets (for this and other datasets).</p>
-<p>Now our user wants to see what commercial data exists for the Thetford site.</p>
-<div id="c8eae423" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find some commercial data</span></span>
+<p>Now we want to see what commercial data exists.</p>
+<div id="c8eae423" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find some Airbus commercial data: SPOT</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> client.search(</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/catalogs/airbus"</span>],</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">"airbus_spot_data"</span>],</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;=</span> lim:</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i.<span class="bu">id</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DS_SPOT6_202502191331447_FR1_FR1_SV1_SV1_W067S56_01140
+DS_SPOT6_202502191331277_FR1_FR1_SV1_SV1_W068S56_02033
+DS_SPOT6_202502191330576_FR1_FR1_SV1_SV1_W067S55_04550
+DS_SPOT6_202502191330431_FR1_FR1_SV1_SV1_W065S55_01140
+DS_SPOT6_202502191330174_FR1_FR1_SV1_SV1_W066S55_03414
+DS_SPOT6_202502191330009_FR1_FR1_SV1_SV1_W064S55_01546
+DS_SPOT6_202502191321372_FR1_FR1_SV1_SV1_W052S21_01709
+DS_SPOT6_202502191321230_FR1_FR1_SV1_SV1_W052S19_01627
+DS_SPOT6_202502191320590_FR1_FR1_SV1_SV1_W053S19_03251
+DS_SPOT6_202502191320440_FR1_FR1_SV1_SV1_W053S18_01871
+DS_SPOT6_202502191320167_FR1_FR1_SV1_SV1_W052S18_03332
+DS_SPOT6_202502191319530_FR1_FR1_SV1_SV1_W052S18_03170
+DS_SPOT6_202502191319384_FR1_FR1_SV1_SV1_W052S17_01709
+DS_SPOT6_202502191319247_FR1_FR1_SV1_SV1_W052S16_01709
+DS_SPOT6_202502191319100_FR1_FR1_SV1_SV1_W052S16_01627</code></pre>
+</div>
+</div>
+<div id="8ad94a4a" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find some Planet commercial data: Planetscope Scene</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> collect <span class="kw">in</span> client.get_collections():</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#if 'planet' in collect.id: </span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>collect<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    cat <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/catalogs/planet"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> cat.search(collections<span class="op">=</span>[<span class="st">"PSScene"</span>]):</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i.<span class="bu">id</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> HTTPError <span class="im">as</span> e:</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"422 Client Error: Unprocessable Entity"</span> <span class="kw">in</span> <span class="bu">str</span>(e):</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Skipping E422"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span>  <span class="co"># Re-raise other errors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>ukcp: Regional climate model projections produced as part of the UK Climate Projection 2018 (UKCP18) project. The data produced by the Met Office Hadley Centre provides information on changes in climate for the UK until 2080, downscaled to a high resolution (12km), helping to inform adaptation to a changing climate. The projections cover Europe and a 100 year period, 1981-2080, for a high emissions scenario, RCP8.5. Each projection provides an example of climate variability in a changing climate, which is consistent across climate variables at different times and spatial locations. This dataset contains 12km data for the United Kingdom, the Isle of Man and the Channel Islands provided on the Ordnance Survey's British National Grid.
-sentinel2_ard: These data have been created by the Department for Environment, Food and Rural Affairs (Defra) and Joint Nature Conservation Committee (JNCC) in order to cost-effectively provide high quality, Analysis Ready Data (ARD) for a wide range of applications. The dataset contains modified Copernicus Sentinel-2 (Level 1C data processed into a surface reflectance product using ARCSI software (Level 2)).
-sentinel1: This dataset contains level 1 Interferometric Wide swath (IW) Single Look Complex (SLC) C-band Synthetic Aperture Radar (SAR) data from the European Space Agency (ESA) Sentinel 1 series satellites. Sentinel 1 satellites provide continuous all-weather, day and night imaging radar data. The IW mode is the main operational mode. The IW mode supports single (HH or VV) and dual (HH+HV or VV+VH) polarisation.
-land_cover: As part of the ESA Land Cover Climate Change Initiative (CCI) project a new set of Global Land Cover Maps have been produced. These maps are available at 300m spatial resolution for each year between 1992 and 2015. Each pixel value corresponds to the classification of a land cover class defined based on the UN Land Cover Classification System (LCCS). The reliability of the classifications made are documented by the four quality flags (decribed further in the Product User Guide) that accompany these maps. Data are provided in both NetCDF and GeoTiff format.
-eocis-sst-cdrv3-climatology: ESA SST CCI Climatology v3.0
-eocis-sst-cdrv3: This dataset provides daily estimates of global sea surface temperature (SST) based on observations from multiple satellite sensors. Resolution: 5km.  Available from 1980 onwards.
-eocis-lst-s3b-night: This collection contains datasets of level L3C global land surface temperature from the SLSTR sensor on board Sentinel 3B observed daily during nighttime.   The collection is available from 2018-11-17.
-eocis-lst-s3b-day: This collection contains datasets of level L3C global land surface temperature from the SLSTR sensor on board Sentinel 3B observed daily during daytime.   The collection is available from 2018-11-17.
-eocis-lst-s3a-night: This collection contains datasets of level L3C global land surface temperature from the SLSTR sensor on board Sentinel 3A observed daily during nighttime.   The collection is available from 2016-05-01.
-eocis-lst-s3a-day: This collection contains datasets of level L3C global land surface temperature from the SLSTR sensor on board Sentinel 3A observed daily during daytime.   The collection is available from 2016-05-01.</code></pre>
-</div>
-</div>
-<div id="fa4f1fb9" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's search for information on the Planet holdings  </span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>planet <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/defra"</span>).get_collection(<span class="st">'defra-planet'</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>planet.get_items()</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> planet.get_items():</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&lt;</span> lim:</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(item.<span class="bu">id</span>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'PLANET DATASET TEMPORAL EXTENT: '</span>, [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> planet.extent.temporal.intervals[<span class="dv">0</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2024-08-23_strip_7527622_composite
-2024-08-23_strip_7527462_composite
-PLANET DATASET TEMPORAL EXTENT:  ['2024-08-23 11:09:19.358417+00:00', '2024-08-23 11:24:40.991786+00:00']</code></pre>
-</div>
-</div>
-<div id="1dea4ff0" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To find specific imagery for the Thetford site we need to add the intersects parameter. We set this to be our AOI point.</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>items1 <span class="op">=</span> client.search(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'defra-planet'</span>],</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/defra"</span>],</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thet_pnt,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>items2 <span class="op">=</span> client.search(</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'defra-airbus'</span>],</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/defra"</span>],</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thet_pnt,</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    limit<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of Planet items found: '</span>, items1.total_count)</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Number of Airbus items found: '</span>, items2.total_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Number of Planet items found:  1
-Number of Airbus items found:  2</code></pre>
-</div>
-</div>
-<div id="aa8ae86e" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> items1[<span class="dv">0</span>].assets.items():</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Planet: '</span>, key, value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Planet:  data &lt;Asset href=2024-08-23_strip_7527462_composite_file_format.tif&gt;
-Planet:  udm2 &lt;Asset href=2024-08-23_strip_7527462_composite_udm2_file_format.tif&gt;</code></pre>
+<pre><code>20250220_141144_06_24d7
+20250220_144117_34_24ca
+20250220_141038_50_24d7
+20250220_141221_81_24d7
+20250220_141217_84_24d7
+20250220_141201_94_24d7
+20250220_141341_28_24d7
+20250220_141225_79_24d7
+20250220_115137_43_2516
+20250220_141209_89_24d7
+Skipping E422</code></pre>
 </div>
 </div>
 <p>The final step would be to use the ordering service integrated into the EODH resource catalogue to purchase the required commercial imagery. This would be stored in a users workspace and could then be used in specific workflows or for data analytics (depending on licence restrictions).</p>
-<p>For the purposes of this presentation we looked at the different commercial datasets offline in QGIS.</p>
+<p>For the purposes of this workshop we looked at the different commercial datasets offline in QGIS.</p>
 
 
 </section>
