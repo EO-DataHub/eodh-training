@@ -383,7 +383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#eodh-its-data-analysis" id="toc-eodh-its-data-analysis" class="nav-link" data-scroll-target="#eodh-its-data-analysis">EODH: it’s data analysis</a>
   <ul class="collapse">
-  <li><a href="#a-viewing-images-with-specific-band-configurations" id="toc-a-viewing-images-with-specific-band-configurations" class="nav-link" data-scroll-target="#a-viewing-images-with-specific-band-configurations">a) Viewing images with specific band configurations</a></li>
+  <li><a href="#a-viewing-data" id="toc-a-viewing-data" class="nav-link" data-scroll-target="#a-viewing-data">a) Viewing data</a></li>
+  <li><a href="#b-manipulating-data" id="toc-b-manipulating-data" class="nav-link" data-scroll-target="#b-manipulating-data">b) Manipulating data</a></li>
+  <li><a href="#c-streaming-data" id="toc-c-streaming-data" class="nav-link" data-scroll-target="#c-streaming-data">c) Streaming data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -434,54 +436,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="eodh-its-data-analysis" class="level1">
 <h1>EODH: it’s data analysis</h1>
 <p>The EODH AppHub (Notebook Service) can be used with <code>pyeodh</code> and other libraries (installed using pip) to analyse data and outputs. The following workbook provides a couple of examples of how this could be undertaken.</p>
-<div id="064dee3c" class="cell" data-execution_count="7">
+<div id="064dee3c" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> localtileserver <span class="im">import</span> get_folium_tile_layer, get_leaflet_tile_layer</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> localtileserver <span class="im">import</span> TileClient</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipyleaflet <span class="im">import</span> Map, ScaleControl, FullScreenControl</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.distributed</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> HTTPError</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> odc.stac <span class="im">import</span> configure_rio, stac_load <span class="co"># the data cube bit</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#import shapely.geometry</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="a-viewing-images-with-specific-band-configurations" class="level2">
-<h2 class="anchored" data-anchor-id="a-viewing-images-with-specific-band-configurations">a) Viewing images with specific band configurations</h2>
-<p>Once you have the URL to the Cloud Optimised Geotiff from the STAC records held in the resource catalogue it is possible to view different band combinations. The following code uses the URL to the Sentinel 2 ARD image discovered in the Data Discovery notebook and displays an interactive false colour composite.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/30a46b77-1-image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
-</div>
-<div id="25d0b682" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can use the same tool to view rendered data stored locally e.g. in a user's workspace.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span> <span class="op">=</span> TileClient(<span class="st">'data/S2A_clip_rend.tif'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/45075fbf-1-image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
-</div>
+<section id="a-viewing-data" class="level2">
+<h2 class="anchored" data-anchor-id="a-viewing-data">a) Viewing data</h2>
+<p>Show some data thumbnails. Mention LocalTileServer Show some climate data</p>
+</section>
+<section id="b-manipulating-data" class="level2">
+<h2 class="anchored" data-anchor-id="b-manipulating-data">b) Manipulating data</h2>
+<p>Do an NDVI of a subset of an image Show some data plots</p>
+</section>
+<section id="c-streaming-data" class="level2">
+<h2 class="anchored" data-anchor-id="c-streaming-data">c) Streaming data</h2>
+<p>Show some titiler links and discuss how to build your own URL Visualise</p>
 
 
 </section>
