@@ -387,15 +387,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#eodh-its-data-analysis" id="toc-eodh-its-data-analysis" class="nav-link" data-scroll-target="#eodh-its-data-analysis">EODH: it’s data analysis</a>
   <ul class="collapse">
   <li><a href="#a-accessing-data" id="toc-a-accessing-data" class="nav-link" data-scroll-target="#a-accessing-data">a) Accessing data</a></li>
-  <li><a href="#b-manipulating-data" id="toc-b-manipulating-data" class="nav-link" data-scroll-target="#b-manipulating-data">b) Manipulating data</a>
+  <li><a href="#b-manipulating-and-plotting-data" id="toc-b-manipulating-and-plotting-data" class="nav-link" data-scroll-target="#b-manipulating-and-plotting-data">b) Manipulating and plotting data</a>
   <ul class="collapse">
   <li><a href="#i-plot-a-single-timestep---cmip6-precipitation-flux" id="toc-i-plot-a-single-timestep---cmip6-precipitation-flux" class="nav-link" data-scroll-target="#i-plot-a-single-timestep---cmip6-precipitation-flux">i) Plot a single timestep - CMIP6 precipitation flux</a></li>
   <li><a href="#ii-plot-an-ndvi-analysis---sentinel-2-ard-nirir" id="toc-ii-plot-an-ndvi-analysis---sentinel-2-ard-nirir" class="nav-link" data-scroll-target="#ii-plot-an-ndvi-analysis---sentinel-2-ard-nirir">ii) Plot an NDVI Analysis - Sentinel 2 ARD (NIR/IR)</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#create-an-animated-plot-with-geoviews" id="toc-create-an-animated-plot-with-geoviews" class="nav-link" data-scroll-target="#create-an-animated-plot-with-geoviews">Create an Animated Plot with Geoviews</a>
-  <ul class="collapse">
-  <li><a href="#c-streaming-data" id="toc-c-streaming-data" class="nav-link" data-scroll-target="#c-streaming-data">c) Streaming data</a></li>
+  <li><a href="#c-streaming-data-with-titiler" id="toc-c-streaming-data-with-titiler" class="nav-link" data-scroll-target="#c-streaming-data-with-titiler">c) Streaming data with Titiler</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1659,8 +1656,8 @@ U9k9N2vl5+cH0en0TRiGWX18fC65vnh+LxqNBq2oqFhgMpmi7XY7arVaj+zdu/fxn/l/4bSZl5fH
 </div>
 </div>
 </section>
-<section id="b-manipulating-data" class="level2">
-<h2 class="anchored" data-anchor-id="b-manipulating-data">b) Manipulating data</h2>
+<section id="b-manipulating-and-plotting-data" class="level2">
+<h2 class="anchored" data-anchor-id="b-manipulating-and-plotting-data">b) Manipulating and plotting data</h2>
 <section id="i-plot-a-single-timestep---cmip6-precipitation-flux" class="level3">
 <h3 class="anchored" data-anchor-id="i-plot-a-single-timestep---cmip6-precipitation-flux">i) Plot a single timestep - CMIP6 precipitation flux</h3>
 <p>Steps: - Access a CMIP6 Dataset - Extract the dataset (Kerchunk) - Select a single timestep - Plot resulting image</p>
@@ -2883,7 +2880,7 @@ Attributes: (12/18)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="dwest77_changes_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -3298,7 +3295,7 @@ Attributes: (12/18)
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>NDVI <span class="op">=</span> (NIR <span class="op">-</span> Red) <span class="op">/</span> (NIR <span class="op">+</span> Red)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, the calculated data array can be plotted in the same way as before</p>
-<div id="63d9ed6a-e74e-4d12-8743-bdfa939a366f" class="cell" data-execution_count="92">
+<div id="63d9ed6a-e74e-4d12-8743-bdfa939a366f" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure all previous sections are clear.</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.figure().clear()</span>
@@ -3311,18 +3308,15 @@ Attributes: (12/18)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3_202502_workshop_DataAnalysis_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="dwest77_changes_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-</section>
-<section id="create-an-animated-plot-with-geoviews" class="level1">
-<h1>Create an Animated Plot with Geoviews</h1>
-<section id="c-streaming-data" class="level2">
-<h2 class="anchored" data-anchor-id="c-streaming-data">c) Streaming data</h2>
+<section id="c-streaming-data-with-titiler" class="level2">
+<h2 class="anchored" data-anchor-id="c-streaming-data-with-titiler">c) Streaming data with Titiler</h2>
 <p>Show some titiler links and discuss how to build your own URL Visualise</p>
 <div id="1248969a" class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
