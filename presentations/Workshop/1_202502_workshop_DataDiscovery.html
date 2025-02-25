@@ -378,6 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#visual-data-discovery" id="toc-visual-data-discovery" class="nav-link active" data-scroll-target="#visual-data-discovery">Visual data discovery</a></li>
+  <li><a href="#stac-browser" id="toc-stac-browser" class="nav-link" data-scroll-target="#stac-browser">STAC Browser</a></li>
   <li><a href="#coded-data-discovery" id="toc-coded-data-discovery" class="nav-link" data-scroll-target="#coded-data-discovery">Coded data discovery</a>
   <ul class="collapse">
   <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
@@ -417,18 +418,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <section id="visual-data-discovery" class="level1">
 <h1>Visual data discovery</h1>
-<p>The first thing to do is find some data. Initially we will be using the current Catalogue User Interface (Note: a replacement user interface is in development, as demonstrated in the Workshop). There are two initial tasks that you will need to complete to find some data. First, using the tool shown in the image below on the right-hand side of the map pane, draw an area of interest (AOI) roughly in the region of Thetford. The Image shows an example of such an AOI as an orange outline. The other task is to navigate through the floating pane shown to the left in the image below to find <code>Supported Datasets &gt; CEDA STAC API &gt; Sentinel 2 ARD</code></p>
-<p><img src="images/07.png" title="Data Catalogue" class="img-fluid"></p>
-<p>Once you have entered the <code>Sentinel 2 ARD</code> collection, you should see a list of images related to the AOI. Somewhere near the top of the list will be the image that we are looking for. It is shown as the third from top in the list in the image below. The item name will contain the following information, so look for this</p>
-<ul>
-<li>date:<code>2023-11-17</code></li>
-<li>orbit: <code>ORB137</code></li>
-<li>projection: <code>utm31n_osgb</code></li>
-<li>location code: <code>T31UCU</code></li>
-</ul>
-<p><img src="images/08.png" title="Data list" class="img-fluid"></p>
+</section>
+<section id="stac-browser" class="level1">
+<h1>STAC Browser</h1>
+<p>The first thing to do is find some data. Initially we will be using the current Catalogue User Interface which is an implementation of the STAC Browser (<strong>Note</strong>: a replacement user interface is in development, as demonstrated in the Workshop). When visiting the Catalogue you should see a page not too dissimilar to the following screenshot.</p>
+<p><img src="images/07a.png" title="Data Catalogue" class="img-fluid"></p>
+<p>Click on the <code>Search</code> button in the top left of the page (next to <em>Browse</em>) and start to enter some details under <code>search for items</code>. We will look for data between 12 Nov and 19 Nov 2023, in the Thetford area, in the sentinel2_ard collection. The details are shown in the next screenshot.</p>
+<p><img src="images/08a.png" title="Data search" class="img-fluid"></p>
+<p>Once you click <code>Submit</code> the the search should return a series of image items to the right of the page, as shown below.</p>
+<p><img src="images/09a.png" title="Search result" class="img-fluid"></p>
+<p>We are looking for the following item (S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb) and the reference will be as shown here:</p>
+<p><img src="images/10a.png" title="Item information" class="img-fluid"></p>
 <p>Click on the relevant item to find the assets within it. There are a number of assets (data layers, metadata, thumbnail etc.) within the item. Take some time to investigate what exists. The two we are interested in here are <code>thumbnail</code> and <code>cog</code> (the cog holds the image data). The image below shows how to copy the URL to the COG data: either using the button on the left or copying the path in the text box on the right.</p>
-<p><img src="images/09.png" title="Asset information" class="img-fluid"></p>
 <p>Check that you have found the datset we are interested in:</p>
 <ul>
 <li>Thumbnail: https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg (you can open this in a web browser and it should look like the image below)</li>
@@ -436,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><img src="images/10.png" title="Item thumbnail" class="img-fluid"></p>
 <p>Take some time to click around the listed datasets to see what is included and accessible.</p>
-<p><strong>Note</strong> that <strong>not all collections contain items</strong>.</p>
+<p><strong>Note</strong> that <strong>not all collections contain accessible items</strong>.</p>
 </section>
 <section id="coded-data-discovery" class="level1">
 <h1>Coded data discovery</h1>
