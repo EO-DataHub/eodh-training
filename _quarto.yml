@@ -90,6 +90,15 @@ website:
             href: presentations/DEFRA2/1_202412_Defra_Technology.ipynb 
           - text: "Recorded presentations"
             href: presentations/videos.ipynb 
+          - text: "Tester Workshop: Setup"
+            href: presentations/Workshop/0_202502_workshop_SetUp.ipynb.ipynb 
+          - text: "Tester Workshop: Data Discovery"
+            href: presentations/Workshop/1_202502_workshop_DataDiscovery.ipynb 
+          - text: "Tester Workshop: Data Processing"
+            href: presentations/Workshop/2_202502_workshop_DataProcessing.ipynb
+          - text: "Tester Workshop: Data Vis"
+            href: presentations/Workshop/3_202502_workshop_DataVis.ipynb
+
 
 
 format:

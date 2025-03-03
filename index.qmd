@@ -2,7 +2,6 @@
 title: "EODH Training Materials"
 ---
 # Welcome
-__This site is in heavy development.__
 
 Welcome to the eodh-training repository! This repository aims to provide a live set of documents to demonstrate how to use the EODH ([Earth Observation Data Hub](https://eodatahub.org.uk/)) and associated tools such as the `pyeodh` Python API client, `eoap-gen` workflow generator and QGIS plugin. Other training materials may be added to this repository in future.
 
