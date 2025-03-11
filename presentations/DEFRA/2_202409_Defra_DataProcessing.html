@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of September 2024. The Notebook “user” would like to understand more about the satellite data available for their test areas. This user is also interested in obtaining a series of smaller images and ultimately creating a data cube. The Notebook series (of 3) is designed in such a way that it can be run on the EODH AppHub (Notebook Service) or from a local environment.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, Phil Kershaw</p>
 <p><strong>Date created</strong>: 2024-09-05</p>
-<p><strong>Date last modified</strong>: 2024-09-18</p>
+<p><strong>Date last modified</strong>: 2025-03-06</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
@@ -468,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> HTTPError</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4af41382" class="cell" data-execution_count="38">
+<div id="4af41382" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First the user needs to connect to the Workflow Runner</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Currently this is done by obtaining a user account and API key from the core development team. Here, those details have been saved in secrets.txt</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># secrets.txt should contain the two lines below where USERNAME and API_KEY are specific to the user:</span></span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    username <span class="op">=</span> lines[<span class="dv">0</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> lines[<span class="dv">1</span>].strip().split(<span class="st">'='</span>)[<span class="dv">1</span>].strip(<span class="st">'"'</span>)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>clientwfr <span class="op">=</span> pyeodh.Client(username<span class="op">=</span>username, token<span class="op">=</span>token, s3_token<span class="op">=</span>token)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>clientwfr <span class="op">=</span> pyeodh.Client(username<span class="op">=</span>username, token<span class="op">=</span>token)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>wfr <span class="op">=</span> clientwfr.get_ades()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our user wants to know what workflows they have access to in their workspace on the Hub.</p>
@@ -496,6 +496,7 @@ convert-img</code></pre>
 </div>
 <p>As development continues the number of demonstration workflows available to users will increase. With uptake of the generator tool users will also be able to create their own bespoke workflows. In time, the Hub will contain organisational accounts and the ability to share workflow files.</p>
 <p>Our user wants to deploy a workflow that they have found online. They can do so for compliant CWL files by submitting the URl.</p>
+<p><strong>Note:</strong> <em>If you get a 409 error this usually means the process already exists and you need to handle the existing process by either calling process.delete() first then deploying again, or calling process.update()</em></p>
 <div id="cca81b87" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy a workflow using a URL to a .cwl file hosted online</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>convert_url_proc <span class="op">=</span> wfr.deploy_process(</span>

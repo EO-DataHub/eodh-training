@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Description &amp; purpose</strong>: This Notebook is designed to showcase the initial functionality of the Earth Observation Data Hub. It provides a snapshot of the Hub, the <code>pyeodh</code> API client and the various datasets as of September 2024. The Notebook “user” would like to understand more about the satellite data available for their test areas. This user is also interested in obtaining a series of smaller images and ultimately creating a data cube. The Notebook series (of 3) is designed in such a way that it can be run on the EODH AppHub (Notebook Service) or from a local environment.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala, Phil Kershaw</p>
 <p><strong>Date created</strong>: 2024-09-05</p>
-<p><strong>Date last modified</strong>: 2024-09-18</p>
+<p><strong>Date last modified</strong>: 2025-03-06</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
@@ -466,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If needed you can install a package in the current AppHub Jupyter environment using pip</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For instance, we will need at least the following libraries</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh pandas matplotlib numpy pillow folium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh pandas matplotlib numpy pillow folium localtileserver ipyleaflet pystac_client odc.stac osmnx </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

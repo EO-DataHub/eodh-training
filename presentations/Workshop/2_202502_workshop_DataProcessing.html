@@ -616,6 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> wfr.get_processes():</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p.<span class="bu">id</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The following code executes the workflow for the two dataset URLs listed</p>
+<p><strong>Note:</strong> <em>If you get a 409 error this usually means the process already exists and you need to handle the existing process by either calling process.delete() first then deploying again, or calling process.update()</em></p>
 <div id="59ba5a0c" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>myjob <span class="op">=</span> wfr.get_process(<span class="st">"resize-urls"</span>).execute(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    {</span>

@@ -369,7 +369,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#web-presence" id="toc-web-presence" class="nav-link active" data-scroll-target="#web-presence">Web Presence</a></li>
   <li><a href="#resource-catalogue" id="toc-resource-catalogue" class="nav-link" data-scroll-target="#resource-catalogue">Resource Catalogue</a></li>
-  <li><a href="#apphub-and-notebook-service" id="toc-apphub-and-notebook-service" class="nav-link" data-scroll-target="#apphub-and-notebook-service">AppHub and Notebook Service</a></li>
+  <li><a href="#apphub-and-notebook-service" id="toc-apphub-and-notebook-service" class="nav-link" data-scroll-target="#apphub-and-notebook-service">AppHub and Notebook Service</a>
+  <ul class="collapse">
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
+  </ul></li>
   <li><a href="#workflow-runner" id="toc-workflow-runner" class="nav-link" data-scroll-target="#workflow-runner">Workflow Runner</a></li>
   </ul>
 </nav>
@@ -399,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Description &amp; purpose</strong>: This webpage is designed to provide an introduction to the core components of the EODH.</p>
 <p><strong>Author(s)</strong>: Alastair Graham</p>
 <p><strong>Date created</strong>: 2024-12-05</p>
-<p><strong>Date last modified</strong>: 2024-12-17</p>
+<p><strong>Date last modified</strong>: 2025-03-11</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
@@ -415,6 +418,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="apphub-and-notebook-service" class="level1">
 <h1>AppHub and Notebook Service</h1>
 <p>The AppHub is a <a href="https://jupyter.org/hub">JupyterHub</a> instance made available to users to ensure simple access to information held within the Resource Catalogue. It also allows the creation of scientific analytical workflows and associated data processing. Once logged in to the AppHub a user is able to upload notebooks and data, or create new notebooks, from where they can interact with other EODH components using tools such as <code>pyeodh</code>.</p>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<p>In this section we present some tips that might be useful to users looking to use the JupyterHub in slightly more advanced ways.</p>
+<p>There are ways of creating Virtual Environments in JupyterHub and instructions for that can be found <a href="https://help.jasmin.ac.uk/docs/interactive-computing/creating-a-virtual-environment-in-the-notebooks-service/">here</a>. It’s also possible to do the same thing using <a href="https://help.jasmin.ac.uk/docs/interactive-computing/creating-a-virtual-environment-in-the-notebooks-service/#can-i-use-conda-instead-of-a-virtual-environment">conda</a>. This can be particularly helpful when trying to run specific packages that need their own environment.</p>
+</section>
 </section>
 <section id="workflow-runner" class="level1">
 <h1>Workflow Runner</h1>
