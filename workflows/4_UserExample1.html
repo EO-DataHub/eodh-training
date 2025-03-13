@@ -409,6 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#scientific-method" id="toc-scientific-method" class="nav-link" data-scroll-target="#scientific-method">Scientific method</a></li>
   <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
+  <li><a href="#using-pyeodh" id="toc-using-pyeodh" class="nav-link" data-scroll-target="#using-pyeodh">Using pyeodh</a></li>
   </ul></li>
   <li><a href="#generating-the-workflow" id="toc-generating-the-workflow" class="nav-link" data-scroll-target="#generating-the-workflow">Generating the workflow</a></li>
   <li><a href="#commercial-data-and-processing-services" id="toc-commercial-data-and-processing-services" class="nav-link" data-scroll-target="#commercial-data-and-processing-services">Commercial data and processing services</a></li>
@@ -437,21 +438,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Description &amp; purpose</strong>: This Notebook outlines a use case for generating Sentinel 1 SAR (Synthetic Aperture Radar) coherence imagery. It walks the user through the science and outlines how the eoap-gen tool has been used to creat a workflow that is usable on the EODH.</p>
+<p><strong>Description &amp; purpose</strong>: This Notebook outlines a use case for generating Sentinel 1 SAR (Synthetic Aperture Radar) coherence imagery. It walks the user through the science and outlines how the eoap-gen tool has been used to create a workflow that is usable on the EODH.</p>
 <p><strong>Author(s)</strong>: Alastair Graham, Dusan Figala</p>
 <p><strong>Date created</strong>: 2024-11-08</p>
-<p><strong>Date last modified</strong>: 2024-11-08</p>
+<p><strong>Date last modified</strong>: 2025-03-11</p>
 <p><strong>Licence</strong>: This file is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. Any included code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<p><a href="&quot;https://www.flaticon.com/free-icons/work-in-progress&quot;">WIP Icon Attribution</a></p>
 <section id="background" class="level1">
 <h1>Background</h1>
 <p>A requirement to process coherence from Sentinel 1 data was articulated.</p>
 <p>Coherence data are a measure of the similarity between two complex radar signals acquired over the same area. In this use case those radar signals are captured by the Sentinel-1 Synthetic Aperture Radar (SAR) sensor using its Single Look Complex (SLC) mode. Coherence is calculated by comparing the phase information of the radar signals across consecutive or closely spaced acquisitions. High coherence indicates strong similarity in phase, which typically occurs when the surface properties remain stable between acquisitions, such as in urban areas or bare soil. Conversely, low coherence suggests changes in the surface, such as vegetation growth, soil moisture variations, or physical displacement caused by events such as earthquakes or landslides. The coherence value, ranging between 0 and 1, provides valuable information about the temporal stability of the observed area.</p>
 <p>Coherence data derived from Sentinel-1 SLC imagery are crucial in various remote sensing applications, including land-use classification, vegetation monitoring, and deformation analysis. In particular, coherence is a key component of interferometric SAR (InSAR) techniques, which rely on phase differences to measure ground displacement with millimeter precision. Coherence can be used to monitor dynamic changes in the environment, such as detecting deforestation, tracking agricultural practices, or studying snow cover variations. By leveraging Sentinel-1’s high spatial resolution, regular revisit times, and all-weather imaging capabilities, coherence data provide a robust tool for understanding and managing natural and human-induced changes on the Earth’s surface.</p>
-<p>“The Sentinel 1 Level 1 SLC products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite.”<a href="https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html">ref</a></p>
+<p>“The Sentinel 1 Level 1 SLC products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite.” <a href="https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html">ref</a></p>
 <p>Information on Sentinel 1 and the different products that are available at source can be found on the Copernicus Data Space Ecosystem (CDSE) <a href="https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-1">website</a> and <a href="https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html">here</a></p>
 </section>
 <section id="the-scientific-process" class="level1">
@@ -460,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As part of this discovery phase, and in line with the how-to tutorial on the eo-tools website, there is a need to access data on the CDSE. If you want to do this you will need a free account on that platform and will need to set up an <code>eodag.yaml</code> file as explained <a href="https://eodag.readthedocs.io/en/stable/getting_started_guide/configure.html">here</a>.</p>
 <p>The following tutorial will demonstrate how to process a single SLC pair.</p>
 <p>First we need to import the required packages</p>
-<div id="cell-8" class="cell" data-execution_count="1">
+<div id="cell-8" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span>logging.INFO)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -470,13 +470,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> shape</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># eo-tools and related packages</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eo_tools <span class="im">as</span> eo</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eo_tools.S1.process <span class="im">import</span> process_insar</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eodag <span class="im">import</span> EODataAccessGateway</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># eo-tools and related packages</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eo_tools <span class="im">as</span> eo</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eo_tools.S1.process <span class="im">import</span> process_insar</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> eodag <span class="im">import</span> EODataAccessGateway</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make sure that a suitable directory is set as the working directory for this exploratory work. Set the following for your system.</p>
 <div id="cell-10" class="cell" data-execution_count="4">
@@ -797,10 +798,8 @@ INFO:eodag.core:Found 5 result(s) on provider 'cop_dataspace'</code></pre>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
 </div>
-<p><img src="../img/wip.png" class="img-fluid" width="50"></p>
-<p><strong>To be added</strong> * Using pyeodh to find the images</p>
 <p>We are only interested in image pairs. The S1 SLC file name doesn’t make it clear which these are so the following code finds image footprints with 98% overlap</p>
-<div id="cell-20" class="cell" data-execution_count="9">
+<div id="cell-19" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find overlaps</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> results:</span>
@@ -832,7 +831,7 @@ INFO:eodag.core:Found 5 result(s) on provider 'cop_dataspace'</code></pre>
 </div>
 </div>
 <p>The data files are large (8GB). when running this locally use a tool such as <code>wget</code> to download the Sentinel 1 image pair that you want</p>
-<div id="cell-22" class="cell" data-execution_count="11">
+<div id="cell-21" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set download dirs</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ids <span class="op">=</span> [</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C"</span>,</span>
@@ -847,7 +846,7 @@ INFO:eodag.core:Found 5 result(s) on provider 'cop_dataspace'</code></pre>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>outputs_prefix <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>data_dir<span class="sc">}</span><span class="ss">/res/test-full-processor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The next cell runs <code>eo-tools</code> on the SAR SLC data pair. There are a multitude of configuration parameters but the most important one for this application is to ensure that <code>write_coherence</code> is set to <code>True</code>. This will generate an image of coherence in the project path set earlier in the Notebook. To effectively set the remainder of the parameters you will need some level of competence in SAR interferometry. For the purposes of this demonstration we leave them on the default values.</p>
-<div id="cell-24" class="cell" data-execution_count="12">
+<div id="cell-23" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> process_insar(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    dir_prm<span class="op">=</span>primary_dir,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    dir_sec<span class="op">=</span>secondary_dir,</span>
@@ -951,116 +950,509 @@ INFO:eo_tools.auxils:Removing /home/al/Downloads/eotools/res/test-full-processor
 </figure>
 </div>
 </section>
+<section id="using-pyeodh" class="level2">
+<h2 class="anchored" data-anchor-id="using-pyeodh">Using pyeodh</h2>
+<p>We can use <code>pyeodh</code> to find data on the Hub. The following cells demonstrate how this might be done.</p>
+<div id="cell-27" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># base_url can be changed to optionally specify a different server, such as test.eodatahub</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://staging.eodatahub.org.uk"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>).get_catalog_service()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The following cell prints out the available properties for each item. It is possible to ammend this to print specific properties for each item (up to the specified limit).</p>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we want to access the first few items  </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sentinel <span class="op">=</span> client.get_catalog(<span class="st">"supported-datasets/catalogs/ceda-stac-catalogue"</span>).get_collection(<span class="st">'sentinel1'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sentinel.get_items()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> <span class="dv">1</span> <span class="co"># increase this number to access more items</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(sentinel.get_items()):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;=</span> lim:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>, item.properties) <span class="co"># comment this line and uncomment the next to just print id and datetime for each item</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#    print(item.id, item.properties['datetime'])  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.31.S1A_IW_SLC__1SDV_20241031T233334_20241031T233407_056353_06E745_B4ED {'datetime': '2024-10-31T23:33:50Z', 'created': '2024-11-19T13:58:04.869039Z', 'updated': '2024-11-19T13:58:04.869039Z', 'start_datetime': '2024-10-31T23:33:34Z', 'end_datetime': '2024-10-31T23:34:07Z', 'platform': 'sentinel1a', 'instrument_mode': 'IW', 'processing_level': 'L1', 'product_type': 'SLC', 'processing_software': 'IPF', 'product_version': 'v3', 'orbit': '056353', 'Instrument Family Name': 'Synthetic Aperture Radar', 'Instrument Family Name Abbreviation': 'SAR', 'Platform Number': 'A', 'NSSDC Identifier': '2014-016A', 'Start Relative Orbit Number': '106', 'Start Orbit Number': '56353', 'Instrument Mode': 'IW', 'Slice Number': '18', 'Total Slices': '18', 'Polarisation': ['VV', 'VH'], 'Processing Version': '003.80', 'Orbit Direction': 'DESCENDING', 'EPSG': '4326', 'instance_id': 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.31.S1A_IW_SLC__1SDV_20241031T233334_20241031T233407_056353_06E745_B4ED'}</code></pre>
+</div>
+</div>
+<p>Now we want to search for SAR data that fall across the Thetford site for a given timeframe.</p>
+<div id="cell-31" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To find specific imagery for the Thetford site we need to add the intersects parameter. We set this to be our AOI point.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>thet_pnt <span class="op">=</span> shapely.Point(<span class="fl">0.6715892933273722</span>, <span class="fl">52.414471075812315</span>) <span class="co"># a site near Thetford</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the date range as you need</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel1'</span>],</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"supported-datasets/catalogs/ceda-stac-catalogue"</span>],</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    intersects<span class="op">=</span>thet_pnt,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2024-10-16'</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2024-11-30'</span>, </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#print('Number of items found: ', items.total_count)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total items: 9</code></pre>
+</div>
+</div>
+<p>The next cell creates a formatted list of id, bounding box and a data URL for each of the items.</p>
+<p>It then creates a Shapely polygon and uses this to look for other images that have 98% overlap</p>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the formatted list</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    (item.<span class="bu">id</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>     item.bbox,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>     item.assets.get(<span class="st">"data_zip"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>) <span class="cf">for</span> item <span class="kw">in</span> items</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dictionary with shapely boxes</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>bboxes <span class="op">=</span> {rec[<span class="dv">0</span>]: shapely.geometry.box(<span class="op">*</span>rec[<span class="dv">1</span>]) <span class="cf">for</span> rec <span class="kw">in</span> data}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Find IDs where overlap is at least 90%</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>overlapping_ids <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> id1, bbox1 <span class="kw">in</span> bboxes.items():</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> id2, bbox2 <span class="kw">in</span> bboxes.items():</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> id1 <span class="op">!=</span> id2:  <span class="co"># Avoid self-comparison</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            intersection_area <span class="op">=</span> bbox1.intersection(bbox2).area</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            min_area <span class="op">=</span> <span class="bu">min</span>(bbox1.area, bbox2.area)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> min_area <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> (intersection_area <span class="op">/</span> min_area) <span class="op">&gt;=</span> <span class="fl">0.98</span>:</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                overlapping_ids.add(id1)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IDs with at least 98</span><span class="sc">% o</span><span class="st">verlap:"</span>, overlapping_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IDs with at least 98% overlap: {'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T055407_20241018T055442_056153_06DF4E_19D4', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T061507_20241018T061535_056153_06DF50_619B', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T055407_20241030T055442_056328_06E63C_37A1', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.26.S1A_IW_SLC__1SDV_20241026T181923_20241026T181948_056277_06E441_9ADB', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.25.S1A_IW_SLC__1SDV_20241025T060655_20241025T060722_056255_06E360_E4C0', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T061507_20241030T061534_056328_06E63E_21E9', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.28.S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046', 'neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.16.S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C'}</code></pre>
+</div>
+</div>
+<p>Finally, we want to plot the overlapping items on a map. We also create a FeatureGroup to allow the bounding boxes to be swithched on and off: this helps us understand which images are direct image pairs. as before, we need to make a note of those image pairs and then run the <code>print(data)</code> cell to find the corresponding URL to the data.</p>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the center of the first bounding box for map initialization</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>first_bbox <span class="op">=</span> <span class="bu">list</span>(bboxes.values())[<span class="dv">0</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>center <span class="op">=</span> first_bbox.centroid.y, first_bbox.centroid.x  <span class="co"># (lat, lon)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folium map centered on the first bbox</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>center, zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add each bbox as a separate FeatureGroup (allows toggling)</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item_id, bbox <span class="kw">in</span> bboxes.items():</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    feature_group <span class="op">=</span> folium.FeatureGroup(name<span class="op">=</span><span class="ss">f"Polygon </span><span class="sc">{</span>item_id<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Group for toggling</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    coords <span class="op">=</span> [(y, x) <span class="cf">for</span> x, y <span class="kw">in</span> bbox.exterior.coords]  <span class="co"># Convert (x, y) → (lat, lon)</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    folium.Polygon(</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        locations<span class="op">=</span>coords,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"blue"</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        fill<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        fill_opacity<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        popup<span class="op">=</span>item_id</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    ).add_to(feature_group)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    feature_group.add_to(m)  <span class="co"># Add the group to the map</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add LayerControl to allow toggling</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the map</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_fb0b9ef68fd39a1704f7045f70e22682 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_fb0b9ef68fd39a1704f7045f70e22682&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_fb0b9ef68fd39a1704f7045f70e22682 = L.map(
+                &quot;map_fb0b9ef68fd39a1704f7045f70e22682&quot;,
+                {
+                    center: [52.29322799999999, -0.12296499999999995],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_32e14bc04280d9e2bb28a7b7032ed940 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_32e14bc04280d9e2bb28a7b7032ed940.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_7093f288c36cb08817e8bc3726c60795 = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_097ba2f27372ef799ebcc37b6842e192 = L.polygon(
+                [[51.279499, 2.000001], [53.306957, 2.000001], [53.306957, -2.245931], [51.279499, -2.245931], [51.279499, 2.000001]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_7093f288c36cb08817e8bc3726c60795);
+        
+    
+        var popup_42bd2674ed2f57d4331960148a9e2920 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_04d219712130addfef916c193b6e901f = $(`<div id=&quot;html_04d219712130addfef916c193b6e901f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T061507_20241030T061534_056328_06E63E_21E9</div>`)[0];
+                popup_42bd2674ed2f57d4331960148a9e2920.setContent(html_04d219712130addfef916c193b6e901f);
+            
+        
+
+        polygon_097ba2f27372ef799ebcc37b6842e192.bindPopup(popup_42bd2674ed2f57d4331960148a9e2920)
+        ;
+
+        
+    
+    
+            feature_group_7093f288c36cb08817e8bc3726c60795.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_ed434395ca7a5f663404bde9804a0df7 = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_f9e751900f302e4739ae100fc30231ea = L.polygon(
+                [[50.773228, 177.047455], [53.279991, 177.047455], [53.279991, -179.947861], [50.773228, -179.947861], [50.773228, 177.047455]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_ed434395ca7a5f663404bde9804a0df7);
+        
+    
+        var popup_41909b06ac7db11c56a20effca225208 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_cdc1ea011af56fe414149afd01ad7b98 = $(`<div id=&quot;html_cdc1ea011af56fe414149afd01ad7b98&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T055407_20241030T055442_056328_06E63C_37A1</div>`)[0];
+                popup_41909b06ac7db11c56a20effca225208.setContent(html_cdc1ea011af56fe414149afd01ad7b98);
+            
+        
+
+        polygon_f9e751900f302e4739ae100fc30231ea.bindPopup(popup_41909b06ac7db11c56a20effca225208)
+        ;
+
+        
+    
+    
+            feature_group_ed434395ca7a5f663404bde9804a0df7.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_e727680e69d8a29c668af5bcb5a5b2e2 = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_d424538e2689cf05cd80cab36b09ec28 = L.polygon(
+                [[51.935623, 3.405478], [53.953266, 3.405478], [53.953266, -0.871057], [51.935623, -0.871057], [51.935623, 3.405478]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e727680e69d8a29c668af5bcb5a5b2e2);
+        
+    
+        var popup_a8703849af5a27e694292c496a113292 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_b7b346da91081a0752a352856a6cf201 = $(`<div id=&quot;html_b7b346da91081a0752a352856a6cf201&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.28.S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046</div>`)[0];
+                popup_a8703849af5a27e694292c496a113292.setContent(html_b7b346da91081a0752a352856a6cf201);
+            
+        
+
+        polygon_d424538e2689cf05cd80cab36b09ec28.bindPopup(popup_a8703849af5a27e694292c496a113292)
+        ;
+
+        
+    
+    
+            feature_group_e727680e69d8a29c668af5bcb5a5b2e2.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_5785b1f185ed12f559531512ba53b7ae = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_40b632df4c6dabcd0222f9f0f5191ea4 = L.polygon(
+                [[50.908009, 177.040146], [52.75478, 177.040146], [52.75478, -179.779007], [50.908009, -179.779007], [50.908009, 177.040146]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_5785b1f185ed12f559531512ba53b7ae);
+        
+    
+        var popup_68d8f672b3e0f179e4205d3abd097e56 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_59331c30b5cdeba857c6440c68c582c2 = $(`<div id=&quot;html_59331c30b5cdeba857c6440c68c582c2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.26.S1A_IW_SLC__1SDV_20241026T181923_20241026T181948_056277_06E441_9ADB</div>`)[0];
+                popup_68d8f672b3e0f179e4205d3abd097e56.setContent(html_59331c30b5cdeba857c6440c68c582c2);
+            
+        
+
+        polygon_40b632df4c6dabcd0222f9f0f5191ea4.bindPopup(popup_68d8f672b3e0f179e4205d3abd097e56)
+        ;
+
+        
+    
+    
+            feature_group_5785b1f185ed12f559531512ba53b7ae.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_9d79d1ba6980ace8718fe8890746baee = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_c95ebfbc360945b61c15319e88cfd852 = L.polygon(
+                [[51.158131, 4.020997], [53.186623, 4.020997], [53.186623, -0.213998], [51.158131, -0.213998], [51.158131, 4.020997]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_9d79d1ba6980ace8718fe8890746baee);
+        
+    
+        var popup_39cc0fb23fe73289effaf3e1c672807c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_93a94aa15e04b2dad31e563ef900df7c = $(`<div id=&quot;html_93a94aa15e04b2dad31e563ef900df7c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.25.S1A_IW_SLC__1SDV_20241025T060655_20241025T060722_056255_06E360_E4C0</div>`)[0];
+                popup_39cc0fb23fe73289effaf3e1c672807c.setContent(html_93a94aa15e04b2dad31e563ef900df7c);
+            
+        
+
+        polygon_c95ebfbc360945b61c15319e88cfd852.bindPopup(popup_39cc0fb23fe73289effaf3e1c672807c)
+        ;
+
+        
+    
+    
+            feature_group_9d79d1ba6980ace8718fe8890746baee.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_fc808fcdb6248cb01b2d13114f34db3a = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_952f2fbdc3d61cf753d28424ce262889 = L.polygon(
+                [[51.322365, 1.500555], [53.338009, 1.500555], [53.338009, -2.702837], [51.322365, -2.702837], [51.322365, 1.500555]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_fc808fcdb6248cb01b2d13114f34db3a);
+        
+    
+        var popup_fecd37901a8f5cbc75f9d51fc688f630 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_957570a994abb0878848241e9b03bab9 = $(`<div id=&quot;html_957570a994abb0878848241e9b03bab9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.21.S1A_IW_SLC__1SDV_20241021T175009_20241021T175036_056204_06E157_E9A9</div>`)[0];
+                popup_fecd37901a8f5cbc75f9d51fc688f630.setContent(html_957570a994abb0878848241e9b03bab9);
+            
+        
+
+        polygon_952f2fbdc3d61cf753d28424ce262889.bindPopup(popup_fecd37901a8f5cbc75f9d51fc688f630)
+        ;
+
+        
+    
+    
+            feature_group_fc808fcdb6248cb01b2d13114f34db3a.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_7fa149a597659c8a7b1211d5426e9aab = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_078d128017183c9761e8b1c7581ec7c3 = L.polygon(
+                [[51.280041, 1.999672], [53.307491, 1.999672], [53.307491, -2.24622], [51.280041, -2.24622], [51.280041, 1.999672]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_7fa149a597659c8a7b1211d5426e9aab);
+        
+    
+        var popup_a0800e0a257476695dfe89f30970fd80 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_e926bd9edddd9a78edb2cdf4ccff8670 = $(`<div id=&quot;html_e926bd9edddd9a78edb2cdf4ccff8670&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T061507_20241018T061535_056153_06DF50_619B</div>`)[0];
+                popup_a0800e0a257476695dfe89f30970fd80.setContent(html_e926bd9edddd9a78edb2cdf4ccff8670);
+            
+        
+
+        polygon_078d128017183c9761e8b1c7581ec7c3.bindPopup(popup_a0800e0a257476695dfe89f30970fd80)
+        ;
+
+        
+    
+    
+            feature_group_7fa149a597659c8a7b1211d5426e9aab.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_0085097327d781800a3bfa09093d236f = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_e7e03a99dd0e77035648684b5bb7b0eb = L.polygon(
+                [[50.773602, 177.048004], [53.280197, 177.048004], [53.280197, -179.947586], [50.773602, -179.947586], [50.773602, 177.048004]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_0085097327d781800a3bfa09093d236f);
+        
+    
+        var popup_6064efc33405fc95b9417c5799252c3c = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_a3ad3e1347867e17042602b6d752ea6d = $(`<div id=&quot;html_a3ad3e1347867e17042602b6d752ea6d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T055407_20241018T055442_056153_06DF4E_19D4</div>`)[0];
+                popup_6064efc33405fc95b9417c5799252c3c.setContent(html_a3ad3e1347867e17042602b6d752ea6d);
+            
+        
+
+        polygon_e7e03a99dd0e77035648684b5bb7b0eb.bindPopup(popup_6064efc33405fc95b9417c5799252c3c)
+        ;
+
+        
+    
+    
+            feature_group_0085097327d781800a3bfa09093d236f.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var feature_group_dccd7742d31abcf4dd6f5f62cc53037c = L.featureGroup(
+                {}
+            );
+        
+    
+            var polygon_527bb6b2430aa02e702779b48d20ae47 = L.polygon(
+                [[51.935555, 3.406604], [53.953529, 3.406604], [53.953529, -0.869891], [51.935555, -0.869891], [51.935555, 3.406604]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.4, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_dccd7742d31abcf4dd6f5f62cc53037c);
+        
+    
+        var popup_4b6133238ea3b1b00c0306795a494536 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_b56acf1da2f027f4fb8ecc03b35327fb = $(`<div id=&quot;html_b56acf1da2f027f4fb8ecc03b35327fb&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.16.S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C</div>`)[0];
+                popup_4b6133238ea3b1b00c0306795a494536.setContent(html_b56acf1da2f027f4fb8ecc03b35327fb);
+            
+        
+
+        polygon_527bb6b2430aa02e702779b48d20ae47.bindPopup(popup_4b6133238ea3b1b00c0306795a494536)
+        ;
+
+        
+    
+    
+            feature_group_dccd7742d31abcf4dd6f5f62cc53037c.addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+        
+    
+            var layer_control_1c939bcb2d97f3ac1333165905a6dd4b_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_32e14bc04280d9e2bb28a7b7032ed940,
+                },
+                overlays :  {
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T061507_20241030T061534_056328_06E63E_21E9&quot; : feature_group_7093f288c36cb08817e8bc3726c60795,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T055407_20241030T055442_056328_06E63C_37A1&quot; : feature_group_ed434395ca7a5f663404bde9804a0df7,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.28.S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046&quot; : feature_group_e727680e69d8a29c668af5bcb5a5b2e2,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.26.S1A_IW_SLC__1SDV_20241026T181923_20241026T181948_056277_06E441_9ADB&quot; : feature_group_5785b1f185ed12f559531512ba53b7ae,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.25.S1A_IW_SLC__1SDV_20241025T060655_20241025T060722_056255_06E360_E4C0&quot; : feature_group_9d79d1ba6980ace8718fe8890746baee,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.21.S1A_IW_SLC__1SDV_20241021T175009_20241021T175036_056204_06E157_E9A9&quot; : feature_group_fc808fcdb6248cb01b2d13114f34db3a,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T061507_20241018T061535_056153_06DF50_619B&quot; : feature_group_7fa149a597659c8a7b1211d5426e9aab,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T055407_20241018T055442_056153_06DF4E_19D4&quot; : feature_group_0085097327d781800a3bfa09093d236f,
+                    &quot;Polygon neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.16.S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C&quot; : feature_group_dccd7742d31abcf4dd6f5f62cc53037c,
+                },
+            };
+            let layer_control_1c939bcb2d97f3ac1333165905a6dd4b = L.control.layers(
+                layer_control_1c939bcb2d97f3ac1333165905a6dd4b_layers.base_layers,
+                layer_control_1c939bcb2d97f3ac1333165905a6dd4b_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_fb0b9ef68fd39a1704f7045f70e22682);
+
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<div id="cell-36" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T061507_20241030T061534_056328_06E63E_21E9', [-2.245931, 51.279499, 2.000001, 53.306957], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/30/S1A_IW_SLC__1SDV_20241030T061507_20241030T061534_056328_06E63E_21E9.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.30.S1A_IW_SLC__1SDV_20241030T055407_20241030T055442_056328_06E63C_37A1', [-179.947861, 50.773228, 177.047455, 53.279991], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/30/S1A_IW_SLC__1SDV_20241030T055407_20241030T055442_056328_06E63C_37A1.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.28.S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046', [-0.871057, 51.935623, 3.405478, 53.953266], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/28/S1A_IW_SLC__1SDV_20241028T174206_20241028T174233_056306_06E564_F046.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.26.S1A_IW_SLC__1SDV_20241026T181923_20241026T181948_056277_06E441_9ADB', [-179.779007, 50.908009, 177.040146, 52.75478], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/26/S1A_IW_SLC__1SDV_20241026T181923_20241026T181948_056277_06E441_9ADB.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.25.S1A_IW_SLC__1SDV_20241025T060655_20241025T060722_056255_06E360_E4C0', [-0.213998, 51.158131, 4.020997, 53.186623], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/25/S1A_IW_SLC__1SDV_20241025T060655_20241025T060722_056255_06E360_E4C0.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.21.S1A_IW_SLC__1SDV_20241021T175009_20241021T175036_056204_06E157_E9A9', [-2.702837, 51.322365, 1.500555, 53.338009], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/21/S1A_IW_SLC__1SDV_20241021T175009_20241021T175036_056204_06E157_E9A9.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T061507_20241018T061535_056153_06DF50_619B', [-2.24622, 51.280041, 1.999672, 53.307491], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/18/S1A_IW_SLC__1SDV_20241018T061507_20241018T061535_056153_06DF50_619B.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.18.S1A_IW_SLC__1SDV_20241018T055407_20241018T055442_056153_06DF4E_19D4', [-179.947586, 50.773602, 177.048004, 53.280197], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/18/S1A_IW_SLC__1SDV_20241018T055407_20241018T055442_056153_06DF4E_19D4.zip&gt;), ('neodc.sentinel1a.data.IW.L1_SLC.IPF_v3.2024.10.16.S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C', [-0.869891, 51.935555, 3.406604, 53.953529], &lt;Asset href=https://dap.ceda.ac.uk/neodc/sentinel1a/data/IW/L1_SLC/IPF_v3/2024/10/16/S1A_IW_SLC__1SDV_20241016T174206_20241016T174233_056131_06DE72_1B0C.zip&gt;)]</code></pre>
+</div>
+</div>
+<p>Once you have the data URLs for the image pairs you are interested in, scroll up to follow the cells that use eo-tools to download and process the data.</p>
+</section>
 </section>
 <section id="generating-the-workflow" class="level1">
 <h1>Generating the workflow</h1>
-<p>When moving this workflow into the EODh platform it is best practice to use <code>eoap-gen</code>. The tool requires a configuration file which is provided <a href="https://github.com/EO-DataHub/user-workflows/blob/main/S1-coherence/eoap-gen-config.yml">here</a> and provided below.</p>
-<div id="cell-29" class="cell" data-vscode="{&quot;languageId&quot;:&quot;plaintext&quot;}">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: s1<span class="op">-</span>coherence</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>doc: Generate Sentinel <span class="dv">1</span> image pair coherence</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>label: S1 coherence</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>inputs:</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: intersects</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    label: Intersects</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    doc: <span class="op">&gt;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>      a GeoJSON<span class="op">-</span>like json string, which provides a <span class="st">"type"</span> member describing the <span class="bu">type</span> of the geometry <span class="kw">and</span> <span class="st">"coordinates"</span> </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      member providing a <span class="bu">list</span> of coordinates. Will search <span class="cf">for</span> images intersecting this geometry.</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    default: <span class="op">&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>          [</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.15527412683906</span>],</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.15527412683906</span>],</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.69722175598818</span>],</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>]</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>          ]</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    label: Start datetime</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    doc: Start datetime</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-04-01"</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    label: End datetime</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    doc: End datetime</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-06-30"</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: username</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    label: Username</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    doc: Username</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: password</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    label: Password</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    doc: Password</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>outputs:</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: stac_output</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: Directory</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    source: s1_make_stac<span class="op">/</span>stac_catalog</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>steps:</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s1_search</span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>    script: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>search.py</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>    requirements: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>requirements.txt</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>intersects</span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>start_datetime</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>end_datetime</span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: username</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>username</span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: password</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>password</span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: pairs</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>          glob: pair_<span class="op">*</span>.geojson</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s1_process</span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>    script: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>process<span class="op">/</span>process.py</span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>    requirements: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>process<span class="op">/</span>requirements.txt</span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>    conda:</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> eo<span class="op">-</span>tools</span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>    scatter_method: dotproduct</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: pair</span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>        source: s1_search<span class="op">/</span>pairs</span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>        scatter: true</span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>intersects</span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: username</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>username</span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: password</span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>password</span>
-<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
-<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: coherence</span>
-<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
-<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
-<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>          glob: <span class="st">"data/results/*/coh_vv.tif"</span></span>
-<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s1_make_stac</span>
-<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>    script: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>make_stac.py</span>
-<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>    requirements: S1<span class="op">-</span>coherence<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>requirements.txt</span>
-<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
-<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
-<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>        source: s1<span class="op">-</span>coherence<span class="op">/</span>intersects</span>
-<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: files</span>
-<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>        source: s1_process<span class="op">/</span>coherence</span>
-<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
-<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
-<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: stac_catalog</span>
-<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
-<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>          glob: .</span>
-<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: Directory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>When moving this workflow into the EODH platform it is best practice to use <code>eoap-gen</code>. The tool requires a configuration file which is provided <a href="https://github.com/EO-DataHub/user-workflows/blob/main/S1-coherence/eoap-gen-config.yml">here</a> and provided below.</p>
+<p>id: s1-coherence doc: Generate Sentinel 1 image pair coherence label: S1 coherence inputs: - id: intersects label: Intersects doc: &gt; a GeoJSON-like json string, which provides a “type” member describing the type of the geometry and “coordinates” member providing a list of coordinates. Will search for images intersecting this geometry. type: string default: &gt; { “type”: “Polygon”, “coordinates”: [ [ [0.08905898091569497, 52.69722175598818], [0.08905898091569497, 52.15527412683906], [0.9565339502005088, 52.15527412683906], [0.9565339502005088, 52.69722175598818], [0.08905898091569497, 52.69722175598818] ] ] } - id: start_datetime label: Start datetime doc: Start datetime type: string default: “2023-04-01” - id: end_datetime label: End datetime doc: End datetime type: string default: “2023-06-30” - id: username label: Username doc: Username type: string - id: password label: Password doc: Password type: string</p>
+<p>outputs: - id: stac_output type: Directory source: s1_make_stac/stac_catalog steps: - id: s1_search script: S1-coherence/cli/search/search.py requirements: S1-coherence/cli/search/requirements.txt inputs: - id: intersects source: s1-coherence/intersects - id: start_datetime source: s1-coherence/start_datetime - id: end_datetime source: s1-coherence/end_datetime - id: username source: s1-coherence/username - id: password source: s1-coherence/password outputs: - id: pairs type: File[] outputBinding: glob: pair_*.geojson</p>
+<ul>
+<li>id: s1_process script: S1-coherence/cli/process/process.py requirements: S1-coherence/cli/process/requirements.txt conda:
+<ul>
+<li>eo-tools scatter_method: dotproduct inputs:</li>
+<li>id: pair source: s1_search/pairs type: File scatter: true</li>
+<li>id: intersects source: s1-coherence/intersects</li>
+<li>id: username source: s1-coherence/username</li>
+<li>id: password source: s1-coherence/password outputs:</li>
+<li>id: coherence type: File outputBinding: glob: “data/results/*/coh_vv.tif”</li>
+</ul></li>
+<li>id: s1_make_stac script: S1-coherence/cli/make_stac/make_stac.py requirements: S1-coherence/cli/make_stac/requirements.txt inputs:
+<ul>
+<li>id: intersects source: s1-coherence/intersects</li>
+<li>id: files source: s1_process/coherence type: File[] outputs:</li>
+<li>id: stac_catalog outputBinding: glob: . type: Directory</li>
+</ul></li>
+</ul>
 <p>Running this configuration file generates the folder structure available <a href="https://github.com/EO-DataHub/user-workflows/tree/main/S1-coherence/eoap-gen-out/cli">here</a> which can be executed using the EODH workflow runner.</p>
 </section>
 <section id="commercial-data-and-processing-services" class="level1">
