@@ -595,33 +595,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Using the configuration file <a href="https://github.com/EO-DataHub/user-workflows/blob/main/S2-cloud-free-best-pixel/eoap-gen-config.yml">here</a> and reproduced below, it is possible to run <code>eoap-gen</code> to create the full package requirements.</p>
-<p>id: cloud-free-best-pixel doc: Generate cloud free best pixel mosaic on a per month basis label: Cloud free best pixel</p>
-<p>resources: # current ADES max is 4 cores and 16GB RAM, we need all we can get cores_min: 4 ram_min: 16000</p>
-<p>inputs: - id: catalog label: Catalog path doc: Full catalog path type: string default: supported-datasets/ceda-stac-catalogue - id: collection label: collection id doc: collection id type: string default: sentinel2_ard - id: intersects label: Intersects doc: &gt; a GeoJSON-like json string, which provides a “type” member describing the type of the geometry and “coordinates” member providing a list of coordinates. Will search for images intersecting this geometry. type: string default: &gt; { “type”: “Polygon”, “coordinates”: [ [ [0.08905898091569497, 52.69722175598818], [0.08905898091569497, 52.15527412683906], [0.9565339502005088, 52.15527412683906], [0.9565339502005088, 52.69722175598818], [0.08905898091569497, 52.69722175598818] ] ] } - id: start_datetime label: Start datetime doc: Start datetime type: string default: “2023-04-01” - id: end_datetime label: End datetime doc: End datetime type: string default: “2023-06-30”</p>
-<p>outputs: - id: stac_output type: Directory source: s2_make_stac/stac_catalog steps: - id: s2_search script: S2-cloud-free-best-pixel/cli/search/search.py requirements: S2-cloud-free-best-pixel/cli/search/requirements.txt inputs: - id: catalog source: cloud-free-best-pixel/catalog - id: collection source: cloud-free-best-pixel/collection - id: intersects source: cloud-free-best-pixel/intersects - id: start_datetime source: cloud-free-best-pixel/start_datetime - id: end_datetime source: cloud-free-best-pixel/end_datetime outputs: - id: urls type: string[] outputBinding: loadContents: true glob: urls.txt outputEval: $(self[0].contents.split(‘’)) - id: months type: File[] outputBinding: glob: month_*.json</p>
-<ul>
-<li>id: s2_rm_cloud script: S2-cloud-free-best-pixel/cli/rm_cloud/rm_cloud.py requirements: S2-cloud-free-best-pixel/cli/rm_cloud/requirements.txt conda:
-<ul>
-<li>dask</li>
-<li>gdal scatter_method: dotproduct inputs:</li>
-<li>id: item_url source: s2_search/urls scatter: true outputs:</li>
-<li>id: cloud_masked type: File outputBinding: glob: “*.tif”</li>
-</ul></li>
-<li>id: s2_mosaic script: S2-cloud-free-best-pixel/cli/mosaic/mosaic.py requirements: S2-cloud-free-best-pixel/cli/mosaic/requirements.txt apt_install:
-<ul>
-<li>pktools scatter_method: dotproduct inputs:</li>
-<li>id: intersects source: cloud-free-best-pixel/intersects</li>
-<li>id: month_json source: s2_search/months scatter: true type: File</li>
-<li>id: all_images source: s2_rm_cloud/cloud_masked type: File[] outputs:</li>
-<li>id: best_pixel type: File outputBinding: glob: “*.tif”</li>
-</ul></li>
-<li>id: s2_make_stac script: S2-cloud-free-best-pixel/cli/make_stac/make_stac.py requirements: S2-cloud-free-best-pixel/cli/make_stac/requirements.txt inputs:
-<ul>
-<li>id: geometry source: cloud-free-best-pixel/intersects</li>
-<li>id: files source: s2_mosaic/best_pixel type: File[] outputs:</li>
-<li>id: stac_catalog outputBinding: glob: . type: Directory</li>
-</ul></li>
-</ul>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>doc: Generate cloud free best pixel mosaic on a per month basis</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>label: Cloud free best pixel</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>resources: <span class="co"># current ADES max is 4 cores and 16GB RAM, we need all we can get</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  cores_min: <span class="dv">4</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ram_min: <span class="dv">16000</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>inputs:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    label: Catalog path</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    doc: Full catalog path</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    default: supported<span class="op">-</span>datasets<span class="op">/</span>ceda<span class="op">-</span>stac<span class="op">-</span>catalogue</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    label: collection <span class="bu">id</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    doc: collection <span class="bu">id</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    default: sentinel2_ard</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    label: Intersects</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    doc: <span class="op">&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      a GeoJSON<span class="op">-</span>like json string, which provides a <span class="st">"type"</span> member describing the <span class="bu">type</span> of the geometry <span class="kw">and</span> <span class="st">"coordinates"</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      member providing a <span class="bu">list</span> of coordinates. Will search <span class="cf">for</span> images intersecting this geometry.</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    default: <span class="op">&gt;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"type"</span>: <span class="st">"Polygon"</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"coordinates"</span>: [</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>          [</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.15527412683906</span>],</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.9565339502005088</span>, <span class="fl">52.69722175598818</span>],</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            [<span class="fl">0.08905898091569497</span>, <span class="fl">52.69722175598818</span>]</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>          ]</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    label: Start datetime</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    doc: Start datetime</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-04-01"</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    label: End datetime</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    doc: End datetime</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: string</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    default: <span class="st">"2023-06-30"</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>outputs:</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: stac_output</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: Directory</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    source: s2_make_stac<span class="op">/</span>stac_catalog</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>steps:</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_search</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>search.py</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>search<span class="op">/</span>requirements.txt</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: catalog</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>catalog</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: collection</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>collection</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: start_datetime</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>start_datetime</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: end_datetime</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>end_datetime</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: urls</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: string[]</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>          loadContents: true</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>          glob: urls.txt</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>          outputEval: $(<span class="va">self</span>[<span class="dv">0</span>].contents.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>))</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: months</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>          glob: month_<span class="op">*</span>.json</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_rm_cloud</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>rm_cloud<span class="op">/</span>rm_cloud.py</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>rm_cloud<span class="op">/</span>requirements.txt</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    conda:</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> dask</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> gdal</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    scatter_method: dotproduct</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: item_url</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>        source: s2_search<span class="op">/</span>urls</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>        scatter: true</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: cloud_masked</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>          glob: <span class="st">"*.tif"</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_mosaic</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>mosaic<span class="op">/</span>mosaic.py</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>mosaic<span class="op">/</span>requirements.txt</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    apt_install:</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> pktools</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    scatter_method: dotproduct</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: intersects</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: month_json</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>        source: s2_search<span class="op">/</span>months</span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>        scatter: true</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: all_images</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>        source: s2_rm_cloud<span class="op">/</span>cloud_masked</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: best_pixel</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>          glob: <span class="st">"*.tif"</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> <span class="bu">id</span>: s2_make_stac</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>    script: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>make_stac.py</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>    requirements: S2<span class="op">-</span>cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>cli<span class="op">/</span>make_stac<span class="op">/</span>requirements.txt</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>    inputs:</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: geometry</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>        source: cloud<span class="op">-</span>free<span class="op">-</span>best<span class="op">-</span>pixel<span class="op">/</span>intersects</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: files</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>        source: s2_mosaic<span class="op">/</span>best_pixel</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: File[]</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>    outputs:</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="bu">id</span>: stac_catalog</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>        outputBinding:</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>          glob: .</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span>: Directory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Running the configuration file results in the directory available <a href="https://github.com/EO-DataHub/user-workflows/tree/main/S2-cloud-free-best-pixel/eoap-gen-out/cli">here</a> which can then be submitted to EODH using <code>pyeodh</code> and run using either the API client or QGIS plugin.</p>
 
 
