@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -370,6 +407,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#records" id="toc-records" class="nav-link" data-scroll-target="#records">Records</a></li>
+  <li><a href="#titiler" id="toc-titiler" class="nav-link" data-scroll-target="#titiler">TiTiler</a>
+  <ul class="collapse">
+  <li><a href="#titiler-data-visualisation" id="toc-titiler-data-visualisation" class="nav-link" data-scroll-target="#titiler-data-visualisation">TiTiler data visualisation</a></li>
+  <li><a href="#using-services-in-qgis" id="toc-using-services-in-qgis" class="nav-link" data-scroll-target="#using-services-in-qgis">Using services in QGIS</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -397,29 +439,222 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>Description &amp; purpose</strong>: This notebook introduces the webservices available through the EODH platform and API endpoints.</p>
-<p><strong>Author(s)</strong>: Alastair Graham</p>
+<p><strong>Author(s)</strong>: Alastair Graham, James Hinton</p>
 <p><strong>Date created</strong>: 2024-12-05</p>
-<p><strong>Date last modified</strong>: 2024-12-17</p>
+<p><strong>Date last modified</strong>: 2025-03-13</p>
 <p><strong>Licence</strong>: This notebook is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>. The code is released using the <a href="https://www.tldrlegal.com/license/bsd-2-clause-license-freebsd">BSD-2-Clause</a> license.</p>
 <p><span style="font-size:0.75em;"> Copyright (c) , All rights reserved.</span></p>
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
-<p><a href="&quot;https://www.flaticon.com/free-icons/work-in-progress&quot;">WIP Icon Attribution</a></p>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>OGC API refers to a standardised interface defined by the [Open Geospatial Consortium (OGC)(https://ogcapi.ogc.org/) for accessing and sharing geospatial data over the web. These APIs are built on modern web standards, such as HTTP and RESTful principles, to facilitate seamless, interoperable, and efficient access to spatial data and services. By providing a consistent and easy-to-use framework, OGC APIs allow developers, researchers, and organisations to query, retrieve, and analyze geospatial data without being locked into proprietary systems. This is particularly important as it supports interoperability between different platforms, tools, and organizations, enabling collaboration and innovation. OGC APIs play a critical role in breaking down data silos and ensuring that location-based data can be shared across applications.</p>
 <section id="records" class="level2">
 <h2 class="anchored" data-anchor-id="records">Records</h2>
 <p>OGC API - Records is designed for discovering and accessing metadata about geospatial resources. It enables users to search, retrieve, and manage metadata records, such as datasets, services, and other resources. The standard supports flexible query capabilities, filtering, and sorting to help users discover relevant geospatial content efficiently. By adhering to web and open standards, OGC API - Records ensures interoperability across platforms, making it easier for organizations to share and access geospatial metadata in a consistent, machine-readable format. This API service is used on the backend of EODH.</p>
-<p><img src="../img/wip.png" class="img-fluid" width="50"></p>
-<p><strong>To be added</strong></p>
+</section>
+<section id="titiler" class="level2">
+<h2 class="anchored" data-anchor-id="titiler">TiTiler</h2>
+<p>Titiler is a lightweight, fast and customisable dynamic tile server for geospatial data, built on FastAPI and Rasterio. It enables on-the-fly serving of raster tiles, mosaics, and previews from cloud-optimized GeoTIFFs (COGs) and other raster sources. Designed for scalability and efficiency, Titiler supports advanced features like dynamic tiling, custom styling, and integration with modern web mapping applications. It is increasingly used in geospatial analysis, remote sensing, and web-based GIS applications.</p>
+<section id="titiler-data-visualisation" class="level3">
+<h3 class="anchored" data-anchor-id="titiler-data-visualisation">TiTiler data visualisation</h3>
+<p>in this quick example we use the <code>Preview</code> feature to customise some of the parameters we are going to use to dynamically visualise the data.</p>
 <ul>
-<li>List of web services and what they do</li>
-<li>Example code on how to access them and visualise the related data</li>
-<li>How to use the services in QGIS</li>
+<li><code>bidx</code> is the band index we want to preview. In this case, we are previewing the third band.</li>
+<li><code>rescale</code> is the range of values we want to display. In this case, we are rescaling the values between 10 and 255.</li>
+<li><code>colormap_name</code> is the name of the colormap we want to use. In this case, we are using the <code>hot</code> colormap.</li>
 </ul>
+<p>All of these parameters can be changed depending on what you want to see in the data.</p>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If needed you can install a package in the current AppHub Jupyter environment using pip</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For instance, we will need at least the following libraries</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install <span class="op">--</span>upgrade pyeodh geopandas matplotlib numpy folium xarray requests ipython</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, display</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the parameters </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ENVIRONMENT <span class="op">=</span> <span class="st">'staging'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># For this example we are directly referencing an item asset</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn509lonw0008_T30UXB_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameterise the TiTiler call</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>COG_PREVIEW_URL <span class="op">=</span> <span class="ss">f'https://</span><span class="sc">{</span>ENVIRONMENT<span class="sc">}</span><span class="ss">.eodatahub.org.uk/titiler/core/cog/preview'</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>COG_PREVIEW_PARAMS <span class="op">=</span> {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'url'</span>: url,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'bidx'</span>: <span class="dv">3</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rescale'</span>: <span class="st">'10,255'</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'colormap_name'</span>: <span class="st">'hot'</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Request the titiler preview</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(COG_PREVIEW_URL, params<span class="op">=</span>COG_PREVIEW_PARAMS)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the image</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image(response.content)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>display(image)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4_Services_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now that we have previewed the dataset, we can use third party tools to explore the data. To do this, we are going to create an <code>XYZ</code> tile endpoint which can be used in any third-party tool that supports XYZ tiles e.g.&nbsp;QGIS, OpenLayers, Leaflet, etc.</p>
+<p>The following code cell builds the URL we require based on some of the variables that we have already set. It then prints the URL that we will need to display and visualise the data.</p>
+<div id="cell-9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate XYZ For COG</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>COG_OGC_URL <span class="op">=</span> <span class="st">'https://'</span> <span class="op">+</span> ENVIRONMENT <span class="op">+</span> <span class="st">'.eodatahub.org.uk/titiler/core/cog/tiles/WebMercatorQuad/</span><span class="sc">{z}</span><span class="st">/</span><span class="sc">{x}</span><span class="st">/</span><span class="sc">{y}</span><span class="st">'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>COG_XYZ <span class="op">=</span> COG_OGC_URL <span class="op">+</span> <span class="st">'?'</span> <span class="op">+</span> <span class="st">'&amp;'</span>.join([<span class="ss">f'</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">=</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> k, v <span class="kw">in</span> COG_PREVIEW_PARAMS.items()])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Cog XYZ: '</span>, COG_XYZ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cog XYZ:  https://staging.eodatahub.org.uk/titiler/core/cog/tiles/WebMercatorQuad/{z}/{x}/{y}?url=https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn509lonw0008_T30UXB_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif&amp;bidx=3&amp;rescale=10,255&amp;colormap_name=hot</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the Sentinel dataset</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="fl">50.5</span>, <span class="op">-</span><span class="fl">1.5</span>], zoom_start<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the TiTiler layer</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>folium.raster_layers.TileLayer(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span>COG_XYZ,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">"TiTiler"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Sentinel 2 ARD Scene"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a layer control</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the map</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_c83d1fb5fe3c1234a6775c744e5cd2f0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_c83d1fb5fe3c1234a6775c744e5cd2f0&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c83d1fb5fe3c1234a6775c744e5cd2f0 = L.map(
+                &quot;map_c83d1fb5fe3c1234a6775c744e5cd2f0&quot;,
+                {
+                    center: [50.5, -1.5],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c185fd51394a7f86cd20cab00bad4738 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_c185fd51394a7f86cd20cab00bad4738.addTo(map_c83d1fb5fe3c1234a6775c744e5cd2f0);
+        
+    
+            var tile_layer_ef81ff4d3554481b561a4767974e992e = L.tileLayer(
+                &quot;https://staging.eodatahub.org.uk/titiler/core/cog/tiles/WebMercatorQuad/{z}/{x}/{y}?url=https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn509lonw0008_T30UXB_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif\u0026bidx=3\u0026rescale=10,255\u0026colormap_name=hot&quot;,
+                {&quot;attribution&quot;: &quot;TiTiler&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 18, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_ef81ff4d3554481b561a4767974e992e.addTo(map_c83d1fb5fe3c1234a6775c744e5cd2f0);
+        
+    
+            var layer_control_0542534d643e3f68cc1682cdcfc982c0_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_c185fd51394a7f86cd20cab00bad4738,
+                },
+                overlays :  {
+                    &quot;Sentinel 2 ARD Scene&quot; : tile_layer_ef81ff4d3554481b561a4767974e992e,
+                },
+            };
+            let layer_control_0542534d643e3f68cc1682cdcfc982c0 = L.control.layers(
+                layer_control_0542534d643e3f68cc1682cdcfc982c0_layers.base_layers,
+                layer_control_0542534d643e3f68cc1682cdcfc982c0_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: true, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_c83d1fb5fe3c1234a6775c744e5cd2f0);
+
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+</section>
+<section id="using-services-in-qgis" class="level3">
+<h3 class="anchored" data-anchor-id="using-services-in-qgis">Using services in QGIS</h3>
+<p>The same TiTiler XYZ URL can be used to display the data in QGIS. To do this we need to open the Data Source Manager and find the XYZ tab on the left hand side of the window. Clicking on “New” will allow a new connection to be added, or you can “Edit” an existing connection to change parameters such as the colourmap. Then click “Add” at the bottom of the window to add the layer to the QGIS display.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="4_Services_files/figure-html/cell-12-2-image.png" class="img-fluid figure-img"></p>
+<figcaption>XYZ loader</figcaption>
+</figure>
+</div>
+<p>When you click on “New” or “Edit” the following window appears. Enter the previously constructed TiTiler URL into the URL box and that will create a connection to the EODH TiTiler instance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="4_Services_files/figure-html/cell-12-1-image-2.png" class="img-fluid figure-img"></p>
+<figcaption>XYZ connection</figcaption>
+</figure>
+</div>
 
 
+</section>
 </section>
 </section>
 
