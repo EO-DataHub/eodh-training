@@ -180,7 +180,7 @@
     "href": "workflows/1_Workflows.html#tips",
     "title": "Workflow Introduction",
     "section": "Tips",
-    "text": "Tips\nYou can pass --leave-tmpdirs to the cwltool command. This is often helpful to figure out if the outputs from a step are what you think they should be.\nAnother good (non-spatial) tutorial can be found here: https://andrewjesaitis.com/posts/2017-02-06-cwl-tutorial/\nIf you have a CWL file in an earlier version than the current one (1.2 in March 2025) then it cab ve updated using a useful tool called CWL Upgrader. That said, earlier versions should run on the Workflow Runner on the Hub.",
+    "text": "Tips\nYou can pass --leave-tmpdirs to the cwltool command. This is often helpful to figure out if the outputs from a step are what you think they should be.\nAnother good (non-spatial) tutorial can be found here\nIf you have a CWL file in an earlier version than the current one (1.2 in March 2025) then it can be updated using a useful tool called CWL Upgrader. That said, earlier versions should run on the Workflow Runner on the Hub.",
     "crumbs": [
       "Creating Workflows - eoap-gen",
       "Workflow Introduction"
