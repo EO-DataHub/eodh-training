@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,18 +67,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-083966fab483341b80272ffbd41d3d84.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-50e486611be19e4f29225c18ed88561d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-083966fab483341b80272ffbd41d3d84.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0c6282e9eda64d97ea9e5255f7a37655.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d6f41e6f289ddcd3353223713284dc1e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0c6282e9eda64d97ea9e5255f7a37655.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -279,6 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">EODH Training Materials</span>
     </a>
@@ -322,6 +325,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -684,16 +691,16 @@ In the context of the EODH, what is a workflow?
 </code></pre>
 <p>The next thing to do is access the data to be used in the Workflow. In this case we will download two bands of a Sentinel 2 image held on AWS. We will use the <a href="https://curl.se/">curl</a> tool to do this, saving the accessed image as <code>B0$.tif</code> (where $ is the band number):</p>
 <div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>o B04.tif https:<span class="op">//</span>sentinel<span class="op">-</span>cogs.s3.us<span class="op">-</span>west<span class="op">-</span><span class="fl">2.</span><span class="er">amazonaws</span>.com<span class="op">/</span>sentinel<span class="op">-</span>s2<span class="op">-</span>l2a<span class="op">-</span>cogs<span class="op">/</span><span class="dv">53</span><span class="op">/</span>H<span class="op">/</span>PA<span class="op">/</span><span class="dv">2021</span><span class="op">/</span><span class="dv">7</span><span class="op">/</span>S2B_53HPA_20210723_0_L2A<span class="op">/</span>B04.tif</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>o B04.tif https:<span class="op">//</span>sentinel<span class="op">-</span>cogs.s3.us<span class="op">-</span>west<span class="op">-</span><span class="fl">2.</span><span class="er">amazonaws</span>.com<span class="op">/</span>sentinel<span class="op">-</span>s2<span class="op">-</span>l2a<span class="op">-</span>cogs<span class="op">/</span><span class="dv">53</span><span class="op">/</span>H<span class="op">/</span>PA<span class="op">/</span><span class="dv">2021</span><span class="op">/</span><span class="dv">7</span><span class="op">/</span>S2B_53HPA_20210723_0_L2A<span class="op">/</span>B04.tif</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>o B03.tif https:<span class="op">//</span>sentinel<span class="op">-</span>cogs.s3.us<span class="op">-</span>west<span class="op">-</span><span class="fl">2.</span><span class="er">amazonaws</span>.com<span class="op">/</span>sentinel<span class="op">-</span>s2<span class="op">-</span>l2a<span class="op">-</span>cogs<span class="op">/</span><span class="dv">53</span><span class="op">/</span>H<span class="op">/</span>PA<span class="op">/</span><span class="dv">2021</span><span class="op">/</span><span class="dv">7</span><span class="op">/</span>S2B_53HPA_20210723_0_L2A<span class="op">/</span>B03.tif </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>o B03.tif https:<span class="op">//</span>sentinel<span class="op">-</span>cogs.s3.us<span class="op">-</span>west<span class="op">-</span><span class="fl">2.</span><span class="er">amazonaws</span>.com<span class="op">/</span>sentinel<span class="op">-</span>s2<span class="op">-</span>l2a<span class="op">-</span>cogs<span class="op">/</span><span class="dv">53</span><span class="op">/</span>H<span class="op">/</span>PA<span class="op">/</span><span class="dv">2021</span><span class="op">/</span><span class="dv">7</span><span class="op">/</span>S2B_53HPA_20210723_0_L2A<span class="op">/</span>B03.tif </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The commands that we will use in the workflow are all available through <a href="https://gdal.org/index.html">gdal</a>.</p>
 <section id="clip-the-image" class="level3">
 <h3 class="anchored" data-anchor-id="clip-the-image">Clip the image</h3>
 <p>We will use <code>gdal_-_translate</code> to clip the larger image to a smaller more manageable dataset. The gdal command that we can test and that we will need to replicate in CWL is:</p>
 <div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gdal_translate <span class="op">-</span>projwin ULX ULY LRX LRY  <span class="op">-</span>projwin_srs EPSG:<span class="dv">4326</span> BO4.tif B04_clipped.tif</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gdal_translate <span class="op">-</span>projwin ULX ULY LRX LRY  <span class="op">-</span>projwin_srs EPSG:<span class="dv">4326</span> BO4.tif B04_clipped.tif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>where the coordinates UL refer to upper left and LR to lower right X and Y.</p>
 </section>
@@ -701,7 +708,7 @@ In the context of the EODH, what is a workflow?
 <h3 class="anchored" data-anchor-id="stack-the-clips">Stack the clips</h3>
 <p>Similarly, we will use <code>gdal_merge.py</code> to construct the stacked images from the clipped image. This can be tested using the following command:</p>
 <div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gdal_merge.py <span class="op">-</span>separate B04_clipped.tif B03_clipped.tif <span class="op">-</span>o stacked.tif</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gdal_merge.py <span class="op">-</span>separate B04_clipped.tif B03_clipped.tif <span class="op">-</span>o stacked.tif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -728,7 +735,7 @@ In the context of the EODH, what is a workflow?
 <p>For this example we require a CWL CommandLine file for both the clipping and stacking components of the workflow. We will also need a CWL Workflow file to bring these together and run the entire process. The next block of code outlines the overall Workflow file.</p>
 <p><strong>Note</strong>: This example is based on the example found <a href="https://cwl-for-eo.github.io/guide/101/cwl-101/tutorial-2/workflow/">here</a>. Some errors were found in the original CWL files and the version presented here has been tested and is known to work on a local Linux (Debian based) system.</p>
 <div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: Workflow</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: Workflow</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>label: Sentinel<span class="op">-</span><span class="dv">2</span> clipping <span class="kw">and</span> stacking</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>doc:  This workflow creates a stacked composite. File name: composite.cwl</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>: main</span>
@@ -787,11 +794,11 @@ In the context of the EODH, what is a workflow?
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> composite</span>
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From this example, we can see that we require two CommandLine CWL files: <code>gdal-translate.cwl</code> and <code>concatenate2.cwl</code>. Let’s deal with these in order.</p>
 <div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>doc:  This runs GDAL Translate to clip an image to bbox corner coordinates.</span>
@@ -831,10 +838,10 @@ In the context of the EODH, what is a workflow?
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  clipped_tif:</span>
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    outputBinding:</span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      glob: <span class="st">'*_clipped.tif'</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span>: CommandLineTool</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cwlVersion: v1<span class="fl">.0</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>doc: This runs GDAL Merge to stack images together.</span>
@@ -863,7 +870,7 @@ In the context of the EODH, what is a workflow?
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  composite:</span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    outputBinding:</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      glob: <span class="st">'*.tif'</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: File</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>NOTE</strong>: YAML generally doesn’t play well with tabs as whitespace so it’s best practice to use spaces for indentations</p>
 </section>
@@ -872,11 +879,11 @@ In the context of the EODH, what is a workflow?
 <h2 class="anchored" data-anchor-id="running-the-workflow">Running the Workflow</h2>
 <p>Now that we have our commandline CWL component files, and the Workflow CWL file that brings the tools together, we need to specify the input parameters. This is done using a <code>parameters.yml</code> file, where the name of the file can be anything that you want. The contents should follow the layout that we will be using:</p>
 <div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;plaintext&quot;}}">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bbox: <span class="st">"136.659,-35.96,136.923,-35.791"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bbox: <span class="st">"136.659,-35.96,136.923,-35.791"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>geotiff: </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> { <span class="st">"class"</span>: <span class="st">"File"</span>, <span class="st">"path"</span>: <span class="st">"../B04.tif"</span> }</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> { <span class="st">"class"</span>: <span class="st">"File"</span>, <span class="st">"path"</span>: <span class="st">"../B03.tif"</span> }</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>epsg: <span class="st">"EPSG:4326"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>epsg: <span class="st">"EPSG:4326"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You will need to change the <code>path</code> parameter to match the location of your input files.</p>
 <p>Now we run it with the command:</p>
@@ -963,13 +970,14 @@ In the context of the EODH, what is a workflow?
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
