@@ -1,0 +1,12 @@
+[project]
+name = "eodh-training"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "folium>=0.20.0",
+    "geopandas>=1.1.1",
+    "pillow>=11.3.0",
+    "pyeodh>=0.1.6",
+    "requests>=2.32.5",
+    "shapely>=2.1.2",
+]
