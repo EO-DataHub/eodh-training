@@ -3,8 +3,12 @@ name = "eodh-training"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
+    "cartopy>=0.25.0",
+    "datashader>=0.18.2",
     "folium>=0.20.0",
     "geopandas>=1.1.1",
+    "geoviews>=1.14.1",
+    "hvplot>=0.12.1",
     "ipykernel>=6.30.1",
     "pillow>=11.3.0",
     "pyeodh>=0.1.6",
