@@ -44,6 +44,11 @@ We will endeavour to deal with the issue in an appropriate manner as quickly as 
 ---
 
 ## Contributing
+
+### Dependencies
+
+To install dependencies for running notebooks you can use `uv` (https://docs.astral.sh/uv/getting-started/installation/) and install all dependencies by running `uv sync` in the root directory of the repository.
+
 ### General method 
 We welcome contributions from the community! To contribute:
 
