@@ -275,6 +275,17 @@
     ]
   },
   {
+    "objectID": "presentations/Workshop/1_202502_workshop_DataDiscovery.html#searching-for-an-item",
+    "href": "presentations/Workshop/1_202502_workshop_DataDiscovery.html#searching-for-an-item",
+    "title": "Pathfinder Phase Workshop: Finding Data",
+    "section": "Searching for an item",
+    "text": "Searching for an item\nGo to the EODH web portal and click on Catalogue &gt; Browse, you will see a page like the one below.\n\nClick into the Search field in the top right of the page and enter the search terms. We will look for data in the Sentinel 2 ARD collection, so enter sentinel 2 to narrow down the results and click on the Sentinel 2 ARD collection and then on Open Collection. This will take you to the maps view for the collection.\nNow we will be looking for data between 12 Nov and 19 Nov 2023, in the Thetford area. Open the date filtering options by clicking on the filter icon, select the dates and hit Apply. \nTo set the area of interest, select the polygon tool (pencil icon) button and trace out the area of interest. Note you need to click on the first point to finish the polygon. This will dynamically update the results on the left side of the page. \nWe are looking for the following item (neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb), click on the i icon to see the item details.\n\nClick on the Assets tab to find all associated data files. There are a number of assets (data layers, metadata, thumbnail etc.) within the item. Take some time to investigate what exists. The two we are interested in here are thumbnail and cog (the cog holds the image data).\nCheck that you have found the datset we are interested in:\n\nThumbnail: https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg (you can open this in a web browser and it should look like the image below)\nDataset: https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref.tif\n\n\nTake some time to click around the listed datasets to see what is included and accessible.\nNote that not all collections contain accessible items.",
+    "crumbs": [
+      "Presentations",
+      "Tester Workshop: Data Discovery"
+    ]
+  },
+  {
     "objectID": "presentations/Workshop/1_202502_workshop_DataDiscovery.html#presentation-set-up",
     "href": "presentations/Workshop/1_202502_workshop_DataDiscovery.html#presentation-set-up",
     "title": "Pathfinder Phase Workshop: Finding Data",

@@ -578,7 +578,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#visual-data-discovery" id="toc-visual-data-discovery" class="nav-link active" data-scroll-target="#visual-data-discovery">Visual data discovery</a></li>
-  <li><a href="#stac-browser" id="toc-stac-browser" class="nav-link" data-scroll-target="#stac-browser">STAC Browser</a></li>
+  <li><a href="#resource-catalogue-guide" id="toc-resource-catalogue-guide" class="nav-link" data-scroll-target="#resource-catalogue-guide">Resource Catalogue Guide</a>
+  <ul class="collapse">
+  <li><a href="#searching-for-an-item" id="toc-searching-for-an-item" class="nav-link" data-scroll-target="#searching-for-an-item">Searching for an item</a></li>
+  </ul></li>
   <li><a href="#coded-data-discovery" id="toc-coded-data-discovery" class="nav-link" data-scroll-target="#coded-data-discovery">Coded data discovery</a>
   <ul class="collapse">
   <li><a href="#presentation-set-up" id="toc-presentation-set-up" class="nav-link" data-scroll-target="#presentation-set-up">Presentation set up</a></li>
@@ -620,17 +623,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visual-data-discovery" class="level1">
 <h1>Visual data discovery</h1>
 </section>
-<section id="stac-browser" class="level1">
-<h1>STAC Browser</h1>
-<p>The first thing to do is find some data. Initially we will be using the current Catalogue User Interface which is an implementation of the STAC Browser (<strong>Note</strong>: a replacement user interface is in development, as demonstrated in the Workshop). When visiting the Catalogue you should see a page not too dissimilar to the following screenshot.</p>
-<p><img src="images/07a.png" title="Data Catalogue" class="img-fluid"></p>
-<p>Click on the <code>Search</code> button in the top left of the page (next to <em>Browse</em>) and start to enter some details under <code>search for items</code>. We will look for data between 12 Nov and 19 Nov 2023, in the Thetford area, in the sentinel2_ard collection. The details are shown in the next screenshot.</p>
-<p><img src="images/08a.png" title="Data search" class="img-fluid"></p>
-<p>Once you click <code>Submit</code> the the search should return a series of image items to the right of the page, as shown below.</p>
-<p><img src="images/09a.png" title="Search result" class="img-fluid"></p>
-<p>We are looking for the following item (S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb) and the reference will be as shown here:</p>
-<p><img src="images/10a.png" title="Item information" class="img-fluid"></p>
-<p>Click on the relevant item to find the assets within it. There are a number of assets (data layers, metadata, thumbnail etc.) within the item. Take some time to investigate what exists. The two we are interested in here are <code>thumbnail</code> and <code>cog</code> (the cog holds the image data). The image below shows how to copy the URL to the COG data: either using the button on the left or copying the path in the text box on the right.</p>
+<section id="resource-catalogue-guide" class="level1">
+<h1>Resource Catalogue Guide</h1>
+<p>You can find the most up to date guide to the Resource Catalogue <a href="https://eodatahub.org.uk/docs/documentation/resource-catalogue/data-discovery/">here</a>.</p>
+<section id="searching-for-an-item" class="level2">
+<h2 class="anchored" data-anchor-id="searching-for-an-item">Searching for an item</h2>
+<p>Go to the EODH web portal and click on <code>Catalogue &gt; Browse</code>, you will see a page like the one below.</p>
+<p><img src="images/07a.png" title="Resource Catalogue" class="img-fluid"></p>
+<p>Click into the <code>Search</code> field in the top right of the page and enter the search terms. We will look for data in the Sentinel 2 ARD collection, so enter <code>sentinel 2</code> to narrow down the results and click on the <code>Sentinel 2 ARD</code> collection and then on <code>Open Collection</code>. This will take you to the maps view for the collection.</p>
+<p>Now we will be looking for data between 12 Nov and 19 Nov 2023, in the Thetford area. Open the date filtering options by clicking on the filter icon, select the dates and hit <code>Apply</code>. <img src="images/date-filtering.png" title="Date filtering" class="img-fluid"></p>
+<p>To set the area of interest, select the polygon tool (pencil icon) button and trace out the area of interest. Note you need to click on the first point to finish the polygon. This will dynamically update the results on the left side of the page. <img src="images/aoi-filter.png" title="Area of interest filtering" class="img-fluid"></p>
+<p>We are looking for the following item (neodc.sentinel_ard.data.sentinel_2.2023.11.17.S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb), click on the <code>i</code> icon to see the item details.</p>
+<p><img src="images/item-info.png" title="Item information" class="img-fluid"></p>
+<p>Click on the <code>Assets</code> tab to find all associated data files. There are a number of assets (data layers, metadata, thumbnail etc.) within the item. Take some time to investigate what exists. The two we are interested in here are <code>thumbnail</code> and <code>cog</code> (the cog holds the image data).</p>
 <p>Check that you have found the datset we are interested in:</p>
 <ul>
 <li>Thumbnail: https://dap.ceda.ac.uk/neodc/sentinel_ard/data/sentinel_2/2023/11/17/S2A_20231117_latn527lone0008_T30UYD_ORB137_20231117131218_utm30n_osgb_vmsk_sharp_rad_srefdem_stdsref_thumbnail.jpg (you can open this in a web browser and it should look like the image below)</li>
@@ -639,6 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/10.png" title="Item thumbnail" class="img-fluid"></p>
 <p>Take some time to click around the listed datasets to see what is included and accessible.</p>
 <p><strong>Note</strong> that <strong>not all collections contain accessible items</strong>.</p>
+</section>
 </section>
 <section id="coded-data-discovery" class="level1">
 <h1>Coded data discovery</h1>
