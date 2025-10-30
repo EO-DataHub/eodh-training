@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'presentations/Workshop/**'
+  workflow_dispatch:
+
+name: Release Workshop Materials
+
+jobs:
+  release-workshop:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Create workshop.zip
+        run: |
+          cd presentations
+          zip -r workshop.zip Workshop/ -x "*.zip"
+          mv workshop.zip ../workshop.zip
+
+      - name: Create or Update Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="workshop-latest"
+          RELEASE_NAME="Workshop Materials (Latest)"
+          BODY="Latest workshop materials for EODH.
+
+
+          **Download**: [workshop.zip](https://github.com/EO-DataHub/eodh-training/releases/download/workshop-latest/workshop.zip)"
+
+          # Check if release exists
+          if gh release view "$TAG" &>/dev/null; then
+            echo "Release exists, uploading asset with --clobber..."
+            gh release upload "$TAG" workshop.zip --clobber
+          else
+            echo "Release does not exist, creating new release..."
+            gh release create "$TAG" workshop.zip \
+              --title "$RELEASE_NAME" \
+              --notes "$BODY" \
+              --latest
+          fi
+
