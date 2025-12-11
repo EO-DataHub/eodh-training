@@ -2,114 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/5_UserExample2.html</loc>
-    <lastmod>2025-10-30T11:02:48.904Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.001Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/3_eoapgen.html</loc>
-    <lastmod>2025-10-30T11:02:48.903Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.001Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/1_Workflows.html</loc>
-    <lastmod>2025-10-30T11:02:48.903Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://EO-DataHub.github.io/eodh-training/updates/climate-datasets-bas.html</loc>
+    <lastmod>2025-12-11T17:28:37.986Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/science/1_Snippets.html</loc>
-    <lastmod>2025-10-30T11:02:48.883Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.967Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/Workshop/3_202502_workshop_DataVis.html</loc>
-    <lastmod>2025-10-30T11:02:48.810Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.894Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/Workshop/1_202502_workshop_DataDiscovery.html</loc>
-    <lastmod>2025-10-30T11:02:48.758Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.842Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA2/1_202412_Defra_Technology.html</loc>
-    <lastmod>2025-10-30T11:02:48.754Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.838Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/2_202409_Defra_DataProcessing.html</loc>
-    <lastmod>2025-10-30T11:02:48.739Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.823Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/3_OtherTools.html</loc>
-    <lastmod>2025-10-30T11:02:48.732Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.816Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/1_introduction.html</loc>
-    <lastmod>2025-10-30T11:02:48.731Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.815Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/platform/1_Intro.html</loc>
-    <lastmod>2025-10-30T11:02:48.731Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.815Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/4_Services.html</loc>
-    <lastmod>2025-10-30T11:02:48.694Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.778Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/2_ResourceCatalog.html</loc>
-    <lastmod>2025-10-30T11:02:48.684Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.767Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/website/about.html</loc>
-    <lastmod>2025-10-30T11:02:48.903Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.000Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/index.html</loc>
-    <lastmod>2025-10-30T11:02:48.731Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.815Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/1_ClientIntro.html</loc>
-    <lastmod>2025-10-30T11:02:48.682Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.765Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/3_WorkflowRunner.html</loc>
-    <lastmod>2025-10-30T11:02:48.685Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.768Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/api-client/planet-stac-proxy.html</loc>
-    <lastmod>2025-10-30T11:02:48.696Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.780Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/platform/2_Components.html</loc>
-    <lastmod>2025-10-30T11:02:48.731Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.815Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/plugin/2_Runningworkflows.html</loc>
-    <lastmod>2025-10-30T11:02:48.732Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.816Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/1_202409_Defra_DataDiscovery.html</loc>
-    <lastmod>2025-10-30T11:02:48.736Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.820Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/DEFRA/3_202409_Defra_DataAnalysis.html</loc>
-    <lastmod>2025-10-30T11:02:48.753Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.837Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/Workshop/0_202502_workshop_SetUp.html</loc>
-    <lastmod>2025-10-30T11:02:48.754Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.838Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/Workshop/2_202502_workshop_DataProcessing.html</loc>
-    <lastmod>2025-10-30T11:02:48.759Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.843Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/presentations/videos.html</loc>
-    <lastmod>2025-10-30T11:02:48.881Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.965Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/science/2_Examples.html</loc>
-    <lastmod>2025-10-30T11:02:48.899Z</lastmod>
+    <lastmod>2025-12-11T17:28:37.983Z</lastmod>
+  </url>
+  <url>
+    <loc>https://EO-DataHub.github.io/eodh-training/updates/timeseries-ucl.html</loc>
+    <lastmod>2025-12-11T17:28:37.997Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/2_EOAP.html</loc>
-    <lastmod>2025-10-30T11:02:48.903Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.000Z</lastmod>
   </url>
   <url>
     <loc>https://EO-DataHub.github.io/eodh-training/workflows/4_UserExample1.html</loc>
-    <lastmod>2025-10-30T11:02:48.904Z</lastmod>
+    <lastmod>2025-12-11T17:28:38.001Z</lastmod>
   </url>
 </urlset>
