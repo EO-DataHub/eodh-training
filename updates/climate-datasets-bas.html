@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -107,9 +107,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -611,358 +608,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <p>The first thing to do is ensure that the most recent version of <code>pyeodh</code> is installed on your system. It is good practice to run the following cell if you have not installed <code>pyeodh</code> or have not used it in a while. The cell will also install the plotting and spatial libraries required.</p>
-<div id="cell-4" class="cell" data-scrolled="true" data-execution_count="1">
+<div id="cell-4" class="cell" data-scrolled="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell if pyeodh is not installed, or needs updating</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">--</span>upgrade pyeodh</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install folium shapely xarray fsspec rioxarray cartopy pyproj</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: pyeodh in /opt/conda/lib/python3.12/site-packages (0.1.4)
-Collecting pyeodh
-  Using cached pyeodh-0.1.7-py3-none-any.whl.metadata (1.7 kB)
-Requirement already satisfied: ceda-datapoint&lt;0.5.0,&gt;=0.4.12 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (0.4.12)
-Requirement already satisfied: lxml==5.3.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (5.3.0)
-Requirement already satisfied: owslib&lt;0.32.0,&gt;=0.31.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (0.31.0)
-Requirement already satisfied: poetry&lt;2.0.0,&gt;=1.8.5 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (1.8.5)
-Requirement already satisfied: pystac&lt;2.0.0,&gt;=1.10.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (1.13.0)
-Requirement already satisfied: requests-oauthlib&lt;3.0.0,&gt;=2.0.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (2.0.0)
-Requirement already satisfied: zarr&lt;3,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (2.18.7)
-Requirement already satisfied: aiohttp&lt;4.0.0,&gt;=3.11.7 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.12.4)
-Requirement already satisfied: cfapyx&lt;2026.0.0,&gt;=2025.2.27 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2025.3.18)
-Requirement already satisfied: fsspec&lt;2025.0.0,&gt;=2024.9.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.0)
-Requirement already satisfied: kerchunk&lt;0.3.0,&gt;=0.2.6 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.2.7)
-Requirement already satisfied: matplotlib&lt;4.0.0,&gt;=3.9.2 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.10.3)
-Requirement already satisfied: pystac-client&lt;0.8,&gt;=0.7 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.7.7)
-Requirement already satisfied: requests&lt;3.0.0,&gt;=2.32.3 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.32.3)
-Requirement already satisfied: rioxarray&lt;0.16.0,&gt;=0.15.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.15.7)
-Requirement already satisfied: xarray&lt;2025.0.0,&gt;=2024.6.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.11.0)
-Requirement already satisfied: xdoctest&lt;2.0.0,&gt;=1.2.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.2.0)
-Requirement already satisfied: python-dateutil&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (2.9.0.post0)
-Requirement already satisfied: pytz in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (2025.1)
-Requirement already satisfied: pyyaml in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (6.0.2)
-Requirement already satisfied: build&lt;2.0.0,&gt;=1.0.3 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.2.2.post1)
-Requirement already satisfied: cachecontrol&lt;0.15.0,&gt;=0.14.0 in /opt/conda/lib/python3.12/site-packages (from cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.14.3)
-Requirement already satisfied: cleo&lt;3.0.0,&gt;=2.1.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.1.0)
-Requirement already satisfied: crashtest&lt;0.5.0,&gt;=0.4.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.4.1)
-Requirement already satisfied: dulwich&lt;0.22.0,&gt;=0.21.2 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.21.7)
-Requirement already satisfied: fastjsonschema&lt;3.0.0,&gt;=2.18.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.21.1)
-Requirement already satisfied: installer&lt;0.8.0,&gt;=0.7.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.7.0)
-Requirement already satisfied: keyring&lt;25.0.0,&gt;=24.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (24.3.1)
-Requirement already satisfied: packaging&gt;=23.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (24.2)
-Requirement already satisfied: pexpect&lt;5.0.0,&gt;=4.7.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (4.9.0)
-Requirement already satisfied: pkginfo&lt;2.0,&gt;=1.12 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.12.1.2)
-Requirement already satisfied: platformdirs&lt;5,&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (4.3.6)
-Requirement already satisfied: poetry-core==1.9.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.9.1)
-Requirement already satisfied: poetry-plugin-export&lt;2.0.0,&gt;=1.6.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.8.0)
-Requirement already satisfied: pyproject-hooks&lt;2.0.0,&gt;=1.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.2.0)
-Requirement already satisfied: requests-toolbelt&lt;2.0.0,&gt;=1.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: shellingham&lt;2.0,&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.5.4)
-Requirement already satisfied: tomlkit&lt;1.0.0,&gt;=0.11.4 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.13.2)
-Requirement already satisfied: trove-classifiers&gt;=2022.5.19 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2025.5.9.12)
-Requirement already satisfied: virtualenv&lt;21.0.0,&gt;=20.26.6 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (20.31.2)
-Requirement already satisfied: oauthlib&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from requests-oauthlib&lt;3.0.0,&gt;=2.0.0-&gt;pyeodh) (3.2.2)
-Requirement already satisfied: asciitree in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.3.3)
-Requirement already satisfied: numpy&gt;=1.24 in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (1.26.4)
-Requirement already satisfied: fasteners in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.19)
-Requirement already satisfied: numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0 in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.15.1)
-Requirement already satisfied: aiohappyeyeballs&gt;=2.5.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.6.1)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.3.2)
-Requirement already satisfied: attrs&gt;=17.3.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (25.1.0)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (6.4.4)
-Requirement already satisfied: propcache&gt;=0.2.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.3.1)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.17.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.20.0)
-Requirement already satisfied: msgpack&lt;2.0.0,&gt;=0.5.2 in /opt/conda/lib/python3.12/site-packages (from cachecontrol&lt;0.15.0,&gt;=0.14.0-&gt;cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.1.0)
-Requirement already satisfied: filelock&gt;=3.8.0 in /opt/conda/lib/python3.12/site-packages (from cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.18.0)
-Requirement already satisfied: arraypartition&lt;2.0.0,&gt;=1.1.2 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.1.2)
-Requirement already satisfied: dask&lt;2025,&gt;=2024 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.1)
-Requirement already satisfied: netCDF4&lt;=1.6.5 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.5)
-Requirement already satisfied: rapidfuzz&lt;4.0.0,&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from cleo&lt;3.0.0,&gt;=2.1.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.13.0)
-Requirement already satisfied: urllib3&gt;=1.25 in /opt/conda/lib/python3.12/site-packages (from dulwich&lt;0.22.0,&gt;=0.21.2-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.3.0)
-Requirement already satisfied: ujson in /opt/conda/lib/python3.12/site-packages (from kerchunk&lt;0.3.0,&gt;=0.2.6-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (5.10.0)
-Requirement already satisfied: jaraco.classes in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.4.0)
-Requirement already satisfied: SecretStorage&gt;=3.2 in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.3.3)
-Requirement already satisfied: jeepney&gt;=0.4.2 in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.9.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.3.2)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (4.58.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.8)
-Requirement already satisfied: pillow&gt;=8 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (11.2.1)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.2.3)
-Requirement already satisfied: deprecated in /opt/conda/lib/python3.12/site-packages (from numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0-&gt;zarr&lt;3,&gt;=2-&gt;pyeodh) (1.2.18)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from pexpect&lt;5.0.0,&gt;=4.7.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.7.0)
-Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from python-dateutil&gt;=1.5-&gt;owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (1.17.0)
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.4.1)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.10)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.14)
-Requirement already satisfied: rasterio&gt;=1.3 in /opt/conda/lib/python3.12/site-packages (from rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.3)
-Requirement already satisfied: pyproj&gt;=3.3 in /opt/conda/lib/python3.12/site-packages (from rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.7.1)
-Requirement already satisfied: distlib&lt;1,&gt;=0.3.7 in /opt/conda/lib/python3.12/site-packages (from virtualenv&lt;21.0.0,&gt;=20.26.6-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.3.9)
-Requirement already satisfied: pandas&gt;=2.1 in /opt/conda/lib/python3.12/site-packages (from xarray&lt;2025.0.0,&gt;=2024.6.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.2.3)
-Requirement already satisfied: click&gt;=8.1 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (8.2.1)
-Requirement already satisfied: cloudpickle&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.1.1)
-Requirement already satisfied: partd&gt;=1.4.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.2)
-Requirement already satisfied: toolz&gt;=0.10.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: cftime in /opt/conda/lib/python3.12/site-packages (from netCDF4&lt;=1.6.5-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.4.post1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=2.1-&gt;xarray&lt;2025.0.0,&gt;=2024.6.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2025.2)
-Requirement already satisfied: jsonschema~=4.18 in /opt/conda/lib/python3.12/site-packages (from pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (4.23.0)
-Requirement already satisfied: affine in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.4.0)
-Requirement already satisfied: cligj&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.7.2)
-Requirement already satisfied: click-plugins in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.1.1)
-Requirement already satisfied: cryptography&gt;=2.0 in /opt/conda/lib/python3.12/site-packages (from SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (44.0.0)
-Requirement already satisfied: wrapt&lt;2,&gt;=1.10 in /opt/conda/lib/python3.12/site-packages (from deprecated-&gt;numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0-&gt;zarr&lt;3,&gt;=2-&gt;pyeodh) (1.17.2)
-Requirement already satisfied: more-itertools in /opt/conda/lib/python3.12/site-packages (from jaraco.classes-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (10.7.0)
-Requirement already satisfied: cffi&gt;=1.12 in /opt/conda/lib/python3.12/site-packages (from cryptography&gt;=2.0-&gt;SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.17.1)
-Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2023.7.1)
-Requirement already satisfied: referencing&gt;=0.28.4 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.30.2)
-Requirement already satisfied: rpds-py&gt;=0.7.1 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.22.3)
-Requirement already satisfied: locket in /opt/conda/lib/python3.12/site-packages (from partd&gt;=1.4.0-&gt;dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: pycparser in /opt/conda/lib/python3.12/site-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=2.0-&gt;SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.22)
-Using cached pyeodh-0.1.7-py3-none-any.whl (22 kB)
-Installing collected packages: pyeodh
-  Attempting uninstall: pyeodh
-    Found existing installation: pyeodh 0.1.4
-    Uninstalling pyeodh-0.1.4:
-      Successfully uninstalled pyeodh-0.1.4
-Successfully installed pyeodh-0.1.7
-Collecting folium
-  Using cached folium-0.20.0-py2.py3-none-any.whl.metadata (4.2 kB)
-Requirement already satisfied: shapely in /opt/conda/lib/python3.12/site-packages (2.0.7)
-Requirement already satisfied: xarray in /opt/conda/lib/python3.12/site-packages (2024.11.0)
-Requirement already satisfied: fsspec in /opt/conda/lib/python3.12/site-packages (2024.12.0)
-Requirement already satisfied: rioxarray in /opt/conda/lib/python3.12/site-packages (0.15.7)
-Collecting cartopy
-  Using cached cartopy-0.25.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (6.1 kB)
-Requirement already satisfied: pyproj in /opt/conda/lib/python3.12/site-packages (3.7.1)
-Collecting branca&gt;=0.6.0 (from folium)
-  Using cached branca-0.8.2-py3-none-any.whl.metadata (1.7 kB)
-Requirement already satisfied: jinja2&gt;=2.9 in /opt/conda/lib/python3.12/site-packages (from folium) (3.1.5)
-Requirement already satisfied: numpy in /opt/conda/lib/python3.12/site-packages (from folium) (1.26.4)
-Requirement already satisfied: requests in /opt/conda/lib/python3.12/site-packages (from folium) (2.32.3)
-Collecting xyzservices (from folium)
-  Using cached xyzservices-2025.11.0-py3-none-any.whl.metadata (4.3 kB)
-Requirement already satisfied: packaging&gt;=23.2 in /opt/conda/lib/python3.12/site-packages (from xarray) (24.2)
-Requirement already satisfied: pandas&gt;=2.1 in /opt/conda/lib/python3.12/site-packages (from xarray) (2.2.3)
-Requirement already satisfied: rasterio&gt;=1.3 in /opt/conda/lib/python3.12/site-packages (from rioxarray) (1.4.3)
-Requirement already satisfied: matplotlib&gt;=3.6 in /opt/conda/lib/python3.12/site-packages (from cartopy) (3.10.3)
-Collecting pyshp&gt;=2.3 (from cartopy)
-  Using cached pyshp-3.0.3-py3-none-any.whl.metadata (65 kB)
-Requirement already satisfied: certifi in /opt/conda/lib/python3.12/site-packages (from pyproj) (2024.12.14)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /opt/conda/lib/python3.12/site-packages (from jinja2&gt;=2.9-&gt;folium) (3.0.2)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (1.3.2)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (4.58.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (1.4.8)
-Requirement already satisfied: pillow&gt;=8 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (11.2.1)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (3.2.3)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /opt/conda/lib/python3.12/site-packages (from matplotlib&gt;=3.6-&gt;cartopy) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=2.1-&gt;xarray) (2025.1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=2.1-&gt;xarray) (2025.2)
-Requirement already satisfied: affine in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray) (2.4.0)
-Requirement already satisfied: attrs in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray) (25.1.0)
-Requirement already satisfied: click&gt;=4.0 in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray) (8.2.1)
-Requirement already satisfied: cligj&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray) (0.7.2)
-Requirement already satisfied: click-plugins in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray) (1.1.1)
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;folium) (3.4.1)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;folium) (3.10)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;folium) (2.3.0)
-Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.6-&gt;cartopy) (1.17.0)
-Using cached folium-0.20.0-py2.py3-none-any.whl (113 kB)
-Using cached cartopy-0.25.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.8 MB)
-Using cached branca-0.8.2-py3-none-any.whl (26 kB)
-Using cached pyshp-3.0.3-py3-none-any.whl (58 kB)
-Using cached xyzservices-2025.11.0-py3-none-any.whl (93 kB)
-Installing collected packages: xyzservices, pyshp, branca, folium, cartopy
-Successfully installed branca-0.8.2 cartopy-0.25.0 folium-0.20.0 pyshp-3.0.3 xyzservices-2025.11.0</code></pre>
-</div>
 </div>
 <section id="imports" class="level1">
 <h1>Imports</h1>
 <div id="cell-6" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely <span class="im">as</span> sh</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rioxarray</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely <span class="im">as</span> sh</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="set-geographic-locations" class="level1">
 <h1>Set geographic locations</h1>
 <div id="cell-8" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point of interest - ice/land (Nuuk, Greenland)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ipnt <span class="op">=</span> sh.Point(<span class="op">-</span><span class="fl">51.7216</span>, <span class="fl">64.1835</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point of interest - ice/land (Nuuk, Greenland)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ipnt <span class="op">=</span> sh.Point(<span class="op">-</span><span class="fl">51.7216</span>, <span class="fl">64.1835</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Point of interest - ocean (Baffin Bay, Greenland)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>olon, olat <span class="op">=</span> [<span class="op">-</span><span class="fl">54.22884</span>, <span class="fl">83.11055</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>opnt <span class="op">=</span> sh.Point(olon, olat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-9" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folium map centred between the points</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[(ipnt.y <span class="op">+</span> opnt.y)<span class="op">/</span><span class="dv">2</span>, (ipnt.x <span class="op">+</span> opnt.x)<span class="op">/</span><span class="dv">2</span>], zoom_start<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Point of interest - ocean (Baffin Bay, Greenland)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>olon, olat <span class="op">=</span> [<span class="op">-</span><span class="fl">54.22884</span>, <span class="fl">83.11055</span>]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>opnt <span class="op">=</span> sh.Point(olon, olat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="cell-9" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folium map centred between the points</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[(ipnt.y <span class="op">+</span> opnt.y)<span class="op">/</span><span class="dv">2</span>, (ipnt.x <span class="op">+</span> opnt.x)<span class="op">/</span><span class="dv">2</span>], zoom_start<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add points to the map</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pt, name <span class="kw">in</span> [(ipnt, <span class="st">"Nuuk"</span>), (opnt, <span class="st">"Arctic Ocean"</span>)]:</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    folium.Marker([pt.y, pt.x], popup<span class="op">=</span>name).add_to(m)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
-<html>
-<head>
-    
-    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
-    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
-    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
-    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
-    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
-    
-            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
-            <style>
-                #map_668c52f1b1f05c838e048cb475c19753 {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
-
-            <style>html, body {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            </style>
-
-            <style>#map {
-                position:absolute;
-                top:0;
-                bottom:0;
-                right:0;
-                left:0;
-                }
-            </style>
-
-            <script>
-                L_NO_TOUCH = false;
-                L_DISABLE_3D = false;
-            </script>
-
-        
-</head>
-<body>
-    
-    
-            <div class=&quot;folium-map&quot; id=&quot;map_668c52f1b1f05c838e048cb475c19753&quot; ></div>
-        
-</body>
-<script>
-    
-    
-            var map_668c52f1b1f05c838e048cb475c19753 = L.map(
-                &quot;map_668c52f1b1f05c838e048cb475c19753&quot;,
-                {
-                    center: [73.647025, -52.97522],
-                    crs: L.CRS.EPSG3857,
-                    ...{
-  &quot;zoom&quot;: 3,
-  &quot;zoomControl&quot;: true,
-  &quot;preferCanvas&quot;: false,
-}
-
-                }
-            );
-
-            
-
-        
-    
-            var tile_layer_4c29fd9a2bdee0760258b518f0feade6 = L.tileLayer(
-                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
-                {
-  &quot;minZoom&quot;: 0,
-  &quot;maxZoom&quot;: 19,
-  &quot;maxNativeZoom&quot;: 19,
-  &quot;noWrap&quot;: false,
-  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
-  &quot;subdomains&quot;: &quot;abc&quot;,
-  &quot;detectRetina&quot;: false,
-  &quot;tms&quot;: false,
-  &quot;opacity&quot;: 1,
-}
-
-            );
-        
-    
-            tile_layer_4c29fd9a2bdee0760258b518f0feade6.addTo(map_668c52f1b1f05c838e048cb475c19753);
-        
-    
-            var marker_f65a5c3569ce4f26c3738adb7e47b812 = L.marker(
-                [64.1835, -51.7216],
-                {
-}
-            ).addTo(map_668c52f1b1f05c838e048cb475c19753);
-        
-    
-        var popup_ba945af8c5c18d52170acedb539d4801 = L.popup({
-  &quot;maxWidth&quot;: &quot;100%&quot;,
-});
-
-        
-            
-                var html_e35bce90ac80bfa67a58f294bd00e691 = $(`<div id=&quot;html_e35bce90ac80bfa67a58f294bd00e691&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Nuuk</div>`)[0];
-                popup_ba945af8c5c18d52170acedb539d4801.setContent(html_e35bce90ac80bfa67a58f294bd00e691);
-            
-        
-
-        marker_f65a5c3569ce4f26c3738adb7e47b812.bindPopup(popup_ba945af8c5c18d52170acedb539d4801)
-        ;
-
-        
-    
-    
-            var marker_805aaf14ca1cd0049461a34ea5f35192 = L.marker(
-                [83.11055, -54.22884],
-                {
-}
-            ).addTo(map_668c52f1b1f05c838e048cb475c19753);
-        
-    
-        var popup_4ed238d56ba799d241c39e23d2543032 = L.popup({
-  &quot;maxWidth&quot;: &quot;100%&quot;,
-});
-
-        
-            
-                var html_4557b9d496a7cb8ab56fb20d8be1b99a = $(`<div id=&quot;html_4557b9d496a7cb8ab56fb20d8be1b99a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>Arctic Ocean</div>`)[0];
-                popup_4ed238d56ba799d241c39e23d2543032.setContent(html_4557b9d496a7cb8ab56fb20d8be1b99a);
-            
-        
-
-        marker_805aaf14ca1cd0049461a34ea5f35192.bindPopup(popup_4ed238d56ba799d241c39e23d2543032)
-        ;
-
-        
-    
-</script>
-</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
-</div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add points to the map</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pt, name <span class="kw">in</span> [(ipnt, <span class="st">"Nuuk"</span>), (opnt, <span class="st">"Arctic Ocean"</span>)]:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    folium.Marker([pt.y, pt.x], popup<span class="op">=</span>name).add_to(m)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="exploring-the-resource-catalogue" class="level1">
@@ -970,11 +657,11 @@ Successfully installed branca-0.8.2 cartopy-0.25.0 folium-0.20.0 pyshp-3.0.3 xyz
 <p>Now we are ready to investigate the Resource Catalogue.</p>
 <p>We need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs. From there we can start to search the collections held within the platform. First we’ll look at the paths to the data.</p>
 <div id="cell-12" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(base_url<span class="op">=</span><span class="st">"https://eodatahub.org.uk"</span>).get_catalog_service()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> client.get_catalogs():</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(c._pystac_object.self_href.removeprefix(<span class="st">"https://eodatahub.org.uk/api/catalogue/stac/catalogs/"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(base_url<span class="op">=</span><span class="st">"https://eodatahub.org.uk"</span>).get_catalog_service()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> client.get_catalogs():</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(c._pystac_object.self_href.removeprefix(<span class="st">"https://eodatahub.org.uk/api/catalogue/stac/catalogs/"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>commercial/catalogs/airbus
 user/catalogs/npl/catalogs/processing-results/catalogs/qa-workflow/catalogs/airbus_phr_qa
@@ -990,10 +677,10 @@ user/catalogs/tjellicoetpzuk/catalogs/processing-results</code></pre>
 </div>
 <p>Now we’ll look explicitly for the EOCIS climate data.</p>
 <div id="cell-14" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, collect <span class="kw">in</span> <span class="bu">enumerate</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        [c <span class="cf">for</span> c <span class="kw">in</span> client.get_collections() <span class="cf">if</span> <span class="st">"eocis"</span> <span class="kw">in</span> c.<span class="bu">id</span>],</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> -- </span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, collect <span class="kw">in</span> <span class="bu">enumerate</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        [c <span class="cf">for</span> c <span class="kw">in</span> client.get_collections() <span class="cf">if</span> <span class="st">"eocis"</span> <span class="kw">in</span> c.<span class="bu">id</span>],</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> -- </span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1 -- eocis-sst-cdrv3
 2 -- eocis-soil-moisture-africa
@@ -1016,18 +703,18 @@ user/catalogs/tjellicoetpzuk/catalogs/processing-results</code></pre>
 <p>Note: For additional details see this <a href="https://www.cpom.ucl.ac.uk/eocis/seaice/product_info.php">link</a>.</p>
 <p>We need to connect to the Sea Ice collection and get some simple information about it</p>
 <div id="cell-17" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> client.get_catalog(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'eocis-arctic-sea-ice-thickness-monthly'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, datasets.<span class="bu">id</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, datasets.title)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"description: "</span>, datasets.description)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DATASET TEMPORAL EXTENT: "</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> datasets.extent.temporal.intervals[<span class="dv">0</span>]],</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> client.get_catalog(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'eocis-arctic-sea-ice-thickness-monthly'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, datasets.<span class="bu">id</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, datasets.title)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"description: "</span>, datasets.description)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DATASET TEMPORAL EXTENT: "</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    [<span class="bu">str</span>(d) <span class="cf">for</span> d <span class="kw">in</span> datasets.extent.temporal.intervals[<span class="dv">0</span>]],</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>id:  eocis-arctic-sea-ice-thickness-monthly
 title:  EOCIS Arctic Monthly Gridded Sea Ice Thickness Product from CryoSat-2
@@ -1038,15 +725,15 @@ DATASET TEMPORAL EXTENT:  ['2010-11-15 00:00:00+00:00', '2024-11-15 00:00:00+00:
 </div>
 <p>It would be useful to understand more about the items that are held within the catalogue. The attributes of a catalogue are mapped to a series of properties. For instance, we can find out the properties such as<code>id</code>, <code>title</code> and <code>description</code>.</p>
 <div id="cell-19" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we want to access the first item and see what properties are available. Need to convert an iterator to a list first. </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(datasets.get_items())</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of items available: "</span>, <span class="bu">len</span>(items))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"-----"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> items[<span class="dv">1</span>]   <span class="co"># second item</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> item.properties.items():</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we want to access the first item and see what properties are available. Need to convert an iterator to a list first. </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(datasets.get_items())</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of items available: "</span>, <span class="bu">len</span>(items))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"-----"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> items[<span class="dv">1</span>]   <span class="co"># second item</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> item.properties.items():</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of items available:  198
 -----
@@ -1073,9 +760,9 @@ DATASET TEMPORAL EXTENT:  ['2010-11-15 00:00:00+00:00', '2024-11-15 00:00:00+00:
 </div>
 <p>We can then get the item id, date and name for all items. It is recommended to only look at the first few as the number of items could be large.</p>
 <div id="cell-21" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: without the limit to 10 items this will take a long time for large catalogues</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> datasets.get_items()[:<span class="dv">10</span>]:</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>, <span class="st">"---"</span>, item.properties[<span class="st">"datetime"</span>], <span class="st">"---"</span>, item.properties[<span class="st">"title"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: without the limit to 10 items this will take a long time for large catalogues</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> datasets.get_items()[:<span class="dv">10</span>]:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>, <span class="st">"---"</span>, item.properties[<span class="st">"datetime"</span>], <span class="st">"---"</span>, item.properties[<span class="st">"title"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ea60feff-3a21-49d1-b79f-9179c052cfc0 --- 2024-11-15T00:00:00Z --- EOCIS Sea-Surface Temperatures V3 2024-11-15
 0a2cdd11-d4e1-4806-ab4f-1a66849cf30a --- 2024-11-15T00:00:00Z --- EOCIS Arctic Monthly Gridded Sea Ice Thickness 2024-11-15
@@ -1091,17 +778,17 @@ d9caf30d-ca73-4673-a079-17342019c598 --- 2024-02-14T00:00:00Z --- EOCIS Arctic M
 </div>
 <p>The next thing to do is find out what assets are held within each item. The asset is the actual data that we are interested in. We will look at the asset information for the first item returned in the list.</p>
 <div id="cell-23" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the second item</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item name: </span><span class="sc">{</span>item<span class="sc">.</span>properties[<span class="st">"title"</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the second item</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item name: </span><span class="sc">{</span>item<span class="sc">.</span>properties[<span class="st">"title"</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Item ID: ea60feff-3a21-49d1-b79f-9179c052cfc0
 Item name: EOCIS Sea-Surface Temperatures V3 2024-11-15
@@ -1116,47 +803,47 @@ Assets:
 <p>– <strong>Notes</strong> –</p>
 <p>The data are provided in <code>NetCDF</code> (Network Common Data Form) file format, a widely used standard for storing, sharing, and analyzing scientific data. NetCDF is designed to handle large, multi-dimensional datasets, such as temperature, precipitation, and wind speed, across space and time. The CEDA STAC library also contains reference files in <code>Kerchunk</code> format. Kerchunk is a lightweight reference file format that maps chunks of data in archival formats such as NetCDF that can be lazily loaded to access only the required data chunks for any given request. Rather than converting the source NetCDF to a different format, Kerchunk contains pointers to individual chunks of data and uses the <code>fsspec</code> library to assemble those chunks into the required array in a tool like <code>xarray</code>.</p>
 <div id="cell-25" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> items[<span class="dv">1</span>]</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Identify the kerchunk reference asset if it exists ---</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>asset <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"reference_file"</span> <span class="kw">in</span> item.assets:</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    asset <span class="op">=</span> item.assets[<span class="st">"reference_file"</span>]</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    href <span class="op">=</span> asset.href</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    is_kerchunk <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback: use the first 'data' asset</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k, a <span class="kw">in</span> item.assets.items():</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"data"</span> <span class="kw">in</span> a.roles <span class="kw">or</span> a.<span class="bu">type</span> <span class="op">==</span> <span class="st">"application/netcdf"</span>:</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>            asset <span class="op">=</span> a</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>            href <span class="op">=</span> asset.href</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>            is_kerchunk <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected asset:"</span>, asset)</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset depending on asset type</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> is_kerchunk: <span class="co"># kerchunk: open via fsspec + zarr</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> fsspec.filesystem(<span class="st">"reference"</span>, fo<span class="op">=</span>href)</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    mapper <span class="op">=</span> fs.get_mapper(<span class="st">""</span>)</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(mapper, engine<span class="op">=</span><span class="st">"zarr"</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># netcdf: direct open file</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(href)</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== DATASET SUMMARY ==="</span>)</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds)</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== VARIABLES ==="</span>)</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(ds.data_vars))</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== COORDINATES ==="</span>)</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(ds.coords))</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== GLOBAL ATTRIBUTES ==="</span>)</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> ds.attrs.items():</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> items[<span class="dv">1</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Identify the kerchunk reference asset if it exists ---</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>asset <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"reference_file"</span> <span class="kw">in</span> item.assets:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    asset <span class="op">=</span> item.assets[<span class="st">"reference_file"</span>]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    href <span class="op">=</span> asset.href</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    is_kerchunk <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback: use the first 'data' asset</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k, a <span class="kw">in</span> item.assets.items():</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"data"</span> <span class="kw">in</span> a.roles <span class="kw">or</span> a.<span class="bu">type</span> <span class="op">==</span> <span class="st">"application/netcdf"</span>:</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>            asset <span class="op">=</span> a</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            href <span class="op">=</span> asset.href</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            is_kerchunk <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected asset:"</span>, asset)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset depending on asset type</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> is_kerchunk: <span class="co"># kerchunk: open via fsspec + zarr</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> fsspec.filesystem(<span class="st">"reference"</span>, fo<span class="op">=</span>href)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    mapper <span class="op">=</span> fs.get_mapper(<span class="st">""</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(mapper, engine<span class="op">=</span><span class="st">"zarr"</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># netcdf: direct open file</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(href)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== DATASET SUMMARY ==="</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== VARIABLES ==="</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(ds.data_vars))</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== COORDINATES ==="</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(ds.coords))</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== GLOBAL ATTRIBUTES ==="</span>)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> ds.attrs.items():</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Selected asset: &lt;Asset href=https://gws-access.jasmin.ac.uk/public/nceo_uor/eocis-stac/eocis-arctic-sea-ice-thickness-monthly-aux/items/2024/11/EOCIS-SEAICE-L3C-SITHICK-CS2-5KM-202411-fv1.0-kerchunk.json&gt;
 
@@ -1234,27 +921,27 @@ title: Arctic Monthly Gridded Sea Ice Thickness Product from CryoSat-2</code></p
 </div>
 <p>Now we need to reproject and plot</p>
 <div id="cell-27" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the projection</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ds3413 <span class="op">=</span> ds.rio.write_crs(<span class="st">"EPSG:3413"</span>, inplace<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>sit <span class="op">=</span> ds3413[<span class="st">"sea_ice_thickness"</span>].squeeze()</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.Stereographic(central_latitude<span class="op">=</span><span class="dv">90</span>, central_longitude<span class="op">=-</span><span class="dv">45</span>)  <span class="co"># NSIDC default</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform from EPSG:3413 to map projection</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>sit.plot(</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>),</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Ice Thickness (m)"</span>}</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Ice Thickness (EPSG:3413)"</span>)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set the projection</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ds3413 <span class="op">=</span> ds.rio.write_crs(<span class="st">"EPSG:3413"</span>, inplace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sit <span class="op">=</span> ds3413[<span class="st">"sea_ice_thickness"</span>].squeeze()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.Stereographic(central_latitude<span class="op">=</span><span class="dv">90</span>, central_longitude<span class="op">=-</span><span class="dv">45</span>)  <span class="co"># NSIDC default</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform from EPSG:3413 to map projection</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>sit.plot(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Ice Thickness (m)"</span>}</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Ice Thickness (EPSG:3413)"</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1264,40 +951,40 @@ title: Arctic Monthly Gridded Sea Ice Thickness Product from CryoSat-2</code></p
 </div>
 </div>
 <div id="cell-28" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform lon/lat for ocean point to EPSG:3413</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>to_3413 <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:3413"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x0, y0 <span class="op">=</span> to_3413.transform(olon, olat)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 50 km buffer in metres</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>aoi_buffer <span class="op">=</span> Point(x0, y0).<span class="bu">buffer</span>(<span class="dv">50_000</span>)   <span class="co"># 50 km radius</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform lon/lat for ocean point to EPSG:3413</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>to_3413 <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:3413"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>x0, y0 <span class="op">=</span> to_3413.transform(olon, olat)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 50 km buffer in metres</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>aoi_buffer <span class="op">=</span> Point(x0, y0).<span class="bu">buffer</span>(<span class="dv">50_000</span>)   <span class="co"># 50 km radius</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-29" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build GeoDataFrame in EPSG:3413</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"geometry"</span>: [aoi_buffer]},</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:3413"</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip to buffer polygon</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>sit_clip <span class="op">=</span> sit.rio.clip(gdf.geometry, gdf.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build GeoDataFrame in EPSG:3413</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"geometry"</span>: [aoi_buffer]},</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"EPSG:3413"</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip to buffer polygon</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>sit_clip <span class="op">=</span> sit.rio.clip(gdf.geometry, gdf.crs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-30" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>sit_clip.plot(</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Ice Thickness (m)"</span>}</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw AOI point</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>ax.plot(x0, y0, <span class="st">"ro"</span>, markersize<span class="op">=</span><span class="dv">6</span>, transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>))</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Ice Thickness – 50 km AOI Buffer (EPSG:3413)"</span>)</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>sit_clip.plot(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Ice Thickness (m)"</span>}</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw AOI point</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>ax.plot(x0, y0, <span class="st">"ro"</span>, markersize<span class="op">=</span><span class="dv">6</span>, transform<span class="op">=</span>ccrs.epsg(<span class="dv">3413</span>))</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Ice Thickness – 50 km AOI Buffer (EPSG:3413)"</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1311,26 +998,26 @@ title: Arctic Monthly Gridded Sea Ice Thickness Product from CryoSat-2</code></p
 <h1>Sea Surface Temperature</h1>
 <p>We can do something similar for other datasets. We would usually follow the data discovery steps above for each dataset we are interested in. For brevity we can access the <code>href</code> that we require by completing an online search and copying the reference file <code>href</code> into the cell below.</p>
 <div id="cell-33" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nhref <span class="op">=</span> <span class="st">"https://gws-access.jasmin.ac.uk/public/nceo_uor/eocis-stac/sst-cdrv3-aux/items/2024/06/20240621120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_ICDR3.0-v02.0-fv01.0-kerchunk.json"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset </span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>fsst <span class="op">=</span> fsspec.filesystem(<span class="st">"reference"</span>, fo<span class="op">=</span>nhref)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>mapper1 <span class="op">=</span> fsst.get_mapper(<span class="st">""</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>dsst <span class="op">=</span> xr.open_dataset(mapper1, engine<span class="op">=</span><span class="st">"zarr"</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== DATASET SUMMARY ==="</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dsst)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== VARIABLES ==="</span>)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(dsst.data_vars))</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== COORDINATES ==="</span>)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(dsst.coords))</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== GLOBAL ATTRIBUTES ==="</span>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> dsst.attrs.items():</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nhref <span class="op">=</span> <span class="st">"https://gws-access.jasmin.ac.uk/public/nceo_uor/eocis-stac/sst-cdrv3-aux/items/2024/06/20240621120000-ESACCI-L4_GHRSST-SSTdepth-OSTIA-GLOB_ICDR3.0-v02.0-fv01.0-kerchunk.json"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>fsst <span class="op">=</span> fsspec.filesystem(<span class="st">"reference"</span>, fo<span class="op">=</span>nhref)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>mapper1 <span class="op">=</span> fsst.get_mapper(<span class="st">""</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>dsst <span class="op">=</span> xr.open_dataset(mapper1, engine<span class="op">=</span><span class="st">"zarr"</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== DATASET SUMMARY ==="</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dsst)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== VARIABLES ==="</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(dsst.data_vars))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== COORDINATES ==="</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(dsst.coords))</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== GLOBAL ATTRIBUTES ==="</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> dsst.attrs.items():</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 === DATASET SUMMARY ===
@@ -1441,26 +1128,26 @@ westernmost_longitude: -180.0</code></pre>
 </div>
 </div>
 <div id="cell-34" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract SST variable</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sst <span class="op">=</span> dsst[<span class="st">"analysed_sst"</span>].squeeze()   <span class="co"># already in EPSG:4326</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree()  <span class="co"># map projection = EPSG:4326</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>sst.plot(</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.PlateCarree(),   <span class="co"># IMPORTANT: matches data CRS</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Surface Temperature (°C)"</span>}</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Surface Temperature"</span>)</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract SST variable</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sst <span class="op">=</span> dsst[<span class="st">"analysed_sst"</span>].squeeze()   <span class="co"># already in EPSG:4326</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree()  <span class="co"># map projection = EPSG:4326</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>sst.plot(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ccrs.PlateCarree(),   <span class="co"># IMPORTANT: matches data CRS</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"viridis"</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    cbar_kwargs<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"Sea Surface Temperature (°C)"</span>}</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Sea Surface Temperature"</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

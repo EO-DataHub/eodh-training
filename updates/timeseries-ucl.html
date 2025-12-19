@@ -608,200 +608,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:0.75em;"> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span></p>
 <p><span style="font-size:0.75em;"> Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></p>
 <p>The first thing to do is ensure that the most recent version of <code>pyeodh</code> is installed on your system. It is good practice to run the following cell if you have not installed <code>pyeodh</code> or have not used it in a while. The cell will also install the plotting and spatial libraries required.</p>
-<div id="cell-4" class="cell" data-scrolled="true" data-execution_count="1">
+<div id="cell-4" class="cell" data-scrolled="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this cell if pyeodh is not installed, or needs updating</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">--</span>upgrade pyeodh</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install hvplot shapely ipywidgets rasterio pyproj</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: pyeodh in /opt/conda/lib/python3.12/site-packages (0.1.7)
-Requirement already satisfied: ceda-datapoint&lt;0.5.0,&gt;=0.4.12 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (0.4.12)
-Requirement already satisfied: lxml==5.3.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (5.3.0)
-Requirement already satisfied: owslib&lt;0.32.0,&gt;=0.31.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (0.31.0)
-Requirement already satisfied: poetry&lt;2.0.0,&gt;=1.8.5 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (1.8.5)
-Requirement already satisfied: pystac&lt;2.0.0,&gt;=1.10.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (1.13.0)
-Requirement already satisfied: requests-oauthlib&lt;3.0.0,&gt;=2.0.0 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (2.0.0)
-Requirement already satisfied: zarr&lt;3,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from pyeodh) (2.18.7)
-Requirement already satisfied: aiohttp&lt;4.0.0,&gt;=3.11.7 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.12.4)
-Requirement already satisfied: cfapyx&lt;2026.0.0,&gt;=2025.2.27 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2025.3.18)
-Requirement already satisfied: fsspec&lt;2025.0.0,&gt;=2024.9.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.0)
-Requirement already satisfied: kerchunk&lt;0.3.0,&gt;=0.2.6 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.2.7)
-Requirement already satisfied: matplotlib&lt;4.0.0,&gt;=3.9.2 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.10.3)
-Requirement already satisfied: pystac-client&lt;0.8,&gt;=0.7 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.7.7)
-Requirement already satisfied: requests&lt;3.0.0,&gt;=2.32.3 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.32.3)
-Requirement already satisfied: rioxarray&lt;0.16.0,&gt;=0.15.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.15.7)
-Requirement already satisfied: xarray&lt;2025.0.0,&gt;=2024.6.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.11.0)
-Requirement already satisfied: xdoctest&lt;2.0.0,&gt;=1.2.0 in /opt/conda/lib/python3.12/site-packages (from ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.2.0)
-Requirement already satisfied: python-dateutil&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (2.9.0.post0)
-Requirement already satisfied: pytz in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (2025.1)
-Requirement already satisfied: pyyaml in /opt/conda/lib/python3.12/site-packages (from owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (6.0.2)
-Requirement already satisfied: build&lt;2.0.0,&gt;=1.0.3 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.2.2.post1)
-Requirement already satisfied: cachecontrol&lt;0.15.0,&gt;=0.14.0 in /opt/conda/lib/python3.12/site-packages (from cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.14.3)
-Requirement already satisfied: cleo&lt;3.0.0,&gt;=2.1.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.1.0)
-Requirement already satisfied: crashtest&lt;0.5.0,&gt;=0.4.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.4.1)
-Requirement already satisfied: dulwich&lt;0.22.0,&gt;=0.21.2 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.21.7)
-Requirement already satisfied: fastjsonschema&lt;3.0.0,&gt;=2.18.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.21.1)
-Requirement already satisfied: installer&lt;0.8.0,&gt;=0.7.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.7.0)
-Requirement already satisfied: keyring&lt;25.0.0,&gt;=24.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (24.3.1)
-Requirement already satisfied: packaging&gt;=23.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (24.2)
-Requirement already satisfied: pexpect&lt;5.0.0,&gt;=4.7.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (4.9.0)
-Requirement already satisfied: pkginfo&lt;2.0,&gt;=1.12 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.12.1.2)
-Requirement already satisfied: platformdirs&lt;5,&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (4.3.6)
-Requirement already satisfied: poetry-core==1.9.1 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.9.1)
-Requirement already satisfied: poetry-plugin-export&lt;2.0.0,&gt;=1.6.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.8.0)
-Requirement already satisfied: pyproject-hooks&lt;2.0.0,&gt;=1.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.2.0)
-Requirement already satisfied: requests-toolbelt&lt;2.0.0,&gt;=1.0.0 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: shellingham&lt;2.0,&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.5.4)
-Requirement already satisfied: tomlkit&lt;1.0.0,&gt;=0.11.4 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.13.2)
-Requirement already satisfied: trove-classifiers&gt;=2022.5.19 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2025.5.9.12)
-Requirement already satisfied: virtualenv&lt;21.0.0,&gt;=20.26.6 in /opt/conda/lib/python3.12/site-packages (from poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (20.31.2)
-Requirement already satisfied: oauthlib&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from requests-oauthlib&lt;3.0.0,&gt;=2.0.0-&gt;pyeodh) (3.2.2)
-Requirement already satisfied: asciitree in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.3.3)
-Requirement already satisfied: numpy&gt;=1.24 in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (1.26.4)
-Requirement already satisfied: fasteners in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.19)
-Requirement already satisfied: numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0 in /opt/conda/lib/python3.12/site-packages (from zarr&lt;3,&gt;=2-&gt;pyeodh) (0.15.1)
-Requirement already satisfied: aiohappyeyeballs&gt;=2.5.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.6.1)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.3.2)
-Requirement already satisfied: attrs&gt;=17.3.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (25.1.0)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (6.4.4)
-Requirement already satisfied: propcache&gt;=0.2.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.3.1)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.17.0 in /opt/conda/lib/python3.12/site-packages (from aiohttp&lt;4.0.0,&gt;=3.11.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.20.0)
-Requirement already satisfied: msgpack&lt;2.0.0,&gt;=0.5.2 in /opt/conda/lib/python3.12/site-packages (from cachecontrol&lt;0.15.0,&gt;=0.14.0-&gt;cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.1.0)
-Requirement already satisfied: filelock&gt;=3.8.0 in /opt/conda/lib/python3.12/site-packages (from cachecontrol[filecache]&lt;0.15.0,&gt;=0.14.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.18.0)
-Requirement already satisfied: arraypartition&lt;2.0.0,&gt;=1.1.2 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.1.2)
-Requirement already satisfied: dask&lt;2025,&gt;=2024 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.1)
-Requirement already satisfied: netCDF4&lt;=1.6.5 in /opt/conda/lib/python3.12/site-packages (from cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.5)
-Requirement already satisfied: rapidfuzz&lt;4.0.0,&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from cleo&lt;3.0.0,&gt;=2.1.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.13.0)
-Requirement already satisfied: urllib3&gt;=1.25 in /opt/conda/lib/python3.12/site-packages (from dulwich&lt;0.22.0,&gt;=0.21.2-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.3.0)
-Requirement already satisfied: ujson in /opt/conda/lib/python3.12/site-packages (from kerchunk&lt;0.3.0,&gt;=0.2.6-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (5.10.0)
-Requirement already satisfied: jaraco.classes in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.4.0)
-Requirement already satisfied: SecretStorage&gt;=3.2 in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (3.3.3)
-Requirement already satisfied: jeepney&gt;=0.4.2 in /opt/conda/lib/python3.12/site-packages (from keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.9.0)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.3.2)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (4.58.1)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.8)
-Requirement already satisfied: pillow&gt;=8 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (11.2.1)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/conda/lib/python3.12/site-packages (from matplotlib&lt;4.0.0,&gt;=3.9.2-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.2.3)
-Requirement already satisfied: deprecated in /opt/conda/lib/python3.12/site-packages (from numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0-&gt;zarr&lt;3,&gt;=2-&gt;pyeodh) (1.2.18)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from pexpect&lt;5.0.0,&gt;=4.7.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.7.0)
-Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from python-dateutil&gt;=1.5-&gt;owslib&lt;0.32.0,&gt;=0.31.0-&gt;pyeodh) (1.17.0)
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.4.1)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.10)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/conda/lib/python3.12/site-packages (from requests&lt;3.0.0,&gt;=2.32.3-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2024.12.14)
-Requirement already satisfied: rasterio&gt;=1.3 in /opt/conda/lib/python3.12/site-packages (from rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.3)
-Requirement already satisfied: pyproj&gt;=3.3 in /opt/conda/lib/python3.12/site-packages (from rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.7.1)
-Requirement already satisfied: distlib&lt;1,&gt;=0.3.7 in /opt/conda/lib/python3.12/site-packages (from virtualenv&lt;21.0.0,&gt;=20.26.6-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (0.3.9)
-Requirement already satisfied: pandas&gt;=2.1 in /opt/conda/lib/python3.12/site-packages (from xarray&lt;2025.0.0,&gt;=2024.6.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.2.3)
-Requirement already satisfied: click&gt;=8.1 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (8.2.1)
-Requirement already satisfied: cloudpickle&gt;=3.0.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (3.1.1)
-Requirement already satisfied: partd&gt;=1.4.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.4.2)
-Requirement already satisfied: toolz&gt;=0.10.0 in /opt/conda/lib/python3.12/site-packages (from dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: cftime in /opt/conda/lib/python3.12/site-packages (from netCDF4&lt;=1.6.5-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.6.4.post1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=2.1-&gt;xarray&lt;2025.0.0,&gt;=2024.6.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2025.2)
-Requirement already satisfied: jsonschema~=4.18 in /opt/conda/lib/python3.12/site-packages (from pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (4.23.0)
-Requirement already satisfied: affine in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2.4.0)
-Requirement already satisfied: cligj&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.7.2)
-Requirement already satisfied: click-plugins in /opt/conda/lib/python3.12/site-packages (from rasterio&gt;=1.3-&gt;rioxarray&lt;0.16.0,&gt;=0.15.0-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.1.1)
-Requirement already satisfied: cryptography&gt;=2.0 in /opt/conda/lib/python3.12/site-packages (from SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (44.0.0)
-Requirement already satisfied: wrapt&lt;2,&gt;=1.10 in /opt/conda/lib/python3.12/site-packages (from deprecated-&gt;numcodecs!=0.14.0,!=0.14.1,&lt;0.16,&gt;=0.10.0-&gt;zarr&lt;3,&gt;=2-&gt;pyeodh) (1.17.2)
-Requirement already satisfied: more-itertools in /opt/conda/lib/python3.12/site-packages (from jaraco.classes-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (10.7.0)
-Requirement already satisfied: cffi&gt;=1.12 in /opt/conda/lib/python3.12/site-packages (from cryptography&gt;=2.0-&gt;SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (1.17.1)
-Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (2023.7.1)
-Requirement already satisfied: referencing&gt;=0.28.4 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.30.2)
-Requirement already satisfied: rpds-py&gt;=0.7.1 in /opt/conda/lib/python3.12/site-packages (from jsonschema~=4.18-&gt;pystac[validation]&gt;=1.10.0-&gt;pystac-client&lt;0.8,&gt;=0.7-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (0.22.3)
-Requirement already satisfied: locket in /opt/conda/lib/python3.12/site-packages (from partd&gt;=1.4.0-&gt;dask&lt;2025,&gt;=2024-&gt;cfapyx&lt;2026.0.0,&gt;=2025.2.27-&gt;ceda-datapoint&lt;0.5.0,&gt;=0.4.12-&gt;pyeodh) (1.0.0)
-Requirement already satisfied: pycparser in /opt/conda/lib/python3.12/site-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=2.0-&gt;SecretStorage&gt;=3.2-&gt;keyring&lt;25.0.0,&gt;=24.0.0-&gt;poetry&lt;2.0.0,&gt;=1.8.5-&gt;pyeodh) (2.22)
-Requirement already satisfied: hvplot in /opt/conda/lib/python3.12/site-packages (0.12.1)
-Requirement already satisfied: shapely in /opt/conda/lib/python3.12/site-packages (2.0.7)
-Requirement already satisfied: ipywidgets in /opt/conda/lib/python3.12/site-packages (8.1.8)
-Requirement already satisfied: rasterio in /opt/conda/lib/python3.12/site-packages (1.4.3)
-Requirement already satisfied: pyproj in /opt/conda/lib/python3.12/site-packages (3.7.1)
-Requirement already satisfied: bokeh&gt;=3.1 in /opt/conda/lib/python3.12/site-packages (from hvplot) (3.8.1)
-Requirement already satisfied: colorcet&gt;=2 in /opt/conda/lib/python3.12/site-packages (from hvplot) (3.1.0)
-Requirement already satisfied: holoviews&gt;=1.19.0 in /opt/conda/lib/python3.12/site-packages (from hvplot) (1.22.1)
-Requirement already satisfied: numpy&gt;=1.21 in /opt/conda/lib/python3.12/site-packages (from hvplot) (1.26.4)
-Requirement already satisfied: packaging in /opt/conda/lib/python3.12/site-packages (from hvplot) (24.2)
-Requirement already satisfied: pandas&gt;=1.3 in /opt/conda/lib/python3.12/site-packages (from hvplot) (2.2.3)
-Requirement already satisfied: panel&gt;=1.0 in /opt/conda/lib/python3.12/site-packages (from hvplot) (1.8.4)
-Requirement already satisfied: param&lt;3.0,&gt;=1.12.0 in /opt/conda/lib/python3.12/site-packages (from hvplot) (2.3.1)
-Requirement already satisfied: comm&gt;=0.1.3 in /opt/conda/lib/python3.12/site-packages (from ipywidgets) (0.2.2)
-Requirement already satisfied: ipython&gt;=6.1.0 in /opt/conda/lib/python3.12/site-packages (from ipywidgets) (8.32.0)
-Requirement already satisfied: traitlets&gt;=4.3.1 in /opt/conda/lib/python3.12/site-packages (from ipywidgets) (5.14.3)
-Requirement already satisfied: widgetsnbextension~=4.0.14 in /opt/conda/lib/python3.12/site-packages (from ipywidgets) (4.0.15)
-Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /opt/conda/lib/python3.12/site-packages (from ipywidgets) (3.0.16)
-Requirement already satisfied: affine in /opt/conda/lib/python3.12/site-packages (from rasterio) (2.4.0)
-Requirement already satisfied: attrs in /opt/conda/lib/python3.12/site-packages (from rasterio) (25.1.0)
-Requirement already satisfied: certifi in /opt/conda/lib/python3.12/site-packages (from rasterio) (2024.12.14)
-Requirement already satisfied: click&gt;=4.0 in /opt/conda/lib/python3.12/site-packages (from rasterio) (8.2.1)
-Requirement already satisfied: cligj&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from rasterio) (0.7.2)
-Requirement already satisfied: click-plugins in /opt/conda/lib/python3.12/site-packages (from rasterio) (1.1.1)
-Requirement already satisfied: pyparsing in /opt/conda/lib/python3.12/site-packages (from rasterio) (3.2.3)
-Requirement already satisfied: Jinja2&gt;=2.9 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (3.1.5)
-Requirement already satisfied: contourpy&gt;=1.2 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (1.3.2)
-Requirement already satisfied: narwhals&gt;=1.13 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (2.13.0)
-Requirement already satisfied: pillow&gt;=7.1.0 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (11.2.1)
-Requirement already satisfied: PyYAML&gt;=3.10 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (6.0.2)
-Requirement already satisfied: tornado&gt;=6.2 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (6.4.2)
-Requirement already satisfied: xyzservices&gt;=2021.09.1 in /opt/conda/lib/python3.12/site-packages (from bokeh&gt;=3.1-&gt;hvplot) (2025.11.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /opt/conda/lib/python3.12/site-packages (from holoviews&gt;=1.19.0-&gt;hvplot) (2.9.0.post0)
-Requirement already satisfied: pyviz-comms&gt;=2.1 in /opt/conda/lib/python3.12/site-packages (from holoviews&gt;=1.19.0-&gt;hvplot) (3.0.6)
-Requirement already satisfied: decorator in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (5.1.1)
-Requirement already satisfied: jedi&gt;=0.16 in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.19.2)
-Requirement already satisfied: matplotlib-inline in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.1.7)
-Requirement already satisfied: pexpect&gt;4.3 in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (4.9.0)
-Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (3.0.50)
-Requirement already satisfied: pygments&gt;=2.4.0 in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (2.19.1)
-Requirement already satisfied: stack_data in /opt/conda/lib/python3.12/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.6.3)
-Requirement already satisfied: pytz&gt;=2020.1 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=1.3-&gt;hvplot) (2025.1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /opt/conda/lib/python3.12/site-packages (from pandas&gt;=1.3-&gt;hvplot) (2025.2)
-Requirement already satisfied: bleach in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (6.2.0)
-Requirement already satisfied: linkify-it-py in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (2.0.3)
-Requirement already satisfied: markdown in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (3.10)
-Requirement already satisfied: markdown-it-py in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (3.0.0)
-Requirement already satisfied: mdit-py-plugins in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (0.5.0)
-Requirement already satisfied: requests in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (2.32.3)
-Requirement already satisfied: tqdm in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (4.67.1)
-Requirement already satisfied: typing-extensions in /opt/conda/lib/python3.12/site-packages (from panel&gt;=1.0-&gt;hvplot) (4.12.2)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in /opt/conda/lib/python3.12/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.8.4)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /opt/conda/lib/python3.12/site-packages (from Jinja2&gt;=2.9-&gt;bokeh&gt;=3.1-&gt;hvplot) (3.0.2)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/conda/lib/python3.12/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.7.0)
-Requirement already satisfied: wcwidth in /opt/conda/lib/python3.12/site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.2.13)
-Requirement already satisfied: six&gt;=1.5 in /opt/conda/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;holoviews&gt;=1.19.0-&gt;hvplot) (1.17.0)
-Requirement already satisfied: webencodings in /opt/conda/lib/python3.12/site-packages (from bleach-&gt;panel&gt;=1.0-&gt;hvplot) (0.5.1)
-Requirement already satisfied: uc-micro-py in /opt/conda/lib/python3.12/site-packages (from linkify-it-py-&gt;panel&gt;=1.0-&gt;hvplot) (1.0.3)
-Requirement already satisfied: mdurl~=0.1 in /opt/conda/lib/python3.12/site-packages (from markdown-it-py-&gt;panel&gt;=1.0-&gt;hvplot) (0.1.2)
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;panel&gt;=1.0-&gt;hvplot) (3.4.1)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;panel&gt;=1.0-&gt;hvplot) (3.10)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/conda/lib/python3.12/site-packages (from requests-&gt;panel&gt;=1.0-&gt;hvplot) (2.3.0)
-Requirement already satisfied: executing&gt;=1.2.0 in /opt/conda/lib/python3.12/site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (2.1.0)
-Requirement already satisfied: asttokens&gt;=2.1.0 in /opt/conda/lib/python3.12/site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (3.0.0)
-Requirement already satisfied: pure_eval in /opt/conda/lib/python3.12/site-packages (from stack_data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.2.3)</code></pre>
-</div>
 </div>
 <section id="exploring-the-resource-catalogue" class="level1">
 <h1>Exploring the Resource Catalogue</h1>
 <p>Now we are ready to investigate the Resource Catalogue. First off, we need to import the packages we’ll use.</p>
 <div id="cell-6" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the Python API Client</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import all other packages</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hvplot.pandas</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the Python API Client</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyeodh</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import all other packages</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hvplot.pandas</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyproj <span class="im">import</span> Transformer</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
 *[data-root-id] > * {
@@ -1408,19 +1242,19 @@ if (window.Jupyter !== undefined) {
 </div>
 <p>Next we need to create an instance of the <code>Client</code>, which is our entrypoint to EODH APIs. From there we can start to search the collections held within the platform.</p>
 <div id="cell-8" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># base_url can be changed to optionally specify a different server, but the default is the production server</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://eodatahub.org.uk"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>).get_catalog_service()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a list of the collections held in the Resource Catalogue (their id and description).</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># As the Resource Catalogue fills and development continues, the number of collections and the richness of their descriptions will increase</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, collect <span class="kw">in</span> <span class="bu">enumerate</span>(client.get_collections(), start<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> -- </span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>collect<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the Hub</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># base_url can be changed to optionally specify a different server, but the default is the production server</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> pyeodh.Client(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://eodatahub.org.uk"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>).get_catalog_service()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a list of the collections held in the Resource Catalogue (their id and description).</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># As the Resource Catalogue fills and development continues, the number of collections and the richness of their descriptions will increase</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, collect <span class="kw">in</span> <span class="bu">enumerate</span>(client.get_collections(), start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> -- </span><span class="sc">{</span>collect<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>collect<span class="sc">.</span>description<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1 -- ukcp
 Regional climate model projections produced as part of the UK Climate Projection 2018 (UKCP18) project. The data produced by the Met Office Hadley Centre provides information on changes in climate for the UK until 2080, downscaled to a high resolution (12km), helping to inform adaptation to a changing climate. The projections cover Europe and a 100 year period, 1981-2080, for a high emissions scenario, RCP8.5. Each projection provides an example of climate variability in a changing climate, which is consistent across climate variables at different times and spatial locations. This dataset contains 12km data for the United Kingdom, the Isle of Man and the Channel Islands provided on the Ordnance Survey's British National Grid.
@@ -1534,14 +1368,14 @@ PlanetScope, operated by Planet, is a constellation of approximately 130 satelli
 </div>
 <p>The attributes of a catalogue are mapped to a series of properties. For instance, in the following cell we print the <code>id</code>, <code>title</code> and <code>description</code>.</p>
 <div id="cell-10" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The next thing to do is find some open data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's use the CEDA Sentinel 2 ARD</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>s2ard_cat <span class="op">=</span> client.get_catalog(<span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(<span class="st">'sentinel2_ard'</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, s2ard_cat.<span class="bu">id</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, s2ard_cat.title)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"description: "</span>, s2ard_cat.description)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The next thing to do is find some open data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's use the CEDA Sentinel 2 ARD</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>s2ard_cat <span class="op">=</span> client.get_catalog(<span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(<span class="st">'sentinel2_ard'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"id: "</span>, s2ard_cat.<span class="bu">id</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"title: "</span>, s2ard_cat.title)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"description: "</span>, s2ard_cat.description)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>id:  sentinel2_ard
 title:  Sentinel 2 ARD
@@ -1550,19 +1384,19 @@ description:  These data have been created by the Department for Environment, Fo
 </div>
 <p>The Hub API endpoints are wrapped in methods inside <code>pyeodh</code> and are structured into classes, following the same logic as the underlying APIs. This means that, for example, to fetch a collection item we first need to get the collection from the resource catalogue. The following cell provedes a code example to do this.</p>
 <div id="cell-12" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>s2ard <span class="op">=</span> client.get_catalog(<span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(<span class="st">'sentinel2_ard'</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>s2ard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s2ard <span class="op">=</span> client.get_catalog(<span class="st">"public/catalogs/ceda-stac-catalogue"</span>).get_collection(<span class="st">'sentinel2_ard'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s2ard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;pyeodh.resource_catalog.Collection at 0x7f72a64f3830&gt;</code></pre>
 </div>
 </div>
 <p>Some API responses are paginated (e.g.&nbsp;collection items), and you can simply iterate over them.</p>
 <div id="cell-14" class="cell" data-scrolled="true" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> s2ard.get_items()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: without the limit to 10 items this will take a long time for large catalogues such as s2ard</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">10</span>]:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> s2ard.get_items()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: without the limit to 10 items this will take a long time for large catalogues such as s2ard</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">10</span>]:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>neodc.sentinel_ard.data.sentinel_2.2025.11.30.S2A_20251130_latn590lonw0063_T29VPF_ORB023_20251130142106_utm29n_osgb
 neodc.sentinel_ard.data.sentinel_2.2025.11.30.S2A_20251130_latn590lonw0055_T30VUL_ORB023_20251130142106_utm30n_osgb
@@ -1578,9 +1412,9 @@ neodc.sentinel_ard.data.sentinel_2.2025.11.30.S2A_20251130_latn563lonw0053_T30VU
 </div>
 <p>Now we want to access the first few items and see what they are called and how much cloud there is.</p>
 <div id="cell-16" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(items[:<span class="dv">10</span>]):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, <span class="st">" "</span>, item.<span class="bu">id</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Cloud cover: "</span>, item.properties[<span class="st">'eo:cloud_cover'</span>]) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(items[:<span class="dv">10</span>]):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, <span class="st">" "</span>, item.<span class="bu">id</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Cloud cover: "</span>, item.properties[<span class="st">'eo:cloud_cover'</span>]) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0   neodc.sentinel_ard.data.sentinel_2.2025.11.30.S2A_20251130_latn590lonw0063_T29VPF_ORB023_20251130142106_utm29n_osgb
 Cloud cover:  42.67
@@ -1607,62 +1441,62 @@ Cloud cover:  24.78</code></pre>
 <p>To find specific imagery for a given date range we can set up a search with a query. That query needs to have a start and end date.</p>
 <p>If we wanted a specific location, we could add in an <code>intersects</code> parameter.</p>
 <div id="cell-18" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"public/catalogs/ceda-stac-catalogue"</span>],</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2024-04-01'</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2024-09-30'</span>, </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"public/catalogs/ceda-stac-catalogue"</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2024-04-01'</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2024-09-30'</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total items: 3412</code></pre>
 </div>
 </div>
 <p>For this example we will use a location that relates to the WWT London Wetlands Centre: https://www.wwt.org.uk/wetland-centres/london</p>
 <div id="cell-20" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the WWT site</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> (<span class="op">-</span><span class="fl">0.2346089199955088</span>, <span class="fl">51.478446832015834</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>wwt_pnt <span class="op">=</span> shapely.Point(lon, lat) </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"public/catalogs/ceda-stac-catalogue"</span>],</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    intersects <span class="op">=</span> wwt_pnt,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2024-04-01'</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2024-09-30'</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eo:cloud_cover&lt;=30'</span>,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the WWT site</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lon, lat <span class="op">=</span> (<span class="op">-</span><span class="fl">0.2346089199955088</span>, <span class="fl">51.478446832015834</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>wwt_pnt <span class="op">=</span> shapely.Point(lon, lat) </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> client.search(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[<span class="st">'sentinel2_ard'</span>],</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    catalog_paths<span class="op">=</span>[<span class="st">"public/catalogs/ceda-stac-catalogue"</span>],</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    intersects <span class="op">=</span> wwt_pnt,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>[</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'start_datetime&gt;=2024-04-01'</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'end_datetime&lt;=2024-09-30'</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'eo:cloud_cover&lt;=30'</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># We can then count the number of items returned by the search </span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>total_items <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> _ <span class="kw">in</span> items)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total items: </span><span class="sc">{</span>total_items<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total items: 13</code></pre>
 </div>
 </div>
 <p>A useful thing to do now is find the asset information for one of those items. We shall use the first item in the list.</p>
 <div id="cell-22" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">1</span>]:  <span class="co"># Process only the first item</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Assets:"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>asset_key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>asset<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Convert asset to dict for readable output</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)  <span class="co"># Separator for better readability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Item ID: neodc.sentinel_ard.data.sentinel_2.2024.09.19.S2A_20240919_latn518lonw0008_T30UXC_ORB094_20240919144023_utm30n_osgb
 Assets:
@@ -1686,22 +1520,22 @@ Assets:
 </div>
 <p>We can see that this returns a lot of information. We can extract the thumbnail URL and use that to plot the image overview.</p>
 <div id="cell-24" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tn_url <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">2</span>]:  <span class="co"># Process only the second item</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> asset_key <span class="op">==</span> <span class="st">"thumbnail"</span>:</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>                tn_url <span class="op">=</span> asset.href  <span class="co"># Directly access the href attribute</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we open the remote URL, read the data and dislay the thumbnail </span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> urllib.request.urlopen(tn_url) <span class="im">as</span> url:</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(url.read()))</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>display(img)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tn_url <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items[:<span class="dv">2</span>]:  <span class="co"># Process only the second item</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  No assets available."</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> asset_key <span class="op">==</span> <span class="st">"thumbnail"</span>:</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                tn_url <span class="op">=</span> asset.href  <span class="co"># Directly access the href attribute</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we open the remote URL, read the data and dislay the thumbnail </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> urllib.request.urlopen(tn_url) <span class="im">as</span> url:</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(url.read()))</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>display(img)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1711,39 +1545,39 @@ Assets:
 </div>
 </div>
 <div id="cell-25" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code to show all thumbnails</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>thumbnail_urls <span class="op">=</span> []</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"thumbnail"</span> <span class="kw">in</span> item.assets:</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        thumbnail_urls.append(item.assets[<span class="st">"thumbnail"</span>].href) <span class="co"># collect link to thumbnails</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of assets with thumbnails: </span><span class="sc">{</span><span class="bu">len</span>(thumbnail_urls)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for start and end thumbnails</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Start image: "</span>))</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"End image: "</span>))</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Clamp the range</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, start)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> <span class="bu">min</span>(<span class="bu">len</span>(thumbnail_urls), end)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>selected_urls <span class="op">=</span> thumbnail_urls[start:end]</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Showing thumbnails </span><span class="sc">{</span>start<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>end<span class="op">-</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> []</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> url <span class="kw">in</span> selected_urls:</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> urllib.request.urlopen(url) <span class="im">as</span> u:</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(u.read())) <span class="co"># get the thumbnails</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>        images.append(img)</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine grid size (roughly square)</span></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> math.ceil(<span class="bu">len</span>(images) <span class="op">/</span> cols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code to show all thumbnails</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>thumbnail_urls <span class="op">=</span> []</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> item.assets:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"thumbnail"</span> <span class="kw">in</span> item.assets:</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        thumbnail_urls.append(item.assets[<span class="st">"thumbnail"</span>].href) <span class="co"># collect link to thumbnails</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of assets with thumbnails: </span><span class="sc">{</span><span class="bu">len</span>(thumbnail_urls)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for start and end thumbnails</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Start image: "</span>))</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"End image: "</span>))</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Clamp the range</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, start)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> <span class="bu">min</span>(<span class="bu">len</span>(thumbnail_urls), end)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>selected_urls <span class="op">=</span> thumbnail_urls[start:end]</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Showing thumbnails </span><span class="sc">{</span>start<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>end<span class="op">-</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> []</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> url <span class="kw">in</span> selected_urls:</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> urllib.request.urlopen(url) <span class="im">as</span> u:</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(u.read())) <span class="co"># get the thumbnails</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>        images.append(img)</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine grid size (roughly square)</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> math.ceil(<span class="bu">len</span>(images) <span class="op">/</span> cols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of assets with thumbnails: 13</code></pre>
 </div>
@@ -1756,16 +1590,16 @@ End image:  6</code></pre>
 </div>
 </div>
 <div id="cell-26" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot thumbnail matrix</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">3</span> <span class="op">*</span> rows))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, img <span class="kw">in</span> <span class="bu">enumerate</span>(images):</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> fig.add_subplot(rows, cols, i <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot thumbnail matrix</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">3</span> <span class="op">*</span> rows))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, img <span class="kw">in</span> <span class="bu">enumerate</span>(images):</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> fig.add_subplot(rows, cols, i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1778,63 +1612,63 @@ End image:  6</code></pre>
 <section id="timeseries" class="level1">
 <h1>Timeseries</h1>
 <div id="cell-28" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EPSG:4326 → EPSG:27700</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:27700"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>xc, yc <span class="op">=</span> transformer.transform(lon, lat)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>dates, ndwi_vals <span class="op">=</span> [], []</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract NDWI for each scene </span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    asset <span class="op">=</span> item.assets[<span class="st">"cog"</span>]</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    href <span class="op">=</span> asset.href</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract band ordering from eo:bands list</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    bands <span class="op">=</span> asset.extra_fields[<span class="st">"eo:bands"</span>]</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    band_index <span class="op">=</span> {b[<span class="st">"name"</span>]: i <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> i, b <span class="kw">in</span> <span class="bu">enumerate</span>(bands)}</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Need B03 (green) and B08 (nir)</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    g_idx <span class="op">=</span> band_index[<span class="st">"B03"</span>]</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    n_idx <span class="op">=</span> band_index[<span class="st">"B08"</span>]</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample the COG</span></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> rasterio.<span class="bu">open</span>(href) <span class="im">as</span> src:</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>            green <span class="op">=</span> <span class="bu">list</span>(src.sample([(xc, yc)], indexes<span class="op">=</span>g_idx))[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>            nir   <span class="op">=</span> <span class="bu">list</span>(src.sample([(xc, yc)], indexes<span class="op">=</span>n_idx))[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Skip invalid values</span></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> green <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> nir <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    ndwi <span class="op">=</span> (((green<span class="op">/</span><span class="dv">100</span>) <span class="op">-</span> (nir<span class="op">/</span><span class="dv">100</span>)) <span class="op">/</span> ((green<span class="op">/</span><span class="dv">100</span>) <span class="op">+</span> (nir<span class="op">/</span><span class="dv">100</span>))) <span class="co"># Working on the reasoning that the data needs rescaling by 100 </span></span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store result</span></span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    dates.append(item.datetime)</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    ndwi_vals.append(<span class="bu">float</span>(ndwi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EPSG:4326 → EPSG:27700</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Transformer.from_crs(<span class="st">"EPSG:4326"</span>, <span class="st">"EPSG:27700"</span>, always_xy<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>xc, yc <span class="op">=</span> transformer.transform(lon, lat)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>dates, ndwi_vals <span class="op">=</span> [], []</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract NDWI for each scene </span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    asset <span class="op">=</span> item.assets[<span class="st">"cog"</span>]</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    href <span class="op">=</span> asset.href</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract band ordering from eo:bands list</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    bands <span class="op">=</span> asset.extra_fields[<span class="st">"eo:bands"</span>]</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    band_index <span class="op">=</span> {b[<span class="st">"name"</span>]: i <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> i, b <span class="kw">in</span> <span class="bu">enumerate</span>(bands)}</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Need B03 (green) and B08 (nir)</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    g_idx <span class="op">=</span> band_index[<span class="st">"B03"</span>]</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    n_idx <span class="op">=</span> band_index[<span class="st">"B08"</span>]</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample the COG</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> rasterio.<span class="bu">open</span>(href) <span class="im">as</span> src:</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>            green <span class="op">=</span> <span class="bu">list</span>(src.sample([(xc, yc)], indexes<span class="op">=</span>g_idx))[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>            nir   <span class="op">=</span> <span class="bu">list</span>(src.sample([(xc, yc)], indexes<span class="op">=</span>n_idx))[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Skip invalid values</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> green <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> nir <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    ndwi <span class="op">=</span> (((green<span class="op">/</span><span class="dv">100</span>) <span class="op">-</span> (nir<span class="op">/</span><span class="dv">100</span>)) <span class="op">/</span> ((green<span class="op">/</span><span class="dv">100</span>) <span class="op">+</span> (nir<span class="op">/</span><span class="dv">100</span>))) <span class="co"># Working on the reasoning that the data needs rescaling by 100 </span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store result</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>    dates.append(item.datetime)</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>    ndwi_vals.append(<span class="bu">float</span>(ndwi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Finally we plot the data using <code>hvplot</code> which allows the user to interact with the chart.</p>
 <div id="cell-30" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: dates,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ndwi"</span>: ndwi_vals</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>df.hvplot.line(</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"date"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"ndwi"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"NDWI Timeseries at WWT London"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"NDWI"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Date"</span>,</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="st">"o"</span>,</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    grid<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">700</span>,</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">350</span>,</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: dates,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ndwi"</span>: ndwi_vals</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>df.hvplot.line(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"date"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"ndwi"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"NDWI Timeseries at WWT London"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"NDWI"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Date"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="st">"o"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    grid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">700</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">350</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>WARNING:param.main: marker option not found for line plot with bokeh; similar options include: []
 WARNING:param.main:marker option not found for line plot with bokeh; similar options include: []</code></pre>
